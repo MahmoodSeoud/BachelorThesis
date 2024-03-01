@@ -12,9 +12,7 @@ This repo is for my BachelorThesis on DIKU 2024
 - Utilized the multiprocessing library in Python, including classes such as Queues, Conditions, Lock, and Pipe.
 - Program executed locally on a single terminal for initial development and testing.
 
-
-
-## Week 2: Implementation and Multi-terminal Setup
+### Week 2: Implementation and Multi-terminal Setup
 - Transitioning from local execution to distributed setup across different terminals. (No more Pipes, Quees)
 - Utilizing the Thread library in Python to handle concurrent execution.
 - Learning about threads with sub-threads, such as listening and writing threads.
@@ -23,10 +21,14 @@ This repo is for my BachelorThesis on DIKU 2024
 - Experimenting with network configurations to ensure seamless communication between terminals.
 - Reading up on deadlock/race conditions
 
-
-## Week 3: Fixing the implementation from week2
+### Week 3: Fixing the implementation from week2
 - Reading up on deadlocks (sharing variables between threads)
 - Livelock vs deadlock
 - Made a "protocol" to differentiate between reindeer communication and Santa communication because the handle action should be different in each case
 - Experiencing some deadlocks with the elves
 - Reading articles about some potenial algorithms to use for the elves
+
+### Week 4: Redoing the implementation
+- I did draw the network diagram so that i copuld redo the entire problem.
+![](./images/Elves networking.png)
+
