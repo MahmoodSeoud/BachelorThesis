@@ -89,7 +89,7 @@ class RequestHandler(socketserver.StreamRequestHandler):
 
                 # If len(self.Elf.chain) == NUM_ELVES, then I must be the root
                 if self.Elf.is_chain_root:
-                    print(f'Elf{self.Elf.id} I am Groot') # Xd 
+                    print(f'Elf {self.Elf.id} - I am Groot') # Xd 
                     msg_type = MSG_TYPE.READY_REQUEST._value_ 
                     data = {
                         'type': msg_type,
@@ -112,7 +112,8 @@ class RequestHandler(socketserver.StreamRequestHandler):
             with self.Elf.lock:
                 data = {
                     'type': msg_type,
-                    'is_chain_member': int(self.Elf.is_chain_member)
+                    'is_chain_member': int(self.Elf.is_chain_member),
+                    'peer_id': self.Elf.id
                 }
                 self.Elf.is_chain_member = True
 
@@ -122,16 +123,18 @@ class RequestHandler(socketserver.StreamRequestHandler):
 
         elif msg_type == MSG_TYPE.READY_RESPONSE._value_: 
             ready = payload['is_chain_member']
+            peer_id = payload['peer_id']
 
+            print(f'Elf{peer_id}{" was" if ready else " was not"} ready')
             print(f'Elf{self.Elf.id} the chain is ', self.Elf.chain)
 
             #if not ready:
-            #    self.Elf.chain_root = False
-
             #    with self.Elf.lock:
+            #        self.Elf.chain_root = False
             #        self.Elf.chain = []
-            #   # with self.Elf.condition:
-            #   #     self.Elf.condition.notify_all()
+
+            #    with self.Elf.condition:
+            #        self.Elf.condition.notify_all()
             
         elif msg_type == MSG_TYPE.REJECT._value_:
             print('Already taken')
