@@ -30,5 +30,5 @@ This repo is for my BachelorThesis on DIKU 2024
 
 ### Week 4: Redoing the implementation
 - I did draw the network diagram so that i copuld redo the entire problem.
-![s](./images/Elves networking.png)
+![s](./images/Elves_networking.png)
 
