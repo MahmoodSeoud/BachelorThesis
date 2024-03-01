@@ -17,7 +17,7 @@ class MSG_TYPE(Enum):
     
 
 NUM_ELVES = 4
-CHAIN_NUM = 3
+NUM_CHAIN = 3
 LOCAL_HOST = "127.0.0.1"
 SANTA_PORT = 29800
 
@@ -30,13 +30,10 @@ class RequestHandler(socketserver.StreamRequestHandler):
         
         # Receive the message type
         data_bytes = self.request.recv(1024)
-        
         # Decode bytes to a string and convert it to a dictionary
         payload = json.loads(data_bytes.decode('utf-8'))
-
         # Access msg_type from the dictionary
         msg_type = payload['type']
-        print('MSG_TYPE', msg_type)
 
         if msg_type == MSG_TYPE.SANTA._value_: # Handle a string message from Santa
             pass
@@ -53,7 +50,7 @@ class RequestHandler(socketserver.StreamRequestHandler):
             #if not self.Elf.is_chain_member:     # Not yet taken
             with self.Elf.lock:
                 # bisect.insort uses a binary search algorithm to insert them in ordered way (sleep_time, id)
-                if len(self.Elf.chain) < CHAIN_NUM:
+                if len(self.Elf.chain) < NUM_CHAIN:
                     if peer_triple not in self.Elf.chain:
                         bisect.insort(self.Elf.chain, peer_triple)
 
@@ -80,7 +77,7 @@ class RequestHandler(socketserver.StreamRequestHandler):
             peer_triple = (peer_sleep_time, peer_id, peer_port)
 
             with self.Elf.lock:
-                if len(self.Elf.chain) < CHAIN_NUM:
+                if len(self.Elf.chain) < NUM_CHAIN:
                     if peer_triple not in self.Elf.chain:
                         bisect.insort(self.Elf.chain, peer_triple)
 
@@ -126,16 +123,15 @@ class RequestHandler(socketserver.StreamRequestHandler):
         elif msg_type == MSG_TYPE.READY_RESPONSE._value_: 
             ready = payload['is_chain_member']
 
-            print('Chain:', self.Elf.chain)
+            print(f'Elf{self.Elf.id} the chain is ', self.Elf.chain)
 
-            if not ready:
-                print(f'Elf{self.Elf.id} got in here')
-                self.Elf.chain_root = False
+            #if not ready:
+            #    self.Elf.chain_root = False
 
-                with self.Elf.lock:
-                    self.Elf.chain = []
-               # with self.Elf.condition:
-               #     self.Elf.condition.notify_all()
+            #    with self.Elf.lock:
+            #        self.Elf.chain = []
+            #   # with self.Elf.condition:
+            #   #     self.Elf.condition.notify_all()
             
         elif msg_type == MSG_TYPE.REJECT._value_:
             print('Already taken')
