@@ -1,7 +1,7 @@
-# BachelorThesis
+# Bachelor thesis 2024 - DIKU
 This repo is for my BachelorThesis on DIKU 2024
 
-##Bachelor Thesis Learning Notes
+## Bachelor Thesis Learning Notes
 
 ### Week 1: Introduction and Problem Solving
 - Introduction to the goal of creating a Bluetooth mesh grid network with an emphasis on designing an adaptive network protocol.
@@ -30,5 +30,5 @@ This repo is for my BachelorThesis on DIKU 2024
 
 ### Week 4: Redoing the implementation
 - I did draw the network diagram so that i copuld redo the entire problem.
-![](./images/Elves networking.png)
+![s](./images/Elves networking.png)
 
