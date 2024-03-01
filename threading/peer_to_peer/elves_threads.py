@@ -74,11 +74,14 @@ class RequestHandler(socketserver.StreamRequestHandler):
             with self.Elf.lock:
                 if peer_triple not in self.Elf.chain:
                     bisect.insort(self.Elf.chain, peer_triple)
-            
-                if len(self.Elf.chain) == NUM_ELVES:
+                first_elf_in_chain_id = self.Elf.chain[0][1]
+                # Do we THINK we have enough elves? Only the "root" can be root
+                if len(self.Elf.chain) == NUM_ELVES and  first_elf_in_chain_id == self.Elf.id:
                     self.Elf.is_chain_root = True
                 
+                # If len(self.Elf.chain) == NUM_ELVES, then I must be the root
                 if self.Elf.is_chain_root:
+                    print(f'Elf{self.Elf.id} i think i am root')
                     msg_type = MSG_TYPE.READY_REQUEST._value_ 
                     buffer = self.Elf.create_buffer(msg_type)
                     buffer.extend(struct.pack('!I', my_port))
