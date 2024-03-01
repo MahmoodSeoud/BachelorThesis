@@ -11,8 +11,8 @@ class MSG_TYPE(Enum):
     SANTA = 1
     FEELER = 2
     ACKNOWLEDGEMENT = 3
-    ERROR = 4
-    JOIN_CHAIN = 5
+    READY_REQUEST = 4
+    READY_RESPONSE = 5
 
 NUM_ELVES = 3
 LOCAL_HOST = "127.0.0.1"
@@ -42,57 +42,78 @@ class RequestHandler(socketserver.StreamRequestHandler):
             request_header = self.request.recv(16)
             peer_id, peer_sleep_time, peer_port = struct.unpack('!3I', request_header)
 
-            peer_tuple = (peer_id, peer_sleep_time)
-            my_tuple = (self.Elf.id, self.Elf.sleep_time)
+            peer_triple = (peer_sleep_time, peer_id, peer_port)
+            my_triple = (self.Elf.sleep_time, self.Elf.id ,self.Elf.port)
 
             with self.Elf.lock:
                 # bisect.insort uses a binary search algorithm to insert them in ordered way (sleep_time, id)
-                if peer_tuple not in self.Elf.chain:
-                    bisect.insort(self.Elf.chain, peer_tuple)
+                if peer_triple not in self.Elf.chain:
+                    bisect.insort(self.Elf.chain, peer_triple)
 
-                if my_tuple not in self.Elf.chain: 
-                    bisect.insort(self.Elf.chain, my_tuple)
+                if my_triple not in self.Elf.chain: 
+                    bisect.insort(self.Elf.chain, my_triple)
 
-
-            # Message to Ack
+            # Message to Ack that the feeler was sent out.
             msg_type = MSG_TYPE.ACKNOWLEDGEMENT._value_ 
-            buffer = bytearray()
-            buffer.extend(struct.pack('!I', msg_type))
+            buffer = self.Elf.create_buffer(msg_type)
 
             with self.Elf.lock:
                 print(f'Elf{self.Elf.id} - my chain is: {self.Elf.chain}')
-                for elf_data in self.Elf.chain:
-                    buffer.extend(struct.pack('!2I', elf_data[0], elf_data[1]))
+                for elf in self.Elf.chain:
+                    buffer.extend(struct.pack('!3I', elf[1], elf[0], elf[2])) #  1 - 0 - 2, since my triples are stored in that way
                 
-                                            
-            
             self.Elf.send_message(LOCAL_HOST, peer_port, buffer)
 
         elif msg_type == MSG_TYPE.ACKNOWLEDGEMENT._value_: # Handle the case of acceptance
-            request_header = self.request.recv(16)
-            my_id, my_sleep_time, peer_id, peer_sleep_time = struct.unpack('!4I', request_header)
+            request_header = self.request.recv(24)
+            my_id, my_sleep_time, my_port, peer_id, peer_sleep_time, peer_port = struct.unpack('!6I', request_header)
 
-            my_tuple = (my_id, my_sleep_time) # Maybe i dont need this one here
-            peer_tuple = (peer_id, peer_sleep_time)
-
-            with self.Elf.lock:
-                if peer_tuple not in self.Elf.chain:
-                    bisect.insort(self.Elf.chain, peer_tuple)
-
-
-
-        elif msg_type == MSG_TYPE.JOIN_CHAIN._value_:
-            request_header = self.request.recv(8)
-            id, sleep_time = struct.unpack('!2I', request_header)[0]
+            my_triple = (my_sleep_time, my_id, my_port) # Maybe i dont need this one here
+            peer_triple = (peer_sleep_time, peer_id, peer_port)
 
             with self.Elf.lock:
-                self.Elf.chain.append((id, sleep_time))
+                if peer_triple not in self.Elf.chain:
+                    bisect.insort(self.Elf.chain, peer_triple)
+            
+                if len(self.Elf.chain) == NUM_ELVES:
+                    self.Elf.is_chain_root = True
+                
+                if self.Elf.is_chain_root:
+                    msg_type = MSG_TYPE.READY_REQUEST._value_ 
+                    buffer = self.Elf.create_buffer(msg_type)
+                    buffer.extend(struct.pack('!I', my_port))
+                    with self.Elf.lock:
+                        for elf in self.Elf.chain:
+                            if elf[2] != my_port:
+                                self.Elf.send_message(LOCAL_HOST, elf[2], buffer)
+                    
 
-            print(f'Elf{self.Elf.id} - believe the chain is {self.Elf.chain}')
+        elif msg_type == MSG_TYPE.READY_REQUEST._value_:
+            request_header = self.request.recv(4)
+            peer_port = struct.unpack('!I', request_header)[0]
+
+            msg_type = MSG_TYPE.READY_RESPONSE._value_ 
+            buffer = self.Elf.create_buffer(msg_type)
+            buffer.extend(struct.pack('!I', int(self.Elf.is_chain_member))) # Message back if is ready or not --- TODO: Need to check in another way if he is ready. Perhaps check his chain?
+            self.Elf.is_chain_member = True
+
+            self.Elf.send_message(LOCAL_HOST, peer_port, buffer)
 
 
-        elif msg_type == MSG_TYPE.ERROR._value_: # Handle the case of reject
-            pass
+        elif msg_type == MSG_TYPE.READY_RESPONSE._value_: 
+            request_header = self.request.recv(4)
+            ready = struct.unpack('!I', request_header)[0]
+
+            if not ready:
+                print(f'Elf{self.Elf.id} got in here')
+                self.Elf.chain_root = False
+
+                with self.Elf.lock:
+                    self.Elf.chain = []
+                pass
+               # with self.Elf.condition:
+               #     self.Elf.condition.notify_all()
+            
 
 
 class Elf:
@@ -125,9 +146,6 @@ class Elf:
             time.sleep(self.sleep_time)  # Simulate elf working
             print(f'Elf {self.id} has problems after {self.sleep_time} seconds')
 
-            with self.lock:
-                self.chain.append((self.id, self.sleep_time)) # Inserting my own (id, sleep_time)
-
             # If the elf is not forming a group, initiate group formation
             # Send message to peers about group formation
             msg_type = MSG_TYPE.FEELER._value_
@@ -145,6 +163,11 @@ class Elf:
             # Waiting for all the threads to sync
             with self.condition:
                 self.condition.wait()
+
+    def create_buffer(self, msg_type):
+        buffer = bytearray()
+        buffer.extend(struct.pack('!I', msg_type))
+        return buffer
 
     def send_message(self, host, port, message):
         try:
