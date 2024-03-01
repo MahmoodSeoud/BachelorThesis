@@ -31,4 +31,5 @@ This repo is for my BachelorThesis on DIKU 2024
 ### Week 4: Redoing the implementation
 - I did draw the network diagram so that i copuld redo the entire problem.
 ![Initial Communication between the elves](./images/Elves_networking.png)
-
+- I have gone over to JSON dumps instead of sending bytes indivually since it
+    scales better and I am more used to working with JSON
