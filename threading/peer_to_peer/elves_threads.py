@@ -11,10 +11,13 @@ class MSG_TYPE(Enum):
     SANTA = 1
     FEELER = 2
     ACKNOWLEDGEMENT = 3
-    READY_REQUEST = 4
-    READY_RESPONSE = 5
+    REJECT = 4
+    READY_REQUEST = 5
+    READY_RESPONSE = 6
+    
 
-NUM_ELVES = 3
+NUM_ELVES = 4
+CHAIN_NUM = 3
 LOCAL_HOST = "127.0.0.1"
 SANTA_PORT = 29800
 
@@ -39,28 +42,34 @@ class RequestHandler(socketserver.StreamRequestHandler):
             print('--------------------------') # Print line to indicicate new cycle
 
         elif msg_type == MSG_TYPE.FEELER._value_:  # Handle a tuple message from other Elf
+
             request_header = self.request.recv(16)
             peer_id, peer_sleep_time, peer_port = struct.unpack('!3I', request_header)
-
+    
             peer_triple = (peer_sleep_time, peer_id, peer_port)
             my_triple = (self.Elf.sleep_time, self.Elf.id ,self.Elf.port)
 
-            with self.Elf.lock:
-                # bisect.insort uses a binary search algorithm to insert them in ordered way (sleep_time, id)
-                if peer_triple not in self.Elf.chain:
-                    bisect.insort(self.Elf.chain, peer_triple)
+            if not self.Elf.is_chain_member:     # Not yet taken
+                with self.Elf.lock:
+                    # bisect.insort uses a binary search algorithm to insert them in ordered way (sleep_time, id)
+                    if peer_triple not in self.Elf.chain:
+                        bisect.insort(self.Elf.chain, peer_triple)
 
-                if my_triple not in self.Elf.chain: 
-                    bisect.insort(self.Elf.chain, my_triple)
+                    if my_triple not in self.Elf.chain: 
+                        bisect.insort(self.Elf.chain, my_triple)
 
-            # Message to Ack that the feeler was sent out.
-            msg_type = MSG_TYPE.ACKNOWLEDGEMENT._value_ 
-            buffer = self.Elf.create_buffer(msg_type)
+                # Message to Ack that the feeler was sent out.
+                msg_type = MSG_TYPE.ACKNOWLEDGEMENT._value_ 
+                buffer = self.Elf.create_buffer(msg_type)
 
-            with self.Elf.lock:
-                print(f'Elf{self.Elf.id} - my chain is: {self.Elf.chain}')
-                for elf in self.Elf.chain:
-                    buffer.extend(struct.pack('!3I', elf[1], elf[0], elf[2])) #  1 - 0 - 2, since my triples are stored in that way
+                with self.Elf.lock:
+                    print(f'Elf{self.Elf.id} - my chain is: {self.Elf.chain}')
+                    for elf in self.Elf.chain:
+                        buffer.extend(struct.pack('!3I', elf[1], elf[0], elf[2])) #  1 - 0 - 2, since my triples are stored in that way
+                        
+            else: # Already taken 
+                msg_type = MSG_TYPE.REJECT._value_ 
+                buffer = self.Elf.create_buffer(msg_type)
                 
             self.Elf.send_message(LOCAL_HOST, peer_port, buffer)
 
@@ -74,21 +83,24 @@ class RequestHandler(socketserver.StreamRequestHandler):
             with self.Elf.lock:
                 if peer_triple not in self.Elf.chain:
                     bisect.insort(self.Elf.chain, peer_triple)
+
                 first_elf_in_chain_id = self.Elf.chain[0][1]
+
                 # Do we THINK we have enough elves? Only the "root" can be root
-                if len(self.Elf.chain) == NUM_ELVES and  first_elf_in_chain_id == self.Elf.id:
+                if len(self.Elf.chain) == CHAIN_NUM and first_elf_in_chain_id == self.Elf.id:
                     self.Elf.is_chain_root = True
                 
                 # If len(self.Elf.chain) == NUM_ELVES, then I must be the root
                 if self.Elf.is_chain_root:
-                    print(f'Elf{self.Elf.id} i think i am root')
+                    print(f'Elf{self.Elf.id} I am Groot') # Xd 
                     msg_type = MSG_TYPE.READY_REQUEST._value_ 
                     buffer = self.Elf.create_buffer(msg_type)
                     buffer.extend(struct.pack('!I', my_port))
                     with self.Elf.lock:
                         for elf in self.Elf.chain:
-                            if elf[2] != my_port:
-                                self.Elf.send_message(LOCAL_HOST, elf[2], buffer)
+                            peer_port = elf[2]
+                            if peer_port != my_port:
+                                self.Elf.send_message(LOCAL_HOST, peer_port, buffer)
                     
 
         elif msg_type == MSG_TYPE.READY_REQUEST._value_:
@@ -113,10 +125,12 @@ class RequestHandler(socketserver.StreamRequestHandler):
 
                 with self.Elf.lock:
                     self.Elf.chain = []
-                pass
                # with self.Elf.condition:
                #     self.Elf.condition.notify_all()
             
+        elif msg_type == MSG_TYPE.REJECT._value_:
+            print('Already taken')
+            pass
 
 
 class Elf:
