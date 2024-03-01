@@ -4,6 +4,7 @@ import struct
 import threading
 import time
 import random
+import bisect
 from enum import Enum
 
 class MSG_TYPE(Enum):
@@ -38,44 +39,47 @@ class RequestHandler(socketserver.StreamRequestHandler):
             print('--------------------------') # Print line to indicicate new cycle
 
         elif msg_type == MSG_TYPE.FEELER._value_:  # Handle a tuple message from other Elf
-            request_header = self.request.recv(12)
-            port = struct.unpack('!I', request_header)[0]
+            request_header = self.request.recv(16)
+            peer_id, peer_sleep_time, peer_port = struct.unpack('!3I', request_header)
 
+            peer_tuple = (peer_id, peer_sleep_time)
+            my_tuple = (self.Elf.id, self.Elf.sleep_time)
+
+            with self.Elf.lock:
+                # bisect.insort uses a binary search algorithm to insert them in ordered way (sleep_time, id)
+                if peer_tuple not in self.Elf.chain:
+                    bisect.insort(self.Elf.chain, peer_tuple)
+
+                if my_tuple not in self.Elf.chain: 
+                    bisect.insort(self.Elf.chain, my_tuple)
+
+
+            # Message to Ack
             msg_type = MSG_TYPE.ACKNOWLEDGEMENT._value_ 
             buffer = bytearray()
             buffer.extend(struct.pack('!I', msg_type))
+
             with self.Elf.lock:
-                buffer.extend(struct.pack('!4I', 
-                                            self.Elf.id, 
-                                            self.Elf.sleep_time,
-                                            int(self.Elf.is_chain_root), 
-                                            len(self.Elf.chain)))
+                print(f'Elf{self.Elf.id} - my chain is: {self.Elf.chain}')
+                for elf_data in self.Elf.chain:
+                    buffer.extend(struct.pack('!2I', elf_data[0], elf_data[1]))
+                
+                                            
             
-            self.Elf.send_message(LOCAL_HOST, port, buffer)
+            self.Elf.send_message(LOCAL_HOST, peer_port, buffer)
 
         elif msg_type == MSG_TYPE.ACKNOWLEDGEMENT._value_: # Handle the case of acceptance
             request_header = self.request.recv(16)
-            id, sleep_time, he_was_root, chain_length = struct.unpack('!4I', request_header)
+            my_id, my_sleep_time, peer_id, peer_sleep_time = struct.unpack('!4I', request_header)
+
+            my_tuple = (my_id, my_sleep_time) # Maybe i dont need this one here
+            peer_tuple = (peer_id, peer_sleep_time)
 
             with self.Elf.lock:
-                if not self.Elf.is_chain_member:
-                    if he_was_root and chain_length < NUM_ELVES:
-                        self.Elf.is_chain_member = True
+                if peer_tuple not in self.Elf.chain:
+                    bisect.insort(self.Elf.chain, peer_tuple)
 
-                        # Attempt to join the chain
-                        msg_type = MSG_TYPE.JOIN_CHAIN._value_ 
 
-                        buffer = bytearray()
-                        buffer.extend(struct.pack('!I', msg_type))
-                        buffer.extend(struct.pack('!2I', self.Elf.id, self.Elf.sleep_time))
-                    else:
-                        # If none is root or there is not enough space for me, create my own
-                        self.Elf.is_chain_root = True                      
-                        self.Elf.is_chain_member = True                      
-
-                        self.Elf.chain.append((self.Elf.id, self.Elf.sleep_time))
-                    
-                    print(f'Elf {self.Elf.id} - I think the chain is {self.Elf.chain}')
 
         elif msg_type == MSG_TYPE.JOIN_CHAIN._value_:
             request_header = self.request.recv(8)
@@ -121,22 +125,22 @@ class Elf:
             time.sleep(self.sleep_time)  # Simulate elf working
             print(f'Elf {self.id} has problems after {self.sleep_time} seconds')
 
+            with self.lock:
+                self.chain.append((self.id, self.sleep_time)) # Inserting my own (id, sleep_time)
+
             # If the elf is not forming a group, initiate group formation
-            
-
-
             # Send message to peers about group formation
-            if not self.is_chain_root:
-                msg_type = MSG_TYPE.FEELER._value_
+            msg_type = MSG_TYPE.FEELER._value_
 
-                buffer = bytearray()
-                buffer.extend(struct.pack('!I', msg_type))
-                buffer.extend(struct.pack('!I', self.port))
+            buffer = bytearray()
+            buffer.extend(struct.pack('!I', msg_type))
+            buffer.extend(struct.pack('!2I', self.id, self.sleep_time))
+            buffer.extend(struct.pack('!I', self.port))
 
-                # Msg all the other elves about presence of chain root
-                for peer_port in self.peer_ports:
-                    if peer_port != self.port:
-                        self.send_message(LOCAL_HOST, peer_port, buffer)
+            # Msg all the other elves about presence of chain root
+            for peer_port in self.peer_ports:
+                if peer_port != self.port:
+                    self.send_message(LOCAL_HOST, peer_port, buffer)
 
             # Waiting for all the threads to sync
             with self.condition:
