@@ -52,7 +52,7 @@ class RequestHandler(socketserver.StreamRequestHandler):
 
     def handle_feeler_msg(self, payload):
         def create_feeler_response_data(peer_triple, my_triple):
-            if self.Elf.sleep_time == peer_triple[0]:
+            if self.Elf.is_chain_root:
                 return {
                     'type': MSG_TYPE.REJECT._value_,
                     'peer_id': self.Elf.id
@@ -115,10 +115,6 @@ class RequestHandler(socketserver.StreamRequestHandler):
         peer_triple = extract_peer_triple(chain)
         my_triple = (self.Elf.sleep_time, self.Elf.id , self.Elf.port)
 
-        if self.Elf.id in [1, 4]:
-            print(f'ELF {self.Elf.id} - GOT ACKNOWLEDGEMENT FROM ELF {peer_triple[1]}')
-            print(f'ELF {self.Elf.id} - CHAIN IS {chain}')
-
         with self.Elf.lock:
             update_chain(peer_triple, my_triple)
             check_and_set_chain_root()
@@ -151,6 +147,7 @@ class RequestHandler(socketserver.StreamRequestHandler):
             # if the elf is not ready, clear the chain and start over
             self.Elf.chain = []
             self.Elf.is_chain_root = False
+            self.Elf.ready_count = 0
             # TODO: Send message to the other elves to start over
 
         def contact_santa():
@@ -161,10 +158,10 @@ class RequestHandler(socketserver.StreamRequestHandler):
         peer_id = payload['peer_id']
 
         with self.Elf.lock:
-            if ready:
-                handle_ready()
-            else:
+            if not ready:
                 handle_not_ready(peer_id)
+            else:
+                handle_ready()
 
             if self.Elf.ready_count == NUM_CHAIN - 1: # If the other elves in the chain are ready
                 contact_santa()
@@ -218,7 +215,7 @@ class Elf:
 
     def elf_writer(self):
         while True:
-            self.sleep_time =  self.find_sleeping_time_testing()   #random.randint(3,5) # Updating the sleeping time
+            self.sleep_time =  random.randint(3,5) # Updating the sleeping time
             time.sleep(self.sleep_time)  # Simulate elf working
             print(f'Elf {self.id} has problems after {self.sleep_time} seconds')
 
@@ -241,8 +238,8 @@ class Elf:
                     self.send_message(LOCAL_HOST, peer_port, buffer)
 
             # Waiting for all the threads to sync
-            with self.condition:
-                self.condition.wait()
+            #with self.condition:
+            #    self.condition.wait()
 
     def create_buffer(self, payload):
         buffer = json.dumps(payload).encode('utf-8')
