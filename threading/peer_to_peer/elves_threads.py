@@ -51,6 +51,7 @@ class RequestHandler(socketserver.StreamRequestHandler):
                 if self.Elf.sleep_time == peer_sleep_time:
                     data = {
                         'type': MSG_TYPE.REJECT._value_,
+                        'peer_id': self.Elf.id
                     }
                 else:
 
@@ -73,7 +74,6 @@ class RequestHandler(socketserver.StreamRequestHandler):
                 print(f'ELF {self.Elf.id} - RECIEVED THE ACKNOWLEDGEMENT FROM ELF {peer_id}') 
                 print(f'ELF {self.Elf.id} - RECIEVED THE CHAIN: {chain} FROM ELF {peer_id}')
             
-
             #my_triple = (my_sleep_time, my_id, my_port) # Maybe i dont need this one here
             peer_triple = (peer_sleep_time, peer_id, peer_port)
             my_triple = (self.Elf.sleep_time, self.Elf.id , self.Elf.port)
@@ -96,17 +96,15 @@ class RequestHandler(socketserver.StreamRequestHandler):
                 else:
                     self.Elf.is_chain_root = False
 
-
                 # If len(self.Elf.chain) == NUM_ELVES, then I we 
                 # have enough elves to ask them if ready
-                if len(self.Elf.chain) == NUM_CHAIN and self.Elf.is_chain_root:
+                if self.Elf.is_chain_root:
                     msg_type = MSG_TYPE.READY_REQUEST._value_ 
                     data = {
                         'type': msg_type,
                         'peer_port': self.Elf.port
                     }
                     buffer = self.Elf.create_buffer(data)
-
 
                     for elf in self.Elf.chain:
                         peer_port = elf[2] #port
@@ -122,17 +120,17 @@ class RequestHandler(socketserver.StreamRequestHandler):
             with self.Elf.lock:
                 data = {
                     'type': msg_type,
-                    'is_chain_member': int(self.Elf.is_chain_member),
+                    'is_ready_to_join_chain': int(self.Elf.is_ready_to_join_chain),
                     'peer_id': self.Elf.id
                 }
-                self.Elf.is_chain_member = True
+                self.Elf.is_ready_to_join_chain = False
 
             buffer = self.Elf.create_buffer(data)
             self.Elf.send_message(LOCAL_HOST, peer_port, buffer)
 
 
         elif msg_type == MSG_TYPE.READY_RESPONSE._value_: 
-            ready = payload['is_chain_member']
+            ready = payload['is_ready_to_join_chain']
             peer_id = payload['peer_id']
 
             #print(f'Elf{peer_id}{" was" if ready else " was not"} ready')
@@ -140,16 +138,22 @@ class RequestHandler(socketserver.StreamRequestHandler):
 
             if ready:
                 with self.Elf.lock:
-                    # Check if the responding elf is already a member of another chain
-                    for elf in self.Elf.chain:
-                        if elf[1] == peer_id and elf[2] != self.Elf.port:
-                            # The elf is a member of another chain, drop the current chain and start over
-                            self.Elf.chain = []
-                            self.Elf.is_chain_root = False
-                            break
+                    self.Elf.ready_count += 1
+            elif not ready:
+                print(f'ELF {self.Elf.id} - Elf {peer_id} is not ready')
+                with self.Elf.lock:
+                    # if the elf is not ready, clear the chain and start over
+                    self.Elf.chain = []
+                    self.Elf.is_chain_root = False
+                    # TODO: Send message to the other elves to start over
+
+            if self.Elf.ready_count == NUM_CHAIN - 1: # If the other elves in the chain are ready
+                # TODO: Contact Santa 
+                print(f'Elf {self.Elf.id} - Is contacting Santa')
             
         elif msg_type == MSG_TYPE.REJECT._value_:
-            print('Already taken')
+            peer_id = payload['peer_id']
+            print(f'ELF {self.Elf.id} - GOT REJECTED by ELF {peer_id}')
             pass
 
 
@@ -163,9 +167,9 @@ class Elf:
         self.lock = threading.Lock()
         self.chain = []
         self.is_chain_root = False
-        self.is_chain_member = False
+        self.is_ready_to_join_chain = True
+        self.ready_count = 0
         self.condition = threading.Condition()
-        self.barrier = threading.Barrier(NUM_CHAIN - 1)
 
 
     def elf_listener(self):
