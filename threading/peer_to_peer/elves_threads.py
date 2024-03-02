@@ -34,127 +34,145 @@ class RequestHandler(socketserver.StreamRequestHandler):
         payload = json.loads(data_bytes.decode('utf-8'))
         # Access msg_type from the dictionary
         msg_type = payload['type']
+        if msg_type == MSG_TYPE.SANTA._value_:
+            self.handle_santa_msg(payload)
+        elif msg_type == MSG_TYPE.FEELER._value_:
+            self.handle_feeler_msg(payload)
+        elif msg_type == MSG_TYPE.ACKNOWLEDGEMENT._value_:
+            self.handle_acknowledgement_msg(payload)
+        elif msg_type == MSG_TYPE.READY_REQUEST._value_:
+            self.handle_ready_request_msg(payload)
+        elif msg_type == MSG_TYPE.READY_RESPONSE._value_:
+            self.handle_ready_response_msg(payload)
+        elif msg_type == MSG_TYPE.REJECT._value_:
+            self.handle_reject_msg(payload)
 
-        if msg_type == MSG_TYPE.SANTA._value_: # Handle a string message from Santa
-            pass
+    def handle_santa_msg(self, payload):
+        pass
 
-        elif msg_type == MSG_TYPE.FEELER._value_:  # Handle a tuple message from other Elf
-            peer_id = payload['id']
-            peer_port = payload['port']
-            peer_sleep_time = payload['sleep_time']
+    def handle_feeler_msg(self, payload):
+        def create_feeler_response_data(peer_triple, my_triple):
+            if self.Elf.sleep_time == peer_triple[0]:
+                return {
+                    'type': MSG_TYPE.REJECT._value_,
+                    'peer_id': self.Elf.id
+                }
+            else:
+                return {
+                    'type': MSG_TYPE.ACKNOWLEDGEMENT._value_,
+                    'chain': [peer_triple, my_triple]
+                }
 
-            peer_triple = (peer_sleep_time, peer_id, peer_port)
-            my_triple = (self.Elf.sleep_time, self.Elf.id ,self.Elf.port)
-            print(f'ELF {self.Elf.id} - RECIEVED THE FEELER FROM ELF {peer_id}')
+        peer_id, peer_port, peer_sleep_time = payload['id'], payload['port'], payload['sleep_time']
+        peer_triple = (peer_sleep_time, peer_id, peer_port)
+        my_triple = (self.Elf.sleep_time, self.Elf.id ,self.Elf.port)
+        print(f'ELF {self.Elf.id} - RECIEVED THE FEELER FROM ELF {peer_id}')
 
-            with self.Elf.lock:
-                if self.Elf.sleep_time == peer_sleep_time:
-                    data = {
-                        'type': MSG_TYPE.REJECT._value_,
-                        'peer_id': self.Elf.id
-                    }
-                else:
+        with self.Elf.lock:
+            data = create_feeler_response_data(peer_triple, my_triple)
+        buffer = self.Elf.create_buffer(data)
+        self.Elf.send_message(LOCAL_HOST, peer_port, buffer)
 
-                    data = {
-                        'type': MSG_TYPE.ACKNOWLEDGEMENT._value_,
-                        'chain': [peer_triple, my_triple]
-                    }
 
-            # Message to Ack that the feeler was sent out.
-            buffer = self.Elf.create_buffer(data)
-            self.Elf.send_message(LOCAL_HOST, peer_port, buffer)
-
-        elif msg_type == MSG_TYPE.ACKNOWLEDGEMENT._value_: # Handle the case of acceptance
-            chain = payload['chain']
+    def handle_acknowledgement_msg(self, payload):
+        def extract_peer_triple(chain):
             peer_sleep_time = chain[1][0]
             peer_id = chain[1][1]
             peer_port = chain[1][2]
+            return (peer_sleep_time, peer_id, peer_port)
 
-            if self.Elf.id == 1 or self.Elf.id == 4:
-                print(f'ELF {self.Elf.id} - RECIEVED THE ACKNOWLEDGEMENT FROM ELF {peer_id}') 
-                print(f'ELF {self.Elf.id} - RECIEVED THE CHAIN: {chain} FROM ELF {peer_id}')
-            
-            #my_triple = (my_sleep_time, my_id, my_port) # Maybe i dont need this one here
-            peer_triple = (peer_sleep_time, peer_id, peer_port)
-            my_triple = (self.Elf.sleep_time, self.Elf.id , self.Elf.port)
+        def update_chain(peer_triple, my_triple):
+            if len(self.Elf.chain) < NUM_CHAIN:
+                if peer_triple not in self.Elf.chain:
+                    bisect.insort(self.Elf.chain, peer_triple)
 
-            with self.Elf.lock:
-                if len(self.Elf.chain) < NUM_CHAIN:
-                    if peer_triple not in self.Elf.chain:
-                        bisect.insort(self.Elf.chain, peer_triple)
+                if my_triple not in self.Elf.chain: 
+                    bisect.insort(self.Elf.chain, my_triple)
 
-                    if my_triple not in self.Elf.chain: 
-                        bisect.insort(self.Elf.chain, my_triple)
-                
-                first_elf_in_chain_id = self.Elf.chain[0][1]
+        def check_and_set_chain_root():
+            first_elf_in_chain_id = self.Elf.chain[0][1]
+            if len(self.Elf.chain) == NUM_CHAIN and first_elf_in_chain_id == self.Elf.id:
+                self.Elf.is_chain_root = True
+                print(f'Elf {self.Elf.id} - I am Groot') # Xd 
+                print(f'ELF {self.Elf.id} - I ROOT OF THE CHAIN {self.Elf.chain}')
+            else:
+                self.Elf.is_chain_root = False
 
-                # Do we THINK we have enough elves? Only the "root" can be root
-                if len(self.Elf.chain) == NUM_CHAIN and first_elf_in_chain_id == self.Elf.id:
-                    self.Elf.is_chain_root = True
-                    print(f'Elf {self.Elf.id} - I am Groot') # Xd 
-                    print(f'ELF {self.Elf.id} - I ROOT OF THE CHAIN {self.Elf.chain}')
-                else:
-                    self.Elf.is_chain_root = False
+        def send_ready_request_to_chain():
+            msg_type = MSG_TYPE.READY_REQUEST._value_ 
+            data = {
+                'type': msg_type,
+                'peer_port': self.Elf.port
+            }
+            buffer = self.Elf.create_buffer(data)
 
-                # If len(self.Elf.chain) == NUM_ELVES, then I we 
-                # have enough elves to ask them if ready
-                if self.Elf.is_chain_root:
-                    msg_type = MSG_TYPE.READY_REQUEST._value_ 
-                    data = {
-                        'type': msg_type,
-                        'peer_port': self.Elf.port
-                    }
-                    buffer = self.Elf.create_buffer(data)
+            for elf in self.Elf.chain:
+                peer_port = elf[2] #port
+                if peer_port != self.Elf.port: # Send to all the other elves if they are
+                    self.Elf.send_message(LOCAL_HOST, peer_port, buffer)
 
-                    for elf in self.Elf.chain:
-                        peer_port = elf[2] #port
-                        if peer_port != self.Elf.port: # Send to all the other elves if they are
-                            self.Elf.send_message(LOCAL_HOST, peer_port, buffer)
-                    
+        chain = payload['chain']
+        peer_triple = extract_peer_triple(chain)
+        my_triple = (self.Elf.sleep_time, self.Elf.id , self.Elf.port)
 
-        elif msg_type == MSG_TYPE.READY_REQUEST._value_:
-            peer_port = payload['peer_port']
+        if self.Elf.id in [1, 4]:
+            print(f'ELF {self.Elf.id} - GOT ACKNOWLEDGEMENT FROM ELF {peer_triple[1]}')
+            print(f'ELF {self.Elf.id} - CHAIN IS {chain}')
 
+        with self.Elf.lock:
+            update_chain(peer_triple, my_triple)
+            check_and_set_chain_root()
+            if self.Elf.is_chain_root:
+                send_ready_request_to_chain()
+
+    def handle_ready_request_msg(self, payload):
+        def send_ready_response(peer_port):
             msg_type = MSG_TYPE.READY_RESPONSE._value_ 
-
-            with self.Elf.lock:
-                data = {
-                    'type': msg_type,
-                    'is_ready_to_join_chain': int(self.Elf.is_ready_to_join_chain),
-                    'peer_id': self.Elf.id
-                }
-                self.Elf.is_ready_to_join_chain = False
-
+            data = {
+                'type': msg_type,
+                'is_ready_to_join_chain': int(self.Elf.is_ready_to_join_chain),
+                'peer_id': self.Elf.id
+            }
+            self.Elf.is_ready_to_join_chain = False
             buffer = self.Elf.create_buffer(data)
             self.Elf.send_message(LOCAL_HOST, peer_port, buffer)
 
+        peer_port = payload['peer_port']
 
-        elif msg_type == MSG_TYPE.READY_RESPONSE._value_: 
-            ready = payload['is_ready_to_join_chain']
-            peer_id = payload['peer_id']
+        with self.Elf.lock:
+            send_ready_response(peer_port)
 
-            #print(f'Elf{peer_id}{" was" if ready else " was not"} ready')
-            #print(f'Elf {self.Elf.id} the chain is ', self.Elf.chain)
+    def handle_ready_response_msg(self, payload):
+        def handle_ready():
+            self.Elf.ready_count += 1
 
+        def handle_not_ready(peer_id):
+            print(f'ELF {self.Elf.id} - Elf {peer_id} is not ready')
+            # if the elf is not ready, clear the chain and start over
+            self.Elf.chain = []
+            self.Elf.is_chain_root = False
+            # TODO: Send message to the other elves to start over
+
+        def contact_santa():
+            # TODO: Contact Santa 
+            print(f'Elf {self.Elf.id} - Is contacting Santa')
+
+        ready = payload['is_ready_to_join_chain']
+        peer_id = payload['peer_id']
+
+        with self.Elf.lock:
             if ready:
-                with self.Elf.lock:
-                    self.Elf.ready_count += 1
-            elif not ready:
-                print(f'ELF {self.Elf.id} - Elf {peer_id} is not ready')
-                with self.Elf.lock:
-                    # if the elf is not ready, clear the chain and start over
-                    self.Elf.chain = []
-                    self.Elf.is_chain_root = False
-                    # TODO: Send message to the other elves to start over
+                handle_ready()
+            else:
+                handle_not_ready(peer_id)
 
             if self.Elf.ready_count == NUM_CHAIN - 1: # If the other elves in the chain are ready
-                # TODO: Contact Santa 
-                print(f'Elf {self.Elf.id} - Is contacting Santa')
-            
-        elif msg_type == MSG_TYPE.REJECT._value_:
-            peer_id = payload['peer_id']
-            print(f'ELF {self.Elf.id} - GOT REJECTED by ELF {peer_id}')
-            pass
+                contact_santa()
+
+    def handle_reject_msg(self, payload):
+        peer_id = payload['peer_id']
+        print(f'ELF {self.Elf.id} - GOT REJECTED by ELF {peer_id}')
+        pass
 
 
 class Elf:
