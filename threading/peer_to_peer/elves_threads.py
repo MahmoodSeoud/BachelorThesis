@@ -14,9 +14,10 @@ class MSG_TYPE(Enum):
     REJECT = 4
     READY_REQUEST = 5
     READY_RESPONSE = 6
+    START_OVER = 7
     
 
-NUM_ELVES = 4
+NUM_ELVES = 5
 NUM_CHAIN = 3
 LOCAL_HOST = "127.0.0.1"
 SANTA_PORT = 29800
@@ -46,6 +47,8 @@ class RequestHandler(socketserver.StreamRequestHandler):
             self.handle_ready_response_msg(payload)
         elif msg_type == MSG_TYPE.REJECT._value_:
             self.handle_reject_msg(payload)
+        elif msg_type == MSG_TYPE.START_OVER._value_:
+            self.handle_start_over_msg()
 
     def handle_santa_msg(self, payload):
         pass
@@ -66,7 +69,7 @@ class RequestHandler(socketserver.StreamRequestHandler):
         peer_id, peer_port, peer_sleep_time = payload['id'], payload['port'], payload['sleep_time']
         peer_triple = (peer_sleep_time, peer_id, peer_port)
         my_triple = (self.Elf.sleep_time, self.Elf.id ,self.Elf.port)
-        print(f'ELF {self.Elf.id} - RECIEVED THE FEELER FROM ELF {peer_id}')
+        #print(f'ELF {self.Elf.id} - RECIEVED THE FEELER FROM ELF {peer_id}')
 
         with self.Elf.lock:
             data = create_feeler_response_data(peer_triple, my_triple)
@@ -91,17 +94,14 @@ class RequestHandler(socketserver.StreamRequestHandler):
 
         def check_and_set_chain_root():
             first_elf_in_chain_id = self.Elf.chain[0][1]
-            if len(self.Elf.chain) == NUM_CHAIN and first_elf_in_chain_id == self.Elf.id:
+            if not self.Elf.is_chain_root and len(self.Elf.chain) == NUM_CHAIN and first_elf_in_chain_id == self.Elf.id:
                 self.Elf.is_chain_root = True
                 print(f'Elf {self.Elf.id} - I am Groot') # Xd 
-                print(f'ELF {self.Elf.id} - I ROOT OF THE CHAIN {self.Elf.chain}')
-            else:
-                self.Elf.is_chain_root = False
+                #print(f'ELF {self.Elf.id} - I ROOT OF THE CHAIN {self.Elf.chain}')
 
         def send_ready_request_to_chain():
-            msg_type = MSG_TYPE.READY_REQUEST._value_ 
             data = {
-                'type': msg_type,
+                'type': MSG_TYPE.READY_REQUEST._value_ ,
                 'peer_port': self.Elf.port
             }
             buffer = self.Elf.create_buffer(data)
@@ -122,12 +122,13 @@ class RequestHandler(socketserver.StreamRequestHandler):
                 send_ready_request_to_chain()
 
     def handle_ready_request_msg(self, payload):
+
         def send_ready_response(peer_port):
-            msg_type = MSG_TYPE.READY_RESPONSE._value_ 
             data = {
-                'type': msg_type,
+                'type': MSG_TYPE.READY_RESPONSE._value_,
                 'is_ready_to_join_chain': int(self.Elf.is_ready_to_join_chain),
-                'peer_id': self.Elf.id
+                'peer_id': self.Elf.id,
+                'peer_port': self.Elf.port
             }
             self.Elf.is_ready_to_join_chain = False
             buffer = self.Elf.create_buffer(data)
@@ -142,24 +143,31 @@ class RequestHandler(socketserver.StreamRequestHandler):
         def handle_ready():
             self.Elf.ready_count += 1
 
-        def handle_not_ready(peer_id):
+        def handle_not_ready(peer_id, peer_port):
             print(f'ELF {self.Elf.id} - Elf {peer_id} is not ready')
             # if the elf is not ready, clear the chain and start over
             self.Elf.chain = []
             self.Elf.is_chain_root = False
             self.Elf.ready_count = 0
             # TODO: Send message to the other elves to start over
+            data = {
+                'type': MSG_TYPE.START_OVER._value_,
+            }
+            buffer = self.Elf.create_buffer(data)
+            self.Elf.send_message(LOCAL_HOST, peer_port, buffer)
 
         def contact_santa():
             # TODO: Contact Santa 
+            print(f'ELF{self.Elf.id} - CONFIRMED CHAIN {self.Elf.chain}')
             print(f'Elf {self.Elf.id} - Is contacting Santa')
 
         ready = payload['is_ready_to_join_chain']
         peer_id = payload['peer_id']
+        peer_port = payload['peer_port']
 
         with self.Elf.lock:
             if not ready:
-                handle_not_ready(peer_id)
+                handle_not_ready(peer_id, peer_port)
             else:
                 handle_ready()
 
@@ -168,8 +176,17 @@ class RequestHandler(socketserver.StreamRequestHandler):
 
     def handle_reject_msg(self, payload):
         peer_id = payload['peer_id']
-        print(f'ELF {self.Elf.id} - GOT REJECTED by ELF {peer_id}')
-        pass
+        print(f'ELF {self.Elf.id} - DONT WANT MORE ROOTS: ELF {peer_id}')
+
+    def handle_start_over_msg(self):
+        print(f'ELF {self.Elf.id} - STARTING OVER')
+        self.Elf.is_ready_to_join_chain = True
+        self.Elf.is_chain_root = False
+        self.Elf.chain = []
+        self.Elf.ready_count = 0
+
+        with self.Elf.condition:
+            self.Elf.condition.notify() # Notify the writer thread to start over
 
 
 class Elf:
@@ -221,10 +238,8 @@ class Elf:
 
             # If the elf is not forming a group, initiate group formation
             # Send message to peers about group formation
-            msg_type = MSG_TYPE.FEELER._value_
-
             data = {
-                'type': msg_type,
+                'type': MSG_TYPE.FEELER._value_,
                 'id': self.id,
                 'sleep_time': self.sleep_time,
                 'port': self.port
@@ -238,8 +253,8 @@ class Elf:
                     self.send_message(LOCAL_HOST, peer_port, buffer)
 
             # Waiting for all the threads to sync
-            #with self.condition:
-            #    self.condition.wait()
+            with self.condition:
+                self.condition.wait()
 
     def create_buffer(self, payload):
         buffer = json.dumps(payload).encode('utf-8')
