@@ -67,9 +67,9 @@ class RequestHandler(socketserver.StreamRequestHandler):
                 }
 
         peer_id, peer_port, peer_sleep_time = payload['id'], payload['port'], payload['sleep_time']
+        peer_is_chain_root = payload['peer_is_chain_root']
         peer_triple = (peer_sleep_time, peer_id, peer_port)
         my_triple = (self.Elf.sleep_time, self.Elf.id ,self.Elf.port)
-        peer_is_chain_root = payload['is_chain_root']
         print(f'ELF {self.Elf.id} - RECIEVED THE FEELER FROM ELF {peer_id}')
 
         with self.Elf.lock:
@@ -233,7 +233,7 @@ class Elf:
 
     def elf_writer(self):
         while True:
-            self.sleep_time =  random.randint(3,5) # Updating the sleeping time
+            self.sleep_time =  self.find_sleeping_time_testing()#random.randint(3,5) # Updating the sleeping time
             time.sleep(self.sleep_time)  # Simulate elf working
             print(f'Elf {self.id} has problems after {self.sleep_time} seconds')
 
