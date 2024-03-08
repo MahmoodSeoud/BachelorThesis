@@ -39,4 +39,3 @@ This repo is for my BachelorThesis on DIKU 2024
 - I have tried to do without statemachines, does not work
 - Discovered the idea of using a statemachine to denote the current state of these processes. For instance, they could include more info in that feeler acknowledgement, such as what state they are currently in and they could consider themselves a chain root whenever they have enough potential other elves to start forming a chain with. This could be some flag saying what they're trying to do atm. (e.g. are they waiting for more elves, trying to form a chain, building toys etc).
 ![Elves state diagram](./images/Elves_state_diagram.pdf)
-![Elves state diagram - details](./images/Elves_state_diagram_more_details.pdf)
