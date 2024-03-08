@@ -5,6 +5,7 @@ import time
 import random
 import bisect
 import json
+from abc import ABC, abstractmethod 
 from enum import Enum
 
 class MSG_TYPE(Enum):
@@ -21,6 +22,8 @@ NUM_ELVES = 4
 NUM_CHAIN = 3
 LOCAL_HOST = "127.0.0.1"
 SANTA_PORT = 29800
+
+
 
 class RequestHandler(socketserver.StreamRequestHandler):
     def __init__(self, Elf, *args, **kwargs):
@@ -190,6 +193,9 @@ class RequestHandler(socketserver.StreamRequestHandler):
             self.Elf.condition.notify() # Notify the writer thread to start over
 
 
+    
+    
+
 class Elf:
     def __init__(self, id, ip, port, peer_ports):
         self.id = id
@@ -282,6 +288,30 @@ class Elf:
         for thread in sub_threads:
             thread.join()
 
+
+class State(Elf):
+    def __init__(self):
+        self.Elf = Elf
+
+    @abstractmethod
+    def consult_santa(self):
+        pass
+
+    @abstractmethod
+    def building_toys(self):
+        pass
+
+    @abstractmethod
+    def trying_to_form_chain(self):
+        pass
+
+    @abstractmethod
+    def waiting_for_more_elves(self):
+        pass
+
+    @abstractmethod
+    def asking_chain_if_ready(self):
+        pass
 if __name__ == "__main__":
 
     peer_ports = [ 44441 + i for i in range(0, NUM_ELVES)]
