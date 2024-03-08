@@ -17,7 +17,7 @@ class State(Enum):
     START_OVER = 7
     
 
-NUM_ELVES = 4
+NUM_ELVES = 9
 NUM_CHAIN = 3
 LOCAL_HOST = "127.0.0.1"
 SANTA_PORT = 29800
@@ -53,28 +53,21 @@ class RequestHandler(socketserver.StreamRequestHandler):
         pass
 
     def handle_feeler_state(self, payload):
-        def create_feeler_response_data(peer_triple, my_triple, peer_is_chain_root):
-            if peer_is_chain_root or (peer_triple[0] == my_triple[0] and not peer_is_chain_root): # If peer is chain root, reject the request
-                return {
-                    'state': State.REJECT._value_,
-                    'peer_id': self.elf.id
-                }
-            else:
-                return {
-                    'state': State.ACKNOWLEDGEMENT._value_,
-                    'chain': [peer_triple, my_triple]
-                }
+        def create_feeler_response_data(peer_triple, my_triple):
+            return {
+                'state': State.ACKNOWLEDGEMENT._value_,
+                'chain': [peer_triple, my_triple]
+            }
 
         peer_id, peer_port, peer_sleep_time = payload['id'], payload['port'], payload['sleep_time']
-        peer_is_chain_root = payload['peer_is_chain_root']
         peer_triple = (peer_sleep_time, peer_id, peer_port)
-        my_triple = (self.elf.sleep_time, self.elf.id ,self.elf.port)
-        #print(f'ELF {self.elf.id} - RECIEVED THE FEELER FROM ELF {peer_id}')
+        my_triple = (self.elf.sleep_time, self.elf.id, self.elf.port)
 
-        with self.elf.lock:
-            data = create_feeler_response_data(peer_triple, my_triple, peer_is_chain_root)
+        # Reject the message
+        data = create_feeler_response_data(peer_triple, my_triple)
         buffer = self.elf.create_buffer(data)
         self.elf.send_message(LOCAL_HOST, peer_port, buffer)
+
 
 
     def handle_acknowledgement_state(self, payload):
@@ -99,6 +92,7 @@ class RequestHandler(socketserver.StreamRequestHandler):
                 'state': State.READY_REQUEST._value_ ,
                 'peer_port': self.elf.port
             }
+
             buffer = self.elf.create_buffer(data)
             print(f'ELF {self.elf.id} - SENDING READY REQUEST TO CHAIN {self.elf.chain}')
         
@@ -111,19 +105,18 @@ class RequestHandler(socketserver.StreamRequestHandler):
         chain = payload['chain']
         peer_triple = extract_peer_triple(chain)
         my_triple = (self.elf.sleep_time, self.elf.id , self.elf.port)
-        #print(f'ELF {self.elf.id} - RECIEVED THE ACKNOWLEDGEMENT FROM ELF {peer_triple[1]}')
+        print(f'ELF {self.elf.id} - RECIEVED THE ACKNOWLEDGEMENT FROM ELF {peer_triple[1]}')
 
         with self.elf.lock:
             update_chain(peer_triple, my_triple)
             first_elf_in_chain_id = self.elf.chain[0][1]
             self.elf.acknowledgement_count += 1
 
-            if len(self.elf.chain) == NUM_CHAIN and first_elf_in_chain_id == self.elf.id:
+            if len(self.elf.chain) == NUM_CHAIN and first_elf_in_chain_id == self.elf.id and self.elf.acknowledgement_count == NUM_CHAIN - 1:
                 self.elf.is_chain_root = True
                 print(f'elf {self.elf.id} - I am Groot') # Xd 
-
-            if self.elf.acknowledgement_count == NUM_CHAIN - 1:
                 send_ready_request_to_chain()
+
 
     def handle_ready_request_state(self, payload):
 
@@ -146,26 +139,47 @@ class RequestHandler(socketserver.StreamRequestHandler):
     def handle_ready_response_state(self, payload):
         def handle_ready():
             self.elf.ready_count += 1
+            self.elf.chain_confirmed = True
 
         def handle_not_ready(peer_id, peer_port):
             print(f'ELF {self.elf.id} - ELF {peer_id} is not ready')
             # if the elf is not ready, clear the chain and start over
             self.elf.chain = []
+            self.elf.is_ready_to_join_chain = True
+            self.elf.chain_confirmed = False
             self.elf.is_chain_root = False
             self.elf.ready_count = 0
+            self.elf.acknowledgement_count = 0
+
+            print(f'ELF {self.elf.id} - STARTING OVER')
+            with self.elf.condition:
+                self.elf.condition.notify() # Notify the writer thread to start over
             
             data = {
                 'state': State.START_OVER._value_,
             }
 
             buffer = self.elf.create_buffer(data)
-            
             self.elf.send_message(LOCAL_HOST, peer_port, buffer)
 
-        def contact_santa():
+        def contact_santa(peer_port):
             # TODO: Contact Santa 
+
+            self.elf.chain_confirmed = True
             print(f'ELF{self.elf.id} - CONFIRMED CHAIN {self.elf.chain}')
             print(f'elf {self.elf.id} - Is contacting Santa')
+
+            print(f'elf {self.elf.id} - is STARTING OVER')
+            with self.elf.condition:
+                self.elf.condition.notify()
+            
+            data = {
+                'state': State.START_OVER._value_,
+            }
+
+            buffer = self.elf.create_buffer(data)
+            self.elf.send_message(LOCAL_HOST, peer_port, buffer)
+
 
         ready = payload['is_ready_to_join_chain']
         peer_id = payload['peer_id']
@@ -178,21 +192,24 @@ class RequestHandler(socketserver.StreamRequestHandler):
                 handle_ready()
 
             if self.elf.ready_count == NUM_CHAIN - 1: # If the other elves in the chain are ready
-                contact_santa()
+                contact_santa(peer_port)
 
     def handle_reject_state(self, payload):
         peer_id = payload['peer_id']
         print(f'ELF {self.elf.id} - DONT WANT MORE ROOTS: ELF {peer_id}')
 
     def handle_start_over_state(self, payload):
-        print(f'ELF {self.elf.id} - STARTING OVER')
-        self.elf.is_ready_to_join_chain = True
-        self.elf.is_chain_root = False
         self.elf.chain = []
+        self.elf.is_ready_to_join_chain = True
+        self.elf.chain_confirmed = False
+        self.elf.is_chain_root = False
         self.elf.ready_count = 0
+        self.elf.acknowledgement_count = 0
 
+        print(f'ELF {self.elf.id} - STARTING OVER')
         with self.elf.condition:
-            self.elf.condition.notify() # Notify the writer thread to start over
+            self.elf.condition.notify() # Notify the writer thread to start overl
+
 
 
 class Elf:
@@ -202,13 +219,14 @@ class Elf:
         self.ip = ip
         self.port = port
         self.peer_ports = peer_ports
-        self.sleep_time = 0
-        self.lock = threading.Lock()
         self.chain = []
         self.is_chain_root = False
+        self.chain_confirmed = False
         self.is_ready_to_join_chain = True
+        self.sleep_time = 0
         self.ready_count = 0
         self.acknowledgement_count = 0
+        self.lock = threading.Lock()
         self.condition = threading.Condition()
 
 
@@ -250,8 +268,7 @@ class Elf:
                 'state': State.FEELER._value_,
                 'id': self.id,
                 'sleep_time': self.sleep_time,
-                'port': self.port,
-                'peer_is_chain_root': int(self.is_chain_root),
+                'port': self.port
             }
 
             buffer = self.create_buffer(data)
