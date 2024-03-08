@@ -7,7 +7,7 @@ import bisect
 import json
 from enum import Enum
 
-class MSG_TYPE(Enum):
+class State(Enum):
     SANTA = 1
     FEELER = 2
     ACKNOWLEDGEMENT = 3
@@ -25,30 +25,29 @@ SANTA_PORT = 29800
 class RequestHandler(socketserver.StreamRequestHandler):
     def __init__(self, elf, *args, **kwargs):
         self.elf = elf
+        self.state_handlers = {
+            State.SANTA: self.handle_santa_msg,
+            State.FEELER: self.handle_feeler_msg,
+            State.ACKNOWLEDGEMENT: self.handle_acknowledgement_msg,
+            State.READY_REQUEST: self.handle_ready_request_msg,
+            State.READY_RESPONSE: self.handle_ready_response_msg,
+            State.REJECT: self.handle_reject_msg,
+            State.START_OVER: self.handle_start_over_msg,
+        }
+        self.current_state = None
         super().__init__(*args, **kwargs)
 
     def handle(self):
-        
-        # Receive the message type
         data_bytes = self.request.recv(1024)
-        # Decode bytes to a string and convert it to a dictionary
         payload = json.loads(data_bytes.decode('utf-8'))
-        # Access msg_type from the dictionary
         msg_type = payload['type']
-        if msg_type == MSG_TYPE.SANTA._value_:
-            self.handle_santa_msg(payload)
-        elif msg_type == MSG_TYPE.FEELER._value_:
-            self.handle_feeler_msg(payload)
-        elif msg_type == MSG_TYPE.ACKNOWLEDGEMENT._value_:
-            self.handle_acknowledgement_msg(payload)
-        elif msg_type == MSG_TYPE.READY_REQUEST._value_:
-            self.handle_ready_request_msg(payload)
-        elif msg_type == MSG_TYPE.READY_RESPONSE._value_:
-            self.handle_ready_response_msg(payload)
-        elif msg_type == MSG_TYPE.REJECT._value_:
-            self.handle_reject_msg(payload)
-        elif msg_type == MSG_TYPE.START_OVER._value_:
-            self.handle_start_over_msg()
+        self.change_state(State(msg_type), payload)
+
+    def change_state(self, new_state, payload):
+        handler = self.state_handlers.get(new_state)
+        if handler:
+            self.current_state = new_state
+            handler(payload)
 
     def handle_santa_msg(self, payload):
         pass
@@ -57,12 +56,12 @@ class RequestHandler(socketserver.StreamRequestHandler):
         def create_feeler_response_data(peer_triple, my_triple, peer_is_chain_root):
             if peer_is_chain_root: # If peer is chain root, reject the request
                 return {
-                    'type': MSG_TYPE.REJECT._value_,
+                    'type': State.REJECT._value_,
                     'peer_id': peer_triple[1]
                 }
             else:
                 return {
-                    'type': MSG_TYPE.ACKNOWLEDGEMENT._value_,
+                    'type': State.ACKNOWLEDGEMENT._value_,
                     'chain': [peer_triple, my_triple]
                 }
 
@@ -96,7 +95,7 @@ class RequestHandler(socketserver.StreamRequestHandler):
 
         def send_ready_request_to_chain():
             data = {
-                'type': MSG_TYPE.READY_REQUEST._value_ ,
+                'type': State.READY_REQUEST._value_ ,
                 'peer_port': self.elf.port
             }
             buffer = self.elf.create_buffer(data)
@@ -126,7 +125,7 @@ class RequestHandler(socketserver.StreamRequestHandler):
 
         def send_ready_response(peer_port):
             data = {
-                'type': MSG_TYPE.READY_RESPONSE._value_,
+                'type': State.READY_RESPONSE._value_,
                 'is_ready_to_join_chain': int(self.elf.is_ready_to_join_chain),
                 'peer_id': self.elf.id,
                 'peer_port': self.elf.port
@@ -152,7 +151,7 @@ class RequestHandler(socketserver.StreamRequestHandler):
             self.elf.ready_count = 0
             # TODO: Send message to the other elves to start over
             data = {
-                'type': MSG_TYPE.START_OVER._value_,
+                'type': State.START_OVER._value_,
             }
             buffer = self.elf.create_buffer(data)
             self.elf.send_message(LOCAL_HOST, peer_port, buffer)
@@ -240,7 +239,7 @@ class Elf:
             # If the elf is not forming a group, initiate group formation
             # Send message to peers about group formation
             data = {
-                'type': MSG_TYPE.FEELER._value_,
+                'type': State.FEELER._value_,
                 'id': self.id,
                 'sleep_time': self.sleep_time,
                 'port': self.port,
