@@ -33,9 +33,9 @@ This repo is for my BachelorThesis on DIKU 2024
 ![Initial Communication between the elves](./images/Elves_networking.png)
 - I have gone over to JSON dumps instead of sending bytes indivually since it
     scales better and I am more used to working with JSON
-![Extended Communication](./images/Elves network extended.pngk)
+![Extended Communication](./images/Elves network extended.png)
 - Right now i am sending signals to other elfs and separting the login in the
     requstHandler. This may change in the future.
 - I have tried to do without statemachines, does not work
 - Discovered the idea of using a statemachine to denote the current state of these processes. For instance, they could include more info in that feeler acknowledgement, such as what state they are currently in and they could consider themselves a chain root whenever they have enough potential other elves to start forming a chain with. This could be some flag saying what they're trying to do atm. (e.g. are they waiting for more elves, trying to form a chain, building toys etc).
-![Elves state diagram](./images/Elves_state_diagram.pdf)
+![Elves state diagram](./images/Elves_state_diagram.png)
