@@ -39,3 +39,6 @@ This repo is for my BachelorThesis on DIKU 2024
 - I have tried to do without statemachines, does not work
 - Discovered the idea of using a statemachine to denote the current state of these processes. For instance, they could include more info in that feeler acknowledgement, such as what state they are currently in and they could consider themselves a chain root whenever they have enough potential other elves to start forming a chain with. This could be some flag saying what they're trying to do atm. (e.g. are they waiting for more elves, trying to form a chain, building toys etc).
 ![Elves state diagram](./images/Elves_state_diagram.png)
+
+### Week 5: Paxos vs Raft
+- I am gonna rework large parts of the logics, and here i discovered two algorithms that could help me. Both of these algos are for getting processes over a distributed system to have consensus. Paxos is older one which is harder to implemenet, thus i am going for Raft! [source](https://raft.github.io) 
