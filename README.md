@@ -40,8 +40,8 @@ This repo is for my BachelorThesis on DIKU 2024
 - Discovered the idea of using a statemachine to denote the current state of these processes. For instance, they could include more info in that feeler acknowledgement, such as what state they are currently in and they could consider themselves a chain root whenever they have enough potential other elves to start forming a chain with. This could be some flag saying what they're trying to do atm. (e.g. are they waiting for more elves, trying to form a chain, building toys etc).
 ![Elves state diagram](./images/Elves_state_diagram.png)
 
-### Week 5: Paxos vs Raft
-- I am gonna rework large parts of the logics, and here i discovered two algorithms that could help me. Both of these algos are for getting processes over a distributed system to have consensus. Paxos is older one which is harder to implemenet, thus i am going for Raft! [source](https://raft.github.io) 
+### Week 5: Paxos vs VR vs Raft 
+- I am gonna rework large parts of the logics, and here i discovered two algorithms that could help me. Both of these algos are for getting processes over a distributed system to have consensus. Paxos is older one which is harder to implemenet and also is Viewstamped Replication (VR) [source](https://raft.github.io/raft.pdf), thus i am going for Raft! [source](https://raft.github.io) 
 - I found a git repo that implements Raft! I am now reading up on this and how to call it. This lib gives you the possibilty of sharing classes on different servers.
 - Useful enums to remember for this lib:
     ```py
@@ -93,3 +93,11 @@ This repo is for my BachelorThesis on DIKU 2024
    "enabled_code_version":0
    }
     ```
+- Now i am investing some dynamic membership changes. The possibilty of adding members so that the network can grow. Again this is for working towards making it bluetooth at some point. This was done by setting the `dynamicMembershipChange` like so
+
+```py
+cfg = SyncObjConf(dynamicMembershipChange=True)`
+cfg = SyncObjConf(dynamicMembershipChange=True)
+syncObj = SyncObj(selfAddr, partners, cfg)
+```
+
