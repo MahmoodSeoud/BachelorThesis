@@ -5,7 +5,7 @@ This repo is for my BachelorThesis on DIKU 2024
 
 ### Week 1: Introduction and Problem Solving
 - Introduction to the goal of creating a Bluetooth mesh grid network with an emphasis on designing an adaptive network protocol.
-- The objective is to facilitate coordination of states across the network, accommodating dynamic node joinings and leavings.
+- The objective is to facilitate the coordination of states across the network, accommodating dynamic node joinings and leavings.
 - Learned about concepts such as CSP (Communicating Sequential Processes) and multiprocess and multithreading libraries in Python.
 - Focused on solving a smaller problem, the Santa Claus Problem, to lay the groundwork for the main project.
 - Chose Python for its familiarity and to concentrate on problem-solving rather than language intricacies.
@@ -26,23 +26,23 @@ This repo is for my BachelorThesis on DIKU 2024
 - Livelock vs deadlock
 - Made a "protocol" to differentiate between reindeer communication and Santa communication because the handle action should be different in each case
 - Experiencing some deadlocks with the elves
-- Reading articles about some potenial algorithms to use for the elves
+- Reading articles about some potential algorithms to use for the elves
 
 ### Week 4: Redoing the implementation
-- I did draw the network diagram so that i copuld redo the entire problem.
+- I did draw the network diagram so that i could redo the entire problem.
 ![Initial Communication between the elves](./images/Elves_networking.png)
-- I have gone over to JSON dumps instead of sending bytes indivually since it
+- I have gone over to JSON dumps instead of sending bytes individually since it
     scales better and I am more used to working with JSON
 ![Extended Communication](./images/Elves network extended.png)
-- Right now i am sending signals to other elfs and separting the login in the
-    requstHandler. This may change in the future.
-- I have tried to do without statemachines, does not work
-- Discovered the idea of using a statemachine to denote the current state of these processes. For instance, they could include more info in that feeler acknowledgement, such as what state they are currently in and they could consider themselves a chain root whenever they have enough potential other elves to start forming a chain with. This could be some flag saying what they're trying to do atm. (e.g. are they waiting for more elves, trying to form a chain, building toys etc).
+- Right now I am sending signals to other elves and separating the login in the
+    request handler. This may change in the future.
+- I have tried to do without state machines, does not work
+- Discovered the idea of using a state machine to denote the current state of these processes. For instance, they could include more info in that feeler acknowledgment, such as what state they are currently in. They could consider themselves a chain root whenever they have enough potential other elves to start forming a chain with. This could be some flag saying what they're trying to do atm. (e.g. are they waiting for more elves, trying to form a chain, building toys, etc).
 ![Elves state diagram](./images/Elves_state_diagram.png)
 
 ### Week 5: Paxos vs VR vs Raft 
-- I am gonna rework large parts of the logics, and here i discovered two algorithms that could help me. Both of these algos are for getting processes over a distributed system to have consensus. Paxos is older one which is harder to implemenet and also is Viewstamped Replication (VR) [source](https://raft.github.io/raft.pdf), thus i am going for Raft! [source](https://raft.github.io) 
-- I found a git [repo](https://github.com/bakwc/PySyncObj) that implements Raft! I am now reading up on this and how to call it. This lib gives you the possibilty of sharing classes on different servers.
+- I am gonna rework large parts of the logic, and here I discovered two algorithms that could help me. Both of these algorithms are for getting processes over a distributed system to have consensus. Paxos is an older one which is harder to implement and also is Viewstamped Replication [(VR)](https://raft.github.io/raft.pdf), thus I am going for [Raft!](https://raft.github.io) 
+- I found a git [repo](https://github.com/bakwc/PySyncObj) that implements Raft! I am now reading up on this and how to call it. This lib gives you the possibility of sharing classes on different servers.
 - Useful enums to remember for this lib:
     ```py
     class _RAFT_STATE:
@@ -93,10 +93,10 @@ This repo is for my BachelorThesis on DIKU 2024
    "enabled_code_version":0
    }
     ```
-- Now i am investing some dynamic membership changes. The possibilty of adding members so that the network can grow. Again this is for working towards making it bluetooth at some point. This was done by setting the `dynamicMembershipChange` like so
+- Now I am investing in some dynamic membership changes. The possibility of adding members so that the network can grow. Again this is for working towards making it Bluetooth at some point. This was done by setting the `dynamicMembershipChange` so
 
 ```py
-cfg = SyncObjConf(dynamicMembershipChange=True)`
+cfg = SyncObjConf(dynamicMembershipChange=True)
 cfg = SyncObjConf(dynamicMembershipChange=True)
 syncObj = SyncObj(selfAddr, partners, cfg)
 ```
