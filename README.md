@@ -68,3 +68,28 @@ This repo is for my BachelorThesis on DIKU 2024
         LEADER_CHANGED = 5      #: Simmilar to NOT_LEADER - leader has changed without command commit.
         REQUEST_DENIED = 6      #: Command denied
     ```
+
+- Here is an example of what we get when calling SyncObj.getState():
+    ```json
+  {
+   "version":"0.3.12",
+   "revision":"deprecated",
+   "self":"TCPNode(""localhost:3000"")",
+   "state":0,
+   "leader":"TCPNode(""localhost:3001"")",
+   "has_quorum":true,
+   "partner_nodes_count":1,
+   "partner_node_status_server_localhost:3001":2,
+   "readonly_nodes_count":0,
+   "log_len":2,
+   "last_applied":1,
+   "commit_idx":1,
+   "raft_term":1,
+   "next_node_idx_count":0,
+   "match_idx_count":0,
+   "leader_commit_idx":1,
+   "uptime":0,
+   "self_code_version":1,
+   "enabled_code_version":0
+   }
+    ```
