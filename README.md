@@ -57,3 +57,14 @@ This repo is for my BachelorThesis on DIKU 2024
         CONNECTING = 1
         CONNECTED = 2
     ```
+
+    ```py
+    class FAIL_REASON:
+        SUCCESS = 0             #: Command successfully applied.
+        QUEUE_FULL = 1          #: Commands queue full
+        MISSING_LEADER = 2      #: Leader is currently missing (leader election in progress, or no connection)
+        DISCARDED = 3           #: Command discarded (cause of new leader elected and another command was applied instead)
+        NOT_LEADER = 4          #: Leader has changed, old leader did not have time to commit command.
+        LEADER_CHANGED = 5      #: Simmilar to NOT_LEADER - leader has changed without command commit.
+        REQUEST_DENIED = 6      #: Command denied
+    ```
