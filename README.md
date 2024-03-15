@@ -42,7 +42,7 @@ This repo is for my BachelorThesis on DIKU 2024
 
 ### Week 5: Paxos vs VR vs Raft 
 - I am gonna rework large parts of the logics, and here i discovered two algorithms that could help me. Both of these algos are for getting processes over a distributed system to have consensus. Paxos is older one which is harder to implemenet and also is Viewstamped Replication (VR) [source](https://raft.github.io/raft.pdf), thus i am going for Raft! [source](https://raft.github.io) 
-- I found a git repo that implements Raft! I am now reading up on this and how to call it. This lib gives you the possibilty of sharing classes on different servers.
+- I found a git [repo](https://github.com/bakwc/PySyncObj) that implements Raft! I am now reading up on this and how to call it. This lib gives you the possibilty of sharing classes on different servers.
 - Useful enums to remember for this lib:
     ```py
     class _RAFT_STATE:
