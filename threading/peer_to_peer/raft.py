@@ -4,27 +4,39 @@ import sys
 sys.path.append("../")
 from pysyncobj import SyncObj
 from pysyncobj.batteries import ReplList
-from pysyncobj import SyncObj, SyncObjConf
+from pysyncobj import SyncObj, SyncObjConf, replicated
 
 NUM_ELVES = 9
 
 class Elf(SyncObj):
     def __init__(self, selfAddr, partners):
         super().__init__(selfAddr, partners, SyncObjConf(dynamicMembershipChange=True))
+        self.__elvesHavingIssues = []
+
+    @replicated
+    def handle_elf_having_problem(self):
+        my_addr = self.getStatus()['self']
+        if my_addr not in self.__elvesHavingIssues:  # Check if the current elf is already in the array
+            if len(self.__elvesHavingIssues) < 3:
+                self.__elvesHavingIssues.append(my_addr)
+                if len(self.__elvesHavingIssues) == 3:
+                    # If three elves are waiting, wake up Santa
+                    self._wake_up_santa()   
+
+    def _wake_up_santa(self):
+        print("Three elves are waiting, waking up Santa!")
+        # Perform actions to wake up Santa and handle elves' requests
 
     def run(self):
-        n = 0
         while True:
             time.sleep(1)
 
             if self._getLeader() is None: # Check if the raft nodes have elected a leader
                 continue
 
-            status = self.getStatus()
+            self.handle_elf_having_problem()
 
-
-            print(f'ELF - {status['self']} has {status['partner_nodes_count']}')
-            n += 1
+            
 
 if __name__ == '__main__':
     ports = [3000, 3001, 3002]
