@@ -106,3 +106,4 @@ syncObj = SyncObj(selfAddr, partners, cfg)
 - Some drawback i found: "Raft requires n/2 + 1 nodes to be alive to do anything (you would need a different protocol to survive up to n-1 failures)." [ref](https://app.gitter.im/#/room/#bakwc_PySyncObj:gitter.im)
 - Raft servers communicate using remote procedure calls
 (RPCs)
+- Note to selv `removeNodeFromCluster` and `addNodeToCluster` does not work nodes that are themselves
