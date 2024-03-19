@@ -22,14 +22,13 @@ def onAppend(res, err, sts):
 
 def onRemove(res, err, node):
     print('Removed %s' % node, res, err)
-    myPort = o.getStatus()['self']
-    contact_santa(myPort)
-    # TODO: Someone should set their flag to removed here
+    my_addr = o.getStatus()['self']
+    contact_santa(my_addr)
 
-def contact_santa(myPort):
+def contact_santa(my_addr):
         # Sent msg to Santa whom then msg's back here so that we can notify_all()
         try:
-            print(f"ELF: {myPort} -  Connecting to Santa at: " f"{LOCAL_HOST}:{SANTA_PORT}")
+            print(f"ELF: {my_addr} -  Connecting to Santa at: " f"{LOCAL_HOST}:{SANTA_PORT}")
             with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as conn_socket:
 
                 conn_socket.connect((LOCAL_HOST, SANTA_PORT))
@@ -45,7 +44,7 @@ def contact_santa(myPort):
                 conn_socket.sendall(buffer)
 
         except ConnectionRefusedError:
-            print(f"ELF: {myPort} -  Couldn't conncect at: " f"{LOCAL_HOST}:{SANTA_PORT}")
+            print(f"ELF: {my_addr} -  Couldn't conncect at: " f"{LOCAL_HOST}:{SANTA_PORT}")
 
 if __name__ == '__main__':
     if len(sys.argv) < 3:
