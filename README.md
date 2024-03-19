@@ -107,7 +107,7 @@ syncObj = SyncObj(selfAddr, partners, cfg)
 - Raft servers communicate using remote procedure calls
 (RPCs)
 - Note to selv `removeNodeFromCluster` and `addNodeToCluster` does not work nodes that are themselves
-- ## Status
+### Week 6: TCP nodes added and removed from cluster 
 I've successfully obtained the first chain of 3 TCP nodes (elfs ready to visit Santa). Now, I'm at a juncture where we need to decide on our next course of action:
 
 a. Remove and Create Separate Cluster: One option is to remove these TCP nodes and create individual clusters for them.
