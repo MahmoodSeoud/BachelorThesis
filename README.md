@@ -118,16 +118,6 @@ However, it's worth noting that if I opt for the first option, there's a potenti
 However regarding a, do the even need their own communication channel? Could we not just let them wait it out and then clear our the chain? That way we would be certain that only one chain is out visiting Santa and once they return they others can then start their own chain. Keep in mind that every TCP node is aware of this chain,  so there is no chance of them thinking they belong in two chains at the same time
 
 ```py
-#!/usr/bin/env python
-from __future__ import print_function
-
-import sys
-import time
-from functools import partial
-sys.path.append("../")
-from pysyncobj import SyncObj, SyncObjException, SyncObjConf
-from pysyncobj.batteries import ReplList, ReplLockManager
-
 def onAppend(res, err, sts):
     print('onAppend:',"\n list:" , sts, "\n result", res, "\n error:",err)
     print('list value:', list.rawData())
