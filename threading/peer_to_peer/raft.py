@@ -1,43 +1,27 @@
 import threading
+import sys
 import time
 from pysyncobj import SyncObj, SyncObjConf, replicated
-from pysyncobj.batteries import ReplList
+from pysyncobj.batteries import ReplList, ReplLockManager
 from functools import partial
 
-NUM_ELVES = 5
+NUM_ELVES = 3
 
 
-class Elf(SyncObj):
+class o(SyncObj):
 
-    def __init__(self, id, my_addr, other_addrs, elve_list):
-        cfg = SyncObjConf(dynamicMembershipChange=True, commandsWaitLeader=True)
+    def __init__(self, my_addr, other_addrs, elve_list):
+        cfg = SyncObjConf(dynamicMembershipChange=True,
+                          onStateChanged=handleOnStateChanged()
+                          )
         super().__init__(my_addr, other_addrs, consumers=[elve_list], conf=cfg)
-        self._elve_list = elve_list  # Queue of waiting elves
-        self._id = id
+        self._list = elve_list  # Queue of waiting elves
 
-    def run(self):
-        print('Running')
-        while True:
-            node = self.getStatus()['self']
-            leader = self._getLeader()
-            list = self._elve_list.rawData()
+ 
 
-            self.waitReady()
 
-            time.sleep(2)
-            if self._isLeader():
-                print("leader", leader, "self",  node)
-                print('list:', list)
-                #self._elve_list.append(node)
-                #self.removeNodeFromCluster(node, callback=partial(self.onRemove, node=node))
-                #self.removeNodeVdFromCluster()
-               # self.addNodeToCluster('localhost:4000')
-                print('Count-uno', self.getStatus()['partner_nodes_count'])
-
-                #print('Count-secundoro', self.getStatus()['partner_nodes_count'])
-                if self.getStatus()['partner_nodes_count'] < NUM_ELVES - 1:
-                    print('ferro')
-
+def handleOnStateChanged():
+    print('State changed')
 
 
 def onRemove(res, err, node):
@@ -45,25 +29,29 @@ def onRemove(res, err, node):
 
 
 if __name__ == "__main__":
-    start_port = 3000
-    ports = [start_port + i for i in range(NUM_ELVES)]
-    peer_addresses = ['localhost:%d' % p for p in ports]
+    if len(sys.argv) < 3:
+        print('Usage: %s self_port partner1_port partner2_port ...' % sys.argv[0])
+        sys.exit(-1)
+
+    
+        
+    port = int(sys.argv[1])
+    partners = ['localhost:%d' % int(p) for p in sys.argv[2:]]
     elve_list = ReplList()
 
     # Initialize the coordinator
-    elves = []
-    for i in range(len(ports)):
-        elf = Elf(i, 'localhost:%d' % ports[i],
-                  [peer_addresses[j] for j in range(len(ports)) if j != i],
-                  elve_list)
-        elves.append(elf)
+    o = SyncObj('localhost:%d' % port, partners, consumers=[elve_list])
+    while True:
+        time.sleep(0.5)
 
-    # Each elf process/thread:
-    # 1. Requests to join the queue
-    threads = [threading.Thread(target=elf.run) for elf in elves]
+        if o._getLeader() is None:
+            continue
 
-    for thread in threads:
-        thread.start()
+        print(elve_list.rawData())
+        if o._isLeader():
+            print('I am the leader')
+            elve_list.append('Elve')
 
-    for thread in threads:
-        thread.join()
+
+
+    
