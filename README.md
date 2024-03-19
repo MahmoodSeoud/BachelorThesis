@@ -107,3 +107,59 @@ syncObj = SyncObj(selfAddr, partners, cfg)
 - Raft servers communicate using remote procedure calls
 (RPCs)
 - Note to selv `removeNodeFromCluster` and `addNodeToCluster` does not work nodes that are themselves
+- ## Status
+I've successfully obtained the first chain of 3 TCP nodes (elfs ready to visit Santa). Now, I'm at a juncture where we need to decide on our next course of action:
+
+a. Remove and Create Separate Cluster: One option is to remove these TCP nodes and create individual clusters for them.
+
+b. Keep and Wait: Alternatively, we could choose to retain these nodes and have them wait for a designated period and make them return back to the others.
+
+However, it's worth noting that if I opt for the first option, there's a potential caveat. Removing TCP nodes might lead to complications, particularly if they happen to be the leaders of the current cluster (removing leader is not possible with this library). 
+However regarding a, do the even need their own communication channel? Could we not just let them wait it out and then clear our the chain? That way we would be certain that only one chain is out visiting Santa and once they return they others can then start their own chain. Keep in mind that every TCP node is aware of this chain,  so there is no chance of them thinking they belong in two chains at the same time
+
+```py
+#!/usr/bin/env python
+from __future__ import print_function
+
+import sys
+import time
+from functools import partial
+sys.path.append("../")
+from pysyncobj import SyncObj, SyncObjException, SyncObjConf
+from pysyncobj.batteries import ReplList, ReplLockManager
+
+def onAppend(res, err, sts):
+    print('onAppend:',"\n list:" , sts, "\n result", res, "\n error:",err)
+    print('list value:', list.rawData())
+    lockManager.release('testLockName')
+
+if __name__ == '__main__':
+    if len(sys.argv) < 3:
+        print('Usage: %s self_port partner1_port partner2_port ...' % sys.argv[0])
+        sys.exit(-1)
+
+    port = 'localhost:%d' % int(sys.argv[1])
+    partners = ['localhost:%d' % int(p) for p in sys.argv[2:]]
+    
+    list = ReplList()
+    lockManager = ReplLockManager(autoUnlockTime=10, selfID='testLockName')
+
+    o = SyncObj(port, partners, consumers=[list, lockManager], conf=SyncObjConf(dynamicMembershipChange=True))
+
+    while True:
+        time.sleep(0.5)
+
+        if o._getLeader() is None:
+            continue
+    
+        try:
+            if lockManager.tryAcquire('testLockName', sync=True):
+                status = o.getStatus()['self']
+                #leader = o._getLeader()
+                print('List:', list.rawData())
+                if status not in list.rawData() and len(list.rawData()) < 3:
+                    list.append(status, callback=partial(onAppend, sts=status))
+        except SyncObjException as e:
+            print(f"Failed to acquire lock: {e}")
+```
+
