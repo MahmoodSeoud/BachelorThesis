@@ -153,3 +153,5 @@ if __name__ == '__main__':
             print(f"Failed to acquire lock: {e}")
 ```
 
+- The [documentation](https://github.com/bakwc/PySyncObj/wiki/syncobj_admin#add-new-node) states that you should "turn off" or "turn on" the node you are removing or adding. I however may not do that since these nodes have other tasks todo when not a member of these clusters.  
+
