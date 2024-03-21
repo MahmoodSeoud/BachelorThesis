@@ -4,6 +4,7 @@ from pysyncobj.batteries import ReplList, ReplLockManager, ReplCounter
 from pysyncobj import SyncObj, SyncObjException, SyncObjConf, FAIL_REASON
 
 import sys
+import threading
 import struct
 import socket
 import pickle
@@ -12,6 +13,7 @@ from functools import partial
 sys.path.append("../")
 SANTA_PORT = 29800
 LOCAL_HOST = "127.0.0.1"
+NUM_ELVES = 4
 
 
 class ElfSantaContacter(SyncObj):
@@ -60,12 +62,14 @@ class ElfWorker(SyncObj):
 
     def onAppend(self, res, err, node):
         # Release the lock and connect to the other elves
-        if (err == FAIL_REASON.REQUEST_DENIED):
+        print('on appned \n list:', node, "\n result", res, "\n error:", err)
+
+        """   if (err == FAIL_REASON.REQUEST_DENIED):
             print('Failed to append node \n list:', node,
                   "\n result", res, "\n error:", err)
         else:
             self._lock.release('testLockName', callback=partial(
-                self.onRelease, node=node))
+                self.onRelease, node=node)) """
 
     def onRelease(self, res, err, node):
         # Close the connection to the other elves and make his own cluster
@@ -82,36 +86,45 @@ class ElfWorker(SyncObj):
     def run(self):
         while not self._destroyed:
             time.sleep(0.5)
-
+        
             if self._getLeader() is None:
                 continue
 
-            if self.getStatus()['self'] is None:
-                continue
+            if self._lock.tryAcquire('testLockName', sync=True):
+                print(f"Elf: {self.getStatus()['self']} acquired lock")
+                self_node = self.getStatus()['self']
+                print(self._elvesWithProblems.rawData())
+                if self_node not in self._elvesWithProblems.rawData() and len(self._elvesWithProblems.rawData()) < 3:
+                    self._elvesWithProblems.append(self_node, callback=partial(self.onAppend, node=self_node))
 
-            try:
-                if self._lock.tryAcquire('testLockName', sync=True):
-                    self_node = self.getStatus()['self']
-                    if self_node not in self._elvesWithProblems.rawData() and len(self._elvesWithProblems.rawData()) < 3:
-                        self._elvesWithProblems.append(self_node, callback=partial(
-                            self.onAppend, node=self_node))
-                print(f"Elf: {self.getStatus()['self']} list: {self._elvesWithProblems.rawData()}")
-            except:
-                print(f"Failed to acquire lock")
+                self._lock.release('testLockName')
+                print(f"Elf: {self.getStatus()['self']} released lock")
+                    #self._lock.release('testLockName', callback=partial( self.onRelease, node=self.getStatus()['self']))
 
 
 if __name__ == '__main__':
-    if len(sys.argv) < 3:
-        print('Usage: %s self_port partner1_port partner2_port ...' %
-              sys.argv[0])
-        sys.exit(-1)
+    start_port = 3000
+    ports = [start_port + i for i in range(NUM_ELVES)]
 
-    port = 'localhost:%d' % int(sys.argv[1])
-    partners = ['localhost:%d' % int(p) for p in sys.argv[2:]]
+    threads = []
 
-    counter = ReplCounter()
-    list = ReplList()
-    lockManager = ReplLockManager(autoUnlockTime=10, selfID='testLockName')
+    for i, port in enumerate(ports):
+        my_addr = 'localhost:%d' % port
+        partners = ['localhost:%d' % int(p) for p in ports if p != port]
+        print(f"ELF: {my_addr} - Partners: {partners}")
 
-    elf_worker = ElfWorker(port, partners, list, lockManager)
-    elf_worker.run()
+        list = ReplList()
+        lockManager = ReplLockManager(autoUnlockTime=75, selfID='testLockName')
+        elf_worker = ElfWorker(my_addr, partners, list, lockManager)
+
+        # Create a new thread for each ElfWorker and add it to the list
+        thread = threading.Thread(target=elf_worker.run, daemon=True)
+        threads.append(thread)
+
+    # Start all the threads
+    for thread in threads:
+        thread.start()
+
+    # Join all the threads
+    for thread in threads:
+        thread.join()
