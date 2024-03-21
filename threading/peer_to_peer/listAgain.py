@@ -60,23 +60,24 @@ class ElfWorker(SyncObj):
 
     def onAppend(self, res, err, node):
         # Release the lock and connect to the other elves
-        if (err == FAIL_REASON.SUCCESS):
-            self._lock.release('testLockName', callback=partial(
-                self.onRelease, node=node))
-        else:
+        if (err == FAIL_REASON.REQUEST_DENIED):
             print('Failed to append node \n list:', node,
                   "\n result", res, "\n error:", err)
+        else:
+            self._lock.release('testLockName', callback=partial(
+                self.onRelease, node=node))
 
     def onRelease(self, res, err, node):
         # Close the connection to the other elves and make his own cluster
-        if (err == FAIL_REASON.SUCCESS):
-            self.destroy()
-            self._destroyed = True
-            elf_santa_Contacter = ElfSantaContacter(node, self._elvesWithProblems.rawData())
-            elf_santa_Contacter.run()
-        else:
+        if (err == FAIL_REASON.REQUEST_DENIED):
             print('Failed to release lock \n list:', node,
                   "\n result", res, "\n error:", err)
+        else:
+            self.destroy()
+            self._destroyed = True
+            elf_santa_Contacter = ElfSantaContacter(
+                node, self._elvesWithProblems.rawData())
+            elf_santa_Contacter.run()
 
     def run(self):
         while not self._destroyed:
@@ -90,12 +91,13 @@ class ElfWorker(SyncObj):
 
             try:
                 if self._lock.tryAcquire('testLockName', sync=True):
-                    status = self.getStatus()['self']
-                    if status not in self._elvesWithProblems.rawData() and len(self._elvesWithProblems.rawData()) < 3:
-                        self._elvesWithProblems.append(status, callback=partial(
-                            self.onAppend, node=status))
-            except SyncObjException as e:
-                print(f"Failed to acquire lock: {e}")
+                    self_node = self.getStatus()['self']
+                    if self_node not in self._elvesWithProblems.rawData() and len(self._elvesWithProblems.rawData()) < 3:
+                        self._elvesWithProblems.append(self_node, callback=partial(
+                            self.onAppend, node=self_node))
+                print(f"Elf: {self.getStatus()['self']} list: {self._elvesWithProblems.rawData()}")
+            except:
+                print(f"Failed to acquire lock")
 
 
 if __name__ == '__main__':
