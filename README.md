@@ -45,6 +45,9 @@ This repo is for my BachelorThesis on DIKU 2024
 
 ### Week 5: Paxos vs VR vs Raft 
 - I am gonna rework large parts of the logic, and here I discovered two algorithms that could help me. Both of these algorithms are for getting processes over a distributed system to have consensus. Paxos is an older one which is harder to implement and also is Viewstamped Replication [(VR)](https://raft.github.io/raft.pdf), thus I am going for [Raft!](https://raft.github.io) 
+- Paxos is harder to understand "The experiment favored Paxos in
+two ways: 15 of the 43 participants reported having some
+prior experience with Paxos, and the Paxos video is 14%"
 - I found a git [repo](https://github.com/bakwc/PySyncObj) that implements Raft! I am now reading up on this and how to call it. This lib gives you the possibility of sharing classes on different servers.
 - Useful enums to remember for this lib:
     ```py
@@ -106,3 +109,5 @@ syncObj = SyncObj(selfAddr, partners, cfg)
 - Some drawback i found: "Raft requires n/2 + 1 nodes to be alive to do anything (you would need a different protocol to survive up to n-1 failures)." [ref](https://app.gitter.im/#/room/#bakwc_PySyncObj:gitter.im)
 - Raft servers communicate using remote procedure calls
 (RPCs)
+- Remember that this potential [issue](https://github.com/bakwc/PySyncObj/issues/112) is still not resolved. Thus meaning that once a chain of elves have been formed and contacted santa, they could experience issues connecting back to their original cluster due to them only knowing part of the chain.
+- Right now I am experiencing issues with either the distributed lock provided by the library (ReplLockManager) or something else. I am going to test this further
