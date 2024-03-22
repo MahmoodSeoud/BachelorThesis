@@ -20,6 +20,7 @@ class ElfSantaContacter(SyncObj):
     def __init__(self, my_addr, partners):
         super(ElfSantaContacter, self).__init__(my_addr, partners,
                                                 conf=SyncObjConf(dynamicMembershipChange=True))
+        self._partners = partners
 
     def contact_santa(self):
         # Sent msg to Santa whom then msg's back here so that we can notify_all()
@@ -45,6 +46,7 @@ class ElfSantaContacter(SyncObj):
                 f"ELF: {self.getStatus()['self']} -  Couldn't conncect at: " f"{LOCAL_HOST}:{SANTA_PORT}")
 
     def run(self):
+        print(f"ELF: {self.getStatus()['self']} - Partners: {self._partners}")
         print(f"ELF: {self.getStatus()['self']} - Running ElfSantaContacter")
 
 
@@ -59,29 +61,7 @@ class ElfWorker(SyncObj):
         self._elvesWithProblems = list
         self._lock = lockManager
         self._destroyed = False
-
-    def onAppend(self, res, err, node):
-        # Release the lock and connect to the other elves
-        print('on appned \n list:', node, "\n result", res, "\n error:", err)
-
-        """   if (err == FAIL_REASON.REQUEST_DENIED):
-            print('Failed to append node \n list:', node,
-                  "\n result", res, "\n error:", err)
-        else:
-            self._lock.release('testLockName', callback=partial(
-                self.onRelease, node=node)) """
-
-    def onRelease(self, res, err, node):
-        # Close the connection to the other elves and make his own cluster
-        if (err == FAIL_REASON.REQUEST_DENIED):
-            print('Failed to release lock \n list:', node,
-                  "\n result", res, "\n error:", err)
-        else:
-            self.destroy()
-            self._destroyed = True
-            elf_santa_Contacter = ElfSantaContacter(
-                node, self._elvesWithProblems.rawData())
-            elf_santa_Contacter.run()
+        self._node = self.getStatus()['self']
 
     def run(self):
         while not self._destroyed:
@@ -90,17 +70,23 @@ class ElfWorker(SyncObj):
             if self._getLeader() is None:
                 continue
 
+            print(f'Elf{self._node} has a list: {self._elvesWithProblems.rawData()}')
+
+            # If chain is full, destroy the process to form his own connection
+            if self._node in self._elvesWithProblems.rawData() and len(self._elvesWithProblems.rawData()) == 3:
+                self.destroy()
+                self._lock.destroy()
+                self._destroyed = True # Set the flag to True to break the loop
+                node_partners = [p for p in self._elvesWithProblems.rawData() if p != self._node]
+                elf = ElfSantaContacter(self._node, node_partners)
+                elf.run()
+                continue
+            
             if self._lock.tryAcquire('testLockName', sync=True):
-                print(f"Elf: {self.getStatus()['self']} acquired lock")
-                self_node = self.getStatus()['self']
-                print(self._elvesWithProblems.rawData())
-                if self_node not in self._elvesWithProblems.rawData() and len(self._elvesWithProblems.rawData()) < 3:
-                    self._elvesWithProblems.append(self_node, callback=partial(self.onAppend, node=self_node))
+                if self._node not in self._elvesWithProblems.rawData() and len(self._elvesWithProblems.rawData()) < 3:
+                    self._elvesWithProblems.append(self._node)
 
                 self._lock.release('testLockName')
-                print(f"Elf: {self.getStatus()['self']} released lock")
-                    #self._lock.release('testLockName', callback=partial( self.onRelease, node=self.getStatus()['self']))
-
 
 if __name__ == '__main__':
     start_port = 3000
@@ -114,7 +100,7 @@ if __name__ == '__main__':
         print(f"ELF: {my_addr} - Partners: {partners}")
 
         list = ReplList()
-        lockManager = ReplLockManager(autoUnlockTime=75, selfID='testLockName')
+        lockManager = ReplLockManager(autoUnlockTime=75)
         elf_worker = ElfWorker(my_addr, partners, list, lockManager)
 
         # Create a new thread for each ElfWorker and add it to the list
