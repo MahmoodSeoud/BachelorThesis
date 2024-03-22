@@ -71,15 +71,24 @@ class ElfWorker(SyncObj):
         self._node = self.getStatus()["self"]
         self._memberOfCluster = True
 
+    @replicated
+    def setMemberofCluster(self, isMember):
+        self._memberOfCluster = isMember
+        return self._memberOfCluster
+    
+    def getMemberofCluster(self):
+        return self._memberOfCluster
+
     def onNodeRemoved(self, res, err, node):
         if err == FAIL_REASON.SUCCESS:
             print(f"ELF: {self._node} - Removal - REQUEST SUCESS: {node}")
         else:
-            print(f"ELF: {self._node} - Removal - {err}: {node}")
-            time.sleep(1)  # Wait for a while before retrying
-            self.removeNodeFromCluster(
-                node, callback=partial(self.onNodeRemoved, node=node)
-            )  # Retry the operation
+            print(
+                f"ELF: {self._node} - Removal - ERR: {err} RES: {res} NODE: {node}")
+          #  time.sleep(1)  # Wait for a while before retrying
+         #   self.removeNodeFromCluster(
+         #       node, callback=partial(self.onNodeRemoved, node=node)
+         #   )  # Retry the operation
 
     def run(self):
         while True:
@@ -87,60 +96,73 @@ class ElfWorker(SyncObj):
 
             if self._getLeader() is None:
                 print(f"ELF: {self._node} - No leader")
-                self.waitReady()
                 continue
 
-            print(f"Elf{self._node} has a list: {self._elvesWithProblems.rawData()}")
+            print(f"Elf{self._node} has a list: {
+                  self._elvesWithProblems.rawData()}")
+            print(f"leader is: {self._getLeader()}")
 
             # If chain is full, destroy the process to form his own connection
+
             if (
-                self._node in self._elvesWithProblems.rawData()
-                and len(self._elvesWithProblems.rawData()) == 3
+                self._isLeader() and
+                self._node not in self._elvesWithProblems.rawData() and
+                len(self._elvesWithProblems.rawData()) == 3 and 
+                self.getMemberofCluster()
+
             ):
-                # Kjprint(f"ELF - {self._node}",self._lock.isAcquired('testLockName'))
-                # Kjprint('leader:',self._getLeader())
+                node_partners = [p for p in self._elvesWithProblems.rawData()]
 
-                # Kjpeers_to_remove = [p for p in self._elvesWithProblems.rawData() if p != self._node]
-                # Kjself.removeNodeFromCluster(peers_to_remove[0], callback=partial(self.onNodeRemoved, node=peers_to_remove[0]))
-                # Kjself.removeNodeFromCluster(peers_to_remove[1], callback=partial(self.onNodeRemoved, node=peers_to_remove[1]))
-
-                if self._getLeader() != self._elvesWithProblems.rawData()[0]:
-                    self.removeNodeFromCluster(
-                        self._elvesWithProblems.rawData()[0],
-                        callback=partial(
-                            self.onNodeRemoved,
-                            node=self._elvesWithProblems.rawData()[0],
-                        ),
+                # Remove the first node from the list
+                self.removeNodeFromCluster(
+                    node_partners[0],
+                    callback=partial(
+                        self.onNodeRemoved,
+                        node=node_partners[0]
                     )
+                )
 
-                if self._getLeader() != self._elvesWithProblems.rawData()[1]:
-                    self.removeNodeFromCluster(
-                        self._elvesWithProblems.rawData()[1],
-                        callback=partial(
-                            self.onNodeRemoved,
-                            node=self._elvesWithProblems.rawData()[0],
-                        ),
+                # Remove the second node from the list
+                self.removeNodeFromCluster(
+                    node_partners[1],
+                    callback=partial(
+                        self.onNodeRemoved,
+                        node=node_partners[1]
                     )
+                )
 
-                # self.destroy()
+                # Remove the second node from the list
+                self.removeNodeFromCluster(
+                    node_partners[2],
+                    callback=partial(
+                        self.onNodeRemoved,
+                        node=node_partners[2]
+                    )
+                )
 
-                # node_partners = [p for p in self._elvesWithProblems.rawData() if p != self._node]
+                self.setMemberofCluster(False)
+
+            if (self._node in self._elvesWithProblems.rawData() and
+                    len(self._elvesWithProblems.rawData()) == 3):
+                self.destroy()
                 # elf = ElfSantaContacter(self._node, node_partners)
                 # elf.run()
                 break
 
-            try:
-                if self._lock.tryAcquire("testLockName", sync=True):
-                    if (
-                        self._node not in self._elvesWithProblems.rawData()
-                        and len(self._elvesWithProblems.rawData()) < 3
-                    ):
-                        self._elvesWithProblems.append(self._node)
 
-            except SyncObjException as e:
-                print(f"Failed to acquire lock on node {self._node}: {e}")
-            finally:
-                self._lock.release("testLockName")
+            if not self._isLeader():
+                try:
+                    if self._lock.tryAcquire("testLockName", sync=True):
+                        if (
+                            self._node not in self._elvesWithProblems.rawData()
+                            and len(self._elvesWithProblems.rawData()) < 3
+                        ):
+                            self._elvesWithProblems.append(self._node)
+
+                except SyncObjException as e:
+                    print(f"Failed to acquire lock on node {self._node}: {e}")
+                finally:
+                    self._lock.release("testLockName")
 
 
 if __name__ == "__main__":
