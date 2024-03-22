@@ -3,6 +3,7 @@ import struct
 import socketserver
 import time
 import threading
+import pickle
 
 LOCAL_HOST = "127.0.0.1"
 SANTA_PORT = 29800
@@ -24,25 +25,27 @@ def santa_threads(my_ip, my_port):
                     
             elif identifier == 'E': #Identifier is the Elves
                 
-                self.request.recv(12)
+                TCPNode_bytes = self.request.recv(1024)
+                TCPNode = pickle.loads(TCPNode_bytes)  # Deserialize bytes back into TCPNode
 
-                #print(f"SL: - Recieved message: elf_id: {id}, port: {port}")
+               #print(f"SL: - Recieved message: elf_id: {id}, port: {port}")
                 print("Santa goes to help the elves")
                 time.sleep(2) # Simulating Santa helping elves
                 message = 'Get back to work, elves!'
+                print('TCPNode', TCPNode)
 
+             # Writing back tom either the elves or reindeer
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as conn_socket:
+                    conn_socket.connect((TCPNode.host, TCPNode.port))
 
-            # Writing back tom either the elves or reindeer
-            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as conn_socket:
-                conn_socket.connect((LOCAL_HOST, port))
+                    # Send a string
+                    buffer = bytearray()
+                    buffer.append(1)  # Message type 1 = string
+                    buffer.extend(struct.pack('!I', len(message)))
+                    buffer.extend(bytes(message, 'utf-8'))
+                    conn_socket.sendall(buffer) 
 
-                # Send a string
-                buffer = bytearray()
-                buffer.append(1)  # Message type 1 = string
-                buffer.extend(struct.pack('!I', len(message)))
-                buffer.extend(bytes(message, 'utf-8'))
-                conn_socket.sendall(buffer)
-
+ 
                     
 
     def listener():

@@ -1,52 +1,57 @@
 import threading
-import time
 import sys
-sys.path.append("../")
-from pysyncobj import SyncObj
-from pysyncobj.batteries import ReplList
+import time
 from pysyncobj import SyncObj, SyncObjConf, replicated
+from pysyncobj.batteries import ReplList, ReplLockManager
+from functools import partial
 
-NUM_ELVES = 9
+NUM_ELVES = 3
 
-class Elf(SyncObj):
-    def __init__(self, selfAddr, partners):
-        super().__init__(selfAddr, partners, SyncObjConf(dynamicMembershipChange=True))
-        self.__elvesHavingIssues = []
 
-    @replicated
-    def handle_elf_having_problem(self):
-        my_addr = self.getStatus()['self']
-        if my_addr not in self.__elvesHavingIssues:  # Check if the current elf is already in the array
-            if len(self.__elvesHavingIssues) < 3:
-                self.__elvesHavingIssues.append(my_addr)
-                if len(self.__elvesHavingIssues) == 3:
-                    # If three elves are waiting, wake up Santa
-                    self._wake_up_santa()   
+class o(SyncObj):
 
-    def _wake_up_santa(self):
-        print("Three elves are waiting, waking up Santa!")
-        # Perform actions to wake up Santa and handle elves' requests
+    def __init__(self, my_addr, other_addrs, elve_list):
+        cfg = SyncObjConf(dynamicMembershipChange=True,
+                          onStateChanged=handleOnStateChanged()
+                          )
+        super().__init__(my_addr, other_addrs, consumers=[elve_list], conf=cfg)
+        self._list = elve_list  # Queue of waiting elves
 
-    def run(self):
-        while True:
-            time.sleep(1)
+ 
 
-            if self._getLeader() is None: # Check if the raft nodes have elected a leader
-                continue
 
-            self.handle_elf_having_problem()
+def handleOnStateChanged():
+    print('State changed')
 
-            
 
-if __name__ == '__main__':
-    ports = [3000, 3001, 3002]
-    peer_addresses = ['localhost:%d' % p for p in ports]
+def onRemove(res, err, node):
+    print('Removed %s' % node, res, err)
 
-    elfs = [Elf('localhost:%d' % ports[i], [peer_addresses[j] for j in range(len(ports)) if j != i]) for i in range(len(ports))]
-    threads = [threading.Thread(target=elf.run) for elf in elfs]
 
-    for thread in threads:
-        thread.start()
+if __name__ == "__main__":
+    if len(sys.argv) < 3:
+        print('Usage: %s self_port partner1_port partner2_port ...' % sys.argv[0])
+        sys.exit(-1)
 
-    for thread in threads:
-        thread.join() 
+    
+        
+    port = int(sys.argv[1])
+    partners = ['localhost:%d' % int(p) for p in sys.argv[2:]]
+    elve_list = ReplList()
+
+    # Initialize the coordinator
+    o = SyncObj('localhost:%d' % port, partners, consumers=[elve_list])
+    while True:
+        time.sleep(0.5)
+
+        if o._getLeader() is None:
+            continue
+
+        print(elve_list.rawData())
+        if o._isLeader():
+            print('I am the leader')
+            elve_list.append('Elve')
+
+
+
+    
