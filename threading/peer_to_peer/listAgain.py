@@ -67,16 +67,15 @@ class ElfWorker(SyncObj):
         )
         self._elvesWithProblems = list
         self._lock = lockManager
-        self._destroyed = False
         self._node = self.getStatus()["self"]
         self._memberOfCluster = True
 
     @replicated
-    def setMemberofCluster(self, isMember):
-        self._memberOfCluster = isMember
+    def set_elf_removal_status(self, isRemoved):
+        self._memberOfCluster = isRemoved
         return self._memberOfCluster
     
-    def getMemberofCluster(self):
+    def get_elf_removal_status(self):
         return self._memberOfCluster
 
     def onNodeRemoved(self, res, err, node):
@@ -108,7 +107,7 @@ class ElfWorker(SyncObj):
                 self._isLeader() and
                 self._node not in self._elvesWithProblems.rawData() and
                 len(self._elvesWithProblems.rawData()) == 3 and 
-                self.getMemberofCluster()
+                self.get_elf_removal_status()
 
             ):
                 node_partners = [p for p in self._elvesWithProblems.rawData()]
@@ -140,7 +139,7 @@ class ElfWorker(SyncObj):
                     )
                 )
 
-                self.setMemberofCluster(False)
+                self.set_elf_removal_status(False)
 
             if (self._node in self._elvesWithProblems.rawData() and
                     len(self._elvesWithProblems.rawData()) == 3):
