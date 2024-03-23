@@ -160,5 +160,6 @@ if __name__ == '__main__':
 - The [documentation](https://github.com/bakwc/PySyncObj/wiki/syncobj_admin#add-new-node) states that you should "turn off" or "turn on" the node you are removing or adding. I however may not do that since these nodes have other tasks todo when not a member of these clusters.  
 - Remember that this potential [issue](https://github.com/bakwc/PySyncObj/issues/112) is still not resolved. Thus meaning that once a chain of elves have been formed and contacted santa, they could experience issues connecting back to their original cluster due to them only knowing part of the chain.
 - Right now I am experiencing issues with either the distributed lock provided by the library (ReplLockManager) or something else. I am going to test this further
-- What seems to have fixed the lockManager for now is removing the `selfID` option from the lock initialations so that looks like this `lockManager = ReplLockManager(autoUnlockTime=75)``
+- What seems to have fixed the lockManager for now is removing the `selfID` option from the lock initialations so that looks like this `lockManager = ReplLockManager(autoUnlockTime=75)`
+- I have experiemented with changing the strategy a bit. Instead of taking out the leader in the elvesWithProblems array, I take everyone else out to not disturb the election, since this has caused some problems.
 
