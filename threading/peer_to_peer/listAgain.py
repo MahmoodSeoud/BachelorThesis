@@ -112,32 +112,15 @@ class ElfWorker(SyncObj):
             ):
                 node_partners = [p for p in self._elvesWithProblems.rawData()]
 
-                # Remove the first node from the list
-                self.removeNodeFromCluster(
-                    node_partners[0],
-                    callback=partial(
-                        self.onNodeRemoved,
-                        node=node_partners[0]
-                    )
-                )
-
-                # Remove the second node from the list
-                self.removeNodeFromCluster(
-                    node_partners[1],
-                    callback=partial(
-                        self.onNodeRemoved,
-                        node=node_partners[1]
-                    )
-                )
-
-                # Remove the second node from the list
-                self.removeNodeFromCluster(
-                    node_partners[2],
-                    callback=partial(
-                        self.onNodeRemoved,
-                        node=node_partners[2]
-                    )
-                )
+                # Remove nodes from the list
+                for node in node_partners:
+                    self.removeNodeFromCluster(
+                        node,
+                        callback=partial(
+                            self.onNodeRemoved,
+                            node=node
+                        )
+                    ) 
 
                 self.set_elf_removal_status(False)
 
