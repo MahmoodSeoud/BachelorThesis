@@ -106,7 +106,7 @@ cfg = SyncObjConf(dynamicMembershipChange=True)
 cfg = SyncObjConf(dynamicMembershipChange=True)
 syncObj = SyncObj(selfAddr, partners, cfg)
 ```
-- Some drawback i found: "Raft requires n/2 + 1 nodes to be alive to do anything (you would need a different protocol to survive up to n-1 failures)." [ref](https://app.gitter.im/#/room/#bakwc_PySyncObj:gitter.im)
+- Some drawback i found: "Raft requires (n/2) + 1 nodes to be alive to do anything (you would need a different protocol to survive up to n-1 failures)." [ref](https://app.gitter.im/#/room/#bakwc_PySyncObj:gitter.im)
 - Raft servers communicate using remote procedure calls
 (RPCs)
 
@@ -162,4 +162,4 @@ if __name__ == '__main__':
 - Right now I am experiencing issues with either the distributed lock provided by the library (ReplLockManager) or something else. I am going to test this further
 - What seems to have fixed the lockManager for now is removing the `selfID` option from the lock initialations so that looks like this `lockManager = ReplLockManager(autoUnlockTime=75)`
 - I have experiemented with changing the strategy a bit. Instead of taking out the leader in the elvesWithProblems array, I take everyone else out to not disturb the election, since this has caused some problems.
-
+- The reason that the election had problems was due to the amount of the nodes in the cluster being under (n/2) + 1, meaning that they would struggle to elect a new leader. I have since then changed the stragety to only take the leaders into chain and delete them as they get into it, also removing them from the cluster. That means that I'm first using `self.destroy()` and then  `self.removeNodeFromCluster()`
