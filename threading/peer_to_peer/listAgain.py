@@ -69,6 +69,7 @@ class ElfWorker(SyncObj):
         self._lock = lockManager
         self._node = self.getStatus()["self"]
         self._memberOfCluster = True
+        self._hasAppended = False
 
     @replicated
     def set_elf_removal_status(self, isRemoved):
@@ -94,15 +95,26 @@ class ElfWorker(SyncObj):
             time.sleep(0.5)
 
             if self._getLeader() is None:
+                # Nodes without a leader should wait until one is elected
+                # Could also be the case that this node is consulting Santa
                 print(f"ELF: {self._node} - No leader")
                 continue
+
+            while self._isReady() is False:
+                self.waitReady()
 
             print(f"Elf{self._node} has a list: {
                   self._elvesWithProblems.rawData()}")
             print(f"leader is: {self._getLeader()}")
 
-            # If chain is full, destroy the process to form his own connection
+            if (self._node in self._elvesWithProblems.rawData() and
+                    len(self._elvesWithProblems.rawData()) == 3):
+                self.destroy()
+                # elf = ElfSantaContacter(self._node, node_partners)
+                # elf.run()
+                break
 
+            # If chain is full, destroy the process to form his own connection
             if (
                 self._isLeader() and
                 self._node not in self._elvesWithProblems.rawData() and
@@ -124,15 +136,10 @@ class ElfWorker(SyncObj):
 
                 self.set_elf_removal_status(False)
 
-            if (self._node in self._elvesWithProblems.rawData() and
-                    len(self._elvesWithProblems.rawData()) == 3):
-                self.destroy()
-                # elf = ElfSantaContacter(self._node, node_partners)
-                # elf.run()
-                break
 
 
-            if not self._isLeader():
+            self.waitReady()
+            if not self._isLeader() and not self._hasAppended:
                 try:
                     if self._lock.tryAcquire("testLockName", sync=True):
                         if (
@@ -140,6 +147,7 @@ class ElfWorker(SyncObj):
                             and len(self._elvesWithProblems.rawData()) < 3
                         ):
                             self._elvesWithProblems.append(self._node)
+                            self._hasAppended = True
 
                 except SyncObjException as e:
                     print(f"Failed to acquire lock on node {self._node}: {e}")
