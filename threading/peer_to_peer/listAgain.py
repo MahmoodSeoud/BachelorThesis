@@ -63,7 +63,10 @@ class ElfWorker(SyncObj):
             my_addr,
             partners,
             consumers=[list, lockManager],
-            conf=SyncObjConf(dynamicMembershipChange=True),
+            conf=SyncObjConf(dynamicMembershipChange=True, 
+                             commandsWaitLeader = True,
+                             connectionTimeout=12,
+                             ),
         )
         self._elvesWithProblems = list
         self._lock = lockManager
@@ -108,7 +111,12 @@ class ElfWorker(SyncObj):
 
             if (self.selfNode in self._elvesWithProblems.rawData() and
                     len(self._elvesWithProblems.rawData()) == 3):
+
+                if self._lock.isAcquired("testLockName"):
+                    self._lock.release("testLockName")
+
                 self.destroy()
+                
                 # elf = ElfSantaContacter(self.selfNode, node_partners)
                 # elf.run()
                 break
@@ -135,8 +143,6 @@ class ElfWorker(SyncObj):
 
                 self.set_elf_removal_status(False)
 
-
-
             self.waitReady()
             if not self._isLeader() and not self._hasAppended:
                 try:
@@ -148,8 +154,7 @@ class ElfWorker(SyncObj):
                             self._elvesWithProblems.append(self.selfNode)
                             self._hasAppended = True
 
-                except SyncObjException as e:
-                    print(f"Failed to acquire lock on node {self.selfNode}: {e}")
+                    #print(f"Failed to acquire lock on node {self.selfNode}: {e}")
                 finally:
                     self._lock.release("testLockName")
 
