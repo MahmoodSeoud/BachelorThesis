@@ -67,7 +67,6 @@ class ElfWorker(SyncObj):
         )
         self._elvesWithProblems = list
         self._lock = lockManager
-        self._node = self.getStatus()["self"]
         self._memberOfCluster = True
         self._hasAppended = False
 
@@ -81,10 +80,10 @@ class ElfWorker(SyncObj):
 
     def onNodeRemoved(self, res, err, node):
         if err == FAIL_REASON.SUCCESS:
-            print(f"ELF: {self._node} - Removal - REQUEST SUCESS: {node}")
+            print(f"ELF: {self.selfNode} - Removal - REQUEST SUCESS: {node}")
         else:
             print(
-                f"ELF: {self._node} - Removal - ERR: {err} RES: {res} NODE: {node}")
+                f"ELF: {self.selfNode} - Removal - ERR: {err} RES: {res} NODE: {node}")
           #  time.sleep(1)  # Wait for a while before retrying
          #   self.removeNodeFromCluster(
          #       node, callback=partial(self.onNodeRemoved, node=node)
@@ -97,27 +96,27 @@ class ElfWorker(SyncObj):
             if self._getLeader() is None:
                 # Nodes without a leader should wait until one is elected
                 # Could also be the case that this node is consulting Santa
-                print(f"ELF: {self._node} - No leader")
+                print(f"ELF: {self.selfNode} - No leader")
                 continue
 
             while self._isReady() is False:
                 self.waitReady()
 
-            print(f"Elf{self._node} has a list: {
+            print(f"Elf{self.selfNode} has a list: {
                   self._elvesWithProblems.rawData()}")
             print(f"leader is: {self._getLeader()}")
 
-            if (self._node in self._elvesWithProblems.rawData() and
+            if (self.selfNode in self._elvesWithProblems.rawData() and
                     len(self._elvesWithProblems.rawData()) == 3):
                 self.destroy()
-                # elf = ElfSantaContacter(self._node, node_partners)
+                # elf = ElfSantaContacter(self.selfNode, node_partners)
                 # elf.run()
                 break
 
             # If chain is full, destroy the process to form his own connection
             if (
                 self._isLeader() and
-                self._node not in self._elvesWithProblems.rawData() and
+                self.selfNode not in self._elvesWithProblems.rawData() and
                 len(self._elvesWithProblems.rawData()) == 3 and 
                 self.get_elf_removal_status()
 
@@ -143,14 +142,14 @@ class ElfWorker(SyncObj):
                 try:
                     if self._lock.tryAcquire("testLockName", sync=True):
                         if (
-                            self._node not in self._elvesWithProblems.rawData()
+                            self.selfNode not in self._elvesWithProblems.rawData()
                             and len(self._elvesWithProblems.rawData()) < 3
                         ):
-                            self._elvesWithProblems.append(self._node)
+                            self._elvesWithProblems.append(self.selfNode)
                             self._hasAppended = True
 
                 except SyncObjException as e:
-                    print(f"Failed to acquire lock on node {self._node}: {e}")
+                    print(f"Failed to acquire lock on node {self.selfNode}: {e}")
                 finally:
                     self._lock.release("testLockName")
 
