@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 from __future__ import print_function
 from pysyncobj.batteries import ReplList, ReplLockManager, ReplCounter
 from pysyncobj import SyncObj, SyncObjException, SyncObjConf, FAIL_REASON, replicated
@@ -6,6 +5,7 @@ from pysyncobj import SyncObj, SyncObjException, SyncObjConf, FAIL_REASON, repli
 import sys
 import threading
 import struct
+import socketserver
 import socket
 import pickle
 import time
@@ -16,20 +16,43 @@ SANTA_PORT = 29800
 LOCAL_HOST = "127.0.0.1"
 NUM_ELVES = 6
 
-
 class ElfSantaContacter(SyncObj):
+
+    class RequestHandler(socketserver.StreamRequestHandler):
+            def handle(self):
+                print('ELFCONTACTER Recieved a message')
+                identifier = self.request.recv(1).decode() # Recieving the identifier
+                        
+                if identifier == 'E': #Identifier is the Elves
+                    
+                    TCPNode_bytes = self.request.recv(1024)
+                    TCPNode = pickle.loads(TCPNode_bytes)  # Deserialize bytes back into TCPNode
+
+
     def __init__(self, my_addr, partners):
         cfg = SyncObjConf(
-            dynamicMembershipChange=True, raftMinTimeout=75, raftMaxTimeout=100
+            dynamicMembershipChange=True
         )
         super(ElfSantaContacter, self).__init__(my_addr, partners, conf=cfg)
         self._partners = partners
+
+
+    def listen_santa(self):
+        # Start server side
+        with socketserver.ThreadingTCPServer(('localhost', 8888), self.RequestHandler) as server:
+            print(f"Elf listener -  Starting elf listener: localhost:8888")
+            try: 
+                server.serve_forever()
+            finally:
+                server.server_close()
+
+
 
     def contact_santa(self):
         # Sent msg to Santa whom then msg's back here so that we can notify_all()
         try:
             print(
-                f"ELF: {self.getStatus()['self']} -  Connecting to Santa at: "
+                f"ELF: {self.selfNode} -  Connecting to Santa at: "
                 f"{LOCAL_HOST}:{SANTA_PORT}"
             )
             with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as conn_socket:
@@ -37,24 +60,44 @@ class ElfSantaContacter(SyncObj):
                 conn_socket.connect((LOCAL_HOST, SANTA_PORT))
 
                 identifier = "E"  # E for elves as identifier
-                node = self.getStatus()["self"]
-                node_bytes = pickle.dumps(node)  # Serialize TCPNode to bytes
-
+                #node_bytes = pickle.dumps(self.selfNode)  # Serialize TCPNode to bytes
                 buffer = bytearray()
                 buffer.extend(identifier.encode())
-                buffer.extend(node_bytes)
+                #buffer.extend(node_bytes)
 
                 conn_socket.sendall(buffer)
 
         except ConnectionRefusedError:
             print(
-                f"ELF: {self.getStatus()['self']} -  Couldn't conncect at: "
+                f"ELF: {self.selfNode} -  Couldn't conncect at: "
                 f"{LOCAL_HOST}:{SANTA_PORT}"
             )
 
+
+
     def run(self):
-        print(f"ELF: {self.getStatus()['self']} - Partners: {self._partners}")
-        print(f"ELF: {self.getStatus()['self']} - Running ElfSantaContacter")
+        print(f"ELF: {self.selfNode} - Partners: {self._partners}")
+        print(f"ELF: {self.selfNode} - Running ElfSantaContacter")
+
+        while True:
+            time.sleep(1)
+            if self._getLeader() is None:
+                print(f"SANTACONTACTERELF: {self.selfNode} - No leader")
+                continue
+
+            if self._isLeader():
+
+                sub_threads = [
+                    threading.Thread(target=self.listen_santa),
+                    threading.Thread(target=self.contact_santa)
+                ]
+
+                for sub_thread in sub_threads:
+                    sub_thread.start()
+
+                for sub_thread in sub_threads:
+                    sub_thread.join()
+                break
 
 
 class ElfWorker(SyncObj):
@@ -84,7 +127,11 @@ class ElfWorker(SyncObj):
             f"ELF: {self.selfNode} - Append complete, error: {error}, result: {result}")
 
     def run(self):
-        while self._connectedToMainCluster:
+        while True:
+
+            if not self._connectedToMainCluster:
+                continue
+
             time.sleep(0.5)
 
             if self._getLeader() is None:
@@ -93,9 +140,9 @@ class ElfWorker(SyncObj):
                 print(f"ELF: {self.selfNode} - No leader")
                 continue
 
-            print(f"Elf{self.selfNode} has a list: {
-                  self._elvesWithProblems.rawData()}")
-            print(f"leader is: {self._getLeader()}")
+            #print(f"Elf{self.selfNode} has a list: {
+            #      self._elvesWithProblems.rawData()}")
+            #print(f"leader is: {self._getLeader()}")
 
             # If the list is full and the node is not in the list, remove nodes from the list
             if self._elvesWithProblems.count(self.selfNode) == 0 and len(self._elvesWithProblems.rawData()) > 0:
@@ -112,10 +159,28 @@ class ElfWorker(SyncObj):
                         )
                     ) 
 
-            # If the node is in the list and the list is full, destroy the process
+            # If the node is in the list destroy the process
             if self._elvesWithProblems.count(self.selfNode) == 1:
                 self.destroy()
                 self._connectedToMainCluster = False
+                print(f"ELF: {self.selfNode} - kicked elf has this list: {self._elvesWithProblems.rawData()}")
+                node_partners = [p for p in self._elvesWithProblems.rawData() if p != self.selfNode]
+
+                if len(node_partners) > 1:
+                    threads = []
+                    # Create a thread for each partner that should contact Santa
+                    for node in self._elvesWithProblems.rawData():
+                        partners = [p for p in self._elvesWithProblems.rawData() if p != node]
+                        thread = threading.Thread(target=ElfSantaContacter(node, partners).run)
+                        threads.append(thread)
+
+                    for thread in threads:
+                        thread.start()
+                    
+                    for thread in threads:
+                        thread.join()
+                    
+                   
 
             if self._isLeader():
                 try:

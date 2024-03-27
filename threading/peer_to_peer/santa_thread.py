@@ -26,17 +26,17 @@ def santa_threads(my_ip, my_port):
             elif identifier == 'E': #Identifier is the Elves
                 
                 TCPNode_bytes = self.request.recv(1024)
-                TCPNode = pickle.loads(TCPNode_bytes)  # Deserialize bytes back into TCPNode
+                #TCPNode = pickle.loads(TCPNode_bytes)  # Deserialize bytes back into TCPNode
 
                #print(f"SL: - Recieved message: elf_id: {id}, port: {port}")
                 print("Santa goes to help the elves")
                 time.sleep(2) # Simulating Santa helping elves
                 message = 'Get back to work, elves!'
-                print('TCPNode', TCPNode)
+                #print('TCPNode', TCPNode)
 
-             # Writing back tom either the elves or reindeer
+             # Writing back to either the elves or reindeer
                 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as conn_socket:
-                    conn_socket.connect((TCPNode.host, TCPNode.port))
+                    conn_socket.connect(('localhost', 8888))
 
                     # Send a string
                     buffer = bytearray()
