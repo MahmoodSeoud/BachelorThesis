@@ -163,3 +163,9 @@ if __name__ == '__main__':
 - What seems to have fixed the lockManager for now is removing the `selfID` option from the lock initialations so that looks like this `lockManager = ReplLockManager(autoUnlockTime=75)`
 - I have experiemented with changing the strategy a bit. Instead of taking out the leader in the elvesWithProblems array, I take everyone else out to not disturb the election, since this has caused some problems.
 - The reason that the election had problems was due to the amount of the nodes in the cluster being under (n/2) + 1, meaning that they would struggle to elect a new leader. I have since then changed the stragety to only take the leaders into chain and delete them as they get into it, also removing them from the cluster. That means that I'm first using `self.destroy()` and then  `self.removeNodeFromCluster()`
+
+### Week 5: Getting the contact from elves to Santa right
+- I will have todo:
+- [] See if every elf thread that is kicked can contact each other and create a cluster
+- [] Then the leader of that cluster contacts Santa 
+- [] Then I will have these kick each other again, and connect to the other cluster. (Keep in mind the other cluster also properly are deleting some more elves from their cluster. You maybve need to make a queue, in which they wait)
