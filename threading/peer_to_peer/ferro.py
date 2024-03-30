@@ -18,16 +18,16 @@ NUM_ELVES = 6
 
 class ElfSantaContacter(SyncObj):
 
+    # Class for handling the connection between the elves and Santa
     class RequestHandler(socketserver.StreamRequestHandler):
-            def handle(self):
-                print('ELFCONTACTER Recieved a message')
-                identifier = self.request.recv(1).decode() # Recieving the identifier
-                        
-                if identifier == 'E': #Identifier is the Elves
+        def handle(self):
+            print('ELFCONTACTER Recieved a message')
+            identifier = self.request.recv(1).decode() # Recieving the identifier
                     
-                    TCPNode_bytes = self.request.recv(1024)
-                    TCPNode = pickle.loads(TCPNode_bytes)  # Deserialize bytes back into TCPNode
-
+            if identifier == 'E': #Identifier is the Elves
+                
+                TCPNode_bytes = self.request.recv(1024)
+                TCPNode = pickle.loads(TCPNode_bytes)  # Deserialize bytes back into TCPNode
 
     def __init__(self, my_addr, partners):
         cfg = SyncObjConf(
@@ -36,18 +36,18 @@ class ElfSantaContacter(SyncObj):
         super(ElfSantaContacter, self).__init__(my_addr, partners, conf=cfg)
         self._partners = partners
 
-
+    # Function for the elf to listen for Santa
     def listen_santa(self):
         # Start server side
         with socketserver.ThreadingTCPServer(('localhost', 8888), self.RequestHandler) as server:
             print(f"Elf listener -  Starting elf listener: localhost:8888")
             try: 
-                server.serve_forever()
+                server.handle_request() # Server will handle the request from Santa and then closke
             finally:
                 server.server_close()
+                print('ferrooooooo')
 
-
-
+    # Function for the elf to contact Santa
     def contact_santa(self):
         # Sent msg to Santa whom then msg's back here so that we can notify_all()
         try:
@@ -73,8 +73,6 @@ class ElfSantaContacter(SyncObj):
                 f"{LOCAL_HOST}:{SANTA_PORT}"
             )
 
-
-
     def run(self):
         print(f"ELF: {self.selfNode} - Partners: {self._partners}")
         print(f"ELF: {self.selfNode} - Running ElfSantaContacter")
@@ -86,18 +84,24 @@ class ElfSantaContacter(SyncObj):
                 continue
 
             if self._isLeader():
+                self.start_threads()
+            # The three elves in the chain break the loop, but the leader
+            # elf will continue to listen for Santa - 
+            # he will be the last to break out of the loop
+            #print(f"ELF: {self.selfNode} - Leader: {self._getLeader()} - breaking")
+            break
 
-                sub_threads = [
-                    threading.Thread(target=self.listen_santa),
-                    threading.Thread(target=self.contact_santa)
-                ]
+    def start_threads(self):
+        sub_threads = [
+            threading.Thread(target=self.listen_santa),
+            threading.Thread(target=self.contact_santa)
+        ]
 
-                for sub_thread in sub_threads:
-                    sub_thread.start()
+        for sub_thread in sub_threads:
+            sub_thread.start()
 
-                for sub_thread in sub_threads:
-                    sub_thread.join()
-                break
+        for sub_thread in sub_threads:
+            sub_thread.join()
 
 
 class ElfWorker(SyncObj):
@@ -115,22 +119,20 @@ class ElfWorker(SyncObj):
         self._lock = lockManager
         self._memberOfCluster = True
         self._hasAppended = False
-        self._connectedToMainCluster = True
 
 
     def onNodeRemoved(self, res, err, node):
         if err == FAIL_REASON.SUCCESS:
             print(f"ELF: {self.selfNode} - Removal - REQUEST SUCCESS: {node}")
  
+
     def onAppendComplete(self, result, error):
         print(
             f"ELF: {self.selfNode} - Append complete, error: {error}, result: {result}")
 
+
     def run(self):
         while True:
-
-            if not self._connectedToMainCluster:
-                continue
 
             time.sleep(0.5)
 
@@ -162,7 +164,6 @@ class ElfWorker(SyncObj):
             # If the node is in the list destroy the process
             if self._elvesWithProblems.count(self.selfNode) == 1:
                 self.destroy()
-                self._connectedToMainCluster = False
                 print(f"ELF: {self.selfNode} - kicked elf has this list: {self._elvesWithProblems.rawData()}")
                 node_partners = [p for p in self._elvesWithProblems.rawData() if p != self.selfNode]
 
@@ -179,6 +180,8 @@ class ElfWorker(SyncObj):
                     
                     for thread in threads:
                         thread.join()
+                break
+                    
                     
                    
 

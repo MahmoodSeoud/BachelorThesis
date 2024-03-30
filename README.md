@@ -169,3 +169,4 @@ if __name__ == '__main__':
 - [x] See if every elf thread that is kicked can contact each other and create a cluster
 - [x] Then the leader of that cluster contacts Santa 
 - [ ] Then I will have these kick each other again, and connect to the other cluster. (Keep in mind the other cluster also properly are deleting some more elves from their cluster. You maybve need to make a queue, in which they wait)
+- I am using `server.handle_request()` because it will handle the request from Santa and then close instead of serving forever.
