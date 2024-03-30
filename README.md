@@ -166,6 +166,6 @@ if __name__ == '__main__':
 
 ### Week 7: Getting the contact from elves to Santa right
 - I will have todo:
-- [ x ] See if every elf thread that is kicked can contact each other and create a cluster
-- [ x ] Then the leader of that cluster contacts Santa 
+- [x] See if every elf thread that is kicked can contact each other and create a cluster
+- [x] Then the leader of that cluster contacts Santa 
 - [ ] Then I will have these kick each other again, and connect to the other cluster. (Keep in mind the other cluster also properly are deleting some more elves from their cluster. You maybve need to make a queue, in which they wait)
