@@ -38,6 +38,14 @@ class ElfSantaContacter(SyncObj):
 
         super(ElfSantaContacter, self).__init__(my_addr, partners, conf=cfg)
         self._partners = partners
+        self._santa_has_arrived = False
+
+    @replicated
+    def setSantaArrival(self, value):
+        self._santa_has_arrived = value
+
+    def getSantasArrival(self):
+        return self._santa_has_arrived
 
     # Function for the elf to listen for Santa
     def listen_santa(self):
@@ -50,7 +58,7 @@ class ElfSantaContacter(SyncObj):
                 server.handle_request()  # Server will handle the request from Santa and then closke
             finally:
                 server.server_close()
-                print("ferrooooooo")
+                self.setSantaArrival(True)
 
     # Function for the elf to contact Santa
     def contact_santa(self):
@@ -78,25 +86,6 @@ class ElfSantaContacter(SyncObj):
                 f"{LOCAL_HOST}:{SANTA_PORT}"
             )
 
-
-    def run(self):
-        print(f"ELF: {self.selfNode} - Partners: {self._partners}")
-        print(f"ELF: {self.selfNode} - Running ElfSantaContacter")
-
-        while True:
-            time.sleep(0.5)
-
-            if self._getLeader() is None:
-                print(f"[SANTACONTACTERELF]: {self.selfNode} - No leader")
-                continue
-
-            if self._isLeader():
-                self.start_threads()
-            # The three elves in the chain break the loop, but the leader
-            # elf will continue to listen for Santa -
-            # he will be the last to break out of the loop
-            # print(f"ELF: {self.selfNode} - Leader: {self._getLeader()} - breaking")
-
     def start_threads(self):
         sub_threads = [
             threading.Thread(target=self.listen_santa),
@@ -108,6 +97,31 @@ class ElfSantaContacter(SyncObj):
 
         for sub_thread in sub_threads:
             sub_thread.join()
+
+    def run(self):
+        print(f"ELF: {self.selfNode} - Partners: {self._partners}")
+        print(f"ELF: {self.selfNode} - Running ElfSantaContacter")
+
+        while True:
+            time.sleep(0.5)
+
+            if self._santa_has_arrived:
+                
+                for partner in self._partners:
+                    self.removeNodeFromCluster(partner, callback=partial(onNodeRemoved, node=partner))
+                self.destroy()
+                break
+
+            if self._getLeader() is None:
+                print(f"[SANTACONTACTERELF]: {self.selfNode} - No leader")
+                continue
+
+            if self._isLeader():
+                self.start_threads()
+            # The three elves in the chain break the loop, but the leader
+            # elf will continue to listen for Santa -
+            # he will be the last to break out of the loop
+            # print(f"ELF: {self.selfNode} - Leader: {self._getLeader()} - breaking")
 
 
 class ElfWorker(SyncObj):
@@ -126,15 +140,12 @@ class ElfWorker(SyncObj):
         self._lock = lockManager
         self._memberOfCluster = True
         self._hasAppended = False
+        self._mainCluster = partners
 
-    def onNodeRemoved(self, res, err, node):
-        if err == FAIL_REASON.SUCCESS:
-            print(f"ELF: {self.selfNode} - Removal - REQUEST [SUCCESS]: {node}")
-
-    def onAppendComplete(self, result, error):
-        print(
-            f"ELF: {self.selfNode} - Append complete, error: {error}, result: {result}"
-        )
+    def regroupCluster(self):
+        # Rejoin the cluster
+        for partner in self._mainCluster:
+            self.addNodeToCluster(partner, onNodeAdded=partial(onNodeAdded, node=partner))
 
     def run(self):
         while True:
@@ -155,7 +166,7 @@ class ElfWorker(SyncObj):
                 # Remove nodes from the list
                 for node in chain_members:
                     self.removeNodeFromCluster(
-                        node, callback=partial(self.onNodeRemoved, node=node)
+                        node, callback=partial(onNodeRemoved, node=node)
                     )
 
             if (
@@ -167,6 +178,15 @@ class ElfWorker(SyncObj):
                 self.destroy()
                 node_partners = [p for p in self._elvesWithProblems.rawData() if p != self.selfNode]
                 ElfSantaContacter(self.selfNode, node_partners).run()
+                print(f"ELF: {self.selfNode} - IS BACK AT AGAIN")
+                
+              #  # Add the nodes back to the cluster
+              #  for node in node_partners:
+              #      new_elf_worker.addNodeToCluster(node, callback=partial(onNodeAdded, node=node))
+                # After ElfSantaContacter has finished, create a new ElfWorker instance
+                new_elf_worker = ElfWorker(self.selfNode, partners, self._elvesWithProblems, self._lock)
+                new_elf_worker.run()
+
 
             if not self._isLeader():
                 try:
@@ -176,15 +196,25 @@ class ElfWorker(SyncObj):
                             len(self._elvesWithProblems.rawData()) < 3
                             and self._elvesWithProblems.count(self.selfNode) == 0
                         ):
-                            self._elvesWithProblems.append(
-                                self.selfNode, callback=self.onAppendComplete
-                            )
+                            self._elvesWithProblems.append(self.selfNode, callback=partial(onAppend, node=self.selfNode))
 
                 except:
                     print(f"ELF: {self.selfNode} - Failed to acquire lock")
                 finally:
                     if self._lock.isAcquired("testLockName"):
                         self._lock.release("testLockName")
+
+def onAppend(result, error, node):
+    if error == FAIL_REASON.SUCCESS:
+        print( f"Append - REQUEST [SUCCESS]: {node}")
+
+def onNodeAdded(result, error, node):
+    if error == FAIL_REASON.SUCCESS:
+        print(f"Added - REQUEST [SUCCESS]: {node}")
+
+def onNodeRemoved(result, error, node):
+    if error == FAIL_REASON.SUCCESS:
+        print(f"Removal - REQUEST [SUCCESS]: {node}")
 
 
 if __name__ == "__main__":
