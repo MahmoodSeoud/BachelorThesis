@@ -9,6 +9,7 @@ import socketserver
 import socket
 import pickle
 import time
+import random
 from functools import partial
 
 sys.path.append("../")
@@ -78,9 +79,9 @@ class ElfSantaContacter(SyncObj):
         print(f"ELF: {self.selfNode} - Running ElfSantaContacter")
 
         while True:
-            time.sleep(1)
+            time.sleep(0.5)
             if self._getLeader() is None:
-                print(f"SANTACONTACTERELF: {self.selfNode} - No leader")
+                print(f"[SANTACONTACTERELF]: {self.selfNode} - No leader")
                 continue
 
             if self._isLeader():
@@ -133,7 +134,6 @@ class ElfWorker(SyncObj):
 
     def run(self):
         while True:
-
             time.sleep(0.5)
 
             if self._getLeader() is None:
@@ -142,17 +142,28 @@ class ElfWorker(SyncObj):
                 print(f"ELF: {self.selfNode} - No leader")
                 continue
 
-            #print(f"Elf{self.selfNode} has a list: {
-            #      self._elvesWithProblems.rawData()}")
+            #jhprint(f"Elf{self.selfNode} has a list: {self._elvesWithProblems.rawData()}")
             #print(f"leader is: {self._getLeader()}")
 
-            # If the list is full and the node is not in the list, remove nodes from the list
-            if self._elvesWithProblems.count(self.selfNode) == 0 and len(self._elvesWithProblems.rawData()) > 0:
+            # If the node is in the list destroy the process
+            if self._elvesWithProblems.count(self.selfNode) == 1 and len(self._elvesWithProblems.rawData()) == 3:
+                print(f"ELF: {self.selfNode} - kicked elf has this list: {self._elvesWithProblems.rawData()}")
 
-                node_partners = [p for p in self._elvesWithProblems.rawData()]
+                # Stop the node and close all its connections
+                self.destroy()
+
+                node_partners = [p for p in self._elvesWithProblems.rawData() if p != self.selfNode]
+
+                elf_contacter = ElfSantaContacter(self.selfNode, node_partners)
+                elf_contacter.run()
+
+            # If the list is full and the node is not in the list, remove nodes from the list
+            if len(self._elvesWithProblems.rawData()) == 3:
+
+                chain_members = [p for p in self._elvesWithProblems.rawData()]
 
                 # Remove nodes from the list
-                for node in node_partners:
+                for node in chain_members:
                     self.removeNodeFromCluster(
                         node,
                         callback=partial(
@@ -161,45 +172,17 @@ class ElfWorker(SyncObj):
                         )
                     ) 
 
-            # If the node is in the list destroy the process
-            if self._elvesWithProblems.count(self.selfNode) == 1:
-                self.destroy()
-                print(f"ELF: {self.selfNode} - kicked elf has this list: {self._elvesWithProblems.rawData()}")
-                node_partners = [p for p in self._elvesWithProblems.rawData() if p != self.selfNode]
+            try:
+                if self._lock.tryAcquire("testLockName", sync=True):
+                    print(f"ELF: {self.selfNode} - Acquired lock")
+                    if len(self._elvesWithProblems.rawData()) < 3 and self._elvesWithProblems.count(self.selfNode) == 0:
+                        self._elvesWithProblems.append(self.selfNode, callback=self.onAppendComplete)
 
-                if len(node_partners) > 1:
-                    threads = []
-                    # Create a thread for each partner that should contact Santa
-                    for node in self._elvesWithProblems.rawData():
-                        partners = [p for p in self._elvesWithProblems.rawData() if p != node]
-                        thread = threading.Thread(target=ElfSantaContacter(node, partners).run)
-                        threads.append(thread)
-
-                    for thread in threads:
-                        thread.start()
-                    
-                    for thread in threads:
-                        thread.join()
-                break
-                    
-                    
-                   
-
-            if self._isLeader():
-                try:
-                    if self._lock.tryAcquire("testLockName", sync=True):
-                        if len(self._elvesWithProblems.rawData()) < 3 and self._elvesWithProblems.count(self.selfNode) == 0:
-
-                            self._elvesWithProblems.append(self.selfNode,
-                                                           callback=self.onAppendComplete)
-                            
-                            
-# K                            break
-                except:
-                    print(f"ELF: {self.selfNode} - Couldn't acquire lock")
-                finally:
-                    if self._lock.isAcquired("testLockName"):
-                        self._lock.release("testLockName")
+            except:
+                print(f"ELF: {self.selfNode} - Failed to acquire lock")
+            finally:
+                if self._lock.isAcquired("testLockName"):
+                    self._lock.release("testLockName")
 
 
 if __name__ == "__main__":
