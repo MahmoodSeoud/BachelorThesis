@@ -22,10 +22,12 @@ SANTA_PORT = 29800
 
 NUM_ELVES = 7
 
+
 class ReusableThreadingTCPServer(socketserver.ThreadingTCPServer):
     def __init__(self, server_address, RequestHandlerClass, bind_and_activate=True):
         # Call base constructor
-        socketserver.ThreadingTCPServer.__init__(self, server_address, RequestHandlerClass, bind_and_activate=False)
+        socketserver.ThreadingTCPServer.__init__(
+            self, server_address, RequestHandlerClass, bind_and_activate=False)
 
         # Set SO_REUSEADDR option
         self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -39,13 +41,14 @@ class ReusableThreadingTCPServer(socketserver.ThreadingTCPServer):
                 raise
 
 
-
 class ElfContacter(SyncObj):
 
     def __init__(self, nodeAddr, otherNodeAddrs, consumers, message_queue):
-        cfg = SyncObjConf(dynamicMembershipChange=True, connectionRetryTime=10, )
+        cfg = SyncObjConf(dynamicMembershipChange=True,
+                          connectionRetryTime=10, )
 
-        super(ElfContacter, self).__init__(nodeAddr, otherNodeAddrs, consumers=[message_queue],conf=cfg)
+        super(ElfContacter, self).__init__(
+            nodeAddr, otherNodeAddrs, consumers=[message_queue], conf=cfg)
         self._partners = otherNodeAddrs
         self.consumers = consumers
         self.ready_to_regroup = False
@@ -55,14 +58,16 @@ class ElfContacter(SyncObj):
     # Class for handling the connection between the elves and Santa
     class RequestHandler(socketserver.StreamRequestHandler):
         def handle(self):
-            identifier = self.request.recv(1).decode() # Recieving the identifier
-            if identifier == 'S': # S for Santa
+            identifier = self.request.recv(
+                1).decode()  # Recieving the identifier
+            if identifier == 'S':  # S for Santa
                 data = self.request.recv(1024)
 
-            elif identifier == 'L': # L for Leader
+            elif identifier == 'L':  # L for Leader
                 data = self.request.recv(1024)
-            
-            print(f"[CHAIN CLUSTER] Recieved a message from Santa: {data.decode('utf-8')}")
+
+            print(f"[CHAIN CLUSTER] Recieved a message from Santa: {
+                  data.decode('utf-8')}")
 
     @replicated
     def set_ready_to_regroup(self, value):
@@ -124,7 +129,6 @@ class ElfContacter(SyncObj):
             finally:
                 server.server_close()
                 print(f"Closed LeaderServer - {self.selfNode}")
-    
 
     def contact_leader(self):
         # Sent msg to leader elf whom is going to add us back to the cluster
@@ -138,7 +142,7 @@ class ElfContacter(SyncObj):
                 conn_socket.connect((LOCAL_HOST, MAIN_LEADER_PORT))
 
                 # node_bytes = pickle.dumps(self.selfNode)  # Serialize TCPNode to bytes
-                
+
                 buffer = bytearray()
                 buffer.append(0)
                 # buffer.extend(node_bytes)
@@ -173,7 +177,6 @@ class ElfContacter(SyncObj):
 
         for sub_thread in sub_threads2:
             sub_thread.join()
-        
 
     def run(self):
         print(f"ELF: {self.selfNode} - otherNodeAddrs: {self._partners}")
@@ -187,7 +190,7 @@ class ElfContacter(SyncObj):
                     self.removeNodeFromCluster(
                         partner, callback=partial(onNodeRemoved, node=partner))
                 # TODO: This should not be self._partners but rather what the main clust leader has in its list
-                ElfWorker(self.selfNode, self._partners, self.consumers).run() 
+                ElfWorker(self.selfNode, self._partners, self.consumers).run()
                 self.destroy()
                 break
 
@@ -198,7 +201,7 @@ class ElfContacter(SyncObj):
                 # TODO: Maybe add a lock around this
                 self.first_time = False
                 self.start_threads()
-                self.set_ready_to_regroup(True)    
+                self.set_ready_to_regroup(True)
 
 
 class ElfWorker(SyncObj):
@@ -244,7 +247,8 @@ class ElfWorker(SyncObj):
                     self.node_chain.pop()
 
                 for node in self.node_chain.rawData():
-                    self.addNodeToCluster(node, callback=partial(onNodeAdded, node=node))
+                    self.addNodeToCluster(
+                        node, callback=partial(onNodeAdded, node=node))
 
     def contact_chain_cluster_leader(self):
       # Sent msg to leader elf whom is going to add us back to the cluster
@@ -275,18 +279,13 @@ class ElfWorker(SyncObj):
                 f"{LOCAL_HOST}:{CHAIN_LEADER_PORT}"
             )
 
-        
-
     def run(self):
         while True:
             time.sleep(0.5)
 
             if self._getLeader() is None:
                 # Nodes without a leader should wait until one is elected
-                # Could also be the case that this node is consulting Santa
                 continue
-            
-
             if self._isLeader() and self.first_time:
                 self.first_time = False
                 sub_threads = [
@@ -299,31 +298,11 @@ class ElfWorker(SyncObj):
 
                 for sub_thread in sub_threads:
                     sub_thread.join()
-                #threading.Thread(target=self.main_cluster_listener).start()
 
-            # print(f"Elf{self.selfNode} has a list: {self.node_chain.rawData()}")
-            # print(f"leader is: {self._getLeader()}")
-
-            # If the list is full and the node is not in the list, remove nodes from the list
-            if len(self.node_chain.rawData()) == 3:
-                chain_members = [p for p in self.node_chain.rawData()]
-                # Remove nodes from the list
-                for node in chain_members:
-                    self.removeNodeFromCluster(
-                        node, callback=partial(onNodeRemoved, node=node)
-                    )
-
-            if (
-                len(self.node_chain.rawData()
-                    ) == 3 and self.selfNode in self.node_chain.rawData()
-            ):
-                print(f"ELF: {self.selfNode} - I am in the list")
-
-                self.destroy()
-                node_partners = [
-                    p for p in self.node_chain.rawData() if p != self.selfNode]
-                ElfContacter(self.selfNode, node_partners, self.consumers, ReplQueue()).run()
-                print(f"ELF: {self.selfNode} - IS BACK AT AGAIN")
+            if self._isInCluster():
+                self._handleInCluster()
+            else:
+                self._handleNotInCluster()
 
             if not self._isLeader():
                 try:
@@ -331,7 +310,7 @@ class ElfWorker(SyncObj):
                         if len(self.node_chain.rawData()) < 3:
                             self.node_chain.add(self.selfNode, callback=partial(
                                 onAdd, node=self.selfNode))
-                        elif len (self.node_chain.rawData()) == 3:
+                        elif len(self.node_chain.rawData()) == 3:
                             self.queue.put('ferr', _doApply=True)
                             self.node_chain.clear()
                 except:
@@ -339,6 +318,24 @@ class ElfWorker(SyncObj):
                 finally:
                     if self.lockManager.isAcquired("testLockName"):
                         self.lockManager.release("testLockName")
+
+    def _isInCluster(self):
+        return len(self.node_chain.rawData()) == 3 and self.selfNode in self.node_chain.rawData()
+
+    def _handleInCluster(self):
+        self.destroy()
+        node_partners = [p for p in self.node_chain.rawData()
+                         if p != self.selfNode]
+        ElfContacter(self.selfNode, node_partners,
+                     self.consumers, ReplQueue()).run()
+
+    def _handleNotInCluster(self):
+        if len(self.node_chain.rawData()) == 3:
+            chain_members = [p for p in self.node_chain.rawData()]
+            # Remove nodes from the list
+            for node in chain_members:
+                self.removeNodeFromCluster(
+                    node, callback=partial(onNodeRemoved, node=node))        
 
 
 def onAdd(result, error, node):
@@ -374,7 +371,8 @@ if __name__ == "__main__":
         lockManager = ReplLockManager(autoUnlockTime=75)
 
         # Create a new ElfWorker
-        elf_worker = ElfWorker(nodeAddr, otherNodeAddrs, [set, queue, lockManager])
+        elf_worker = ElfWorker(nodeAddr, otherNodeAddrs,
+                               [set, queue, lockManager])
 
         # Create a new thread for each ElfWorker and add it to the list
         thread = threading.Thread(target=elf_worker.run, daemon=True)
