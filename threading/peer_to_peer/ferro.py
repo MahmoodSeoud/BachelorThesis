@@ -249,6 +249,9 @@ class ElfWorker(SyncObj):
                 for node in self.node_chain.rawData():
                     self.addNodeToCluster(
                         node, callback=partial(onNodeAdded, node=node))
+                    
+                self.node_chain.clear()
+                self.queue.get() #Throw away the first element
 
     def contact_chain_cluster_leader(self):
       # Sent msg to leader elf whom is going to add us back to the cluster
@@ -299,43 +302,45 @@ class ElfWorker(SyncObj):
                 for sub_thread in sub_threads:
                     sub_thread.join()
 
-            if self._isInCluster():
-                self._handleInCluster()
-            else:
-                self._handleNotInCluster()
+            
+            if len(self.node_chain.rawData()) == 3:
+
+                if self._isInChain():
+                    self._handleInChain()
+                else:
+                    self._handleNotInChain()
+            
+            print(f'{self.selfNode} - QUEUE:', self.queue.qsize())
 
             if not self._isLeader():
                 try:
                     if self.lockManager.tryAcquire("testLockName", sync=True):
                         if len(self.node_chain.rawData()) < 3:
                             self.node_chain.add(self.selfNode, callback=partial(
-                                onAdd, node=self.selfNode))
-                        elif len(self.node_chain.rawData()) == 3:
-                            self.queue.put('ferr', _doApply=True)
-                            self.node_chain.clear()
+                                    onAdd, node=self.selfNode))
+                    
                 except:
                     print(f"ELF: {self.selfNode} - Failed to acquire lock")
                 finally:
                     if self.lockManager.isAcquired("testLockName"):
                         self.lockManager.release("testLockName")
 
-    def _isInCluster(self):
-        return len(self.node_chain.rawData()) == 3 and self.selfNode in self.node_chain.rawData()
+    def _isInChain(self):
+        return self.selfNode in self.node_chain.rawData()
 
-    def _handleInCluster(self):
+    def _handleInChain(self):
         self.destroy()
         node_partners = [p for p in self.node_chain.rawData()
                          if p != self.selfNode]
         ElfContacter(self.selfNode, node_partners,
                      self.consumers, ReplQueue()).run()
 
-    def _handleNotInCluster(self):
-        if len(self.node_chain.rawData()) == 3:
-            chain_members = [p for p in self.node_chain.rawData()]
-            # Remove nodes from the list
-            for node in chain_members:
-                self.removeNodeFromCluster(
-                    node, callback=partial(onNodeRemoved, node=node))        
+    def _handleNotInChain(self):
+        chain_members = [p for p in self.node_chain.rawData()]
+        # Remove nodes from the list
+        for node in chain_members:
+            self.removeNodeFromCluster(
+                node, callback=partial(onNodeRemoved, node=node))        
 
 
 def onAdd(result, error, node):
