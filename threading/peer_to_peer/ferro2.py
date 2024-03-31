@@ -1,19 +1,23 @@
 from __future__ import print_function
-import random
+from pysyncobj.batteries import ReplList, ReplLockManager, ReplCounter, ReplQueue, ReplDict
+from pysyncobj import SyncObj, SyncObjException, SyncObjConf, FAIL_REASON, replicated, replicated_sync
+
+
+import sys
+import threading
+import struct
+import socketserver
+import socket
+import pickle
 import time
 import random
-import threading
-import sys
-import pysyncobj.pickle as pickle
-import pysyncobj.dns_resolver as dns_resolver
+from functools import partial
 
-if sys.version_info >= (3, 0):
-    xrange = range
-import logging
-from pysyncobj import SyncObj, SyncObjConf, replicated, replicated_sync
-from pysyncobj.batteries import ReplQueue
+sys.path.append("../")
+SANTA_PORT = 29800
+LOCAL_HOST = "127.0.0.1"
+NUM_ELVES = 7
 
-logging.basicConfig(format=u'[%(asctime)s %(filename)s:%(lineno)d %(levelname)s]  %(message)s', level=logging.DEBUG)
 
 class TEST_TYPE:
     DEFAULT = 0
@@ -24,6 +28,7 @@ class TEST_TYPE:
     AUTO_TICK_1 = 5
     WAIT_BIND = 6
     LARGE_COMMAND = 7
+
 
 class TestObj(SyncObj):
 
@@ -142,6 +147,20 @@ class TestObj(SyncObj):
         print('keys:', sorted(self.__data.keys()))
 
 
+def onAppend(result, error, node):
+    if error == FAIL_REASON.SUCCESS:
+        print(f"Append - REQUEST [SUCCESS]: {node}")
+
+
+def onNodeAdded(result, error, node):
+    if error == FAIL_REASON.SUCCESS:
+        print(f"Added - REQUEST [SUCCESS]: {node}")
+
+
+def onNodeRemoved(result, error, node):
+    if error == FAIL_REASON.SUCCESS:
+        print(f"Removal - REQUEST [SUCCESS]: {node}")
+
 def singleTickFunc(o, timeToTick, interval, stopFunc):
     currTime = time.time()
     finishTime = currTime + timeToTick
@@ -161,6 +180,14 @@ def doTicks(objects, timeToTick, interval=0.05, stopFunc=None):
     for t in threads:
         t.join()
 
+def doAutoTicks(interval=0.05, stopFunc=None):
+    deadline = time.time() + interval
+    while not stopFunc():
+        time.sleep(0.02)
+        t2 = time.time()
+        if t2 >= deadline:
+            break
+
 _g_nextAddress = 6000 + 60 * (int(time.time()) % 600)
 
 
@@ -173,32 +200,24 @@ def getNextAddr(ipv6=False, isLocalhost=False):
         return 'localhost:%d' % _g_nextAddress
     return '127.0.0.1:%d' % _g_nextAddress
 
-def test_ReplQueue():
-    q = ReplQueue()
-    q.put(42, _doApply=True)
-    q.put(33, _doApply=True)
-    q.put(14, _doApply=True)
 
-    assert q.get(_doApply=True) == 42
 
-    assert q.qsize() == 2
-    assert len(q) == 2
+if __name__ == "__main__":
+    q1 = ReplQueue()
+    q2 = ReplQueue()
 
-    assert q.empty() == False
+    a = [getNextAddr(), getNextAddr()]
 
-    assert q.get(_doApply=True) == 33
-    assert q.get(-1, _doApply=True) == 14
-    assert q.get(_doApply=True) == None
-    assert q.get(-1, _doApply=True) == -1
-    assert q.empty()
+    o1 = TestObj(a[0], [a[1]], TEST_TYPE.AUTO_TICK_1, consumers=[q1])
+    o2 = TestObj(a[1], [a[0]], TEST_TYPE.AUTO_TICK_1, consumers=[q2])
 
-    q = ReplQueue(3)
-    q.put(42, _doApply=True)
-    q.put(33, _doApply=True)
-    assert q.full() == False
-    assert q.put(14, _doApply=True) == True
-    assert q.full() == True
-    assert q.put(19, _doApply=True) == False
-    assert q.get(_doApply=True) == 42
+    doAutoTicks(10.0, stopFunc=lambda: o1.isReady() and o2.isReady())
 
-test_ReplQueue()
+    assert o1.isReady() and o2.isReady()
+
+    q1.put(42, sync=True)
+    doAutoTicks(3.0, stopFunc=lambda: q2.get(sync=True) == 42)
+
+    assert q2.get(sync=True) == 42
+
+  
