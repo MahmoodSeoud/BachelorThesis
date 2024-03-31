@@ -45,8 +45,6 @@ def santa_threads(my_ip, my_port):
                     buffer.extend(bytes(message, 'utf-8'))
                     conn_socket.sendall(buffer) 
 
- 
-                    
 
     def listener():
         with socketserver.ThreadingTCPServer((my_ip, my_port), RequestHandler) as server:
