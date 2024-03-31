@@ -1,5 +1,5 @@
 from __future__ import print_function
-from pysyncobj.batteries import ReplPriorityQueue, ReplLockManager, ReplSet
+from pysyncobj.batteries import ReplLockManager, ReplSet, ReplQueue
 from pysyncobj import SyncObj, SyncObjException, SyncObjConf, FAIL_REASON, replicated
 
 import sys
@@ -213,10 +213,10 @@ class ElfWorker(SyncObj):
                 connectionTimeout=12,
             ),
         )
+        self.consumers = consumers
         self.node_chain = consumers[0]
         self.queue = consumers[1]
         self.lockManager = consumers[2]
-        self.consumers = consumers
         self._memberOfCluster = True
         self._hasAppended = False
         self.first_time = True
@@ -275,6 +275,8 @@ class ElfWorker(SyncObj):
                 f"{LOCAL_HOST}:{CHAIN_LEADER_PORT}"
             )
 
+        
+
     def run(self):
         while True:
             time.sleep(0.5)
@@ -284,6 +286,7 @@ class ElfWorker(SyncObj):
                 # Could also be the case that this node is consulting Santa
                 continue
             
+
             if self._isLeader() and self.first_time:
                 self.first_time = False
                 sub_threads = [
@@ -319,7 +322,7 @@ class ElfWorker(SyncObj):
                 self.destroy()
                 node_partners = [
                     p for p in self.node_chain.rawData() if p != self.selfNode]
-                ElfContacter(self.selfNode, node_partners, self.consumers, ReplPriorityQueue()).run()
+                ElfContacter(self.selfNode, node_partners, self.consumers, ReplQueue()).run()
                 print(f"ELF: {self.selfNode} - IS BACK AT AGAIN")
 
             if not self._isLeader():
@@ -329,7 +332,7 @@ class ElfWorker(SyncObj):
                             self.node_chain.add(self.selfNode, callback=partial(
                                 onAdd, node=self.selfNode))
                         elif len (self.node_chain.rawData()) == 3:
-                            self.queue.put(self.node_chain.rawData(), _doApply=True)
+                            self.queue.put('ferr', _doApply=True)
                             self.node_chain.clear()
                 except:
                     print(f"ELF: {self.selfNode} - Failed to acquire lock")
@@ -367,7 +370,7 @@ if __name__ == "__main__":
 
         # Create a new ReplList and ReplLockManager data structures
         set = ReplSet()
-        queue = ReplPriorityQueue()
+        queue = ReplQueue()
         lockManager = ReplLockManager(autoUnlockTime=75)
 
         # Create a new ElfWorker
