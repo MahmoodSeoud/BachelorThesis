@@ -1,5 +1,5 @@
 from __future__ import print_function
-from pysyncobj.batteries import ReplQueue, ReplLockManager, ReplSet
+from pysyncobj.batteries import ReplPriorityQueue, ReplLockManager, ReplSet
 from pysyncobj import SyncObj, SyncObjException, SyncObjConf, FAIL_REASON, replicated
 
 import sys
@@ -42,24 +42,27 @@ class ReusableThreadingTCPServer(socketserver.ThreadingTCPServer):
 
 class ElfContacter(SyncObj):
 
-    def __init__(self, nodeAddr, otherNodeAddrs, consumers):
-        cfg = SyncObjConf(dynamicMembershipChange=True, connectionRetryTime=10)
+    def __init__(self, nodeAddr, otherNodeAddrs, consumers, message_queue):
+        cfg = SyncObjConf(dynamicMembershipChange=True, connectionRetryTime=10, )
 
-        super(ElfContacter, self).__init__(nodeAddr, otherNodeAddrs, conf=cfg)
+        super(ElfContacter, self).__init__(nodeAddr, otherNodeAddrs, consumers=[message_queue],conf=cfg)
         self._partners = otherNodeAddrs
         self.consumers = consumers
         self.ready_to_regroup = False
         self.first_time = True
+        self.message_queue = message_queue
 
     # Class for handling the connection between the elves and Santa
-    class SantaRequestHandler(socketserver.StreamRequestHandler):
+    class RequestHandler(socketserver.StreamRequestHandler):
         def handle(self):
-            print("[CHAIN CLUSTER] Recieved a message from Santa")
+            identifier = self.request.recv(1).decode() # Recieving the identifier
+            if identifier == 'S': # S for Santa
+                data = self.request.recv(1024)
 
-        # Class for handling the connection between the elves and Santa
-    class LeaderRequestHandler(socketserver.StreamRequestHandler):
-        def handle(self):
-            print("[CHAIN CLUSTER] Recieved a message from Leader")
+            elif identifier == 'L': # L for Leader
+                data = self.request.recv(1024)
+            
+            print(f"[CHAIN CLUSTER] Recieved a message from Santa: {data.decode('utf-8')}")
 
     @replicated
     def set_ready_to_regroup(self, value):
@@ -69,26 +72,26 @@ class ElfContacter(SyncObj):
         return self.ready_to_regroup
 
     # Function for the elf to listen for Santa
-    def listen_santa(self):
+    def listener(self):
         print("I am tring something", self.selfNode)
 
         # Start server side
-        with socketserver.ThreadingTCPServer((LOCAL_HOST, CHAIN_LEADER_PORT), self.SantaRequestHandler
+        with socketserver.ThreadingTCPServer((LOCAL_HOST, CHAIN_LEADER_PORT), self.RequestHandler
                                              ) as server:
             print(
-                f"[CHAIN CLUSTER] -  Starting listener: ({LOCAL_HOST}:{CHAIN_LEADER_PORT})")
+                f"[CHAIN CLUSTER] - {self.selfNode} - Starting listener: ({LOCAL_HOST}:{CHAIN_LEADER_PORT})")
             try:
                 server.handle_request()  # Server will handle the request from Santa and then closke
             finally:
                 server.server_close()
-                print("Closed server:", self.selfNode)
+                print(f"Closed server - {self.selfNode}")
 
     # Function for the elf to contact Santa
     def contact_santa(self):
         # Sent msg to Santa whom then msg's back here so that we can notify_all()
         try:
             print(
-                f"[CHAIN CLUSTER] -  Connecting to Santa at: "
+                f"[CHAIN CLUSTER] - {self.selfNode} - Connecting to Santa at: "
                 f"{LOCAL_HOST}:{SANTA_PORT}"
             )
             with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as conn_socket:
@@ -96,10 +99,8 @@ class ElfContacter(SyncObj):
                 conn_socket.connect((LOCAL_HOST, SANTA_PORT))
 
                 identifier = "E"  # E for elves as identifier
-                # node_bytes = pickle.dumps(self.selfNode)  # Serialize TCPNode to bytes
                 buffer = bytearray()
                 buffer.extend(identifier.encode())
-                # buffer.extend(node_bytes)
 
                 conn_socket.sendall(buffer)
 
@@ -112,14 +113,17 @@ class ElfContacter(SyncObj):
     # Function for the elf to listen for Santa
     def listen_leader(self):
         # Start server side
-        with socketserver.ThreadingTCPServer((LOCAL_HOST, CHAIN_LEADER_PORT), self.LeaderRequestHandler
+        with socketserver.ThreadingTCPServer((LOCAL_HOST, CHAIN_LEADER_PORT), self.RequestHandler
                                              ) as server:
+
             print(
-                f"[CHAIN CLUSTER] -  Starting listener: ({LOCAL_HOST}:{CHAIN_LEADER_PORT})")
+                f"[CHAIN CLUSTER] - {self.selfNode} - Starting listener: ({LOCAL_HOST}:{CHAIN_LEADER_PORT})")
+            server.message_queue = self.message_queue
             try:
                 server.handle_request()  # Server will handle the request from Santa and then closke
             finally:
                 server.server_close()
+                print(f"Closed LeaderServer - {self.selfNode}")
     
 
     def contact_leader(self):
@@ -134,6 +138,7 @@ class ElfContacter(SyncObj):
                 conn_socket.connect((LOCAL_HOST, MAIN_LEADER_PORT))
 
                 # node_bytes = pickle.dumps(self.selfNode)  # Serialize TCPNode to bytes
+                
                 buffer = bytearray()
                 buffer.append(0)
                 # buffer.extend(node_bytes)
@@ -148,12 +153,12 @@ class ElfContacter(SyncObj):
 
     def start_threads(self):
         sub_threads1 = [
-            threading.Thread(target=self.listen_santa),
+            threading.Thread(target=self.listener),
             threading.Thread(target=self.contact_santa),
         ]
 
         sub_threads2 = [
-            threading.Thread(target=self.listen_leader),
+            threading.Thread(target=self.listener),
             threading.Thread(target=self.contact_leader),
         ]
 
@@ -177,11 +182,12 @@ class ElfContacter(SyncObj):
         while True:
             time.sleep(0.5)
 
-            if self.ready_to_regroup:
+            if self.get_ready_to_regroup():
                 for partner in self._partners:
                     self.removeNodeFromCluster(
                         partner, callback=partial(onNodeRemoved, node=partner))
-                ElfWorker(self.selfNode, self._partners, self.consumers).run()
+                # TODO: This should not be self._partners but rather what the main clust leader has in its list
+                ElfWorker(self.selfNode, self._partners, self.consumers).run() 
                 self.destroy()
                 break
 
@@ -189,12 +195,10 @@ class ElfContacter(SyncObj):
                 continue
 
             if self._isLeader() and self.first_time:
+                # TODO: Maybe add a lock around this
                 self.first_time = False
                 self.start_threads()
-                self.set_ready_to_regroup(True)
-                
-            
-                
+                self.set_ready_to_regroup(True)    
 
 
 class ElfWorker(SyncObj):
@@ -224,7 +228,7 @@ class ElfWorker(SyncObj):
         def handle(self):
             print("[MAIN CLUSTER] Recieved a message from a chain cluster")
 
-    def chain_cluster_listener(self):
+    def main_cluster_listener(self):
         # Start server side
         with socketserver.ThreadingTCPServer(
             (LOCAL_HOST, MAIN_LEADER_PORT), self.RequestHandler
@@ -242,6 +246,34 @@ class ElfWorker(SyncObj):
                 for node in self.node_chain.rawData():
                     self.addNodeToCluster(node, callback=partial(onNodeAdded, node=node))
 
+    def contact_chain_cluster_leader(self):
+      # Sent msg to leader elf whom is going to add us back to the cluster
+        try:
+            print(
+                f"ELF: {self.selfNode} -  Connecting to chain cluster leader at: "
+                f"{LOCAL_HOST}:{CHAIN_LEADER_PORT}"
+            )
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as conn_socket:
+
+                conn_socket.connect((LOCAL_HOST, CHAIN_LEADER_PORT))
+
+                # node_bytes = pickle.dumps(self.selfNode)  # Serialize TCPNode to bytes
+                _identifier = "L"  # L for leader as identifier
+
+                allNodes = [self.selfNode] + self.otherNodes
+                node_bytes = pickle.dumps(allNodes)
+
+                buffer = bytearray()
+                buffer.extend(_identifier.encode())
+                buffer.extend(node_bytes)
+
+                conn_socket.sendall(buffer)
+
+        except ConnectionRefusedError:
+            print(
+                f"[CHAIN CLUSTER] -  Couldn't connect at: "
+                f"{LOCAL_HOST}:{CHAIN_LEADER_PORT}"
+            )
 
     def run(self):
         while True:
@@ -254,7 +286,17 @@ class ElfWorker(SyncObj):
             
             if self._isLeader() and self.first_time:
                 self.first_time = False
-                threading.Thread(target=self.chain_cluster_listener).start()
+                sub_threads = [
+                threading.Thread(target=self.main_cluster_listener),
+                #threading.Thread(target=self.contact_chain_cluster_leader),
+                ]
+
+                for sub_thread in sub_threads:
+                    sub_thread.start()
+
+                for sub_thread in sub_threads:
+                    sub_thread.join()
+                #threading.Thread(target=self.main_cluster_listener).start()
 
             # print(f"Elf{self.selfNode} has a list: {self.node_chain.rawData()}")
             # print(f"leader is: {self._getLeader()}")
@@ -277,7 +319,7 @@ class ElfWorker(SyncObj):
                 self.destroy()
                 node_partners = [
                     p for p in self.node_chain.rawData() if p != self.selfNode]
-                ElfContacter(self.selfNode, node_partners, self.consumers).run()
+                ElfContacter(self.selfNode, node_partners, self.consumers, ReplPriorityQueue()).run()
                 print(f"ELF: {self.selfNode} - IS BACK AT AGAIN")
 
             if not self._isLeader():
@@ -325,7 +367,7 @@ if __name__ == "__main__":
 
         # Create a new ReplList and ReplLockManager data structures
         set = ReplSet()
-        queue = ReplQueue()
+        queue = ReplPriorityQueue()
         lockManager = ReplLockManager(autoUnlockTime=75)
 
         # Create a new ElfWorker

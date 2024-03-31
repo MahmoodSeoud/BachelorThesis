@@ -34,12 +34,13 @@ def santa_threads(my_ip, my_port):
                 message = 'Get back to work, elves!'
                 #print('TCPNode', TCPNode)
 
-             # Writing back to either the elves or reindeer
                 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as conn_socket:
                     conn_socket.connect(('localhost', 8888))
 
+                    _identifier = "S"  # E for elves as identifier
                     # Send a string
                     buffer = bytearray()
+                    buffer.extend(_identifier.encode())
                     buffer.append(1)  # Message type 1 = string
                     buffer.extend(struct.pack('!I', len(message)))
                     buffer.extend(bytes(message, 'utf-8'))
