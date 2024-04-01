@@ -159,6 +159,7 @@ class ElfWorker(SyncObj):
         self.__chain = set()
         self.__queue = Queue()
         self.lock_manager = consumers[0]
+        self.__consumers = consumers
 
     @replicated
     def addNodeToChain(self, node):
@@ -250,22 +251,18 @@ class ElfWorker(SyncObj):
                 for node in chain:
                     self.removeNodeFromCluster(
                         node, callback=partial(onNodeRemoved, node=node, cluster="main"))
-            
-               # for node in chain:
-               #     partners = [p for p in chain if p != node]
-               #     thread = threading.Thread(target=ElfContacter(node, partners).run)
-               #     threads.append(thread)
 
-               # for thread in threads:
-               #     thread.start()
-               # 
-               # for thread in threads:
-               #     thread.join()
+                self.destroy()
+                print(f"ELF: {self.selfNode} - Im in the list")
 
-               #if self.selfNode in chain:
-                #    print(f"ELF: {self.selfNode} - Im in the list")
-                #    self.destroy()
-                # TODO: Create a new ElfContacter
+                node_partners = [p for p in chain if p != self.selfNode]
+                thread = threading.Thread(target=ElfContacter(node, node_partners).run)
+                thread.start()
+                thread.join()
+
+                elf_worker = ElfWorker(node, self.otherNodes, consumers=self.__consumers)
+                elf_worker.run()
+
                 self.clearChain()
 
 
