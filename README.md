@@ -171,3 +171,14 @@ if __name__ == '__main__':
 - [ ] Then I will have these kick each other again, and connect to the other cluster. (Keep in mind the other cluster also properly are deleting some more elves from their cluster. You maybve need to make a queue, in which they wait)
 - I am using `server.handle_request()` because it will handle the request from Santa and then close instead of serving forever.
 - How can I implement communication between two separate clusters in a distributed system?
+- I am still buggleing with removing leaders. One thing I may try is to make a manager class that is supposed to be the leader.
+    This could be helpful:
+    ```python
+  for node in self.__otherNodes:
+                    self.__transport.send(node, {
+                        'type': 'request_vote',
+                        'term': self.__raftCurrentTerm,
+                        'last_log_index': self.__getCurrentLogIndex(),
+                        'last_log_term': self.__getCurrentLogTerm(),
+                    })
+    ```

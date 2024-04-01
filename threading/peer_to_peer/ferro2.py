@@ -1,7 +1,7 @@
 from __future__ import print_function
-from pysyncobj.batteries import ReplList, ReplLockManager, ReplCounter, ReplQueue, ReplDict
-from pysyncobj import SyncObj, SyncObjException, SyncObjConf, FAIL_REASON, replicated, replicated_sync
-
+from queue import Queue
+from pysyncobj import SyncObj, SyncObjException, SyncObjConf, FAIL_REASON, replicated
+from pysyncobj.batteries import ReplLockManager
 
 import sys
 import threading
@@ -14,210 +14,323 @@ import random
 from functools import partial
 
 sys.path.append("../")
-SANTA_PORT = 29800
 LOCAL_HOST = "127.0.0.1"
+
+MAIN_LEADER_PORT = 8000
+CHAIN_LEADER_PORT = 8888
+SANTA_PORT = 29800
+
 NUM_ELVES = 7
 
-
-class TEST_TYPE:
-    DEFAULT = 0
-    COMPACTION_1 = 1
-    COMPACTION_2 = 2
-    RAND_1 = 3
-    JOURNAL_1 = 4
-    AUTO_TICK_1 = 5
-    WAIT_BIND = 6
-    LARGE_COMMAND = 7
+allNodes = []
 
 
-class TestObj(SyncObj):
+class ElfContacter(SyncObj):
 
-    def __init__(self, selfNodeAddr, otherNodeAddrs,
-                 testType=TEST_TYPE.DEFAULT,
-                 compactionMinEntries=0,
-                 dumpFile=None,
-                 journalFile=None,
-                 password=None,
-                 dynamicMembershipChange=False,
-                 useFork=True,
-                 testBindAddr=False,
-                 consumers=None,
-                 onStateChanged=None,
-                 leaderFallbackTimeout=None):
+    def __init__(self, nodeAddr, otherNodeAddrs, consumers):
+        cfg = SyncObjConf(dynamicMembershipChange=True,
+                          connectionRetryTime=5)
 
-        cfg = SyncObjConf(autoTick=False, appendEntriesUseBatch=False)
-        cfg.appendEntriesPeriod = 0.1
-        cfg.raftMinTimeout = 0.5
-        cfg.raftMaxTimeout = 1.0
-        cfg.dynamicMembershipChange = dynamicMembershipChange
-        cfg.onStateChanged = onStateChanged
-        if leaderFallbackTimeout is not None:
-            cfg.leaderFallbackTimeout = leaderFallbackTimeout
+        super(ElfContacter, self).__init__(
+            nodeAddr, otherNodeAddrs, conf=cfg)
+        self.partners = otherNodeAddrs
+        self.consumers = consumers
+        self.ready_to_regroup = False
+        self.first_time = True
 
-        if testBindAddr:
-            cfg.bindAddress = selfNodeAddr
+    # Class for handling the connection between the elves and Santa
+    class RequestHandler(socketserver.StreamRequestHandler):
+        def handle(self):
+            identifier = self.request.recv(
+                1).decode()  # Recieving the identifier
 
-        if dumpFile is not None:
-            cfg.fullDumpFile = dumpFile
+            data = self.request.recv(1024)
 
-        if password is not None:
-            cfg.password = password
+            if identifier == 'S':  # S for Santa
+                message = data.decode('utf-8')
+                print(
+                    f"[CHAIN CLUSTER] Received a message from Santa: {message}")
 
-        cfg.useFork = useFork
-
-        if testType == TEST_TYPE.COMPACTION_1:
-            cfg.logCompactionMinEntries = compactionMinEntries
-            cfg.logCompactionMinTime = 0.1
-            cfg.appendEntriesUseBatch = True
-
-        if testType == TEST_TYPE.COMPACTION_2:
-            cfg.logCompactionMinEntries = 99999
-            cfg.logCompactionMinTime = 99999
-            cfg.fullDumpFile = dumpFile
-
-        if testType == TEST_TYPE.LARGE_COMMAND:
-            cfg.connectionTimeout = 15.0
-            cfg.logCompactionMinEntries = 99999
-            cfg.logCompactionMinTime = 99999
-            cfg.fullDumpFile = dumpFile
-            cfg.raftMinTimeout = 1.5
-            cfg.raftMaxTimeout = 2.5
-        # cfg.appendEntriesBatchSizeBytes = 2 ** 13
-
-        if testType == TEST_TYPE.RAND_1:
-            cfg.autoTickPeriod = 0.05
-            cfg.appendEntriesPeriod = 0.02
-            cfg.raftMinTimeout = 0.1
-            cfg.raftMaxTimeout = 0.2
-            cfg.logCompactionMinTime = 9999999
-            cfg.logCompactionMinEntries = 9999999
-            cfg.journalFile = journalFile
-
-        if testType == TEST_TYPE.JOURNAL_1:
-            cfg.logCompactionMinTime = 999999
-            cfg.logCompactionMinEntries = 999999
-            cfg.fullDumpFile = dumpFile
-            cfg.journalFile = journalFile
-
-        if testType == TEST_TYPE.AUTO_TICK_1:
-            cfg.autoTick = True
-            cfg.pollerType = 'select'
-
-        if testType == TEST_TYPE.WAIT_BIND:
-            cfg.maxBindRetries = 1
-            cfg.autoTick = True
-
-        super(TestObj, self).__init__(
-            selfNodeAddr, otherNodeAddrs, cfg, consumers)
-        self.__counter = 0
-        self.__data = {}
-
-        if testType == TEST_TYPE.RAND_1:
-            self._SyncObj__transport._send_random_sleep_duration = 0.03
+            elif identifier == 'L':  # L for Leader
+                mainClusterNodes = pickle.loads(data)
+                print(f"[CHAIN CLUSTER] Received a message from Leader: {
+                      mainClusterNodes}")
+                allNodes.clear()
+                allNodes.extend(mainClusterNodes)
 
     @replicated
-    def addValue(self, value):
-        self.__counter += value
-        return self.__counter
+    def set_ready_to_regroup(self, value):
+        self.ready_to_regroup = value
+
+    def remove_nodes(self, nodes_to_remove):
+        for partner in nodes_to_remove:
+            self.removeNodeFromCluster(
+                partner, callback=partial(onNodeRemoved, node=partner, cluster="chain"))
+
+    def get_ready_to_regroup(self):
+        return self.ready_to_regroup
+
+    # Function for the elf to listen for Santa
+    def listener(self, host, port):
+        with socketserver.ThreadingTCPServer((host, port), self.RequestHandler) as server:
+            print(
+                f"[CHAIN CLUSTER] - {self.selfNode} - Starting listener: ({host}:{port})")
+            try:
+                server.handle_request()  # Server will handle the request from Santa and then close
+            finally:
+                server.server_close()
+                print(f"Closed LeaderServer - {self.selfNode}")
+
+    def contact_entity(self, host, port, identifier):
+        # print(f"[CHAIN CLUSTER] - {self.selfNode} - Connecting to entity at: {host}:{port}")
+        buffer = bytearray()
+        buffer.extend(identifier.encode())
+        send_message(self.selfNode, host, port, buffer)
+
+    def start_threads(self):
+        sub_threads1 = [
+            threading.Thread(target=self.listener, args=(
+                LOCAL_HOST, CHAIN_LEADER_PORT)),
+            threading.Thread(target=self.contact_entity,
+                             args=(LOCAL_HOST, SANTA_PORT, 'E')),
+        ]
+
+        sub_threads2 = [
+            threading.Thread(target=self.listener, args=(
+                LOCAL_HOST, CHAIN_LEADER_PORT)),
+            threading.Thread(target=self.contact_entity, args=(
+                LOCAL_HOST, MAIN_LEADER_PORT, 'E')),
+        ]
+
+        for sub_thread in sub_threads1:
+            sub_thread.start()
+
+        for sub_thread in sub_threads1:
+            sub_thread.join()
+
+        for sub_thread in sub_threads2:
+            sub_thread.start()
+
+        for sub_thread in sub_threads2:
+            sub_thread.join()
+
+    def run(self):
+        # print(f"ELF: {self.selfNode} - otherNodeAddrs: {self.partners}")
+        print(f"ELF: {self.selfNode} - Running ElfContacter")
+
+        while True:
+            time.sleep(0.5)
+
+            if self._getLeader() is None:
+                continue
+
+            if self.get_ready_to_regroup():
+
+                self.remove_nodes(self.partners)
+
+                allNodes.extend(self.partners)
+                allNodes.append(self.selfNode)
+                # ElfWorker(self.selfNode, allNodes, self.consumers).run()
+                self.destroy()
+                break
+
+            if self._isLeader() and not self.get_ready_to_regroup():
+                # TODO: Maybe add a lock around this
+                self.start_threads()
+                self.set_ready_to_regroup(True)
+
+
+class ElfWorker(SyncObj):
+    def __init__(self, nodeAddr, otherNodeAddrs, consumers):
+        super(ElfWorker, self).__init__(
+            nodeAddr,
+            otherNodeAddrs,
+            consumers=consumers,
+            conf=SyncObjConf(
+                dynamicMembershipChange=True,
+                # commandsWaitLeader=True,
+                connectionRetryTime=5
+            ),
+        )
+        # self.node_chain, self.queue, self.lock_manager = consumers
+        self.chain_is_out = False
+        self.first_time = True
+        self.isAlive = True
+        self.server = None
+        self.__chain = set()
+        self.__queue = Queue()
+        self.lock_manager = consumers[0]
 
     @replicated
-    def addKeyValue(self, key, value):
-        self.__data[key] = value
-
-    @replicated_sync
-    def addValueSync(self, value):
-        self.__counter += value
-        return self.__counter
+    def addNodeToChain(self, node):
+        self.__chain.add(node)
+        return self.__chain
 
     @replicated
-    def testMethod(self):
-        self.__data['testKey'] = 'valueVer1'
+    def clearChain(self):
+        self.__chain.clear()
 
-    @replicated(ver=1)
-    def testMethod(self):
-        self.__data['testKey'] = 'valueVer2'
+    @replicated
+    def enqueue(self, element):
+        return self.__queue.put(element)
 
-    def getCounter(self):
-        return self.__counter
+    def dequeue(self):
+        return self.__queue.get()
 
-    def getValue(self, key):
-        return self.__data.get(key, None)
+    @replicated
+    def set_chain_is_out(self, value):
+        self.chain_is_out = value
 
-    def dumpKeys(self):
-        print('keys:', sorted(self.__data.keys()))
+    def getQueueSize(self):
+        return self.__queue.qsize()
+
+    def getChain(self):
+        return self.__chain
+
+    def get_chain_is_out(self):
+        return self.chain_is_out
+
+
+    class RequestHandler(socketserver.StreamRequestHandler):
+        def __init__(self, *args, server=None, **kwargs):
+            self.server = server
+            super().__init__(*args, **kwargs)
+
+        def handle(self):
+            print("[MAIN CLUSTER] Recieved a message from a chain cluster")
+            self.server.contact_chain_cluster_leader()
+            time.sleep(1)
+
+            for node in self.server.node_chain.rawData():
+                self.server.addNodeToCluster(
+                    node, callback=partial(onNodeAdded, node=node, cluster="main"))
+
+            self.server.set_chain_is_out(False)
+            self.server.node_chain.clear()
+
+    def main_cluster_listener(self):
+        # Start server side
+        # self.server = socketserver.TCPServer((LOCAL_HOST, MAIN_LEADER_PORT), lambda *args, **kwargs: self.RequestHandler(*args, server=self, **kwargs))
+        with socketserver.ThreadingTCPServer(
+            (LOCAL_HOST, MAIN_LEADER_PORT), self.RequestHandler
+        ) as server:
+            print(
+                f"[MAIN CLUSTER] - {self.selfNode} - Starting elf listener: {LOCAL_HOST}:{MAIN_LEADER_PORT}")
+            try:
+                # TODO: Maybe change this to server_forever()
+                server.handle_request()  # Server will handle the request from Santa and then closke
+            finally:
+                server.server_close()
+
+    def contact_chain_cluster_leader(self):
+
+        identifier = 'L'  # L for leader as identifier
+        mainClusterNodes = [self.selfNode] + list(self.otherNodes)
+        node_bytes = pickle.dumps(mainClusterNodes)
+        buffer = bytearray()
+        buffer.extend(identifier.encode())
+        buffer.extend(node_bytes)
+        send_message(self.selfNode, LOCAL_HOST, CHAIN_LEADER_PORT, buffer)
+
+ 
+    def run(self):
+        while self.isAlive:
+            time.sleep(0.5)
+
+            if self._getLeader() is None:
+                # Nodes without a leader should wait until one is elected
+                continue
+            
+            print(f"ELF: {self.selfNode} - queue size: {self.getQueueSize()} - count: {self.getStatus()['partner_nodes_count']}")
+            if self.getQueueSize() > 0 and self.get_chain_is_out() is False:
+                self.set_chain_is_out(True)
+                chain = self.dequeue()
+                print(f"ELF: {self.selfNode} - Dequeueing - {chain}")
+                
+                print('chain', chain)
+                # Remove nodes from the list
+                for node in chain:
+                    self.removeNodeFromCluster(
+                        node, callback=partial(onNodeRemoved, node=node, cluster="main"))
+                #if self.selfNode in chain:
+                #    print(f"ELF: {self.selfNode} - Im in the list")
+                #    self.destroy()
+                # TODO: Create a new ElfContacter
+                self.clearChain()
+
+
+            try:
+                if self.lock_manager.tryAcquire("chainLock", sync=True):
+                    if not self._isLeader():
+                        if len(self.getChain()) < 3:
+                            self.addNodeToChain(self.selfNode, callback=partial(
+                                onNodeAdded, node=self.selfNode, cluster="chain"))
+                            # 3 is the number of nodes in a chain
+                            # If the chain is full, add it to the queue
+                            # (+1) since it has not been added yet
+                        elif len(self.getChain()) == 3: 
+                                self.enqueue(self.getChain())
+            except Exception as e:
+                print(f"ELF: {self.selfNode} - Could not acquire lock: {e}")
+            finally:
+                self.lock_manager.release("chainLock")
+
+
+def onAdd(res, err, cnt):
+    print('onAdd %d:' % cnt, res, err)
 
 
 def onAppend(result, error, node):
     if error == FAIL_REASON.SUCCESS:
-        print(f"Append - REQUEST [SUCCESS]: {node}")
+        print(f"APPEND - REQUEST [SUCCESS]: {node}")
 
 
-def onNodeAdded(result, error, node):
+def onNodeAdded(result, error, node, cluster):
     if error == FAIL_REASON.SUCCESS:
-        print(f"Added - REQUEST [SUCCESS]: {node}")
+        print(f"ADDED - REQUEST [SUCCESS]: {node} - CLUSTER: {cluster}")
 
 
-def onNodeRemoved(result, error, node):
+def onNodeRemoved(result, error, node, cluster):
     if error == FAIL_REASON.SUCCESS:
-        print(f"Removal - REQUEST [SUCCESS]: {node}")
-
-def singleTickFunc(o, timeToTick, interval, stopFunc):
-    currTime = time.time()
-    finishTime = currTime + timeToTick
-    while time.time() < finishTime:
-        o._onTick(interval)
-        if stopFunc is not None:
-            if stopFunc():
-                break
-
-def doTicks(objects, timeToTick, interval=0.05, stopFunc=None):
-    threads = []
-    for o in objects:
-        t = threading.Thread(target=singleTickFunc, args=(
-            o, timeToTick, interval, stopFunc))
-        t.start()
-        threads.append(t)
-    for t in threads:
-        t.join()
-
-def doAutoTicks(interval=0.05, stopFunc=None):
-    deadline = time.time() + interval
-    while not stopFunc():
-        time.sleep(0.02)
-        t2 = time.time()
-        if t2 >= deadline:
-            break
-
-_g_nextAddress = 6000 + 60 * (int(time.time()) % 600)
+        print(f"REMOVED - REQUEST [SUCCESS]: {node} - CLUSTER: {cluster}")
 
 
-def getNextAddr(ipv6=False, isLocalhost=False):
-    global _g_nextAddress
-    _g_nextAddress += 1
-    if ipv6:
-        return '::1:%d' % _g_nextAddress
-    if isLocalhost:
-        return 'localhost:%d' % _g_nextAddress
-    return '127.0.0.1:%d' % _g_nextAddress
+def send_message(selfNode, host, port, buffer):
+    try:
+        print(f'{selfNode} - connecting to {host}:{port}')
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as conn_socket:
+            conn_socket.connect((host, port))
+            conn_socket.sendall(buffer)
 
+    except ConnectionRefusedError:
+        print(f"{selfNode} - Couldn't connect to " f"{host}:{port}.")
 
 
 if __name__ == "__main__":
-    q1 = ReplQueue()
-    q2 = ReplQueue()
+    start_port = 3000
+    # +1 for the leader/manager
+    ports = [start_port + i for i in range(NUM_ELVES + 1)]
 
-    a = [getNextAddr(), getNextAddr()]
+    threads = []
 
-    o1 = TestObj(a[0], [a[1]], TEST_TYPE.AUTO_TICK_1, consumers=[q1])
-    o2 = TestObj(a[1], [a[0]], TEST_TYPE.AUTO_TICK_1, consumers=[q2])
+    for i, port in enumerate(ports):
+        # Create a list of otherNodeAddrs for each ElfWorker
+        nodeAddr = f"{LOCAL_HOST}:{port}"
+        otherNodeAddrs = [f"{LOCAL_HOST}:{p}" for p in ports if p != port]
+        # print(f"ELF: {nodeAddr} - otherNodeAddrs: {otherNodeAddrs}")
 
-    doAutoTicks(10.0, stopFunc=lambda: o1.isReady() and o2.isReady())
+        # Create a new ReplList and ReplLockManager data structures
+        elf_worker = ElfWorker(nodeAddr, otherNodeAddrs, consumers=[
+                               ReplLockManager(autoUnlockTime=75.0)])
 
-    assert o1.isReady() and o2.isReady()
+        # Create a new thread for each ElfWorker and add it to the list
+        thread = threading.Thread(target=elf_worker.run, daemon=True)
+        threads.append(thread)
 
-    q1.put(42, sync=True)
-    doAutoTicks(3.0, stopFunc=lambda: q2.get(sync=True) == 42)
+    # Start all the threads
+    for thread in threads:
+        thread.start()
 
-    assert q2.get(sync=True) == 42
-
-  
+    # Join all the threads
+    for thread in threads:
+        thread.join()
