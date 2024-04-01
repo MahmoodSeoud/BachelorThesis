@@ -37,7 +37,7 @@ def santa_threads(my_ip, my_port):
                 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as conn_socket:
                     conn_socket.connect(('localhost', 8888))
 
-                    _identifier = "S"  # E for elves as identifier
+                    _identifier = 'S'  # E for elves as identifier
                     # Send a string
                     buffer = bytearray()
                     buffer.extend(_identifier.encode())
