@@ -27,14 +27,13 @@ allNodes = []
 
 class ElfContacter(SyncObj):
 
-    def __init__(self, nodeAddr, otherNodeAddrs, consumers):
+    def __init__(self, nodeAddr, otherNodeAddrs):
         cfg = SyncObjConf(dynamicMembershipChange=True,
                           connectionRetryTime=5)
 
         super(ElfContacter, self).__init__(
             nodeAddr, otherNodeAddrs, conf=cfg)
         self.partners = otherNodeAddrs
-        self.consumers = consumers
         self.ready_to_regroup = False
         self.first_time = True
 
@@ -118,26 +117,26 @@ class ElfContacter(SyncObj):
         # print(f"ELF: {self.selfNode} - otherNodeAddrs: {self.partners}")
         print(f"ELF: {self.selfNode} - Running ElfContacter")
 
-        while True:
-            time.sleep(0.5)
+   #     while True:
+   #         time.sleep(0.5)
 
-            if self._getLeader() is None:
-                continue
+   #         if self._getLeader() is None:
+   #             continue
 
-            if self.get_ready_to_regroup():
+   #         if self.get_ready_to_regroup():
 
-                self.remove_nodes(self.partners)
+   #             self.remove_nodes(self.partners)
 
-                allNodes.extend(self.partners)
-                allNodes.append(self.selfNode)
-                # ElfWorker(self.selfNode, allNodes, self.consumers).run()
-                self.destroy()
-                break
+   #             allNodes.extend(self.partners)
+   #             allNodes.append(self.selfNode)
+   #             # ElfWorker(self.selfNode, allNodes, self.consumers).run()
+   #             self.destroy()
+   #             break
 
-            if self._isLeader() and not self.get_ready_to_regroup():
-                # TODO: Maybe add a lock around this
-                self.start_threads()
-                self.set_ready_to_regroup(True)
+   #         if self._isLeader() and not self.get_ready_to_regroup():
+   #             # TODO: Maybe add a lock around this
+   #             self.start_threads()
+   #             self.set_ready_to_regroup(True)
 
 
 class ElfWorker(SyncObj):
@@ -241,18 +240,29 @@ class ElfWorker(SyncObj):
                 # Nodes without a leader should wait until one is elected
                 continue
             
-            print(f"ELF: {self.selfNode} - queue size: {self.getQueueSize()} - count: {self.getStatus()['partner_nodes_count']}")
-            if self.getQueueSize() > 0 and self.get_chain_is_out() is False:
+            #print(f"ELF: {self.selfNode} - queue size: {self.getQueueSize()} - count: {self.getStatus()['partner_nodes_count']}")
+            if self.getQueueSize() > 0 and self.get_chain_is_out() is False and self.selfNode in self.getChain():
                 self.set_chain_is_out(True)
                 chain = self.dequeue()
                 print(f"ELF: {self.selfNode} - Dequeueing - {chain}")
                 
-                print('chain', chain)
                 # Remove nodes from the list
                 for node in chain:
                     self.removeNodeFromCluster(
                         node, callback=partial(onNodeRemoved, node=node, cluster="main"))
-                #if self.selfNode in chain:
+            
+               # for node in chain:
+               #     partners = [p for p in chain if p != node]
+               #     thread = threading.Thread(target=ElfContacter(node, partners).run)
+               #     threads.append(thread)
+
+               # for thread in threads:
+               #     thread.start()
+               # 
+               # for thread in threads:
+               #     thread.join()
+
+               #if self.selfNode in chain:
                 #    print(f"ELF: {self.selfNode} - Im in the list")
                 #    self.destroy()
                 # TODO: Create a new ElfContacter
