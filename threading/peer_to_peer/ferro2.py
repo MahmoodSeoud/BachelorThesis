@@ -241,8 +241,21 @@ class ElfWorker(SyncObj):
                 # Nodes without a leader should wait until one is elected
                 continue
             
-            #print(f"ELF: {self.selfNode} - queue size: {self.getQueueSize()} - count: {self.getStatus()['partner_nodes_count']}")
             if self.getQueueSize() > 0 and self.get_chain_is_out() is False and self.selfNode in self.getChain():
+                self.destroy()
+                print(f"ELF: {self.selfNode} - Im in the list")
+
+                node_partners = [p for p in self.getChain() if p != self.selfNode]
+                thread = threading.Thread(target=ElfContacter(self.selfNode, node_partners).run)
+                thread.start()
+                #thread.join()
+                self.isAlive = False    
+
+                elf_worker = ElfWorker(self.selfNode, self.otherNodes, consumers=self.__consumers)
+                elf_worker.run()
+
+            #print(f"ELF: {self.selfNode} - queue size: {self.getQueueSize()} - count: {self.getStatus()['partner_nodes_count']}")
+            if self.getQueueSize() > 0 and self.get_chain_is_out() is False and self.selfNode not in self.getChain():
                 self.set_chain_is_out(True)
                 chain = self.dequeue()
                 print(f"ELF: {self.selfNode} - Dequeueing - {chain}")
@@ -251,20 +264,7 @@ class ElfWorker(SyncObj):
                 for node in chain:
                     self.removeNodeFromCluster(
                         node, callback=partial(onNodeRemoved, node=node, cluster="main"))
-
-                self.destroy()
-                print(f"ELF: {self.selfNode} - Im in the list")
-
-                node_partners = [p for p in chain if p != self.selfNode]
-                thread = threading.Thread(target=ElfContacter(node, node_partners).run)
-                thread.start()
-                thread.join()
-
-                elf_worker = ElfWorker(node, self.otherNodes, consumers=self.__consumers)
-                elf_worker.run()
-
                 self.clearChain()
-
 
             try:
                 if self.lock_manager.tryAcquire("chainLock", sync=True):
@@ -280,7 +280,8 @@ class ElfWorker(SyncObj):
             except Exception as e:
                 print(f"ELF: {self.selfNode} - Could not acquire lock: {e}")
             finally:
-                self.lock_manager.release("chainLock")
+                if self.lock_manager.isAcquired("chainLock"):
+                    self.lock_manager.release("chainLock")
 
 
 def onAdd(res, err, cnt):
