@@ -1,328 +1,244 @@
-import socket
-import socketserver
+from __future__ import print_function
+from queue import Queue
+from pysyncobj import SyncObj, SyncObjException, SyncObjConf, FAIL_REASON, replicated
+from pysyncobj.batteries import ReplLockManager
+
+import sys
 import threading
+import socketserver
+import socket
 import time
-import random
-import bisect
-import json
-from enum import Enum
+from functools import partial
 
-class State(Enum):
-    SANTA = 1
-    FEELER = 2
-    ACKNOWLEDGEMENT = 3
-    REJECT = 4
-    READY_REQUEST = 5
-    READY_RESPONSE = 6
-    START_OVER = 7
-    
-
-NUM_ELVES = 9
-NUM_CHAIN = 3
+sys.path.append("../")
 LOCAL_HOST = "127.0.0.1"
+
+CHAIN_LEADER_PORT = 8888
 SANTA_PORT = 29800
 
-class RequestHandler(socketserver.StreamRequestHandler):
-    def __init__(self, elf, *args, **kwargs):
-        self.elf = elf
-        self.state_handlers = {
-            State.SANTA: self.handle_santa_state,
-            State.FEELER: self.handle_feeler_state,
-            State.ACKNOWLEDGEMENT: self.handle_acknowledgement_state,
-            State.READY_REQUEST: self.handle_ready_request_state,
-            State.READY_RESPONSE: self.handle_ready_response_state,
-            State.REJECT: self.handle_reject_state,
-            State.START_OVER: self.handle_start_over_state,
-        }
+NUM_ELVES = 10
 
-        super().__init__(*args, **kwargs)
+class ElfContacter():
 
-    def handle(self):
-        data_bytes = self.request.recv(1024)
-        payload = json.loads(data_bytes.decode('utf-8'))
-        state_type = payload['state']
-        self.change_state(State(state_type), payload)
+    def __init__(self, sender):
+        self.sender = sender
 
-    def change_state(self, new_state, payload):
-        handler = self.state_handlers.get(new_state)
-        if handler:
-            self.elf.state = new_state
-            handler(payload)
-
-    def handle_santa_state(self, payload):
-        pass
-
-    def handle_feeler_state(self, payload):
-        def create_feeler_response_data(peer_triple, my_triple):
-            return {
-                'state': State.ACKNOWLEDGEMENT._value_,
-                'chain': [peer_triple, my_triple]
-            }
-
-        peer_id, peer_port, peer_sleep_time = payload['id'], payload['port'], payload['sleep_time']
-        peer_triple = (peer_sleep_time, peer_id, peer_port)
-        my_triple = (self.elf.sleep_time, self.elf.id, self.elf.port)
-
-        # Reject the message
-        data = create_feeler_response_data(peer_triple, my_triple)
-        buffer = self.elf.create_buffer(data)
-        self.elf.send_message(LOCAL_HOST, peer_port, buffer)
+    # Class for handling the connection between the elves and Santa
+    class RequestHandler(socketserver.StreamRequestHandler):
+        def handle(self):
+            data = self.request.recv(1024)
+            message = data.decode('utf-8')
+            print(f"[CHAIN CLUSTER] Received a message from Santa: {message}")
 
 
-
-    def handle_acknowledgement_state(self, payload):
-        
-        def extract_peer_triple(chain):
-            peer_sleep_time = chain[1][0]
-            peer_id = chain[1][1]
-            peer_port = chain[1][2]
-            return (peer_sleep_time, peer_id, peer_port)
-
-        def update_chain(peer_triple, my_triple):
-            if len(self.elf.chain) < NUM_CHAIN:
-                if peer_triple not in self.elf.chain:
-                    bisect.insort(self.elf.chain, peer_triple)
-
-                if my_triple not in self.elf.chain: 
-                    bisect.insort(self.elf.chain, my_triple)
-
-        def send_ready_request_to_chain():
-            
-            data = {
-                'state': State.READY_REQUEST._value_ ,
-                'peer_port': self.elf.port
-            }
-
-            buffer = self.elf.create_buffer(data)
-            print(f'ELF {self.elf.id} - SENDING READY REQUEST TO CHAIN {self.elf.chain}')
-        
-
-            for elf in self.elf.chain:
-                peer_port = elf[2] #port
-                if peer_port != self.elf.port: # Send to all the other elves if they are
-                    self.elf.send_message(LOCAL_HOST, peer_port, buffer)
-
-        chain = payload['chain']
-        peer_triple = extract_peer_triple(chain)
-        my_triple = (self.elf.sleep_time, self.elf.id , self.elf.port)
-        print(f'ELF {self.elf.id} - RECIEVED THE ACKNOWLEDGEMENT FROM ELF {peer_triple[1]}')
-
-        with self.elf.lock:
-            update_chain(peer_triple, my_triple)
-            first_elf_in_chain_id = self.elf.chain[0][1]
-            self.elf.acknowledgement_count += 1
-
-            if len(self.elf.chain) == NUM_CHAIN and first_elf_in_chain_id == self.elf.id and self.elf.acknowledgement_count == NUM_CHAIN - 1:
-                self.elf.is_chain_root = True
-                print(f'elf {self.elf.id} - I am Groot') # Xd 
-                send_ready_request_to_chain()
-
-
-    def handle_ready_request_state(self, payload):
-
-        def send_ready_response(peer_port):
-            data = {
-                'state': State.READY_RESPONSE._value_,
-                'is_ready_to_join_chain': int(self.elf.is_ready_to_join_chain),
-                'peer_id': self.elf.id,
-                'peer_port': self.elf.port
-            }
-            self.elf.is_ready_to_join_chain = False
-            buffer = self.elf.create_buffer(data)
-            self.elf.send_message(LOCAL_HOST, peer_port, buffer)
-
-        peer_port = payload['peer_port']
-
-        with self.elf.lock:
-            send_ready_response(peer_port)
-
-    def handle_ready_response_state(self, payload):
-        def handle_ready():
-            self.elf.ready_count += 1
-            self.elf.chain_confirmed = True
-
-        def handle_not_ready(peer_id, peer_port):
-            print(f'ELF {self.elf.id} - ELF {peer_id} is not ready')
-            # if the elf is not ready, clear the chain and start over
-            self.elf.chain = []
-            self.elf.is_ready_to_join_chain = True
-            self.elf.chain_confirmed = False
-            self.elf.is_chain_root = False
-            self.elf.ready_count = 0
-            self.elf.acknowledgement_count = 0
-
-            print(f'ELF {self.elf.id} - STARTING OVER')
-            with self.elf.condition:
-                self.elf.condition.notify() # Notify the writer thread to start over
-            
-            data = {
-                'state': State.START_OVER._value_,
-            }
-
-            buffer = self.elf.create_buffer(data)
-            self.elf.send_message(LOCAL_HOST, peer_port, buffer)
-
-        def contact_santa(peer_port):
-            # TODO: Contact Santa 
-
-            self.elf.chain_confirmed = True
-            print(f'ELF{self.elf.id} - CONFIRMED CHAIN {self.elf.chain}')
-            print(f'elf {self.elf.id} - Is contacting Santa')
-
-            print(f'elf {self.elf.id} - is STARTING OVER')
-            with self.elf.condition:
-                self.elf.condition.notify()
-            
-            data = {
-                'state': State.START_OVER._value_,
-            }
-
-            buffer = self.elf.create_buffer(data)
-            self.elf.send_message(LOCAL_HOST, peer_port, buffer)
-
-
-        ready = payload['is_ready_to_join_chain']
-        peer_id = payload['peer_id']
-        peer_port = payload['peer_port']
-
-        with self.elf.lock:
-            if not ready:
-                handle_not_ready(peer_id, peer_port)
-            else:
-                handle_ready()
-
-            if self.elf.ready_count == NUM_CHAIN - 1: # If the other elves in the chain are ready
-                contact_santa(peer_port)
-
-    def handle_reject_state(self, payload):
-        peer_id = payload['peer_id']
-        print(f'ELF {self.elf.id} - DONT WANT MORE ROOTS: ELF {peer_id}')
-
-    def handle_start_over_state(self, payload):
-        self.elf.chain = []
-        self.elf.is_ready_to_join_chain = True
-        self.elf.chain_confirmed = False
-        self.elf.is_chain_root = False
-        self.elf.ready_count = 0
-        self.elf.acknowledgement_count = 0
-
-        print(f'ELF {self.elf.id} - STARTING OVER')
-        with self.elf.condition:
-            self.elf.condition.notify() # Notify the writer thread to start overl
-
-
-
-class Elf:
-    def __init__(self, id, ip, port, peer_ports):
-        self.state = None
-        self.id = id
-        self.ip = ip
-        self.port = port
-        self.peer_ports = peer_ports
-        self.chain = []
-        self.is_chain_root = False
-        self.chain_confirmed = False
-        self.is_ready_to_join_chain = True
-        self.sleep_time = 0
-        self.ready_count = 0
-        self.acknowledgement_count = 0
-        self.lock = threading.Lock()
-        self.condition = threading.Condition()
-
-
-    def elf_listener(self):
-        # Start server side
-        # Passing in *args and **kwargs to give the Requesthandler access to all the Elfs attributes
-        with socketserver.ThreadingTCPServer((self.ip, self.port), lambda *args, **kwargs: RequestHandler(self, *args, **kwargs)) as server:
-            print(f"EL: {self.id} -  Starting elve listener: {self.ip}:{self.port}")
-            try: 
-                server.serve_forever()
+    # Function for the elf to listen for Santa
+    def listener(self, host, port):
+        with socketserver.ThreadingTCPServer((host, port), self.RequestHandler) as server:
+            print(
+                f"[CHAIN CLUSTER] - Starting listener: ({host}:{port})")
+            try:
+                server.handle_request()  # Server will handle the request from Santa and then close
             finally:
                 server.server_close()
 
-    """ STUPID TEST CAN BE REMOVED WHEN DONE TESTING"""
-    def find_sleeping_time_testing(self):
-        sleeping_time = 0
+    def contact_entity(self, sender, host, port, identifier):
+        buffer = bytearray()
+        buffer.extend(identifier.encode())
+        send_message(sender, host, port, buffer)
 
-        if (self.id == 1):
-            sleeping_time = 3
-        elif (self.id == 2):
-            sleeping_time = 4
-        elif (self.id == 3):
-            sleeping_time = 5
-        elif (self.id == 4):
-            sleeping_time = 3
+    def start_threads(self):
+        sub_threads1 = [
+            threading.Thread(target=self.listener, args=(
+                LOCAL_HOST, CHAIN_LEADER_PORT)),
+            threading.Thread(target=self.contact_entity,
+                             args=(self.sender, LOCAL_HOST, SANTA_PORT, 'E')),
+        ]
 
-        return sleeping_time
+        for sub_thread in sub_threads1:
+            sub_thread.start()
+
+        for sub_thread in sub_threads1:
+            sub_thread.join()
 
 
-    def elf_writer(self):
+    def run(self):
+        self.start_threads()
+
+
+class ElfWorker(SyncObj):
+    def __init__(self, nodeAddr, otherNodeAddrs, consumers):
+        super(ElfWorker, self).__init__(
+            nodeAddr,
+            otherNodeAddrs,
+            consumers=consumers,
+            conf=SyncObjConf(
+                dynamicMembershipChange=True,
+                # commandsWaitLeader=True,
+                connectionRetryTime=5
+            ),
+        )
+        # self.node_chain, self.queue, self.lock_manager = consumers
+        self.chain_is_out = False
+        self.first_time = True
+        self.isAlive = True
+        self.server = None
+        self.__chain = set()
+        self.__queue = Queue()
+        self.lock_manager = consumers[0]
+        self.__consumers = consumers
+        self.__unlucky_node = None
+
+    @replicated
+    def addNodeToChain(self, node):
+        self.__chain.add(node)
+        return self.__chain
+
+    @replicated
+    def clearChain(self):
+        self.__chain.clear()
+
+    @replicated
+    def enqueue(self, element):
+        return self.__queue.put(element)
+
+    @replicated
+    def set_chain_is_out(self, value):
+        self.chain_is_out = value
+        return self.chain_is_out
+    
+    @replicated
+    def set_unlucky_node(self, node):
+        self.__unlucky_node = node
+        return self.__unlucky_node
+
+    def dequeue(self):
+        return self.__queue.get()
+
+    def getQueueSize(self):
+        return self.__queue.qsize()
+
+    def getChain(self):
+        return self.__chain
+
+    def get_chain_is_out(self):
+        return self.chain_is_out
+
+    def get_unlucky_node(self):
+        return self.__unlucky_node
+
+    class RequestHandler(socketserver.StreamRequestHandler):
+        def __init__(self, *args, server=None, **kwargs):
+            self.server = server
+            super().__init__(*args, **kwargs)
+
+        def handle(self):
+            print("[MAIN CLUSTER] Recieved a message from a chain cluster")
+            self.server.contact_chain_cluster_leader()
+            time.sleep(1)
+
+            for node in self.server.node_chain.rawData():
+                self.server.addNodeToCluster(
+                    node, callback=partial(onNodeAdded, node=node, cluster="main"))
+
+            self.server.set_chain_is_out(False)
+            self.server.node_chain.clear()
+
+    def run(self):
         while True:
-            self.sleep_time = random.randint(3,5) # Updating the sleeping time
-            time.sleep(self.sleep_time)  # Simulate elf working
-            print(f'Elf {self.id} has problems after {self.sleep_time} seconds')
+            time.sleep(0.5)
 
-            # If the elf is not forming a group, initiate group formation
-            # Send message to peers about group formation
-            data = {
-                'state': State.FEELER._value_,
-                'id': self.id,
-                'sleep_time': self.sleep_time,
-                'port': self.port
-            }
+            if self._getLeader() is None:
+                # Nodes without a leader should wait until one is elected
+                continue
 
-            buffer = self.create_buffer(data)
+            if self.lock_manager.tryAcquire("elfContactLock", sync=True):
+                if self.selfNode == self.get_unlucky_node():
+                        ElfContacter(self.selfNode).run()
+                        self.set_chain_is_out(False)
+                        self.set_unlucky_node(None)
+                self.lock_manager.release("elfContactLock")
 
-            # state all the other elves about presence of chain root
-            for peer_port in self.peer_ports:
-                if peer_port != self.port:
-                    self.send_message(LOCAL_HOST, peer_port, buffer)
+            if self.getQueueSize() > 0 and self.get_chain_is_out() is False:
+                self.set_chain_is_out(True)
 
-            # Waiting for all the threads to sync
-            with self.condition:
-                self.condition.wait()
+                chain = self.dequeue()
+                unluckyNode = list(chain)[0] # Get the first node in the chain
+                self.set_unlucky_node(unluckyNode)
+                self.clearChain()
 
-    def create_buffer(self, payload):
-        buffer = json.dumps(payload).encode('utf-8')
-        return buffer
+                while self.selfNode in chain and self.selfNode != self.get_unlucky_node():
+                    time.sleep(0.5)
 
-    def send_message(self, host, port, message):
-        try:
-            #print(f'EW {self.id} - connecting to {port}:{port}')
-            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as conn_socket:
-                conn_socket.connect((host, port))
-                conn_socket.sendall(message)
+            try:
+                if self.lock_manager.tryAcquire("chainLock", sync=True):
+                    if len(self.getChain()) < 3:
+                        self.addNodeToChain(self.selfNode, callback=partial(
+                            onNodeAdded, node=self.selfNode, cluster="chain"))
+                        
+                    elif len(self.getChain()) == 3: 
+                            self.enqueue(self.getChain())
+            except Exception as e:
+                print(f"ELF: {self.selfNode} - Could not acquire lock: {e}")
+            finally:
+                if self.lock_manager.isAcquired("chainLock"):
+                    self.lock_manager.release("chainLock")
 
-        except ConnectionRefusedError:
-            print(f"EW {self.id} - Couldn't connect to " f"{self.ip}:{host}. Will try again in 3 seconds.")
 
-    def start_thread(self):
-        sub_threads = [
-            threading.Thread(target=self.elf_listener),
-            threading.Thread(target=self.elf_writer)
-            ]
-        for thread in sub_threads:
-            thread.start()
-        for thread in sub_threads:
-            thread.join()
+def onAdd(res, err, cnt):
+    print('onAdd %d:' % cnt, res, err)
+
+
+def onAppend(result, error, node):
+    if error == FAIL_REASON.SUCCESS:
+        print(f"APPEND - REQUEST [SUCCESS]: {node}")
+
+
+def onNodeAdded(result, error, node, cluster):
+    if error == FAIL_REASON.SUCCESS:
+        print(f"ADDED - REQUEST [SUCCESS]: {node} - CLUSTER: {cluster}")
+
+
+def onNodeRemoved(result, error, node, cluster):
+    if error == FAIL_REASON.SUCCESS:
+        print(f"REMOVED - REQUEST [SUCCESS]: {node} - CLUSTER: {cluster}")
+
+
+def send_message(sender, host, port, buffer):
+    try:
+        print(f'{sender} connecting to {host}:{port}')
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as conn_socket:
+            conn_socket.connect((host, port))
+            conn_socket.sendall(buffer)
+
+    except ConnectionRefusedError:
+        print(f"{sender} Couldn't connect to " f"{host}:{port}.")
+
 
 if __name__ == "__main__":
+    start_port = 3000
+    # +1 for the leader/manager
+    ports = [start_port + i for i in range(NUM_ELVES + 1)]
 
-    peer_ports = [ 44441 + i for i in range(0, NUM_ELVES)]
+    threads = []
 
-    elve_threads = [
-        threading.Thread(
-            target=Elf(
-                i+1, 
-                LOCAL_HOST,
-                peer_ports[i],
-                peer_ports).start_thread,
-            daemon=True
-        ) for i in range(NUM_ELVES)
-    ]
+    for i, port in enumerate(ports):
+        # Create a list of otherNodeAddrs for each ElfWorker
+        nodeAddr = f"{LOCAL_HOST}:{port}"
+        otherNodeAddrs = [f"{LOCAL_HOST}:{p}" for p in ports if p != port]
+        # print(f"ELF: {nodeAddr} - otherNodeAddrs: {otherNodeAddrs}")
 
-    for elve_thread in elve_threads:
-        elve_thread.start()
+        # Create a new ReplList and ReplLockManager data structures
+        elf_worker = ElfWorker(nodeAddr, otherNodeAddrs, consumers=[
+                               ReplLockManager(autoUnlockTime=75.0)])
 
-    for elve_thread in elve_threads:
-        elve_thread.join()
+        # Create a new thread for each ElfWorker and add it to the list
+        thread = threading.Thread(target=elf_worker.run, daemon=True)
+        threads.append(thread)
+
+    # Start all the threads
+    for thread in threads:
+        thread.start()
+
+    # Join all the threads
+    for thread in threads:
+        thread.join()

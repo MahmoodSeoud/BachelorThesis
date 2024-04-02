@@ -52,7 +52,7 @@ def threaded_reindeer(reindeer_id,
 
                     if len(woke) == NUM_REINDEER:
                         last_reindeer = max(woke, key=lambda item: (item['sleep_time'], item['id']))
-                        print(f"RL {reindeer_id} - I think this is the last ",last_reindeer)
+                        #print(f"RL {reindeer_id} - I think this is the last ",last_reindeer)
 
                         # No reindeer are awake anymore
                         woke.clear()
@@ -128,7 +128,7 @@ def threaded_reindeer(reindeer_id,
 
 if __name__ == "__main__":
 
-    peer_addresses = [(LOCAL_HOST, 33331 + i) for i in range(0, NUM_REINDEER)]
+    peer_addresses = [(LOCAL_HOST, 4000 + i) for i in range(0, NUM_REINDEER)]
 
     lock = threading.Lock()
     condition = threading.Condition()

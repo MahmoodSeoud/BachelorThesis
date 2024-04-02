@@ -5,25 +5,18 @@ from pysyncobj.batteries import ReplLockManager
 
 import sys
 import threading
-import struct
 import socketserver
 import socket
-import pickle
 import time
-import random
 from functools import partial
 
 sys.path.append("../")
 LOCAL_HOST = "127.0.0.1"
 
-MAIN_LEADER_PORT = 8000
 CHAIN_LEADER_PORT = 8888
 SANTA_PORT = 29800
 
-NUM_ELVES = 7
-
-allNodes = []
-
+NUM_ELVES = 10
 
 class ElfContacter():
 
@@ -33,14 +26,9 @@ class ElfContacter():
     # Class for handling the connection between the elves and Santa
     class RequestHandler(socketserver.StreamRequestHandler):
         def handle(self):
-            identifier = self.request.recv(
-                1).decode()  # Recieving the identifier
-
             data = self.request.recv(1024)
-
-            if identifier == 'S':  # S for Santa
-                message = data.decode('utf-8')
-                print(f"[CHAIN CLUSTER] Received a message from Santa: {message}")
+            message = data.decode('utf-8')
+            print(f"[CHAIN CLUSTER] Received a message from Santa: {message}")
 
 
     # Function for the elf to listen for Santa
