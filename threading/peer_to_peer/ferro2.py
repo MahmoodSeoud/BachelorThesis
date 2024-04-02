@@ -25,18 +25,7 @@ NUM_ELVES = 7
 allNodes = []
 
 
-class ElfContacter(SyncObj):
-
-    def __init__(self, nodeAddr, otherNodeAddrs):
-        cfg = SyncObjConf(dynamicMembershipChange=True,
-                          connectionRetryTime=5)
-
-        super(ElfContacter, self).__init__(
-            nodeAddr, otherNodeAddrs, conf=cfg)
-        self.partners = otherNodeAddrs
-        self.ready_to_regroup = False
-        self.first_time = True
-
+class ElfContacter():
     # Class for handling the connection between the elves and Santa
     class RequestHandler(socketserver.StreamRequestHandler):
         def handle(self):
@@ -47,44 +36,25 @@ class ElfContacter(SyncObj):
 
             if identifier == 'S':  # S for Santa
                 message = data.decode('utf-8')
-                print(
-                    f"[CHAIN CLUSTER] Received a message from Santa: {message}")
+                print(f"[CHAIN CLUSTER] Received a message from Santa: {message}")
 
-            elif identifier == 'L':  # L for Leader
-                mainClusterNodes = pickle.loads(data)
-                print(f"[CHAIN CLUSTER] Received a message from Leader: {
-                      mainClusterNodes}")
-                allNodes.clear()
-                allNodes.extend(mainClusterNodes)
-
-    @replicated
-    def set_ready_to_regroup(self, value):
-        self.ready_to_regroup = value
-
-    def remove_nodes(self, nodes_to_remove):
-        for partner in nodes_to_remove:
-            self.removeNodeFromCluster(
-                partner, callback=partial(onNodeRemoved, node=partner, cluster="chain"))
-
-    def get_ready_to_regroup(self):
-        return self.ready_to_regroup
 
     # Function for the elf to listen for Santa
     def listener(self, host, port):
         with socketserver.ThreadingTCPServer((host, port), self.RequestHandler) as server:
             print(
-                f"[CHAIN CLUSTER] - {self.selfNode} - Starting listener: ({host}:{port})")
+                f"[CHAIN CLUSTER] - Starting listener: ({host}:{port})")
             try:
                 server.handle_request()  # Server will handle the request from Santa and then close
             finally:
                 server.server_close()
-                print(f"Closed LeaderServer - {self.selfNode}")
+                print(f"Closed server at: {host}:{port}")
 
     def contact_entity(self, host, port, identifier):
         # print(f"[CHAIN CLUSTER] - {self.selfNode} - Connecting to entity at: {host}:{port}")
         buffer = bytearray()
         buffer.extend(identifier.encode())
-        send_message(self.selfNode, host, port, buffer)
+        send_message( host, port, buffer)
 
     def start_threads(self):
         sub_threads1 = [
@@ -94,49 +64,16 @@ class ElfContacter(SyncObj):
                              args=(LOCAL_HOST, SANTA_PORT, 'E')),
         ]
 
-        sub_threads2 = [
-            threading.Thread(target=self.listener, args=(
-                LOCAL_HOST, CHAIN_LEADER_PORT)),
-            threading.Thread(target=self.contact_entity, args=(
-                LOCAL_HOST, MAIN_LEADER_PORT, 'E')),
-        ]
-
         for sub_thread in sub_threads1:
             sub_thread.start()
 
         for sub_thread in sub_threads1:
             sub_thread.join()
 
-        for sub_thread in sub_threads2:
-            sub_thread.start()
-
-        for sub_thread in sub_threads2:
-            sub_thread.join()
 
     def run(self):
-        # print(f"ELF: {self.selfNode} - otherNodeAddrs: {self.partners}")
-        print(f"ELF: {self.selfNode} - Running ElfContacter")
-
-   #     while True:
-   #         time.sleep(0.5)
-
-   #         if self._getLeader() is None:
-   #             continue
-
-   #         if self.get_ready_to_regroup():
-
-   #             self.remove_nodes(self.partners)
-
-   #             allNodes.extend(self.partners)
-   #             allNodes.append(self.selfNode)
-   #             # ElfWorker(self.selfNode, allNodes, self.consumers).run()
-   #             self.destroy()
-   #             break
-
-   #         if self._isLeader() and not self.get_ready_to_regroup():
-   #             # TODO: Maybe add a lock around this
-   #             self.start_threads()
-   #             self.set_ready_to_regroup(True)
+        print(f"ELF: - Running ElfContacter")
+        self.start_threads()
 
 
 class ElfWorker(SyncObj):
@@ -208,62 +145,28 @@ class ElfWorker(SyncObj):
             self.server.set_chain_is_out(False)
             self.server.node_chain.clear()
 
-    def main_cluster_listener(self):
-        # Start server side
-        # self.server = socketserver.TCPServer((LOCAL_HOST, MAIN_LEADER_PORT), lambda *args, **kwargs: self.RequestHandler(*args, server=self, **kwargs))
-        with socketserver.ThreadingTCPServer(
-            (LOCAL_HOST, MAIN_LEADER_PORT), self.RequestHandler
-        ) as server:
-            print(
-                f"[MAIN CLUSTER] - {self.selfNode} - Starting elf listener: {LOCAL_HOST}:{MAIN_LEADER_PORT}")
-            try:
-                # TODO: Maybe change this to server_forever()
-                server.handle_request()  # Server will handle the request from Santa and then closke
-            finally:
-                server.server_close()
-
-    def contact_chain_cluster_leader(self):
-
-        identifier = 'L'  # L for leader as identifier
-        mainClusterNodes = [self.selfNode] + list(self.otherNodes)
-        node_bytes = pickle.dumps(mainClusterNodes)
-        buffer = bytearray()
-        buffer.extend(identifier.encode())
-        buffer.extend(node_bytes)
-        send_message(self.selfNode, LOCAL_HOST, CHAIN_LEADER_PORT, buffer)
-
- 
     def run(self):
-        while self.isAlive:
+        while True:
             time.sleep(0.5)
 
             if self._getLeader() is None:
                 # Nodes without a leader should wait until one is elected
                 continue
             
-            if self.getQueueSize() > 0 and self.get_chain_is_out() is False and self.selfNode in self.getChain():
-                self.destroy()
-                print(f"ELF: {self.selfNode} - Im in the list")
 
-                node_partners = [p for p in self.getChain() if p != self.selfNode]
-                thread = threading.Thread(target=ElfContacter(self.selfNode, node_partners).run)
-                thread.start()
-                #thread.join()
-                self.isAlive = False    
-
-                elf_worker = ElfWorker(self.selfNode, self.otherNodes, consumers=self.__consumers)
-                elf_worker.run()
-
-            #print(f"ELF: {self.selfNode} - queue size: {self.getQueueSize()} - count: {self.getStatus()['partner_nodes_count']}")
-            if self.getQueueSize() > 0 and self.get_chain_is_out() is False and self.selfNode not in self.getChain():
+            #print(f"ELF: {self.selfNode} - queue size: {self.getQueueSize()} ")
+            if self.getQueueSize() > 0 and self.get_chain_is_out() is False:
                 self.set_chain_is_out(True)
+
                 chain = self.dequeue()
+                unLuckyNode = list(chain)[2] # Get the first node in the chain
+
                 print(f"ELF: {self.selfNode} - Dequeueing - {chain}")
-                
-                # Remove nodes from the list
-                for node in chain:
-                    self.removeNodeFromCluster(
-                        node, callback=partial(onNodeRemoved, node=node, cluster="main"))
+                print(f"ELF: {unLuckyNode} - I am the unlucky one")
+
+                if self.getStatus()['self'] == unLuckyNode:
+                    ElfContacter().run()
+                    self.set_chain_is_out(False)
                 self.clearChain()
 
             try:
@@ -303,15 +206,15 @@ def onNodeRemoved(result, error, node, cluster):
         print(f"REMOVED - REQUEST [SUCCESS]: {node} - CLUSTER: {cluster}")
 
 
-def send_message(selfNode, host, port, buffer):
+def send_message(host, port, buffer):
     try:
-        print(f'{selfNode} - connecting to {host}:{port}')
+        print(f'connecting to {host}:{port}')
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as conn_socket:
             conn_socket.connect((host, port))
             conn_socket.sendall(buffer)
 
     except ConnectionRefusedError:
-        print(f"{selfNode} - Couldn't connect to " f"{host}:{port}.")
+        print(f"Couldn't connect to " f"{host}:{port}.")
 
 
 if __name__ == "__main__":
