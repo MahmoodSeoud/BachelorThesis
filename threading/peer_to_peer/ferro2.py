@@ -186,7 +186,6 @@ class ElfWorker(SyncObj):
                 self.clearChain()
 
                 while self.selfNode in chain and self.selfNode != self.get_unlucky_node():
-                    print(f"ELF: {self.selfNode} - Waiting for the chain to be cleared,  Chain: {self.getChain()}")
                     time.sleep(0.5)
 
             try:
