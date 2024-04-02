@@ -26,6 +26,10 @@ allNodes = []
 
 
 class ElfContacter():
+
+    def __init__(self, sender):
+        self.sender = sender
+
     # Class for handling the connection between the elves and Santa
     class RequestHandler(socketserver.StreamRequestHandler):
         def handle(self):
@@ -50,18 +54,18 @@ class ElfContacter():
                 server.server_close()
                 print(f"Closed server at: {host}:{port}")
 
-    def contact_entity(self, host, port, identifier):
+    def contact_entity(self, sender, host, port, identifier):
         # print(f"[CHAIN CLUSTER] - {self.selfNode} - Connecting to entity at: {host}:{port}")
         buffer = bytearray()
         buffer.extend(identifier.encode())
-        send_message( host, port, buffer)
+        send_message(sender, host, port, buffer)
 
     def start_threads(self):
         sub_threads1 = [
             threading.Thread(target=self.listener, args=(
                 LOCAL_HOST, CHAIN_LEADER_PORT)),
             threading.Thread(target=self.contact_entity,
-                             args=(LOCAL_HOST, SANTA_PORT, 'E')),
+                             args=(self.sender, LOCAL_HOST, SANTA_PORT, 'E')),
         ]
 
         for sub_thread in sub_threads1:
@@ -97,6 +101,7 @@ class ElfWorker(SyncObj):
         self.__queue = Queue()
         self.lock_manager = consumers[0]
         self.__consumers = consumers
+        self.__unlucky_node = None
 
     @replicated
     def addNodeToChain(self, node):
@@ -111,12 +116,18 @@ class ElfWorker(SyncObj):
     def enqueue(self, element):
         return self.__queue.put(element)
 
-    def dequeue(self):
-        return self.__queue.get()
-
     @replicated
     def set_chain_is_out(self, value):
         self.chain_is_out = value
+        return self.chain_is_out
+    
+    @replicated
+    def set_unlucky_node(self, node):
+        self.__unlucky_node = node
+        return self.__unlucky_node
+
+    def dequeue(self):
+        return self.__queue.get()
 
     def getQueueSize(self):
         return self.__queue.qsize()
@@ -127,6 +138,8 @@ class ElfWorker(SyncObj):
     def get_chain_is_out(self):
         return self.chain_is_out
 
+    def get_unlucky_node(self):
+        return self.__unlucky_node
 
     class RequestHandler(socketserver.StreamRequestHandler):
         def __init__(self, *args, server=None, **kwargs):
@@ -152,34 +165,38 @@ class ElfWorker(SyncObj):
             if self._getLeader() is None:
                 # Nodes without a leader should wait until one is elected
                 continue
-            
 
-            #print(f"ELF: {self.selfNode} - queue size: {self.getQueueSize()} ")
+            if self.lock_manager.tryAcquire("elfContactLock", sync=True):
+                if self.selfNode == self.get_unlucky_node():
+                        ElfContacter(self.selfNode).run()
+                        print("ElfContater done")
+                        self.set_chain_is_out(False)
+                        self.set_unlucky_node(None)
+                self.lock_manager.release("elfContactLock")
+
             if self.getQueueSize() > 0 and self.get_chain_is_out() is False:
                 self.set_chain_is_out(True)
 
                 chain = self.dequeue()
-                unLuckyNode = list(chain)[2] # Get the first node in the chain
+                unluckyNode = list(chain)[0] # Get the first node in the chain
+                print("unLucky",unluckyNode)
+                print("Chain",list(chain))
+                self.set_unlucky_node(unluckyNode)
 
-                print(f"ELF: {self.selfNode} - Dequeueing - {chain}")
-                print(f"ELF: {unLuckyNode} - I am the unlucky one")
-
-                if self.getStatus()['self'] == unLuckyNode:
-                    ElfContacter().run()
-                    self.set_chain_is_out(False)
                 self.clearChain()
+
+                while self.selfNode in chain and self.selfNode != self.get_unlucky_node():
+                    print(f"ELF: {self.selfNode} - Waiting for the chain to be cleared,  Chain: {self.getChain()}")
+                    time.sleep(0.5)
 
             try:
                 if self.lock_manager.tryAcquire("chainLock", sync=True):
-                    if not self._isLeader():
-                        if len(self.getChain()) < 3:
-                            self.addNodeToChain(self.selfNode, callback=partial(
-                                onNodeAdded, node=self.selfNode, cluster="chain"))
-                            # 3 is the number of nodes in a chain
-                            # If the chain is full, add it to the queue
-                            # (+1) since it has not been added yet
-                        elif len(self.getChain()) == 3: 
-                                self.enqueue(self.getChain())
+                    if len(self.getChain()) < 3:
+                        self.addNodeToChain(self.selfNode, callback=partial(
+                            onNodeAdded, node=self.selfNode, cluster="chain"))
+                        
+                    elif len(self.getChain()) == 3: 
+                            self.enqueue(self.getChain())
             except Exception as e:
                 print(f"ELF: {self.selfNode} - Could not acquire lock: {e}")
             finally:
@@ -206,15 +223,15 @@ def onNodeRemoved(result, error, node, cluster):
         print(f"REMOVED - REQUEST [SUCCESS]: {node} - CLUSTER: {cluster}")
 
 
-def send_message(host, port, buffer):
+def send_message(sender, host, port, buffer):
     try:
-        print(f'connecting to {host}:{port}')
+        print(f'{sender} connecting to {host}:{port}')
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as conn_socket:
             conn_socket.connect((host, port))
             conn_socket.sendall(buffer)
 
     except ConnectionRefusedError:
-        print(f"Couldn't connect to " f"{host}:{port}.")
+        print(f"{sender} Couldn't connect to " f"{host}:{port}.")
 
 
 if __name__ == "__main__":
