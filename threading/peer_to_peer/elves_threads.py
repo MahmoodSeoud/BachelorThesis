@@ -117,6 +117,9 @@ class ElfWorker(SyncObj):
     
     def getQueueFront(self):
         return self.__queue[0]
+
+    def printQueue(self):
+        print(self.__queue)
     
     def getQueueSize(self): 
         return len(self.__queue)
@@ -149,40 +152,34 @@ class ElfWorker(SyncObj):
                     # Add self to the chain if it's not full and self is not already in it
                     self.addNodeToChain(self.selfNode, callback=partial(
                         onNodeAdded, node=self.selfNode, cluster="chain"))
-                elif len(chain) == 3:
+                elif len(chain) == 3 and self.get_chain_is_out() is False:
                     # If the chain is full, enqueue it for processing
                     self.enqueue(chain)
-                    # Clear the chain after the task is done
-                    self.clearChain()
+                    self.set_chain_is_out(True)
+                    
 
                 # Release the lock
                 self.lock_manager.release("chainLock")
 
-            # Check if there are items in the queue
-            if self.getQueueSize() > 0 and not self.get_chain_is_out():
-                # Get the unlucky node
+            if self.getQueueSize() > 0 and self.selfNode in self.getChain():
                 chain = self.getQueueFront()
                 unluckyNode = list(chain)[0]
-                print(f"Unlucky node: {unluckyNode}")
 
-                if self.selfNode in chain:
-                    # Perform task if this is the chosen thread
-                    if unluckyNode == self.selfNode:
-                        self.set_chain_is_out(True)
-                        ElfContacter(self.selfNode).run()
-                        #self.set_unlucky_node(None)
-                        self.dequeue()  # Dequeue after the task is done
-                        print('-----------')
-                    else:
-                        # If not the chosen thread, wait until the task is done
-                        while not self.get_chain_is_out():
-                            time.sleep(0.1)
-
-
+                if unluckyNode == self.selfNode:
+                    ElfContacter(self.selfNode).run()
+                    # Clear the chain after the task is done
+                    self.set_chain_is_out(False)
+                    self.dequeue()
+                    self.clearChain()
+                else:
+                    # If not the chosen thread, wait until the task is done
+                    while self.get_chain_is_out() is False:
+                        time.sleep(0.1)
+                    
 def onNodeAdded(result, error, node, cluster):
     if error == FAIL_REASON.SUCCESS:
         print(
-            f"ADDED - REQUEST [SUCCESS]: {node} - CLUSTER: {cluster} - RESULT: {result}")
+            f"ADDED - REQUEST [SUCCESS]: {node} - CLUSTER: {cluster}")
 
 
 def send_message(sender, host, port, buffer):
