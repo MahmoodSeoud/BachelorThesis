@@ -52,7 +52,7 @@ def santa_threads(my_ip, my_port):
 
     def listener():
         with socketserver.ThreadingTCPServer((my_ip, my_port), RequestHandler) as server:
-            print(f"Santa -  Starting reindeer listener: {my_ip}:{my_port}")
+            print(f"Santa - Starting listener: {my_ip}:{my_port}")
             try:
                 server.serve_forever()
             finally:
