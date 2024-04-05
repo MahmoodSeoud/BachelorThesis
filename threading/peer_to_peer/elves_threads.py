@@ -9,6 +9,7 @@ import threading
 import socketserver
 import socket
 import time
+import struct
 from functools import partial
 
 sys.path.append("../")
@@ -22,8 +23,9 @@ NUM_ELVES = 10
 
 class ElfContacter():
 
-    def __init__(self, sender):
+    def __init__(self, sender, local_chain_members=None):
         self.sender = sender
+        self.local_chain_members = local_chain_members
 
     # Class for handling the connection between the elves and Santa
     class RequestHandler(socketserver.StreamRequestHandler):
@@ -32,28 +34,29 @@ class ElfContacter():
             message = data.decode('utf-8')
             print(f"[CHAIN CLUSTER] Received a message from Santa: {message}")
 
-    # Function for the elf to listen for Santa
-
     def listener(self, host, port):
         with socketserver.ThreadingTCPServer((host, port), self.RequestHandler) as server:
-            print(
-                f"[{self.sender}] - Starting listener: ({host}:{port})")
+            print( f"[{self.sender}] - Starting listener: ({host}:{port})")
             try:
                 server.handle_request()  # Server will handle the request from Santa and then close
             finally:
                 server.server_close()
 
-    def contact_entity(self, sender, host, port, identifier):
+    def contact_santa(self, sender, host, port, chain):
+        chain_as_list = list(chain)
+        chain_as_list.append(sender)
+
         buffer = bytearray()
-        buffer.extend(identifier.encode())
+        buffer.extend('E'.encode())
+        buffer.extend(struct.pack('!3I', chain_as_list[0], chain_as_list[1], chain_as_list[2]))
         send_message(sender, host, port, buffer)
 
     def start_threads(self):
         sub_threads1 = [
             threading.Thread(target=self.listener, args=(
-                LOCAL_HOST, CHAIN_LEADER_PORT)),
-            threading.Thread(target=self.contact_entity,
-                             args=(self.sender, LOCAL_HOST, SANTA_PORT, 'E')),
+                LOCAL_HOST, self.sender)),
+            threading.Thread(target=self.contact_santa,
+                             args=(self.sender, LOCAL_HOST, SANTA_PORT, self.local_chain_members )),
         ]
 
         for sub_thread in sub_threads1:
@@ -67,26 +70,25 @@ class ElfContacter():
 
 
 class ElfWorker(SyncObj):
-    def __init__(self, nodeAddr, otherNodeAddrs, consumers):
+    def __init__(self, nodeAddr, otherNodeAddrs, consumers, extraPort):
         super(ElfWorker, self).__init__(
             nodeAddr,
             otherNodeAddrs,
             consumers=consumers,
             conf=SyncObjConf(
                 dynamicMembershipChange=True,
-                # commandsWaitLeader=True,
                 connectionRetryTime=10.0
             ),
         )
-        # self.node_chain, self.queue, self.lock_manager = consumers
+        self.__first_time = True
         self.__chain_is_out = False
-        self.first_time = True
-        self.isAlive = True
-        self.server = None
+        self._is_in_chain = False
         self.__chain = set()
         self.__queue = deque()
         self.lock_manager = consumers[0]
         self.__unlucky_node = None
+        self.__local_chain_members = None
+        self.__extraPort = extraPort  
 
     @replicated
     def addNodeToChain(self, node):
@@ -150,32 +152,33 @@ class ElfWorker(SyncObj):
                 # Check if the chain is eligible for modification
                 if len(chain) < 3 and self.selfNode not in chain:
                     # Add self to the chain if it's not full and self is not already in it
-                    self.addNodeToChain(self.selfNode, callback=partial(
-                        onNodeAdded, node=self.selfNode, cluster="chain"))
-                elif len(chain) == 3 and self.get_chain_is_out() is False:
-                    # If the chain is full, enqueue it for processing
-                    self.enqueue(chain)
-                    self.set_chain_is_out(True)
+                    self.addNodeToChain(self.__extraPort, callback=partial(
+                        onNodeAdded, node=self.__extraPort, cluster="chain"))
+                    self._is_in_chain = True
                     
+
+                    # Plus one because the the effect might not be immediate
+                    if len(self.getChain()) + 1 == 3:
+                        self.__local_chain_members = self.getChain()
+                        self.clearChain()
 
                 # Release the lock
                 self.lock_manager.release("chainLock")
 
-            if self.getQueueSize() > 0 and self.selfNode in self.getChain():
-                chain = self.getQueueFront()
-                unluckyNode = list(chain)[0]
+                if self._is_in_chain:
 
-                if unluckyNode == self.selfNode:
-                    ElfContacter(self.selfNode).run()
-                    # Clear the chain after the task is done
-                    self.set_chain_is_out(False)
-                    self.dequeue()
-                    self.clearChain()
-                else:
-                    # If not the chosen thread, wait until the task is done
-                    while self.get_chain_is_out() is False:
-                        time.sleep(0.1)
-                    
+                    if self.__local_chain_members is None:
+                        ElfContacter(self.__extraPort).listener(LOCAL_HOST, self.__extraPort)
+                        self._is_in_chain = False
+                        
+                    else:
+                        ElfContacter(self.__extraPort, self.__local_chain_members).run()
+                        self.__local_chain_members = None   
+                        self._is_in_chain = False
+
+
+            
+                   
 def onNodeAdded(result, error, node, cluster):
     if error == FAIL_REASON.SUCCESS:
         print(
@@ -194,9 +197,9 @@ def send_message(sender, host, port, buffer):
 
 
 if __name__ == "__main__":
-    start_port = 3000
+    start_port = 1000
     # +1 for the leader/manager
-    ports = [start_port + i for i in range(NUM_ELVES + 1)]
+    ports = [start_port * i for i in range(NUM_ELVES + 1)]
 
     threads = []
 
@@ -208,7 +211,7 @@ if __name__ == "__main__":
 
         # Create a new ReplList and ReplLockManager data structures
         elf_worker = ElfWorker(nodeAddr, otherNodeAddrs, consumers=[
-                               ReplLockManager(autoUnlockTime=75.0)])
+                               ReplLockManager(autoUnlockTime=75.0)], extraPort=port+1)
 
         # Create a new thread for each ElfWorker and add it to the list
         thread = threading.Thread(target=elf_worker.run, daemon=True)

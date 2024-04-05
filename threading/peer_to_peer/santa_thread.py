@@ -16,11 +16,11 @@ def santa_threads(my_ip, my_port):
 
             if identifier == 'R': # Identifier is the Reindeer
                 payload = self.request.recv(12) # Read the 12 bytes for the triple
-                id, sleep_time, port = struct.unpack('!3I', payload)
+                port = struct.unpack('!I', payload)
 
                 #print(f"SL: - Recieved message: reindeer_id: {id}, sleep_time: {sleep_time}, port: {port}")
                 print("Santa and the reindeer gets to work!")
-                time.sleep(2) # Simulating santa working
+                time.sleep(3) # Simulating santa working
                 message = 'Go back on holiday, reindeer!'
                 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as conn_socket:
                     conn_socket.connect((LOCAL_HOST, port))
@@ -34,20 +34,19 @@ def santa_threads(my_ip, my_port):
 
                     
             elif identifier == 'E': #Identifier is the Elves
-                
-
+                # Receive the message
                 print("Santa goes to help the elves")
-                time.sleep(2) # Simulating Santa helping elves
+                time.sleep(5) # Simulating Santa helping elves
                 message = 'Get back to work, elves!'
+                recieved_chain = struct.unpack('!3I', self.request.recv(12))
+                print('RECIEVED DATA:', recieved_chain)
 
-                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as conn_socket:
-                    conn_socket.connect((LOCAL_HOST, CHAIN_LEADER_PORT))
-
-                    # Send a string
-                    buffer = bytearray()
-                    buffer.extend(struct.pack('!I', len(message)))
-                    buffer.extend(bytes(message, 'utf-8'))
-                    conn_socket.sendall(buffer) 
+                buffer = bytearray()
+                buffer.extend(message.encode('utf-8'))
+                send_message('Santa', LOCAL_HOST, recieved_chain[0], buffer)
+                send_message('Santa', LOCAL_HOST, recieved_chain[1], buffer)
+                send_message('Santa', LOCAL_HOST, recieved_chain[2], buffer)
+           
 
 
     def listener():
@@ -57,6 +56,16 @@ def santa_threads(my_ip, my_port):
                 server.serve_forever()
             finally:
                 server.server_close()
+
+    def send_message(sender, host, port, buffer):
+        try:
+            print(f'[{sender}] connecting to {host}:{port}')
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as conn_socket:
+                conn_socket.connect((host, port))
+                conn_socket.sendall(buffer)
+
+        except ConnectionRefusedError:
+            print(f"{sender} Couldn't connect to " f"{host}:{port}.")
 
     sub_threads = [ threading.Thread(target=listener) ]
 

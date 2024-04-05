@@ -107,7 +107,7 @@ def threaded_reindeer(reindeer_id,
                 identifier = 'R'
                 buffer = bytearray()
                 buffer.extend(identifier.encode())
-                buffer.extend(struct.pack('!3I', last_reindeer['id'], last_reindeer['sleep_time'], last_reindeer['port']))
+                buffer.extend(struct.pack('!I', last_reindeer['port']))
                 conn_socket.sendall(buffer)
 
         except ConnectionRefusedError:
@@ -128,7 +128,7 @@ def threaded_reindeer(reindeer_id,
 
 if __name__ == "__main__":
 
-    peer_addresses = [(LOCAL_HOST, 4000 + i) for i in range(0, NUM_REINDEER)]
+    peer_addresses = [(LOCAL_HOST, 11000 + i) for i in range(0, NUM_REINDEER)]
 
     lock = threading.Lock()
     condition = threading.Condition()
