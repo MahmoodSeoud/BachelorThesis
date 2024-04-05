@@ -15,34 +15,36 @@ def santa_threads(my_ip, my_port):
             identifier = self.request.recv(1).decode() # Recieving the identifier
 
             if identifier == 'R': # Identifier is the Reindeer
-                payload = self.request.recv(12) # Read the 12 bytes for the triple
-                port = struct.unpack('!I', payload)
+                payload = self.request.recv(4) # Read the 12 bytes for the triple
+                port = struct.unpack('!I', payload)[0]
 
-                #print(f"SL: - Recieved message: reindeer_id: {id}, sleep_time: {sleep_time}, port: {port}")
                 print("Santa and the reindeer gets to work!")
-                time.sleep(3) # Simulating santa working
-                message = 'Go back on holiday, reindeer!'
-                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as conn_socket:
-                    conn_socket.connect((LOCAL_HOST, port))
+                time.sleep(5) # Simulating santa working
 
-                    # Send a string
-                    buffer = bytearray()
-                    buffer.append(1)  # Message type 1 = string
-                    buffer.extend(struct.pack('!I', len(message)))
-                    buffer.extend(bytes(message, 'utf-8'))
-                    conn_socket.sendall(buffer) 
+                # Send a string
+                message = 'Go back on holiday, reindeer!'
+
+                buffer = bytearray()
+                buffer.append(1)  # Message type 1 = string
+                buffer.extend(message.encode('utf-8'))
+                
+                send_message('Santa', LOCAL_HOST, port, buffer)
+              
 
                     
             elif identifier == 'E': #Identifier is the Elves
-                # Receive the message
                 print("Santa goes to help the elves")
                 time.sleep(5) # Simulating Santa helping elves
+
+                # Receive the message
+                payload =  self.request.recv(12)
+                recieved_chain = struct.unpack('!3I', payload)
+
                 message = 'Get back to work, elves!'
-                recieved_chain = struct.unpack('!3I', self.request.recv(12))
-                print('RECIEVED DATA:', recieved_chain)
 
                 buffer = bytearray()
                 buffer.extend(message.encode('utf-8'))
+
                 send_message('Santa', LOCAL_HOST, recieved_chain[0], buffer)
                 send_message('Santa', LOCAL_HOST, recieved_chain[1], buffer)
                 send_message('Santa', LOCAL_HOST, recieved_chain[2], buffer)
@@ -59,7 +61,6 @@ def santa_threads(my_ip, my_port):
 
     def send_message(sender, host, port, buffer):
         try:
-            print(f'[{sender}] connecting to {host}:{port}')
             with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as conn_socket:
                 conn_socket.connect((host, port))
                 conn_socket.sendall(buffer)
