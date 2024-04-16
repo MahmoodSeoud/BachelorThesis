@@ -138,6 +138,7 @@ class ElfWorker(SyncObj):
                             ElfContacter(self.__extraPort, self.__local_chain_members).run()
                             self.__local_chain_members = None   
                             self._is_in_chain = False
+
             except Exception as e:
                 print(f"Exception: {e}")
             finally:
