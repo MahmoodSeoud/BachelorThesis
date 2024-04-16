@@ -4,6 +4,7 @@ import time
 import random
 import threading
 import sys
+import os
 import pysyncobj.pickle as pickle
 import pysyncobj.dns_resolver as dns_resolver
 
@@ -201,4 +202,63 @@ def test_ReplQueue():
     assert q.put(19, _doApply=True) == False
     assert q.get(_doApply=True) == 42
 
-test_ReplQueue()
+_g_nextDumpFile = 1
+
+
+def getNextDumpFile():
+    global _g_nextDumpFile
+    fname = 'dump%d.bin' % _g_nextDumpFile
+    _g_nextDumpFile += 1
+    return fname
+
+def removeFiles(files):
+    for f in (files):
+        if os.path.isfile(f):
+            for i in xrange(0, 15):
+                try:
+                    if os.path.isfile(f):
+                        os.remove(f)
+                        break
+                    else:
+                        break
+                except:
+                    time.sleep(1.0)
+
+
+def checkDumpToFile(useFork):
+    dumpFiles = ['dump1.bin', 'dump2.bin']
+    removeFiles(dumpFiles)
+
+    random.seed(42)
+
+    a = [getNextAddr(), getNextAddr()]
+
+    o1 = TestObj(a[0], [a[1]], TEST_TYPE.COMPACTION_2, dumpFile=dumpFiles[0], useFork=useFork)
+    o2 = TestObj(a[1], [a[0]], TEST_TYPE.COMPACTION_2, dumpFile=dumpFiles[1], useFork=useFork)
+    objs = [o1, o2]
+    doTicks(objs, 10, stopFunc=lambda: o1._isReady() and o2._isReady())
+
+    assert o1._getLeader().address in a
+    assert o1._getLeader() == o2._getLeader()
+
+    o1.addValue(150)
+    o2.addValue(200)
+
+    doTicks(objs, 10, stopFunc=lambda: o1.getCounter() == 350 and o2.getCounter() == 350)
+
+    assert o1.getCounter() == 350
+    assert o2.getCounter() == 350
+
+    o1._forceLogCompaction()
+    o2._forceLogCompaction()
+
+    doTicks(objs, 1.5)
+
+
+    removeFiles(dumpFiles)
+
+
+def test_checkDumpToFile():
+    checkDumpToFile(False)
+
+test_checkDumpToFile()
