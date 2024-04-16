@@ -182,3 +182,8 @@ if __name__ == '__main__':
                         'last_log_term': self.__getCurrentLogTerm(),
                     })
     ```
+- pycsp exists, worth mentioning the report. Also menation that JCSP is
+    outedated and we wanted to use python3 instead of python2
+    - We are working towards having it on different machines
+- Experiment with removing elves. Might be easy or really hard or time consuming!
+
