@@ -1,7 +1,5 @@
 from __future__ import print_function
-from queue import Queue
-from pysyncobj import SyncObj, SyncObjException, SyncObjConf, FAIL_REASON, replicated
-from collections import deque
+from pysyncobj import SyncObj, SyncObjConf, FAIL_REASON, replicated
 from pysyncobj.batteries import ReplLockManager
 
 import sys
@@ -80,13 +78,10 @@ class ElfWorker(SyncObj):
                 connectionRetryTime=10.0
             ),
         )
-        self.__first_time = True
-        self.__chain_is_out = False
+
         self._is_in_chain = False
         self.__chain = set()
-        self.__queue = deque()
         self.lock_manager = consumers[0]
-        self.__unlucky_node = None
         self.__local_chain_members = None
         self.__extraPort = extraPort  
 
@@ -99,42 +94,8 @@ class ElfWorker(SyncObj):
     def clearChain(self):
         self.__chain.clear()
 
-    @replicated
-    def enqueue(self, element):
-        return self.__queue.append(element)
-
-    @replicated
-    def dequeue(self):
-        return self.__queue.popleft()
-
-    @replicated
-    def set_chain_is_out(self, value):
-        self.__chain_is_out = value
-        return self.__chain_is_out
-
-    @replicated
-    def set_unlucky_node(self, node):
-        self.__unlucky_node = node
-        return self.__unlucky_node
-    
-    def getQueueFront(self):
-        return self.__queue[0]
-
-    def printQueue(self):
-        print(self.__queue)
-    
-    def getQueueSize(self): 
-        return len(self.__queue)
-
     def getChain(self):
         return self.__chain
-
-    def get_chain_is_out(self):
-        return self.__chain_is_out
-
-    def get_unlucky_node(self):
-        return self.__unlucky_node
-    
 
     def run(self):
         while True:
@@ -176,8 +137,6 @@ class ElfWorker(SyncObj):
                         self.__local_chain_members = None   
                         self._is_in_chain = False
 
-
-            
                    
 def onNodeAdded(result, error, node, cluster):
     if error == FAIL_REASON.SUCCESS:
@@ -197,30 +156,53 @@ def send_message(sender, host, port, buffer):
 
 
 if __name__ == "__main__":
-    start_port = 1000
-    # +1 for the leader/manager
-    ports = [start_port * i for i in range(NUM_ELVES + 1)]
+    if len(sys.argv) < 2:
+        print('Usage: %s [-t] self_port partner1_port partner2_port ...' % sys.argv[0])
+        sys.exit(-1)
 
-    threads = []
+    if (sys.argv[1] == '-t'):
+        print('Running in threading mode')
+        start_port = 1000
+        # +1 for the leader/manager
+        ports = [start_port * i for i in range(NUM_ELVES + 1)]
 
-    for i, port in enumerate(ports):
-        # Create a list of otherNodeAddrs for each ElfWorker
-        nodeAddr = f"{LOCAL_HOST}:{port}"
-        otherNodeAddrs = [f"{LOCAL_HOST}:{p}" for p in ports if p != port]
-        # print(f"ELF: {nodeAddr} - otherNodeAddrs: {otherNodeAddrs}")
+        threads = []
+
+        for i, port in enumerate(ports):
+            # Create a list of otherNodeAddrs for each ElfWorker
+            nodeAddr = f"{LOCAL_HOST}:{port}"
+            otherNodeAddrs = [f"{LOCAL_HOST}:{p}" for p in ports if p != port]
+            # print(f"ELF: {nodeAddr} - otherNodeAddrs: {otherNodeAddrs}")
+
+            # Create a new ReplList and ReplLockManager data structures
+            elf_worker = ElfWorker(nodeAddr, otherNodeAddrs, consumers=[
+                                ReplLockManager(autoUnlockTime=75.0)], extraPort=port+1)
+
+            # Create a new thread for each ElfWorker and add it to the list
+            thread = threading.Thread(target=elf_worker.run, daemon=True)
+            threads.append(thread)
+
+        # Start all the threads
+        for thread in threads:
+            thread.start()
+
+        # Join all the threads
+        for thread in threads:
+            thread.join()
+
+    else:
+        nodeAddr = f"{LOCAL_HOST}:{sys.argv[1]}"
+        otherNodeAddrs = [f"{LOCAL_HOST}:{p}" for p in sys.argv[2:]]
 
         # Create a new ReplList and ReplLockManager data structures
         elf_worker = ElfWorker(nodeAddr, otherNodeAddrs, consumers=[
-                               ReplLockManager(autoUnlockTime=75.0)], extraPort=port+1)
+                            ReplLockManager(autoUnlockTime=75.0)], extraPort=int(sys.argv[1])+1)
+        elf_worker.run()
 
-        # Create a new thread for each ElfWorker and add it to the list
-        thread = threading.Thread(target=elf_worker.run, daemon=True)
-        threads.append(thread)
 
-    # Start all the threads
-    for thread in threads:
-        thread.start()
 
-    # Join all the threads
-    for thread in threads:
-        thread.join()
+
+
+
+
+

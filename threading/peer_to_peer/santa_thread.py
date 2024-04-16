@@ -3,7 +3,6 @@ import struct
 import socketserver
 import time
 import threading
-import pickle
 
 LOCAL_HOST = "127.0.0.1"
 SANTA_PORT = 29800
@@ -27,7 +26,6 @@ def santa_threads(my_ip, my_port):
                 buffer = bytearray()
                 buffer.append(1)  # Message type 1 = string
                 buffer.extend(message.encode('utf-8'))
-                
                 send_message('Santa', LOCAL_HOST, port, buffer)
               
 
@@ -44,13 +42,10 @@ def santa_threads(my_ip, my_port):
 
                 buffer = bytearray()
                 buffer.extend(message.encode('utf-8'))
-
                 send_message('Santa', LOCAL_HOST, recieved_chain[0], buffer)
                 send_message('Santa', LOCAL_HOST, recieved_chain[1], buffer)
                 send_message('Santa', LOCAL_HOST, recieved_chain[2], buffer)
            
-
-
     def listener():
         with socketserver.ThreadingTCPServer((my_ip, my_port), RequestHandler) as server:
             print(f"Santa - Starting listener: {my_ip}:{my_port}")
