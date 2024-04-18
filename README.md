@@ -182,8 +182,19 @@ if __name__ == '__main__':
                         'last_log_term': self.__getCurrentLogTerm(),
                     })
     ```
+
+
+### Week 8: Writing and notesa
 - pycsp exists, worth mentioning the report. Also menation that JCSP is
     outedated and we wanted to use python3 instead of python2
     - We are working towards having it on different machines
 - Experiment with removing elves. Might be easy or really hard or time consuming!
+- Remember to to try and make a red thread in your thesis i.e. first sentence
+    and last sentence should match in each paragraph.
+- Also remember that David Marchant has inspired my work, since I am using some
+    elements of his design (The chain). 
+- Write some test.
+- Also maybe it would be good that each elf would log into their own file some
+    info like: state, chain, and such
+
 
