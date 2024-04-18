@@ -131,12 +131,12 @@ class ElfWorker(SyncObj):
                     if self._is_in_chain:
 
                         if self.__local_chain_members is None:
-                            ElfContacter(self.__extraPort).listener(LOCAL_HOST, self.__extraPort)
+                            startElfListener(self.__extraPort)
                             self._is_in_chain = False
-                            
                         else:
-                            ElfContacter(self.__extraPort, self.__local_chain_members).run()
+                            startElfContacter(self.__extraPort, self.__local_chain_members)
                             self.__local_chain_members = None   
+
                             self._is_in_chain = False
 
             except Exception as e:
@@ -145,6 +145,12 @@ class ElfWorker(SyncObj):
                 if self.lock_manager.isAcquired("chainLock"):
                     self.lock_manager.release("chainLock")
                    
+def startElfContacter(port, chainMembers=None):
+    ElfContacter(port, chainMembers).run()
+
+def startElfListener(port):
+    ElfContacter(port).listener(LOCAL_HOST, port)
+
 def onNodeAdded(result, error, node, cluster):
     if error == FAIL_REASON.SUCCESS:
         print(
