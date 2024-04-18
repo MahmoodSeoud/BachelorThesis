@@ -176,9 +176,9 @@ if __name__ == "__main__":
 
     if (sys.argv[1] == '-t'):
         print('Running in threading mode')
-        start_port = 1000
+        start_port = 10000
         # +1 for the leader/manager
-        ports = [start_port * i for i in range(1, NUM_ELVES + 1)]
+        ports = [start_port + i*1000 for i in range(NUM_ELVES + 1)]
 
         threads = []
 
