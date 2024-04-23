@@ -1,6 +1,6 @@
 from __future__ import print_function
 from pysyncobj import SyncObj, SyncObjConf, FAIL_REASON, replicated
-from pysyncobj.batteries import ReplLockManager
+from pysyncobj.batteries import ReplLockManager, ReplSet
 
 import sys
 import os
@@ -69,7 +69,12 @@ class ElfContacter():
 
 
 class ElfWorker(SyncObj):
-    def __init__(self, nodeAddr, otherNodeAddrs, consumers, extraPort):
+    def __init__(self, nodeAddr, otherNodeAddrs, consumers):
+        self._is_in_chain = False
+        #self.__chain = set()
+        #self.lockManager = consumers[0]
+        self.__local_chain_members = None
+
         super(ElfWorker, self).__init__(
             nodeAddr,
             otherNodeAddrs,
@@ -81,69 +86,6 @@ class ElfWorker(SyncObj):
             ),
         )
 
-        self._is_in_chain = False
-        self.__chain = set()
-        self.lock_manager = consumers[0]
-        self.__local_chain_members = None
-        self.__extraPort = extraPort  
-
-    @replicated
-    def addNodeToChain(self, node):
-        self.__chain.add(node)
-        return self.__chain
-
-    @replicated
-    def clearChain(self):
-        self.__chain.clear()
-
-    def getChain(self):
-        return self.__chain
-
-    def run(self):
-        while True:
-            time.sleep(0.5)
-
-            # Check if there's a leader, if not, continue waiting
-            leader = self._getLeader()
-            if leader is None:
-                continue
-            try:
-                # Attempt to acquire the lock
-                if self.lock_manager.tryAcquire("chainLock", sync=True):
-                    chain = self.getChain()
-
-                    # Check if the chain is eligible for modification
-                    if len(chain) < 3 and self.selfNode not in chain:
-                        # Add self to the chain if it's not full and self is not already in it
-                        self.addNodeToChain(self.__extraPort, callback=partial(
-                            onNodeAdded, node=self.__extraPort, cluster="chain"))
-                        self._is_in_chain = True
-                        
-
-                        # Plus one because the the effect might not be immediate
-                        if len(self.getChain()) + 1 == 3:
-                            self.__local_chain_members = self.getChain()
-                            self.clearChain()
-
-                    # Release the lock
-                    self.lock_manager.release("chainLock")
-
-                    if self._is_in_chain:
-
-                        if self.__local_chain_members is None:
-                            startElfListener(self.__extraPort)
-                            self._is_in_chain = False
-                        else:
-                            startElfContacter(self.__extraPort, self.__local_chain_members)
-                            self.__local_chain_members = None   
-
-                            self._is_in_chain = False
-
-            except Exception as e:
-                print(f"Exception: {e}")
-            finally:
-                if self.lock_manager.isAcquired("chainLock"):
-                    self.lock_manager.release("chainLock")
                    
 def startElfContacter(port, chainMembers=None):
     ElfContacter(port, chainMembers).run()
@@ -167,6 +109,53 @@ def send_message(sender, host, port, buffer):
     except ConnectionRefusedError:
         print(f"{sender} Couldn't connect to " f"{host}:{port}.")
 
+def handleFerro(elf_worker, extraPort, localChainMembers=None):
+
+    while True:
+        time.sleep(0.5)
+
+        # Check if there's a leader, if not, continue waiting
+        leader = elf_worker._getLeader()
+        if leader is None:
+            continue
+        try:
+            # Attempt to acquire the lock
+            if lockManager.tryAcquire("chainLock", sync=True):
+                print("elf_worker acquired the loc",elf_worker.selfNode)
+
+                # Check if the chain is eligible for modification
+                if len(chain.rawData()) < 3 and elf_worker.selfNode not in chain.rawData():
+                    # Add elf_worker to the chain if it's not full and elf_worker is not already in it
+                    chain.add(extraPort, callback=partial(
+                        onNodeAdded, node=extraPort, cluster="chain"))
+                    elf_worker._is_in_chain = True
+                    
+
+                    # Plus one because the the effect might not be immediate
+                    if len(chain.rawData()) + 1 == 3:
+                        localChainMembers = chain.rawData()
+                        chain.clear()
+
+                # Release the lock
+                lockManager.release("chainLock")
+                print("elf_worker released the loc",elf_worker.selfNode)
+
+                if elf_worker._is_in_chain:
+
+                    if localChainMembers is None:
+                        startElfListener(extraPort)
+                        elf_worker._is_in_chain = False
+                    else:
+                        startElfContacter(extraPort, localChainMembers)
+                        localChainMembers = None   
+
+                        elf_worker._is_in_chain = False
+
+        except Exception as e:
+            print(f"Exception: {e}")
+        finally:
+            if lockManager.isAcquired("chainLock"):
+               lockManager.release("chainLock")
 
 
 if __name__ == "__main__":
@@ -181,20 +170,17 @@ if __name__ == "__main__":
         ports = [start_port + i*1000 for i in range(NUM_ELVES + 1)]
 
         threads = []
+        lockManager = ReplLockManager(autoUnlockTime=75.0)
 
         for i, port in enumerate(ports):
             # Create a list of otherNodeAddrs for each ElfWorker
             nodeAddr = f"{LOCAL_HOST}:{port}"
             otherNodeAddrs = [f"{LOCAL_HOST}:{p}" for p in ports if p != port]
-
             # Create a new ReplList and ReplLockManager data structures
-            elf_worker = ElfWorker(nodeAddr, otherNodeAddrs, consumers=[
-                                ReplLockManager(autoUnlockTime=75.0)], 
-                                extraPort=port+1,
-                                )
-
+            elf_worker = ElfWorker(nodeAddr, otherNodeAddrs, consumers=[lockManager, chain], extraPort=port+1)
+            
             # Create a new thread for each ElfWorker and add it to the list
-            thread = threading.Thread(target=elf_worker.run, daemon=True)
+            thread = threading.Thread(target=handleFerro, args=(elf_worker, port+1) , daemon=True)
             threads.append(thread)
 
         # Start all the threads
@@ -205,6 +191,7 @@ if __name__ == "__main__":
         for thread in threads:
             thread.join()
 
+
     else:
         nodeAddr = f"{LOCAL_HOST}:{sys.argv[1]}"
         otherNodeAddrs = [f"{LOCAL_HOST}:{p}" for p in sys.argv[2:]]
@@ -212,11 +199,10 @@ if __name__ == "__main__":
         port = int(sys.argv[1])
         #dumpFiles = [getNextDumpFile(port)]
         # Create a new ReplList and ReplLockManager data structures
-        elf_worker = ElfWorker(nodeAddr, otherNodeAddrs, consumers=[
-                            ReplLockManager(autoUnlockTime=75.0)],
-                              extraPort=port+1,
-                              )
-        elf_worker.run()
+        lockManager = ReplLockManager(autoUnlockTime=75.0)
+        chain = ReplSet()
+        elf_worker = ElfWorker(nodeAddr, otherNodeAddrs, consumers=[lockManager, chain ])
+        handleFerro(elf_worker, port+1)
 
 
 
