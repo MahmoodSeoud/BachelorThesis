@@ -15,7 +15,7 @@ $ pip install -r requirements.txt
 Run the program:
 
 ```bash
-$ python3 santa_reindeer_elves.py
+$ python3 ./multiprocess/santa_reindeer_elves.py
 ```
 
 
@@ -24,13 +24,13 @@ $ python3 santa_reindeer_elves.py
 #### Santa
 Create a santa thread:
 ```bash
-$ python3 santa_thread.py
+$ python3 ./threading/santa_thread.py
 ```
 
 #### Reindeer
 Create a reindeer thread:
 ```bash
-$ python3 reindeer_threads.py
+$ python3 ./threading/reindeer_threads.py
 ```
 
 #### Elves
