@@ -1,5 +1,6 @@
 # Bachelor thesis 2024 - DIKU
 This repo is for my BachelorThesis on DIKU 2024.
+
 I have also done some [documentation](/notes.md) of this whole thesis.
 
 
