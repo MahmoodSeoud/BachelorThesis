@@ -197,4 +197,7 @@ if __name__ == '__main__':
 - Also maybe it would be good that each elf would log into their own file some
     info like: state, chain, and such
 
+## Week 9: Tesing
+I Changes the code structure a bit to avoid an issue with Raft not being able to compact the log, due to it trying to compact a socket.poll, which is not possible.
+So far the testing of ![this](/images/elfLosingConnection.jpg) particular case works very good!
 
