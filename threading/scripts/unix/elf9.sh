@@ -1,3 +1,4 @@
 #!/bin/bash
-
-python3 ./../../elves_threads.py 18000 11000 12000 13000 14000 15000 16000 17000 10000 19000
+filename=$(basename -- "$0")
+filename="${filename%.*}"
+python3 ./../../elves_threads.py ../../log/unix/$filename.txt  18000 11000 12000 13000 14000 15000 16000 17000 10000 19000

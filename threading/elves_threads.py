@@ -4,6 +4,7 @@ from pysyncobj.batteries import ReplLockManager, ReplSet
 
 import sys
 import threading
+import os
 import socketserver
 import socket
 import time
@@ -15,12 +16,15 @@ sys.path.append("../")
 LOCAL_HOST = "127.0.0.1"
 SANTA_PORT = 29800
 
+LOGFILE= sys.argv[1]
+print(LOGFILE)
+
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(
     format="%(levelname)s %(asctime)s %(message)s",
-    datefmt='%m/%d/%Y %I:%M:%S %p',
-    filename="example.log",
+    datefmt='%d/%m/%Y %H:%M:%S',
+    filename=LOGFILE,
     filemode="w",
     encoding="utf-8",
     level=logging.DEBUG,
@@ -111,7 +115,7 @@ def startElfListener(port):
 
 def onNodeAdded(result, error, node, cluster):
     if error == FAIL_REASON.SUCCESS:
-        logger.log(f"ADDED - REQUEST [SUCCESS]: {node} - CLUSTER: {cluster}")
+        logger.info(f"ADDED - REQUEST [SUCCESS]: {node} - CLUSTER: {cluster}")
 
 
 def send_message(sender, host, port, buffer):
@@ -125,6 +129,7 @@ def send_message(sender, host, port, buffer):
 
 
 def run_elf(elf_worker):
+    print(f'Running elf worker {elf_worker.selfNode}')
 
     while True:
         time.sleep(0.5)
@@ -180,14 +185,14 @@ def run_elf(elf_worker):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 3:
-        print("Usage: %s [-t] self_port partner1_port partner2_port ..." % sys.argv[0])
+    if len(sys.argv) < 4:
+        print("Usage: %s [-t] [filePath] self_port partner1_port partner2_port ..." % sys.argv[0])
         sys.exit(-1)
 
-    nodeAddr = f"{LOCAL_HOST}:{sys.argv[1]}"
-    otherNodeAddrs = [f"{LOCAL_HOST}:{p}" for p in sys.argv[2:]]
+    nodeAddr = f"{LOCAL_HOST}:{sys.argv[2]}"
+    otherNodeAddrs = [f"{LOCAL_HOST}:{p}" for p in sys.argv[3:]]
 
-    port = int(sys.argv[1])
+    port = int(sys.argv[2])
     lock_manager = ReplLockManager(autoUnlockTime=75.0)
     chain = ReplSet()
     elf_worker = ElfWorker(
