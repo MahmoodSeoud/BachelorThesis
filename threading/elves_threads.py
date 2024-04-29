@@ -8,13 +8,26 @@ import socketserver
 import socket
 import time
 import struct
+import logging
 from functools import partial
 
 sys.path.append("../")
 LOCAL_HOST = "127.0.0.1"
 SANTA_PORT = 29800
 
-class ElfContacter():
+
+logger = logging.getLogger(__name__)
+logging.basicConfig(
+    format="%(levelname)s %(asctime)s %(message)s",
+    datefmt='%m/%d/%Y %I:%M:%S %p',
+    filename="example.log",
+    filemode="w",
+    encoding="utf-8",
+    level=logging.DEBUG,
+)
+
+
+class ElfContacter:
 
     def __init__(self, sender, local_chain_members=None):
         self.sender = sender
@@ -23,13 +36,16 @@ class ElfContacter():
     # Class for handling the connection between the elves and Santa
     class RequestHandler(socketserver.StreamRequestHandler):
         def handle(self):
+            self.request.settimeout(10)  # Set the timout for the connection
             data = self.request.recv(1024)
-            message = data.decode('utf-8')
-            print(f"[CHAIN CLUSTER] Received a message from Santa: {message}")
+            message = data.decode("utf-8")
+            logger.info(f"[CHAIN CLUSTER] Received a message from Santa: {message}")
 
     def listener(self, host, port):
-        with socketserver.ThreadingTCPServer((host, port), self.RequestHandler) as server:
-            print( f"[{self.sender}] - Starting listener: ({host}:{port})")
+        with socketserver.ThreadingTCPServer(
+            (host, port), self.RequestHandler
+        ) as server:
+            logger.info(f"[{self.sender}] - Starting listener: ({host}:{port})")
             try:
                 server.handle_request()  # Server will handle the request from Santa and then close
             finally:
@@ -40,16 +56,19 @@ class ElfContacter():
         chain_as_list.append(sender)
 
         buffer = bytearray()
-        buffer.extend('E'.encode())
-        buffer.extend(struct.pack('!3I', chain_as_list[0], chain_as_list[1], chain_as_list[2]))
+        buffer.extend("E".encode())
+        buffer.extend(
+            struct.pack("!3I", chain_as_list[0], chain_as_list[1], chain_as_list[2])
+        )
         send_message(sender, host, port, buffer)
 
     def start_threads(self):
         sub_threads1 = [
-            threading.Thread(target=self.listener, args=(
-                LOCAL_HOST, self.sender)),
-            threading.Thread(target=self.contact_santa,
-                             args=(self.sender, LOCAL_HOST, SANTA_PORT, self.local_chain_members )),
+            threading.Thread(target=self.listener, args=(LOCAL_HOST, self.sender)),
+            threading.Thread(
+                target=self.contact_santa,
+                args=(self.sender, LOCAL_HOST, SANTA_PORT, self.local_chain_members),
+            ),
         ]
 
         for sub_thread in sub_threads1:
@@ -63,7 +82,9 @@ class ElfContacter():
 
 
 class ElfWorker(SyncObj):
-    def __init__(self, nodeAddr, otherNodeAddrs, consumers, extra_port, local_chain_members=None):
+    def __init__(
+        self, nodeAddr, otherNodeAddrs, consumers, extra_port, local_chain_members=None
+    ):
         self._is_in_chain = False
         self._extra_port = extra_port
         self._local_chain_members = local_chain_members
@@ -75,11 +96,11 @@ class ElfWorker(SyncObj):
             conf=SyncObjConf(
                 dynamicMembershipChange=True,
                 connectionRetryTime=10.0,
-                logCompactionSplit=True
+                logCompactionSplit=True,
             ),
         )
 
-                   
+
 def startElfContacter(port, chainMembers=None):
     ElfContacter(port, chainMembers).run()
 
@@ -90,19 +111,18 @@ def startElfListener(port):
 
 def onNodeAdded(result, error, node, cluster):
     if error == FAIL_REASON.SUCCESS:
-        print(
-            f"ADDED - REQUEST [SUCCESS]: {node} - CLUSTER: {cluster}")
+        logger.log(f"ADDED - REQUEST [SUCCESS]: {node} - CLUSTER: {cluster}")
 
 
 def send_message(sender, host, port, buffer):
     try:
-        print(f'[{sender}] connecting to {host}:{port}')
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as conn_socket:
             conn_socket.connect((host, port))
             conn_socket.sendall(buffer)
 
     except ConnectionRefusedError:
-        print(f"{sender} Couldn't connect to " f"{host}:{port}.")
+        logger.exception(f"{sender} Couldn't connect to: {host}:{port}.")
+
 
 def run_elf(elf_worker):
 
@@ -118,12 +138,18 @@ def run_elf(elf_worker):
             if lock_manager.tryAcquire("chainLock", sync=True):
 
                 # Check if the chain is eligible for modification
-                if len(chain.rawData()) < 3 and elf_worker.selfNode not in chain.rawData():
+                if (
+                    len(chain.rawData()) < 3
+                    and elf_worker.selfNode not in chain.rawData()
+                ):
                     # Add elf_worker to the chain if it's not full and elf_worker is not already in it
-                    chain.add(elf_worker._extra_port, callback=partial(
-                        onNodeAdded, node=elf_worker._extra_port, cluster="chain"))
+                    chain.add(
+                        elf_worker._extra_port,
+                        callback=partial(
+                            onNodeAdded, node=elf_worker._extra_port, cluster="chain"
+                        ),
+                    )
                     elf_worker._is_in_chain = True
-                    
 
                     # Plus one because the the effect might not be immediate
                     if len(chain.rawData()) + 1 == 3:
@@ -139,21 +165,23 @@ def run_elf(elf_worker):
                         startElfListener(elf_worker._extra_port)
                         elf_worker._is_in_chain = False
                     else:
-                        startElfContacter(elf_worker._extra_port, elf_worker._local_chain_members)
-                        elf_worker._local_chain_members = None   
+                        startElfContacter(
+                            elf_worker._extra_port, elf_worker._local_chain_members
+                        )
+                        elf_worker._local_chain_members = None
 
                         elf_worker._is_in_chain = False
 
         except Exception as e:
-            print(f"Exception: {e}")
+            logger.warning(f"Could not acqruire lock: {e}")
         finally:
             if lock_manager.isAcquired("chainLock"):
-               lock_manager.release("chainLock")
+                lock_manager.release("chainLock")
 
 
 if __name__ == "__main__":
     if len(sys.argv) < 3:
-        print('Usage: %s [-t] self_port partner1_port partner2_port ...' % sys.argv[0])
+        print("Usage: %s [-t] self_port partner1_port partner2_port ..." % sys.argv[0])
         sys.exit(-1)
 
     nodeAddr = f"{LOCAL_HOST}:{sys.argv[1]}"
@@ -162,12 +190,7 @@ if __name__ == "__main__":
     port = int(sys.argv[1])
     lock_manager = ReplLockManager(autoUnlockTime=75.0)
     chain = ReplSet()
-    elf_worker = ElfWorker(nodeAddr, otherNodeAddrs, consumers=[lock_manager, chain], extra_port=port+1)
+    elf_worker = ElfWorker(
+        nodeAddr, otherNodeAddrs, consumers=[lock_manager, chain], extra_port=port + 1
+    )
     run_elf(elf_worker)
-
-
-
-
-
-
-

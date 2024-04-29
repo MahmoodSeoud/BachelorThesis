@@ -201,3 +201,9 @@ if __name__ == '__main__':
 I Changes the code structure a bit to avoid an issue with Raft not being able to compact the log, due to it trying to compact a socket.poll, which is not possible.
 So far the testing of ![this](/images/elfLosingConnection.jpg) particular case works very good!
 
+- Resaearch about time out thinks python socketserver librayr.
+- What happens if an elf dies before reaching out to Santa?
+- How can we handle this? because would hgave not solved problem if less than 3
+    appears at Santa.
+- There will be a gap between reaching out to santa and santa reaching back to
+    the elf chain, but we have minimuzed the issue as much as possible.
