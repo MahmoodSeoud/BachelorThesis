@@ -208,3 +208,4 @@ So far the testing of ![this](/images/elfLosingConnection.jpg) particular case w
 - There will be a gap between reaching out to santa and santa reaching back to
     the elf chain, but we have minimuzed the issue as much as possible.
 - I am using logging to track the time and info of each thread.
+- Rememeber to include the python socker and socketserver with requestHandler for the setup.
