@@ -197,7 +197,7 @@ if __name__ == '__main__':
 - Also maybe it would be good that each elf would log into their own file some
     info like: state, chain, and such
 
-## Week 9: Tesing
+### Week 9: Testing
 I Changes the code structure a bit to avoid an issue with Raft not being able to compact the log, due to it trying to compact a socket.poll, which is not possible.
 So far the testing of ![this](/images/elfLosingConnection.jpg) particular case works very good!
 
@@ -209,3 +209,7 @@ So far the testing of ![this](/images/elfLosingConnection.jpg) particular case w
     the elf chain, but we have minimuzed the issue as much as possible.
 - I am using logging to track the time and info of each thread.
 - Rememeber to include the python socker and socketserver with requestHandler for the setup.
+-
+###  Wekk 10: writing
+-  The purpsose of this is to make a dynamic system that could be in context related to text communication on phones. Make sure to time some of the instances and compare the distributred and the non distributed one to explain why it does not matter since phone communication for humans does not need to be instant.  
+
