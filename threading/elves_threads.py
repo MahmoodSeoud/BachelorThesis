@@ -89,10 +89,6 @@ class ElfWorker(SyncObj):
     def __init__(
         self, nodeAddr, otherNodeAddrs, consumers, extra_port, local_chain_members=None
     ):
-        self._is_in_chain = False
-        self._extra_port = extra_port
-        self._local_chain_members = local_chain_members
-
         super(ElfWorker, self).__init__(
             nodeAddr,
             otherNodeAddrs,
@@ -100,9 +96,12 @@ class ElfWorker(SyncObj):
             conf=SyncObjConf(
                 dynamicMembershipChange=True,
                 connectionRetryTime=10.0,
-                logCompactionSplit=True,
             ),
         )
+
+        self._is_in_chain = False
+        self._extra_port = extra_port
+        self._local_chain_members = local_chain_members
 
 
 def startElfContacter(port, chainMembers=None):
@@ -128,7 +127,7 @@ def send_message(sender, host, port, buffer):
         logger.exception(f"{sender} Couldn't connect to: {host}:{port}.")
 
 
-def run_elf(elf_worker):
+def run(elf_worker):
     print(f'Running elf worker {elf_worker.selfNode}')
 
     while True:
@@ -143,10 +142,7 @@ def run_elf(elf_worker):
             if lock_manager.tryAcquire("chainLock", sync=True):
 
                 # Check if the chain is eligible for modification
-                if (
-                    len(chain.rawData()) < 3
-                    and elf_worker.selfNode not in chain.rawData()
-                ):
+                if len(chain.rawData()) < 3:
                     # Add elf_worker to the chain if it's not full and elf_worker is not already in it
                     chain.add(
                         elf_worker._extra_port,
@@ -198,4 +194,4 @@ if __name__ == "__main__":
     elf_worker = ElfWorker(
         nodeAddr, otherNodeAddrs, consumers=[lock_manager, chain], extra_port=port + 1
     )
-    run_elf(elf_worker)
+    run(elf_worker)

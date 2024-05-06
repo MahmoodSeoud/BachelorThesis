@@ -1,14 +1,30 @@
 import socket
 import socketserver
 import struct
+import sys
 import threading
 import time
 import random
+import logging
+from functools import partial
+from pysyncobj import SyncObj, SyncObjConf, FAIL_REASON, replicated
+from pysyncobj.batteries import ReplLockManager, ReplSet, ReplList
 
 NUM_REINDEER = 9
 LOCAL_HOST = "127.0.0.1"
 SANTA_PORT = 29800
+LOGFILE= sys.argv[1]
 
+sys.path.append("../")
+logger = logging.getLogger(__name__)
+logging.basicConfig(
+    format="%(levelname)s %(asctime)s %(message)s",
+    datefmt='%d/%m/%Y %H:%M:%S',
+    filename=LOGFILE,
+    filemode="w",
+    encoding="utf-8",
+    level=logging.DEBUG,
+)
 def threaded_reindeer(reindeer_id, 
                     my_ip,
                     my_port,
@@ -126,31 +142,78 @@ def threaded_reindeer(reindeer_id,
     for sub_thread in sub_threads:
         sub_thread.join()
 
+class ReindeerWorker():
+    def __init__(self, nodeAddr, otherNodeAddrs,consumers, extra_port):
+        self.otherNodeAddrs = otherNodeAddrs 
+        super(ReindeerWorker, self).__init__(
+            nodeAddr,
+            otherNodeAddrs,
+            consumers=consumers,
+            conf=SyncObjConf(
+                connectionRetryTime=10.0,
+            ),
+        )
+    
+        self._is_in_chain = False
+        self._extra_port = extra_port
+
+    def run():
+        time.sleep(0.5)
+
+def run(reindeer_worker):
+    print(f'Running reindeer worker {reindeer_worker}')
+    sleep_time = random.randint(1,5)
+    while True:
+        time.sleep(0.5)
+        leader = reindeer_worker._getLeader()
+        if leader is None:
+            continue
+
+        try:
+            
+            if lock_manager.tryAcquire('reindeerLock', sync=True):
+                if len(woke.rawData() < NUM_REINDEER):
+                    woke.add(
+                        (reindeer_worker._extra_port,
+                        sleep_time),
+                        callback=partial(
+                            onNodeAdded, node=reindeer_worker._extra_port
+                        )
+                    )
+        except:
+            pass
+        finally:
+            pass
+
+
+def send_message(sender, host, port, buffer):
+    try:
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as conn_socket:
+            conn_socket.connect((host, port))
+            conn_socket.sendall(buffer)
+
+    except ConnectionRefusedError:
+        logger.exception(f"{sender} Couldn't connect to: {host}:{port}.")
+
+
+def onNodeAdded(result, error, node):
+    if error == FAIL_REASON.SUCCESS:
+        logger.info(f"ADDED - REQUEST [SUCCESS]: {node}")
+
 if __name__ == "__main__":
 
-    peer_addresses = [(LOCAL_HOST, 11000 + i) for i in range(0, NUM_REINDEER)]
 
-    lock = threading.Lock()
-    condition = threading.Condition()
+    if len(sys.argv) < 4:
+        print("Usage: %s [-t] [filePath] self_port partner1_port partner2_port ..." % sys.argv[0])
+        sys.exit(-1)
 
-    # Starting one reindeer thread
-    reindeer_threads = [
-        threading.Thread(
-        target=threaded_reindeer, 
-        args=(
-            i+1, 
-              peer_addresses[i][0],
-               peer_addresses[i][1], 
-               [port for ip, port in peer_addresses],
-               lock,
-               condition,
-              ), 
-        daemon=True
-    ) for i in range(0, NUM_REINDEER)]
+    nodeAddr = f"{LOCAL_HOST}:{sys.argv[2]}"
+    otherNodeAddrs = [f"{LOCAL_HOST}:{p}" for p in sys.argv[3:]]
 
-    for reindeer_thread in reindeer_threads:
-        reindeer_thread.start()
-
-    for reindeer_thread in reindeer_threads:
-        reindeer_thread.join()
-
+    port = int(sys.argv[2])
+    lock_manager = ReplLockManager(autoUnlockTime=75.0)
+    woke = ReplList()
+    reindeer_worker = ReindeerWorker(
+        nodeAddr, otherNodeAddrs, consumers=[lock_manager, woke], extra_port=port + 1
+    )
+    run(reindeer_worker)
