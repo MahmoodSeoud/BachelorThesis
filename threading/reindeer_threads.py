@@ -141,7 +141,7 @@ def threaded_reindeer(reindeer_id,
     for sub_thread in sub_threads:
         sub_thread.join()
 
-class ReindeerWorker():
+class ReindeerWorker(SyncObj):
     def __init__(self, nodeAddr, otherNodeAddrs,consumers, extra_port):
         self.otherNodeAddrs = otherNodeAddrs 
         super(ReindeerWorker, self).__init__(
@@ -168,7 +168,7 @@ class ReindeerWorker():
         time.sleep(0.5)
 
 def run(reindeer_worker):
-    print(f'Running reindeer worker {reindeer_worker}')
+    print(f'Running reindeer worker {reindeer_worker.selfNode}')
     sleep_time = random.randint(1,5)
     while True:
         time.sleep(0.5)

@@ -16,8 +16,6 @@ LOCAL_HOST = "127.0.0.1"
 SANTA_PORT = 29800
 
 LOGFILE= sys.argv[1]
-print(LOGFILE)
-
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(
