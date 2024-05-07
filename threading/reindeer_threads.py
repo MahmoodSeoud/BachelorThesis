@@ -15,7 +15,6 @@ LOCAL_HOST = "127.0.0.1"
 SANTA_PORT = 29800
 LOGFILE= sys.argv[1]
 
-sys.path.append("../")
 logger = logging.getLogger(__name__)
 logging.basicConfig(
     format="%(levelname)s %(asctime)s %(message)s",
@@ -165,8 +164,6 @@ class ReindeerWorker():
     def getHasAwoken():
         pass
 
-
-
     def run():
         time.sleep(0.5)
 
@@ -190,14 +187,23 @@ def run(reindeer_worker):
                             onNodeAdded, node=reindeer_worker._extra_port
                         )
                     )
+
+                if len(woke.rawData()) == NUM_REINDEER:
+                    max_sleep_time = max(woke.rawData(), key=lambda item: item[1])
+
                 # Release the lock
                 lock_manager.release("reindeerLock")
 
-                if sleep_time 
-        except:
-            pass
+                
+                if sleep_time == max_sleep_time:
+                    print('I am the last reindeer to wake up ' + 'after ' + str(sleep_time) + ' seconds - ' + reindeer_worker._extra_port)
+
+                
+        except Exception as e:
+            logger.warning(f"Could not acqruire lock: {e}")
         finally:
-            pass
+            if lock_manager.isAcquired("reindeerLock"):
+                lock_manager.release("reindeerLock")
 
 
 def send_message(sender, host, port, buffer):

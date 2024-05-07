@@ -12,7 +12,6 @@ import struct
 import logging
 from functools import partial
 
-sys.path.append("../")
 LOCAL_HOST = "127.0.0.1"
 SANTA_PORT = 29800
 
