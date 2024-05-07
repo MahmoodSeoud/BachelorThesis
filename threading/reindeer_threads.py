@@ -154,8 +154,18 @@ class ReindeerWorker():
             ),
         )
     
-        self._is_in_chain = False
         self._extra_port = extra_port
+        
+
+
+    @replicated
+    def setHasAwoken():
+        pass
+
+    def getHasAwoken():
+        pass
+
+
 
     def run():
         time.sleep(0.5)
@@ -180,6 +190,10 @@ def run(reindeer_worker):
                             onNodeAdded, node=reindeer_worker._extra_port
                         )
                     )
+                # Release the lock
+                lock_manager.release("reindeerLock")
+
+                if sleep_time 
         except:
             pass
         finally:
