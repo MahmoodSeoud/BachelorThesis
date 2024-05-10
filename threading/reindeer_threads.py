@@ -8,7 +8,7 @@ import random
 import logging
 from functools import partial
 from pysyncobj import SyncObj, SyncObjConf, FAIL_REASON, replicated
-from pysyncobj.batteries import ReplLockManager, ReplSet, ReplList
+from pysyncobj.batteries import ReplLockManager, ReplList
 
 NUM_REINDEER = 9
 LOCAL_HOST = "127.0.0.1"
@@ -158,7 +158,6 @@ def threaded_reindeer(reindeer_id, my_ip, my_port, peer_ports, lock, cond):
 
 class ReindeerWorker(SyncObj):
     def __init__(self, nodeAddr, otherNodeAddrs, consumers, extra_port):
-        self.otherNodeAddrs = otherNodeAddrs
         super(ReindeerWorker, self).__init__(
             nodeAddr,
             otherNodeAddrs,
@@ -170,12 +169,12 @@ class ReindeerWorker(SyncObj):
 
         self._extra_port = extra_port
 
-    @replicated
-    def setAllHasAwoken():
-        pass
+    #@replicated
+    #def setAllHasAwoken():
+    #    pass
 
-    def getAllHasAwoken():
-        pass
+    #def getAllHasAwoken():
+    #    pass
 
     def run():
         time.sleep(0.5)
@@ -187,9 +186,11 @@ def run(reindeer_worker):
     while True:
         time.sleep(0.5)
         leader = reindeer_worker._getLeader()
+
         if leader is None:
             continue
-
+        
+        print(f"Leader: {leader}")
         try:
 
             if lock_manager.tryAcquire("reindeerLock", sync=True):
@@ -202,9 +203,9 @@ def run(reindeer_worker):
                     )
 
                 if len(woke.rawData()) + 1 == NUM_REINDEER:
-                    print(f"Got in here - {reindeer_worker._extra_port}")
-                    max_sleep_time = max(woke.rawData(), key=lambda item: item[1])
-                    if sleep_time == max_sleep_time:
+                    print(f"Got in here - {reindeer_worker.selfNode}")
+                    latest_sleep_time = max(woke.rawData(), key=lambda item: item[1])
+                    if sleep_time == latest_sleep_time:
                         print(
                             "I am the last reindeer to wake up "
                             + "after "
@@ -238,13 +239,16 @@ def onNodeAppended(result, error, node):
         global isWoke
         logger.info(f"ADDED - REQUEST [SUCCESS]: {node}")
         isWoke = True
+    else:
+        print(f"ADDED - REQUEST [FAILED]: {node}")
+        logger.error(f"ADDED - REQUEST [FAILED]: {node}, error: {error}, result: {result}")
 
 
 if __name__ == "__main__":
 
     if len(sys.argv) < 4:
         print(
-            "Usage: %s [-t] [filePath] self_port partner1_port partner2_port ..."
+            "Usage: %s logFilePath self_port partner1_port partner2_port ..."
             % sys.argv[0]
         )
         sys.exit(-1)

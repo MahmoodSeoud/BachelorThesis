@@ -179,7 +179,7 @@ def run(elf_worker):
 
 if __name__ == "__main__":
     if len(sys.argv) < 4:
-        print("Usage: %s [-t] [filePath] self_port partner1_port partner2_port ..." % sys.argv[0])
+        print("Usage: %s logFilePath self_port partner1_port partner2_port ..." % sys.argv[0])
         sys.exit(-1)
 
     nodeAddr = f"{LOCAL_HOST}:{sys.argv[2]}"
