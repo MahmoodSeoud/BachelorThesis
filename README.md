@@ -1,37 +1,55 @@
-# Bachelor thesis 2024 - DIKU
-This repo is for my BachelorThesis on DIKU 2024.
+# Bachelor Thesis 2024 - DIKU
 
-I have also done some [documentation](/notes.md) of this whole thesis.
+Welcome to the repository for my Bachelor Thesis conducted at DIKU in 2024.
 
+## Overview
 
-## Quick start
+This repository contains the code and documentation for my Bachelor Thesis project. You can find detailed notes and insights in the [documentation](/notes.md) file.
 
-Start by installing the dependencies:
+## Quick Start
+
+To get started, follow these steps:
+
+1. Install the necessary dependencies by running:
+
 ```bash
 $ pip install -r requirements.txt
 ```
 
-### Non distributed non dynamic
-Run the program:
+2. Choose the appropriate section based on your setup:
+
+### Non-Distributed, Non-Dynamic
+
+To run the program, execute the following command:
 
 ```bash
 $ python3 ./multiprocess/santa_reindeer_elves.py
 ```
 
-
-### Distributed non dynamic
+### Distributed, Non-Dynamic
 
 #### Santa
-Create a santa thread:
+
+Start a Santa thread by running:
+
 ```bash
 $ python3 ./threading/santa_thread.py
 ```
 
 #### Reindeer
-Create a reindeer thread:
+
+For each server, open a separate shell. Then, run the corresponding script from the [scripts](/threading/scripts) directory. Alternatively, you can manually specify ports:
+
 ```bash
-$ python3 ./threading/reindeer_threads.py
+$ python3 logFilePath self_port partner1_port partner2_port ...
 ```
 
 #### Elves
-Open 10 shells to represent 10 different servers. Then on each of these shells, start on of the correpsonding [scripts](/threading/scripts) for your system.
+
+Similar to Reindeer, open a separate shell for each server. Run the appropriate script from the [scripts](/threading/scripts) directory. You can also manually specify ports:
+
+```bash
+$ python3 logFilePath self_port partner1_port partner2_port ...
+```
+
+Feel free to explore the codebase and documentation to gain a deeper understanding of the thesis project. If you have any questions or feedback, please don't hesitate to reach out.
