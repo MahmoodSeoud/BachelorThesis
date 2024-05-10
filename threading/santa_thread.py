@@ -14,8 +14,8 @@ def santa_threads(my_ip, my_port):
             identifier = self.request.recv(1).decode() # Recieving the identifier
 
             if identifier == 'R': # Identifier is the Reindeer
-                payload = self.request.recv(4) # Read the 12 bytes for the triple
-                port = struct.unpack('!I', payload)[0]
+                payload = self.request.recv(36) # Read the 12 bytes for the triple
+                ports = struct.unpack('!9I', payload)
 
                 print("Santa and the reindeer gets to work!")
                 time.sleep(5) # Simulating santa working
@@ -26,7 +26,8 @@ def santa_threads(my_ip, my_port):
                 buffer = bytearray()
                 buffer.append(1)  # Message type 1 = string
                 buffer.extend(message.encode('utf-8'))
-                send_message('Santa', LOCAL_HOST, port, buffer)
+                for port in ports:
+                    send_message(f'Santa - {SANTA_PORT}', LOCAL_HOST, port, buffer)
               
 
                     
@@ -72,9 +73,9 @@ def santa_threads(my_ip, my_port):
 
 if __name__ == '__main__':
     santa_ip = LOCAL_HOST
-    sant_port = SANTA_PORT
+    santa_port = SANTA_PORT
     
-    santa_thread = threading.Thread(target=santa_threads, args=(santa_ip, sant_port))
+    santa_thread = threading.Thread(target=santa_threads, args=(santa_ip, santa_port))
 
     santa_thread.start()
     santa_thread.join()

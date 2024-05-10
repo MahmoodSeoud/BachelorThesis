@@ -27,140 +27,64 @@ logging.basicConfig(
 
 isWoke = False
 
+class ReinderContacter():
+    def __init__(self, sender, reindeer_ports=None):
+        self.sender = sender
+        self.reindeer_ports = reindeer_ports
 
-def threaded_reindeer(reindeer_id, my_ip, my_port, peer_ports, lock, cond):
-
-    woke = []
-
+    # Class for handling the connection between the elves and Santa
     class RequestHandler(socketserver.StreamRequestHandler):
         def handle(self):
+            self.request.settimeout(10)  # Set the timout for the connection
+            data = self.request.recv(1024)
+            message = data.decode("utf-8")
+            logger.info(f"Reindeer Received a message from Santa: {message}")
 
-            # Receive the message type
-            message_type = self.request.recv(1)[0]
-
-            if message_type == 1:  # Handle a string message from Santa
-                # Receive the length of the string (4 bytes for an unsigned integer)
-                request_header = self.request.recv(4)
-                request_length = struct.unpack("!I", request_header)[0]
-                payload = self.request.recv(request_length)
-                print(f"Last reindeer - Recieved message: {payload.decode('ascii')}")
-
-                # Print line to indicicate new cycle
-                print("--------------------------")
-                # Notify all reindeer that it's time to go on holiday (sleep)
-                with cond:
-                    cond.notify_all()
-
-            elif message_type == 2:  # Handle a tuple message from other reindeer
-                data = self.request.recv(12)
-                id, sleep_time, port = struct.unpack("!3I", data)
-
-                # print(f"RL: {reindeer_id} - Recieved message: reindeer_id: {id}, sleep_time: {sleep_time}")
-
-                with lock:
-                    if len(woke) < NUM_REINDEER:
-                        reindeer_entry = {
-                            "id": id,
-                            "sleep_time": sleep_time,
-                            "port": port,
-                        }
-                        woke.append(reindeer_entry)
-
-                    if len(woke) == NUM_REINDEER:
-                        last_reindeer = max(
-                            woke, key=lambda item: (item["sleep_time"], item["id"])
-                        )
-                        # print(f"RL {reindeer_id} - I think this is the last ",last_reindeer)
-
-                        # No reindeer are awake anymore
-                        woke.clear()
-
-                        if reindeer_id == last_reindeer["id"]:
-                            santa_writer(last_reindeer)
-
-    def reindeer_listener():
-        # Start server side
+    def listener(self, host, port):
         with socketserver.ThreadingTCPServer(
-            (my_ip, my_port), RequestHandler
+            (host, port), self.RequestHandler
         ) as server:
-            print(f"RL: {reindeer_id} -  Starting reindeer listener: {my_ip}:{my_port}")
+            logger.info(f"[{self.sender}] - Starting listener: ({host}:{port})")
             try:
-                server.serve_forever()
+                server.handle_request()  # Server will handle the request from Santa and then close
             finally:
                 server.server_close()
 
-    def reindeer_writer():
+    def contact_santa(self, sender, host, port, reindeer_ports):
+        print(f"Reindeer sender: {reindeer_ports}")
+        reindeer_ports_as_list = list(reindeer_ports)
+        reindeer_ports_as_list.append(sender)
 
-        while True:
-            sleep_time = random.randint(1, 5)
-            time.sleep(sleep_time)
-            print(f"Reindeer {reindeer_id} woke up after {sleep_time} seconds")
-            for peer_port in peer_ports:
-                try:
-                    # print(f"RW: {reindeer_id} -  Connecting to reindeer at: " f"{LOCAL_HOST}:{peer_port}")
-                    with socket.socket(
-                        socket.AF_INET, socket.SOCK_STREAM
-                    ) as conn_socket:
-                        conn_socket.connect((LOCAL_HOST, peer_port))
+        buffer = bytearray()
+        buffer.extend("R".encode())
+        for port in reindeer_ports_as_list:
+            buffer.extend(struct.pack("!I", port))
 
-                        buffer = bytearray()
-                        buffer.append(2)  # Message type 2 = pair of integers
-                        buffer.extend(
-                            struct.pack("!3I", reindeer_id, sleep_time, my_port)
-                        )
-                        conn_socket.sendall(buffer)
+        send_message(sender, host, port, buffer)
 
-                except ConnectionRefusedError:
-                    print(
-                        f"RW {reindeer_id} - Couldn't connect to "
-                        f"{my_ip}:{peer_port}. Will try again in 3 seconds."
-                    )
+    def start_threads(self):
+        sub_threads = [
+            threading.Thread(target=self.listener, args=(LOCAL_HOST, self.sender)),
+            threading.Thread(
+                target=self.contact_santa,
+                args=(self.sender, LOCAL_HOST, SANTA_PORT, self.reindeer_ports),
+            ),
+        ]
 
-            # Waiting for all the threads to sync
-            with cond:
-                cond.wait()
+        for sub_thread in sub_threads:
+            sub_thread.start()
 
-    def santa_writer(last_reindeer):
-        print(
-            f"last reindeer to wake up was {last_reindeer['id']} after {last_reindeer['sleep_time']} seconds"
-        )
+        for sub_thread in sub_threads:
+            sub_thread.join()
 
-        # Sent msg to Santa whom then msg's back here so that we can notify_all()
-        try:
-            print(
-                f"Last reindeer: {last_reindeer['id']} -  Connecting to Santa at: "
-                f"{LOCAL_HOST}:{SANTA_PORT}"
-            )
-            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as conn_socket:
-
-                conn_socket.connect((LOCAL_HOST, SANTA_PORT))
-
-                identifier = "R"
-                buffer = bytearray()
-                buffer.extend(identifier.encode())
-                buffer.extend(struct.pack("!I", last_reindeer["port"]))
-                conn_socket.sendall(buffer)
-
-        except ConnectionRefusedError:
-            print(f"Last reindeer - Couldn't connect to " f"{LOCAL_HOST}:{SANTA_PORT}.")
-
-    sub_threads = [
-        threading.Thread(target=reindeer_listener),
-        threading.Thread(target=reindeer_writer),
-    ]
-
-    for sub_thread in sub_threads:
-        sub_thread.start()
-
-    for sub_thread in sub_threads:
-        sub_thread.join()
-
+    def run(self):
+        self.start_threads()
 
 class ReindeerWorker(SyncObj):
-    def __init__(self, nodeAddr, otherNodeAddrs, consumers, extra_port):
+    def __init__(self, node, otherNodes, consumers, extra_port):
         super(ReindeerWorker, self).__init__(
-            nodeAddr,
-            otherNodeAddrs,
+            node,
+            otherNodes,
             consumers=consumers,
             conf=SyncObjConf(
                 connectionRetryTime=10.0,
@@ -168,16 +92,18 @@ class ReindeerWorker(SyncObj):
         )
 
         self._extra_port = extra_port
+        self._is_last_reindeer = False
+        self._all_reindeer_awake = False
 
-    #@replicated
-    #def setAllHasAwoken():
-    #    pass
 
-    #def getAllHasAwoken():
-    #    pass
+    replicated
+    def setAllReindeerAwake(self, state):
+        self._all_reindeer_awake = state
+        return self._all_reindeer_awake
+        
 
-    def run():
-        time.sleep(0.5)
+    def getAllReindeerAwake(self):
+        return self._all_reindeer_awake
 
 
 def run(reindeer_worker):
@@ -190,7 +116,6 @@ def run(reindeer_worker):
         if leader is None:
             continue
         
-        print(f"Leader: {leader}")
         try:
 
             if lock_manager.tryAcquire("reindeerLock", sync=True):
@@ -198,27 +123,44 @@ def run(reindeer_worker):
                     woke.append(
                         (reindeer_worker._extra_port, sleep_time),
                         callback=partial(
-                            onNodeAppended, node=reindeer_worker._extra_port
+                            onNodeAppended, node=reindeer_worker.selfNode
                         ),
                     )
 
-                if len(woke.rawData()) + 1 == NUM_REINDEER:
-                    print(f"Got in here - {reindeer_worker.selfNode}")
-                    latest_sleep_time = max(woke.rawData(), key=lambda item: item[1])
-                    if sleep_time == latest_sleep_time:
-                        print(
-                            "I am the last reindeer to wake up "
-                            + "after "
-                            + str(sleep_time)
-                            + " seconds - "
-                            + reindeer_worker._extra_port
-                        )
+                    if len(woke.rawData()) + 1 == NUM_REINDEER:
+                        # Find the reindeer with the longest sleep time.
+                        # if two are the same, then it will return the first one in the arr. 
+                        # The array is distrubted, meaning its the same for all processes!
+                        last_awake_reindeer = max(woke.rawData(), key=lambda item: item[1])
+                        print(f"Last awake reindeer: {last_awake_reindeer}")
+                        
+                        if reindeer_worker._extra_port == last_awake_reindeer[0]:
 
+                            logger.info(f'I am the last reindeer to wake up with sleep time: {sleep_time} seconds')
+                            reindeer_worker._is_last_reindeer = True
+                            reindeer_worker.setAllReindeerAwake(True)
+            
                 # Release the lock
                 lock_manager.release("reindeerLock")
 
+                if reindeer_worker.getAllReindeerAwake():
+
+                    print(f"Reindeer {reindeer_worker.selfNode} is awake!")
+
+                    if reindeer_worker._is_last_reindeer:
+                        print(f"Reindeer {reindeer_worker.selfNode} is the last reindeer to wake up!")
+                        extra_ports = [node[0] for node in woke.rawData()]
+                        runReindeerContacter(reindeer_worker._extra_port, extra_ports)
+
+                        reindeer_worker._is_last_reindeer = False
+                        reindeer_worker.setAllReindeerAwake(False)
+                        woke.clear()
+                    else:
+                        print(f"Reindeer {reindeer_worker.selfNode} is NOT the last reindeer to wake up!")
+                        runReindeerListener(reindeer_worker._extra_port)
+
         except Exception as e:
-            logger.warning(f"Could not acqruire lock: {e}")
+            logger.error(f"Could not acquire lock: {e}")
         finally:
             if lock_manager.isAcquired("reindeerLock"):
                 lock_manager.release("reindeerLock")
@@ -237,12 +179,16 @@ def send_message(sender, host, port, buffer):
 def onNodeAppended(result, error, node):
     if error == FAIL_REASON.SUCCESS:
         global isWoke
-        logger.info(f"ADDED - REQUEST [SUCCESS]: {node}")
+        logger.info(f"ADDED - REQUEST [SUCCESS]: {node}, result: {result}")
         isWoke = True
     else:
-        print(f"ADDED - REQUEST [FAILED]: {node}")
         logger.error(f"ADDED - REQUEST [FAILED]: {node}, error: {error}, result: {result}")
 
+def runReindeerContacter(port, reindeer_ports):
+    ReinderContacter(port, reindeer_ports).run()
+
+def runReindeerListener(port):
+    ReinderContacter(port).listener(LOCAL_HOST, port)
 
 if __name__ == "__main__":
 
@@ -253,13 +199,14 @@ if __name__ == "__main__":
         )
         sys.exit(-1)
 
-    nodeAddr = f"{LOCAL_HOST}:{sys.argv[2]}"
-    otherNodeAddrs = [f"{LOCAL_HOST}:{p}" for p in sys.argv[3:]]
+    node = f"{LOCAL_HOST}:{sys.argv[2]}"
+    otherNodes = [f"{LOCAL_HOST}:{p}" for p in sys.argv[3:]]
 
     port = int(sys.argv[2])
     lock_manager = ReplLockManager(autoUnlockTime=75.0)
     woke = ReplList()
     reindeer_worker = ReindeerWorker(
-        nodeAddr, otherNodeAddrs, consumers=[lock_manager, woke], extra_port=port + 1
+        node, otherNodes, consumers=[lock_manager, woke], extra_port=port + 1
     )
     run(reindeer_worker)
+    
