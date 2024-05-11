@@ -14,22 +14,17 @@ def santa_threads(my_ip, my_port):
             identifier = self.request.recv(1).decode() # Recieving the identifier
 
             if identifier == 'R': # Identifier is the Reindeer
-                payload = self.request.recv(36) # Read the 12 bytes for the triple
-                ports = struct.unpack('!9I', payload)
-
                 print("Santa and the reindeer gets to work!")
                 time.sleep(5) # Simulating santa working
 
-                # Send a string
+                payload = self.request.recv(36) # Read the 36 bytes (9 * 4 bytes) address
+                ports = struct.unpack('!9I', payload)
                 message = 'Go back on holiday, reindeer!'
 
                 buffer = bytearray()
-                buffer.append(1)  # Message type 1 = string
                 buffer.extend(message.encode('utf-8'))
                 for port in ports:
                     send_message(f'Santa - {SANTA_PORT}', LOCAL_HOST, port, buffer)
-              
-
                     
             elif identifier == 'E': #Identifier is the Elves
                 print("Santa goes to help the elves")
@@ -38,14 +33,13 @@ def santa_threads(my_ip, my_port):
                 # Receive the message
                 payload =  self.request.recv(12)
                 recieved_chain = struct.unpack('!3I', payload)
-
                 message = 'Get back to work, elves!'
 
                 buffer = bytearray()
                 buffer.extend(message.encode('utf-8'))
-                send_message('Santa', LOCAL_HOST, recieved_chain[0], buffer)
-                send_message('Santa', LOCAL_HOST, recieved_chain[1], buffer)
-                send_message('Santa', LOCAL_HOST, recieved_chain[2], buffer)
+                for port in recieved_chain:
+                    send_message('Santa', LOCAL_HOST, port, buffer)
+                    
            
     def listener():
         with socketserver.ThreadingTCPServer((my_ip, my_port), RequestHandler) as server:
