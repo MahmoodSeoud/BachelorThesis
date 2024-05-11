@@ -1,20 +1,16 @@
-from __future__ import print_function
-from pysyncobj import SyncObj, SyncObjConf, FAIL_REASON
-from pysyncobj.batteries import ReplLockManager, ReplSet
-
 import sys
 import threading
-import os
 import socketserver
 import socket
 import time
 import struct
 import logging
 from functools import partial
+from pysyncobj import SyncObj, SyncObjConf, FAIL_REASON
+from pysyncobj.batteries import ReplLockManager, ReplSet
 
 LOCAL_HOST = "127.0.0.1"
 SANTA_PORT = 29800
-
 LOGFILE = sys.argv[1]
 
 logger = logging.getLogger(__name__)
@@ -29,7 +25,6 @@ logging.basicConfig(
 
 
 class ElfContacter:
-
     def __init__(self, sender, local_chain_members=None):
         self.sender = sender
         self.local_chain_members = local_chain_members
@@ -52,16 +47,16 @@ class ElfContacter:
             finally:
                 server.server_close()
 
-    def contact_santa(self, sender, host, port, chain):
+    def contact_santa(self, sender, targetHost, targetPort, chain):
         chain_as_list = list(chain)
         chain_as_list.append(sender)
 
         buffer = bytearray()
         buffer.extend("E".encode())
-        buffer.extend(
-            struct.pack("!3I", chain_as_list[0], chain_as_list[1], chain_as_list[2])
-        )
-        send_message(sender, host, port, buffer)
+        for port in chain_as_list:
+            buffer.extend(struct.pack("!I", port))
+
+        send_message(sender, targetHost, targetPort, buffer)
 
     def start_threads(self):
         sub_threads = [
@@ -111,23 +106,28 @@ def runElfListener(port):
 
 def onNodeAdded(result, error, node, cluster):
     if error == FAIL_REASON.SUCCESS:
-        logger.info(f"ADDED - REQUEST [SUCCESS]: {node} - CLUSTER: {cluster} - result: {result}")
+        logger.info(
+            f"ADDED - REQUEST [SUCCESS]: {node} - CLUSTER: {cluster} - result: {result}"
+        )
     else:
-        logger.error(f"ADDED - REQUEST [FAIL]: {node} - CLUSTER: {cluster} - result: {result}")
+        logger.error(
+            f"ADDED - REQUEST [FAIL]: {node} - CLUSTER: {cluster} - result: {result}"
+        )
 
 
-def send_message(sender, host, port, buffer):
+def send_message(sender, targetHost, targetPort, buffer):
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as conn_socket:
-            conn_socket.connect((host, port))
+            conn_socket.connect((targetHost, targetPort))
             conn_socket.sendall(buffer)
 
     except ConnectionRefusedError:
-        logger.exception(f"{sender} Couldn't connect to: {host}:{port}.")
+        logger.exception(f"{sender} Couldn't connect to: {targetHost}:{port}.")
 
 
 def run(elf_worker):
     print(f"Running elf worker {elf_worker.selfNode}")
+    print(f"Extra port: {elf_worker._extra_port}")
 
     while True:
         time.sleep(0.5)
@@ -166,8 +166,7 @@ def run(elf_worker):
                         elf_worker._is_in_chain = False
                     else:
                         runElfContacter(
-                            elf_worker._extra_port,
-                            elf_worker._local_chain_members
+                            elf_worker._extra_port, elf_worker._local_chain_members
                         )
                         elf_worker._local_chain_members = None
                         elf_worker._is_in_chain = False
