@@ -5,8 +5,10 @@ import socket
 import time
 import struct
 import logging
+import random
 from functools import partial
 from pysyncobj import SyncObj, SyncObjConf, FAIL_REASON
+from pysyncobj.tcp_connection import CONNECTION_STATE
 from pysyncobj.batteries import ReplLockManager, ReplSet
 
 LOCAL_HOST = "127.0.0.1"
@@ -48,7 +50,7 @@ class ElfContacter:
                 server.server_close()
 
     def contact_santa(self, sender, targetHost, targetPort, chain):
-        chain_as_list = list(chain)
+        chain_as_list = map(lambda x: x[0], chain)
         chain_as_list.append(sender)
 
         buffer = bytearray()
@@ -130,7 +132,8 @@ def run(elf_worker):
     print(f"Extra port: {elf_worker._extra_port}")
 
     while True:
-        time.sleep(0.5)
+        sleep_time = random.randint(1, 5)
+        time.sleep(sleep_time)
 
         # Check if there's a leader, if not, continue waiting
         leader = elf_worker._getLeader()
@@ -144,7 +147,7 @@ def run(elf_worker):
                 if len(chain.rawData()) < 3:
                     # Add elf_worker to the chain if it's not full and elf_worker is not already in it
                     chain.add(
-                        elf_worker._extra_port,
+                        (elf_worker._extra_port, elf_worker.selfNode),
                         callback=partial(
                             onNodeAdded, node=elf_worker.selfNode, cluster="chain"
                         ),
@@ -160,16 +163,21 @@ def run(elf_worker):
                 lock_manager.release("chainLock")
 
                 if elf_worker._is_in_chain:
-
-                    if elf_worker._local_chain_members is None:
+                    if elf_worker._local_chain_members is None :
                         runElfListener(elf_worker._extra_port)
                         elf_worker._is_in_chain = False
                     else:
-                        runElfContacter(
-                            elf_worker._extra_port, elf_worker._local_chain_members
-                        )
-                        elf_worker._local_chain_members = None
-                        elf_worker._is_in_chain = False
+                        print(f'CHAIN IS:', elf_worker._local_chain_members)
+                        chain_member_one_status = elf_worker.getState()[f'partner_node_status_server_localhost:{elf_worker._local_chain_members[0]}']
+                        chain_member_two_status = elf_worker.getState()[f'partner_node_status_server_localhost:{elf_worker._local_chain_members[1]}']
+                        print(f'CHAIN MEMBER ONE STATUS:', chain_member_one_status)
+                        print(f'CHAIN MEMBER TWO STATUS:', chain_member_two_status)
+                        if True:
+                            runElfContacter(
+                                elf_worker._extra_port, elf_worker._local_chain_members
+                            )
+                            elf_worker._local_chain_members = None
+                            elf_worker._is_in_chain = False
 
         except Exception as e:
             logger.error(f"Could not acquire lock: {e}")
