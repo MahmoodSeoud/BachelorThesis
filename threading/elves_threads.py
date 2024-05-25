@@ -5,6 +5,7 @@ import socket
 import time
 import struct
 import logging
+import random
 from functools import partial
 from pysyncobj import SyncObj, SyncObjConf, FAIL_REASON
 from pysyncobj.batteries import ReplLockManager, ReplSet
@@ -130,7 +131,8 @@ def run(elf_worker):
     print(f"Extra port: {elf_worker._extra_port}")
 
     while True:
-        time.sleep(0.5)
+        sleep_time = random.randint(1, 5)
+        time.sleep(sleep_time)
 
         # Check if there's a leader, if not, continue waiting
         leader = elf_worker._getLeader()
