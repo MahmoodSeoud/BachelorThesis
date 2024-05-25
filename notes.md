@@ -212,4 +212,28 @@ So far the testing of ![this](/images/elfLosingConnection.jpg) particular case w
 -
 ###  Wekk 10: writing
 -  The purpsose of this is to make a dynamic system that could be in context related to text communication on phones. Make sure to time some of the instances and compare the distributred and the non distributed one to explain why it does not matter since phone communication for humans does not need to be instant.  
--  Disovered that Reindeer are not fully distributed, meaning that they use local locks and condition. I will go over how we can change this so that it becomes fully distributed.
+
+## Week idk: Writing
+- I am trying to implementhte the feature that handles this issue "the gap
+    between reaching out to santa and santa reaching back to the elf chain, but
+    we have minimuzed the issue as much as possible." but i dicovered that I
+    need a list of which chain members are in. I do hvae this, but I have a list
+    of their extraPorts, so i need their real selfPorts. I may have to change
+    this part 
+    ```python
+    chain.add(
+        elf_worker._extra_port,
+        callback=partial(
+            onNodeAdded, node=elf_worker.selfNode, cluster="chain"
+        ),
+    )
+    ```
+- One thing to note is that the system is very large and complex. I NEED to make a bigger diagram with everything working together and then highlight some critical points. and explain them in detail but not necessarily everything for every point in the system. (acquiring the locks, Santa communication, waiting). Also, consider when we have done enough to ensure the system is right. For instance, do we absolutely need those three elves to arrive at Santa (Yes) how can we ensure that?
+
+- You do need to implement everything right now. You can wait until the defense. Do make it future work tho.  
+
+- For the testing of the performance of the system, I can keep track of a count for respectively the reindeer and the elves and how long does it takes for them to reach a certain count that Santa keeps. Maybe compare the elves and the reindeer and also compare the distributed and the non-distributed with each other. Maybe experiment with making the reindeer and elves count very large?
+
+- Talk in The discussion of how the network in Bluetooth functions- leaving and joining at will. But also introduce your limitations for the system including Raft but more importantly the implementation of it. 
+
+- Also discuss your hardware and CPU cores and their limitations., TALK about threshing and track the time of the elves and the reindeer separately and together.
