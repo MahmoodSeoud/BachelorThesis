@@ -212,4 +212,4 @@ So far the testing of ![this](/images/elfLosingConnection.jpg) particular case w
 -
 ###  Wekk 10: writing
 -  The purpsose of this is to make a dynamic system that could be in context related to text communication on phones. Make sure to time some of the instances and compare the distributred and the non distributed one to explain why it does not matter since phone communication for humans does not need to be instant.  
-
+-  Disovered that Reindeer are not fully distributed, meaning that they use local locks and condition. I will go over how we can change this so that it becomes fully distributed.
