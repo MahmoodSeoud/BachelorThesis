@@ -36,7 +36,8 @@ class ElfContacter:
             self.request.settimeout(10)  # Set the timout for the connection
             data = self.request.recv(1024)
             message = data.decode("utf-8")
-            logger.info(f"[CHAIN CLUSTER] Received a message from Santa: {message}")
+            logger.info(f"[CHAIN CLUSTER] Received a message: {message}")
+            print(f"Received a message: {message}")
 
     def listener(self, host, port):
         with socketserver.ThreadingTCPServer(
@@ -51,7 +52,6 @@ class ElfContacter:
     def contact_santa(self, sender, targetHost, targetPort, chain):
 
         chain_as_list = chain
-        print("Chain as list:", chain_as_list)
         chain_as_list.append(sender)
 
         buffer = bytearray()
@@ -119,6 +119,7 @@ def onNodeAdded(result, error, node, cluster):
 
 
 def send_message(sender, targetHost, targetPort, buffer):
+    print(f"Sending message to {targetHost}:{targetPort}")
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as conn_socket:
             conn_socket.connect((targetHost, targetPort))
@@ -133,6 +134,10 @@ def run(elf_worker):
     print(f"Extra port: {elf_worker._extra_port}")
 
     while True:
+
+        while not elf_worker.isReady():
+            time.sleep(.1)
+
         ## Removed the randomsleep for testing purposes
         #sleep_time = random.randint(1, 5)
         #time.sleep(sleep_time)
@@ -141,6 +146,7 @@ def run(elf_worker):
         leader = elf_worker._getLeader()
         if leader is None:
             continue
+        
         try:
             # Attempt to acquire the lock
             if lock_manager.tryAcquire("chainLock", sync=True):
@@ -175,8 +181,9 @@ def run(elf_worker):
                         ]
 
                         # Place this in here if you want
-                        # print("You can disconnect one of these", otherChainMemberSelfNode)
-                        # time.sleep(15)  # time to disconnect
+                        print("You can disconnect one of these", otherChainMemberSelfNode)
+                        time.sleep(15)  # time to disconnect
+                        
                         
                         connected_members = [
                             x
@@ -195,8 +202,8 @@ def run(elf_worker):
                                 send_message(
                                     "Elf",
                                     member.host,
-                                    member.port,
-                                    bytearray("Restart", "utf-8"),
+                                    member.port + 1, # TODO: Make this explixtly the extra port
+                                    bytearray("Restart!", "utf-8"),
                                 )
 
                         elf_worker._local_chain_members = None

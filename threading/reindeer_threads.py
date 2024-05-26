@@ -143,6 +143,9 @@ def run(reindeer_worker):
     print(f"Extra port: {reindeer_worker._extra_port}")
 
     while True:
+        while not reindeer_worker.isReady():
+            time.sleep(0.1)
+
         sleep_time = random.randint(1, 5)
         time.sleep(sleep_time)
 
