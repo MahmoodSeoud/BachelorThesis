@@ -171,7 +171,7 @@ def run(reindeer_worker):
                 lock_manager.release("reindeerLock")
 
                 while not reindeer_worker.getAllReindeerAwake():
-                    time.sleep(0.5)
+                    time.sleep(0.1)
 
                 if (
                     reindeer_worker.getLastReindeerAwake()[0]
