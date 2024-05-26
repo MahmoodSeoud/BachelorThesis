@@ -20,13 +20,14 @@ logging.basicConfig(
 def santa_threads(my_ip, my_port):
     global reindeer_runs, elve_runs
     reindeer_runs = elve_runs = 0
-    logger.info('timing starts')
+    logger.info('Timing Starts')
     class RequestHandler(socketserver.StreamRequestHandler):
         def handle(self):
             identifier = self.request.recv(1).decode() # Recieving the identifier
 
             if identifier == 'R': # Identifier is the Reindeer
                 print("Santa and the reindeer gets to work!")
+                logger.info('Santa and the reindeer gets to work!')
                 time.sleep(5) # Simulating santa working
 
                 payload = self.request.recv(36) # Read the 36 bytes (9 * 4 bytes) address
@@ -72,12 +73,13 @@ def santa_threads(my_ip, my_port):
 
     def send_message(sender, host, port, buffer):
         try:
+            logger.info(f"Sending message to {host}:{port}.")
             with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as conn_socket:
                 conn_socket.connect((host, port))
                 conn_socket.sendall(buffer)
 
         except ConnectionRefusedError:
-            print(f"{sender} Couldn't connect to " f"{host}:{port}.")
+            logger.exception(f"{sender} Couldn't connect to " f"{host}:{port}.")
 
     sub_threads = [ threading.Thread(target=listener) ]
 
