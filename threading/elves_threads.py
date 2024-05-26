@@ -150,7 +150,7 @@ def run(elf_worker):
         try:
             # Attempt to acquire the lock
             if lock_manager.tryAcquire("chainLock", sync=True):
-
+                logger.info("Acquired lock")
                 # Check if the chain is eligible for modification
                 if len(chain.rawData()) < 3:
                     # Add elf_worker to the chain if it's not full and elf_worker is not already in it
@@ -168,6 +168,7 @@ def run(elf_worker):
                         chain.clear()
 
                 # Release the lock
+                logger.info("Releasing lock")
                 lock_manager.release("chainLock")
 
                 if elf_worker._is_in_chain:
@@ -214,9 +215,10 @@ def run(elf_worker):
                         elf_worker._is_in_chain = False
 
         except Exception as e:
-            logger.error(f"Could not acquire lock: {e}")
+            logger.exception(f"Could not acquire lock: {e}")
         finally:
             if lock_manager.isAcquired("chainLock"):
+                logger.info("Releasing lock")
                 lock_manager.release("chainLock")
 
 

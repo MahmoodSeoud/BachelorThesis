@@ -171,6 +171,7 @@ def run(reindeer_worker):
                         reindeer_worker.setAllReindeerAwake(True)
 
                 # Release the lock
+                logger.info("Releasing lock")
                 lock_manager.release("reindeerLock")
 
                 while not reindeer_worker.getAllReindeerAwake():
@@ -193,9 +194,10 @@ def run(reindeer_worker):
                     runReindeerListener(reindeer_worker._extra_port)
 
         except Exception as e:
-            logger.error(f"Could not acquire lock due to error: {e}")
+            logger.exception(f"Could not acquire lock due to error: {e}")
         finally:
             if lock_manager.isAcquired("reindeerLock"):
+                logger.info("Releasing lock")
                 lock_manager.release("reindeerLock")
 
 
