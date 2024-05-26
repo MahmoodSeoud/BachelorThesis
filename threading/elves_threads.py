@@ -49,7 +49,9 @@ class ElfContacter:
                 server.server_close()
 
     def contact_santa(self, sender, targetHost, targetPort, chain):
-        chain_as_list = list(chain)
+
+        chain_as_list = chain
+        print("Chain as list:", chain_as_list)
         chain_as_list.append(sender)
 
         buffer = bytearray()
@@ -131,8 +133,9 @@ def run(elf_worker):
     print(f"Extra port: {elf_worker._extra_port}")
 
     while True:
-        sleep_time = random.randint(1, 5)
-        time.sleep(sleep_time)
+        ## Removed the randomsleep for testing purposes
+        #sleep_time = random.randint(1, 5)
+        #time.sleep(sleep_time)
 
         # Check if there's a leader, if not, continue waiting
         leader = elf_worker._getLeader()
@@ -146,7 +149,7 @@ def run(elf_worker):
                 if len(chain.rawData()) < 3:
                     # Add elf_worker to the chain if it's not full and elf_worker is not already in it
                     chain.add(
-                        elf_worker._extra_port,
+                        (elf_worker._extra_port, elf_worker.selfNode),
                         callback=partial(
                             onNodeAdded, node=elf_worker.selfNode, cluster="chain"
                         ),
@@ -163,14 +166,44 @@ def run(elf_worker):
 
                 if elf_worker._is_in_chain:
 
-                    if elf_worker._local_chain_members is None:
-                        runElfListener(elf_worker._extra_port)
-                        elf_worker._is_in_chain = False
-                    else:
-                        runElfContacter(
-                            elf_worker._extra_port, elf_worker._local_chain_members
-                        )
+                    if elf_worker._local_chain_members is not None:
+                        otherChainMemberExtraPort = [
+                            x[0] for x in elf_worker._local_chain_members
+                        ]
+                        otherChainMemberSelfNode = [
+                            x[1] for x in elf_worker._local_chain_members
+                        ]
+
+                        # Place this in here if you want
+                        # print("You can disconnect one of these", otherChainMemberSelfNode)
+                        # time.sleep(15)  # time to disconnect
+                        
+                        connected_members = [
+                            x
+                            for x in otherChainMemberSelfNode
+                            if elf_worker.isNodeConnected(x)
+                        ]
+
+                        if len(connected_members) == 2:
+                            runElfContacter(
+                                elf_worker._extra_port, otherChainMemberExtraPort
+                            )
+                        else:
+                            print("Please restart the chain")
+                            # Message the other guys it's time to restart
+                            for member in connected_members:
+                                send_message(
+                                    "Elf",
+                                    member.host,
+                                    member.port,
+                                    bytearray("Restart", "utf-8"),
+                                )
+
                         elf_worker._local_chain_members = None
+                        elf_worker._is_in_chain = False
+
+                    else:
+                        runElfListener(elf_worker._extra_port)
                         elf_worker._is_in_chain = False
 
         except Exception as e:

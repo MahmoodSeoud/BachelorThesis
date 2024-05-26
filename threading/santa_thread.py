@@ -3,12 +3,24 @@ import struct
 import socketserver
 import time
 import threading
+import logging
 
 LOCAL_HOST = "127.0.0.1"
 SANTA_PORT = 29800
 CHAIN_LEADER_PORT = 8888
 
+logger = logging.getLogger(__name__)
+logging.basicConfig(
+    format="%(levelname)s %(asctime)s %(message)s",
+    datefmt="%d/%m/%Y %H:%M:%S",
+    encoding="utf-8",
+    level=logging.DEBUG,
+)
+
 def santa_threads(my_ip, my_port):
+    global reindeer_runs, elve_runs
+    reindeer_runs = elve_runs = 0
+    logger.info('timing starts')
     class RequestHandler(socketserver.StreamRequestHandler):
         def handle(self):
             identifier = self.request.recv(1).decode() # Recieving the identifier
@@ -25,6 +37,8 @@ def santa_threads(my_ip, my_port):
                 buffer.extend(message.encode('utf-8'))
                 for port in ports:
                     send_message(f'Santa - {SANTA_PORT}', LOCAL_HOST, port, buffer)
+                global reindeer_runs
+                reindeer_runs += 1
                     
             elif identifier == 'E': #Identifier is the Elves
                 print("Santa goes to help the elves")
@@ -38,7 +52,14 @@ def santa_threads(my_ip, my_port):
                 buffer = bytearray()
                 buffer.extend(message.encode('utf-8'))
                 for port in recieved_chain:
-                    send_message('Santa', LOCAL_HOST, port, buffer)
+                    send_message(f'Santa - {SANTA_PORT}', LOCAL_HOST, port, buffer)
+                global elve_runs
+                elve_runs += 1
+
+            if reindeer_runs == 10000:
+                logger.info('Reindeer won')
+            elif elve_runs == 10000:
+                logger.info('Elves won')
                     
            
     def listener():
