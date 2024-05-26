@@ -2,4 +2,4 @@
 clear
 filename=$(basename -- "$0")
 filename="${filename%.*}"
-python3 ./../../../reindeer_threads.py ./../../../log/unix/reindeer/$filename.txt 49152 9090 8081 32768 7000 49200 16000 17000 18000 
+python3 ./../../../reindeer_threads.py ./../../../log/unix/reindeer/$filename.txt 8028 8030 8032 8034 8036 8020 8022 8024 8026
