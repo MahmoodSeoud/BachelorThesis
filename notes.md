@@ -237,3 +237,6 @@ So far the testing of ![this](/images/elfLosingConnection.jpg) particular case w
 - Talk in The discussion of how the network in Bluetooth functions- leaving and joining at will. But also introduce your limitations for the system including Raft but more importantly the implementation of it. 
 
 - Also discuss your hardware and CPU cores and their limitations., TALK about threshing and track the time of the elves and the reindeer separately and together.
+
+- I maybe need to drop the introduction of new nodes part. We'll see
+- i need to put a timeout on each listener just incase.
