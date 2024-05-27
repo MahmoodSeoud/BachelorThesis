@@ -91,24 +91,8 @@ class ReindeerWorker(SyncObj):
         )
 
         self._extra_port = extra_port
-        self._all_reindeer_awake = False
-        self._last_reindeer_awake = None
-
-    @replicated
-    def setAllReindeerAwake(self, state):
-        self._all_reindeer_awake = state
-        return self._all_reindeer_awake
-
-    @replicated
-    def setLastReindeerAwake(self, state):
-        self._last_reindeer_awake = state
-        return self._last_reindeer_awake
-
-    def getLastReindeerAwake(self):
-        return self._last_reindeer_awake
-
-    def getAllReindeerAwake(self):
-        return self._all_reindeer_awake
+        self._is_awake = False
+        self._local_woke = None
 
 
 def send_message(sender, targetHost, targetPort, buffer):
@@ -143,55 +127,54 @@ def run(reindeer_worker):
     print(f"Extra port: {reindeer_worker._extra_port}")
 
     while True:
-        while not reindeer_worker.isReady():
-            time.sleep(0.1)
-
-        sleep_time = random.randint(1, 5)
-        time.sleep(sleep_time)
+        if not reindeer_worker.isReady():
+            continue
 
         leader = reindeer_worker._getLeader()
         if leader is None:
             continue
 
+        ## Removed the randomsleep for testing purposes
+        sleep_time = random.randint(1, 5)
+        #time.sleep(sleep_time)
+
+
         try:
             if lock_manager.tryAcquire("reindeerLock", sync=True):
+                logger.info("Acquired lock")
 
                 if len(woke.rawData()) < NUM_REINDEER:
                     woke.add(
                         (reindeer_worker._extra_port, sleep_time),
                         callback=partial(onNodeAdded, node=reindeer_worker.selfNode),
                     )
+                    
+                    reindeer_worker._is_awake = True
 
                     if len(woke.rawData()) + 1 == NUM_REINDEER:
                         # Find the reindeer with the longest sleep time.
                         last_awake_reindeer = max(
                             woke.rawData(), key=lambda item: item[1]
                         )
-                        reindeer_worker.setLastReindeerAwake(last_awake_reindeer)
-                        reindeer_worker.setAllReindeerAwake(True)
+                        print(f"Last awake reindeer: {last_awake_reindeer}")
+                        reindeer_worker._local_woke = woke.rawData()
+                        woke.clear()
 
                 # Release the lock
                 logger.info("Releasing lock")
                 lock_manager.release("reindeerLock")
 
-                while not reindeer_worker.getAllReindeerAwake():
-                    time.sleep(0.1)
-
-                if (
-                    reindeer_worker.getLastReindeerAwake()[0]
-                    == reindeer_worker._extra_port
-                ):
-                    # Contat Santa
-                    ports = [item[0] for item in woke.rawData()]
-                    runReindeerContacter(reindeer_worker._extra_port, ports)
-
-                    # Reset the woke set and set all reindeer to sleep
-                    woke.clear()
-                    reindeer_worker.setAllReindeerAwake(False)
-                    reindeer_worker.setLastReindeerAwake(None)
-                else:
-                    # Listen to santa
-                    runReindeerListener(reindeer_worker._extra_port)
+                if reindeer_worker._is_awake:
+                    if reindeer_worker._local_woke is not None:
+                        # Contat Santa
+                        ports = [item[0] for item in reindeer_worker._local_woke]
+                        runReindeerContacter(reindeer_worker._extra_port, ports)
+                        reindeer_worker._local_woke = None 
+                    else:
+                        # Listen to santa
+                        runReindeerListener(reindeer_worker._extra_port)
+                    
+                    reindeer_worker._is_awake = False
 
         except Exception as e:
             logger.exception(f"Could not acquire lock due to error: {e}")
