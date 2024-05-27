@@ -29,7 +29,8 @@ def santa_threads(my_ip, my_port):
 
             if identifier == 'R': # Identifier is the Reindeer
                 logger.info('Santa and the reindeer gets to work!')
-                time.sleep(5) # Simulating santa working
+                ## Removed the sleep for testing purposes
+                #time.sleep(5) # Simulating santa working
 
                 payload = self.request.recv(36) # Read the 36 bytes (9 * 4 bytes) address
                 ports = struct.unpack('!9I', payload)
@@ -52,7 +53,8 @@ def santa_threads(my_ip, my_port):
                     
             elif identifier == 'E': #Identifier is the Elves
                 logger.info("Santa goes to help the elves")
-                time.sleep(5) # Simulating Santa helping elves
+                ## Removed the sleep for testing purposes
+                #time.sleep(5) # Simulating Santa helping elves
 
                 # Receive the message
                 payload =  self.request.recv(12)
