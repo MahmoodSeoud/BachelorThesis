@@ -34,6 +34,7 @@ runs = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
 
 # Convert the timestamps to datetime and calculate the time elapsed since the first timestamp
 timestamps_elves = [(datetime.strptime(time, "%H:%M:%S") - datetime.strptime(timestamps_elves[0], "%H:%M:%S")).seconds / 60.0 for time in timestamps_elves]
+timestamps_reindeer = [(datetime.strptime(time, "%H:%M:%S") - datetime.strptime(timestamps_reindeer[0], "%H:%M:%S")).seconds / 60.0 for time in timestamps_reindeer]
 
 # Create a figure and a subplot
 fig, ax1 = plt.subplots()
