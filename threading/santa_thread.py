@@ -17,16 +17,17 @@ logging.basicConfig(
     level=logging.DEBUG,
 )
 
+reindeer_runs = elve_runs = 0
+milestone = 100
+endGoal = 1000
+
 def santa_threads(my_ip, my_port):
-    global reindeer_runs, elve_runs
-    reindeer_runs = elve_runs = 0
     logger.info('Timing Starts')
     class RequestHandler(socketserver.StreamRequestHandler):
         def handle(self):
             identifier = self.request.recv(1).decode() # Recieving the identifier
 
             if identifier == 'R': # Identifier is the Reindeer
-                print("Santa and the reindeer gets to work!")
                 logger.info('Santa and the reindeer gets to work!')
                 time.sleep(5) # Simulating santa working
 
@@ -40,9 +41,17 @@ def santa_threads(my_ip, my_port):
                     send_message(f'Santa - {SANTA_PORT}', LOCAL_HOST, port, buffer)
                 global reindeer_runs
                 reindeer_runs += 1
+
+                # Check for milestones for reindeer
+                if reindeer_runs % milestone == 0:
+                    logger.info(f'Reindeer reached {reindeer_runs} runs')
+
+                # End the game if either the reindeer or the elves reach 10000 runs
+                if reindeer_runs == endGoal:
+                    logger.info('Reindeer won')
                     
             elif identifier == 'E': #Identifier is the Elves
-                print("Santa goes to help the elves")
+                logger.info("Santa goes to help the elves")
                 time.sleep(5) # Simulating Santa helping elves
 
                 # Receive the message
@@ -57,15 +66,18 @@ def santa_threads(my_ip, my_port):
                 global elve_runs
                 elve_runs += 1
 
-            if reindeer_runs == 10000:
-                logger.info('Reindeer won')
-            elif elve_runs == 10000:
-                logger.info('Elves won')
+       
+                # Check for milestones for elves
+                if elve_runs % milestone == 0:
+                    logger.info(f'Elves reached {elve_runs} runs')  
+                
+                if elve_runs == endGoal:
+                    logger.info('Elves won')
                     
            
     def listener():
         with socketserver.ThreadingTCPServer((my_ip, my_port), RequestHandler) as server:
-            print(f"Santa - Starting listener: {my_ip}:{my_port}")
+            logger.info(f"Santa - Starting listener: {my_ip}:{my_port}")
             try:
                 server.serve_forever()
             finally:

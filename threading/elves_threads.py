@@ -182,8 +182,8 @@ def run(elf_worker):
                         ]
 
                         # Place this in here if you want
-                        print("You can disconnect one of these", otherChainMemberSelfNode)
-                        time.sleep(15)  # time to disconnect
+                        #print("You can disconnect one of these", otherChainMemberSelfNode)
+                        #time.sleep(15)  # time to disconnect
                         
                         
                         connected_members = [
