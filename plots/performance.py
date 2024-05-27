@@ -16,7 +16,21 @@ timestamps_elves = [
     "13:43:34"
 ]
 
-runs_elves = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
+timestamps_reindeer = [
+    "16:21:30",
+    "16:33:48",
+    "16:45:55",
+    "16:57:58",
+    "17:10:01",
+    "17:22:14",
+    "17:34:20",
+    "17:46:29",
+    "17:58:35",
+    "18:10:45",
+    "18:22:46",
+]
+
+runs = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
 
 # Convert the timestamps to datetime and calculate the time elapsed since the first timestamp
 timestamps_elves = [(datetime.strptime(time, "%H:%M:%S") - datetime.strptime(timestamps_elves[0], "%H:%M:%S")).seconds / 60.0 for time in timestamps_elves]
@@ -25,7 +39,8 @@ timestamps_elves = [(datetime.strptime(time, "%H:%M:%S") - datetime.strptime(tim
 fig, ax1 = plt.subplots()
 
 # Plot the data points on the subplot and connect them with a line
-ax1.plot(timestamps_elves, runs_elves, '-o', color='orange')
+ax1.plot(timestamps_elves, runs, '-o', color='green')
+ax1.plot(timestamps_reindeer, runs, '-o', color='brown')
 
 # Set the title and x label
 ax1.set_title('Number of runs over time')
