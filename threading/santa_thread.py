@@ -43,16 +43,14 @@ def santa_threads(my_ip, my_port):
                 buffer.extend(message.encode('utf-8'))
                 for port in ports:
                     send_message(f'Santa - {SANTA_PORT}', LOCAL_HOST, port, buffer)
-                global reindeer_runs
-                reindeer_runs += 1
+
+                #global reindeer_runs
+                #reindeer_runs += 1
 
                 # Check for milestones for reindeer
-               # if reindeer_runs % milestone == 0:
-               #     logger.info(f'Reindeer reached {reindeer_runs} runs')
+                #if reindeer_runs % milestone == 0:
+                #    logger.info(f'Reindeer reached {reindeer_runs} runs')
 
-               # # End the game if either the reindeer or the elves reach 10000 runs
-               # if reindeer_runs == endGoal:
-               #     logger.info('Reindeer won')
                     
             elif identifier == 'E': #Identifier is the Elves
                 logger.info("Santa goes to help the elves")
@@ -68,21 +66,19 @@ def santa_threads(my_ip, my_port):
                 buffer.extend(message.encode('utf-8'))
                 for port in recieved_chain:
                     send_message(f'Santa - {SANTA_PORT}', LOCAL_HOST, port, buffer)
+
                 global elve_runs
                 elve_runs += 1
 
-       
                 # Check for milestones for elves
-               # if elve_runs % milestone == 0:
-               #     logger.info(f'Elves reached {elve_runs} runs')  
-               # 
-               # if elve_runs == endGoal:
-               #    logger.info('Elves won')
-            global system_runs
-            system_runs +=1   
+                if elve_runs % milestone == 0:
+                    logger.info(f'Elves reached {elve_runs} runs')  
+                
+          #  global system_runs
+          #  system_runs +=1   
 
-            if system_runs % milestone == 0:
-                logger.info(f'System reached {system_runs} runs')
+          #  if system_runs % milestone == 0:
+          #      logger.info(f'System reached {system_runs} runs')
            
     def listener():
         with socketserver.ThreadingTCPServer((my_ip, my_port), RequestHandler) as server:
@@ -92,15 +88,23 @@ def santa_threads(my_ip, my_port):
             finally:
                 server.server_close()
 
-    def send_message(sender, host, port, buffer):
-        try:
-            logger.info(f"Sending message to {host}:{port}.")
-            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as conn_socket:
-                conn_socket.connect((host, port))
-                conn_socket.sendall(buffer)
 
-        except ConnectionRefusedError:
-            logger.exception(f"{sender} Couldn't connect to " f"{host}:{port}.")
+    def send_message(sender, host, port, buffer, timeout=30):
+        start_time = time.time()
+        while True:
+            try:
+                logger.info(f"Sending message to {host}:{port}.")
+                with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as conn_socket:
+                    conn_socket.connect((host, port))
+                    conn_socket.sendall(buffer)
+                break  # If the message is sent successfully, break the loop
+
+            except ConnectionRefusedError:
+                logger.exception(f"{sender} Couldn't connect to {host}:{port}.")
+                if time.time() - start_time > timeout:
+                    logger.error(f"Timeout after {timeout} seconds while trying to send message to {host}:{port}.")
+                    break  # If timeout has passed, break the loop
+                time.sleep(1)  # Wait for a second before trying again)
 
     sub_threads = [ threading.Thread(target=listener) ]
 

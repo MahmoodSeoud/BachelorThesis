@@ -1,4 +1,2216 @@
-INFO 28/05/2024 10:26:06 Acquired lock
-INFO 28/05/2024 10:26:06 Releasing lock
-INFO 28/05/2024 10:26:06 [8009] - Starting listener: (127.0.0.1:8009)
-INFO 28/05/2024 10:26:06 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:53:25 Acquired lock
+INFO 28/05/2024 16:53:25 Releasing lock
+INFO 28/05/2024 16:53:25 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:53:25 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:53:26 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:53:26 Acquired lock
+INFO 28/05/2024 16:53:26 Releasing lock
+INFO 28/05/2024 16:53:26 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:53:26 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:53:26 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:53:27 Acquired lock
+INFO 28/05/2024 16:53:27 Releasing lock
+INFO 28/05/2024 16:53:27 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:53:27 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:53:27 Releasing lock
+INFO 28/05/2024 16:53:27 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:53:28 Acquired lock
+INFO 28/05/2024 16:53:28 Releasing lock
+INFO 28/05/2024 16:53:28 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:53:28 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:53:28 Releasing lock
+INFO 28/05/2024 16:53:28 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:53:28 Acquired lock
+INFO 28/05/2024 16:53:28 Releasing lock
+INFO 28/05/2024 16:53:28 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:53:29 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:53:29 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:53:30 Acquired lock
+INFO 28/05/2024 16:53:30 Releasing lock
+INFO 28/05/2024 16:53:30 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:53:30 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:53:30 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:53:31 Acquired lock
+INFO 28/05/2024 16:53:31 Releasing lock
+INFO 28/05/2024 16:53:31 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:53:31 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:53:31 Releasing lock
+INFO 28/05/2024 16:53:31 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:53:31 Acquired lock
+INFO 28/05/2024 16:53:31 Releasing lock
+INFO 28/05/2024 16:53:31 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:53:31 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:53:31 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:53:34 Acquired lock
+INFO 28/05/2024 16:53:34 Releasing lock
+INFO 28/05/2024 16:53:34 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:53:34 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:53:34 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:53:36 Acquired lock
+INFO 28/05/2024 16:53:36 Releasing lock
+INFO 28/05/2024 16:53:36 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:53:36 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:53:36 Releasing lock
+INFO 28/05/2024 16:53:36 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:53:36 Acquired lock
+INFO 28/05/2024 16:53:36 Releasing lock
+INFO 28/05/2024 16:53:36 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:53:36 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:53:36 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:53:37 Acquired lock
+INFO 28/05/2024 16:53:37 Releasing lock
+INFO 28/05/2024 16:53:37 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:53:38 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:53:38 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:53:39 Acquired lock
+INFO 28/05/2024 16:53:39 Releasing lock
+INFO 28/05/2024 16:53:39 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:53:39 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:53:39 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:53:42 Acquired lock
+INFO 28/05/2024 16:53:42 Releasing lock
+INFO 28/05/2024 16:53:42 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:53:42 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:53:42 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:53:45 Acquired lock
+INFO 28/05/2024 16:53:45 Releasing lock
+INFO 28/05/2024 16:53:45 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:53:46 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:53:46 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:53:46 Acquired lock
+INFO 28/05/2024 16:53:46 Releasing lock
+INFO 28/05/2024 16:53:46 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:53:46 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:53:46 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:53:54 Acquired lock
+INFO 28/05/2024 16:53:54 Releasing lock
+INFO 28/05/2024 16:53:54 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:53:54 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:53:54 Releasing lock
+INFO 28/05/2024 16:53:54 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:53:58 Acquired lock
+INFO 28/05/2024 16:53:58 Releasing lock
+INFO 28/05/2024 16:53:58 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:53:58 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:53:58 Releasing lock
+INFO 28/05/2024 16:53:58 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:53:58 Acquired lock
+INFO 28/05/2024 16:53:58 Releasing lock
+INFO 28/05/2024 16:53:58 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:53:59 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:53:59 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:54:01 Acquired lock
+INFO 28/05/2024 16:54:01 Releasing lock
+INFO 28/05/2024 16:54:01 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:54:01 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:54:01 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:54:02 Acquired lock
+INFO 28/05/2024 16:54:02 Releasing lock
+INFO 28/05/2024 16:54:02 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:54:02 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:54:02 Releasing lock
+INFO 28/05/2024 16:54:02 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:54:02 Acquired lock
+INFO 28/05/2024 16:54:02 Releasing lock
+INFO 28/05/2024 16:54:02 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:54:02 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:54:02 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:54:06 Acquired lock
+INFO 28/05/2024 16:54:06 Releasing lock
+INFO 28/05/2024 16:54:06 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:54:06 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:54:06 Releasing lock
+INFO 28/05/2024 16:54:06 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:54:06 Acquired lock
+INFO 28/05/2024 16:54:06 Releasing lock
+INFO 28/05/2024 16:54:06 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:54:06 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:54:06 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:54:08 Acquired lock
+INFO 28/05/2024 16:54:08 Releasing lock
+INFO 28/05/2024 16:54:08 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:54:09 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:54:09 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:54:10 Acquired lock
+INFO 28/05/2024 16:54:10 Releasing lock
+INFO 28/05/2024 16:54:10 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:54:10 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:54:10 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:54:11 Acquired lock
+INFO 28/05/2024 16:54:11 Releasing lock
+INFO 28/05/2024 16:54:11 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:54:12 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:54:12 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:54:15 Acquired lock
+INFO 28/05/2024 16:54:15 Releasing lock
+INFO 28/05/2024 16:54:15 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:54:15 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:54:15 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:54:16 Acquired lock
+INFO 28/05/2024 16:54:16 Releasing lock
+INFO 28/05/2024 16:54:16 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:54:16 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:54:16 Releasing lock
+INFO 28/05/2024 16:54:16 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:54:16 Acquired lock
+INFO 28/05/2024 16:54:16 Releasing lock
+INFO 28/05/2024 16:54:16 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:54:16 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:54:17 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:54:17 Acquired lock
+INFO 28/05/2024 16:54:17 Releasing lock
+INFO 28/05/2024 16:54:17 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:54:17 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:54:17 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:54:21 Acquired lock
+INFO 28/05/2024 16:54:21 Releasing lock
+INFO 28/05/2024 16:54:21 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:54:21 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:54:21 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:54:23 Acquired lock
+INFO 28/05/2024 16:54:23 Releasing lock
+INFO 28/05/2024 16:54:23 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:54:23 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:54:23 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:54:25 Acquired lock
+INFO 28/05/2024 16:54:25 Releasing lock
+INFO 28/05/2024 16:54:25 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:54:25 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:54:25 Releasing lock
+INFO 28/05/2024 16:54:25 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:54:25 Acquired lock
+INFO 28/05/2024 16:54:25 Releasing lock
+INFO 28/05/2024 16:54:25 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:54:25 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:54:25 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:54:30 Acquired lock
+INFO 28/05/2024 16:54:30 Releasing lock
+INFO 28/05/2024 16:54:30 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:54:30 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:54:30 Releasing lock
+INFO 28/05/2024 16:54:30 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:54:30 Acquired lock
+INFO 28/05/2024 16:54:30 Releasing lock
+INFO 28/05/2024 16:54:30 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:54:30 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:54:30 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:54:31 Acquired lock
+INFO 28/05/2024 16:54:31 Releasing lock
+INFO 28/05/2024 16:54:31 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:54:31 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:54:31 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:54:32 Acquired lock
+INFO 28/05/2024 16:54:32 Releasing lock
+INFO 28/05/2024 16:54:32 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:54:32 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:54:32 Releasing lock
+INFO 28/05/2024 16:54:32 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:54:32 Acquired lock
+INFO 28/05/2024 16:54:32 Releasing lock
+INFO 28/05/2024 16:54:32 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:54:33 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:54:33 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:54:34 Acquired lock
+INFO 28/05/2024 16:54:34 Releasing lock
+INFO 28/05/2024 16:54:34 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:54:34 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:54:34 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:54:37 Acquired lock
+INFO 28/05/2024 16:54:37 Releasing lock
+INFO 28/05/2024 16:54:37 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:54:37 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:54:37 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:54:38 Acquired lock
+INFO 28/05/2024 16:54:38 Releasing lock
+INFO 28/05/2024 16:54:38 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:54:38 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:54:38 Releasing lock
+INFO 28/05/2024 16:54:38 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:54:38 Acquired lock
+INFO 28/05/2024 16:54:38 Releasing lock
+INFO 28/05/2024 16:54:38 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:54:38 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:54:38 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:54:41 Acquired lock
+INFO 28/05/2024 16:54:41 Releasing lock
+INFO 28/05/2024 16:54:41 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:54:41 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:54:41 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:54:42 Acquired lock
+INFO 28/05/2024 16:54:42 Releasing lock
+INFO 28/05/2024 16:54:42 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:54:43 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:54:43 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:54:45 Acquired lock
+INFO 28/05/2024 16:54:45 Releasing lock
+INFO 28/05/2024 16:54:45 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:54:45 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:54:45 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:54:45 Acquired lock
+INFO 28/05/2024 16:54:45 Releasing lock
+INFO 28/05/2024 16:54:45 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:54:46 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:54:46 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:54:48 Acquired lock
+INFO 28/05/2024 16:54:48 Releasing lock
+INFO 28/05/2024 16:54:48 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:54:48 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:54:48 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:54:50 Acquired lock
+INFO 28/05/2024 16:54:50 Releasing lock
+INFO 28/05/2024 16:54:50 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:54:50 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:54:50 Releasing lock
+INFO 28/05/2024 16:54:50 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:54:50 Acquired lock
+INFO 28/05/2024 16:54:50 Releasing lock
+INFO 28/05/2024 16:54:50 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:54:50 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:54:51 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:54:54 Acquired lock
+INFO 28/05/2024 16:54:54 Releasing lock
+INFO 28/05/2024 16:54:54 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:54:54 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:54:54 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:54:56 Acquired lock
+INFO 28/05/2024 16:54:56 Releasing lock
+INFO 28/05/2024 16:54:56 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:54:56 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:54:56 Releasing lock
+INFO 28/05/2024 16:54:56 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:54:56 Acquired lock
+INFO 28/05/2024 16:54:56 Releasing lock
+INFO 28/05/2024 16:54:56 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:54:56 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:54:56 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:55:03 Acquired lock
+INFO 28/05/2024 16:55:03 Releasing lock
+INFO 28/05/2024 16:55:03 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:55:04 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:55:04 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:55:06 Acquired lock
+INFO 28/05/2024 16:55:06 Releasing lock
+INFO 28/05/2024 16:55:06 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:55:06 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:55:06 Releasing lock
+INFO 28/05/2024 16:55:06 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:55:06 Acquired lock
+INFO 28/05/2024 16:55:06 Releasing lock
+INFO 28/05/2024 16:55:06 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:55:06 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:55:06 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:55:18 Acquired lock
+INFO 28/05/2024 16:55:18 Releasing lock
+INFO 28/05/2024 16:55:18 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:55:18 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:55:18 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:55:23 Acquired lock
+INFO 28/05/2024 16:55:23 Releasing lock
+INFO 28/05/2024 16:55:23 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:55:23 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:55:23 Releasing lock
+INFO 28/05/2024 16:55:24 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:55:24 Acquired lock
+INFO 28/05/2024 16:55:24 Releasing lock
+INFO 28/05/2024 16:55:24 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:55:24 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:55:24 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:55:24 Acquired lock
+INFO 28/05/2024 16:55:24 Releasing lock
+INFO 28/05/2024 16:55:24 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:55:25 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:55:25 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:55:25 Acquired lock
+INFO 28/05/2024 16:55:25 Releasing lock
+INFO 28/05/2024 16:55:25 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:55:25 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:55:25 Releasing lock
+INFO 28/05/2024 16:55:25 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:55:25 Acquired lock
+INFO 28/05/2024 16:55:25 Releasing lock
+INFO 28/05/2024 16:55:25 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:55:26 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:55:26 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:55:27 Acquired lock
+INFO 28/05/2024 16:55:27 Releasing lock
+INFO 28/05/2024 16:55:27 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:55:27 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:55:27 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:55:28 Acquired lock
+INFO 28/05/2024 16:55:28 Releasing lock
+INFO 28/05/2024 16:55:28 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:55:28 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:55:28 Releasing lock
+INFO 28/05/2024 16:55:28 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:55:28 Acquired lock
+INFO 28/05/2024 16:55:28 Releasing lock
+INFO 28/05/2024 16:55:28 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:55:29 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:55:29 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:55:29 Acquired lock
+INFO 28/05/2024 16:55:29 Releasing lock
+INFO 28/05/2024 16:55:29 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:55:30 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:55:30 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:55:38 Acquired lock
+INFO 28/05/2024 16:55:38 Releasing lock
+INFO 28/05/2024 16:55:38 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:55:38 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:55:38 Releasing lock
+INFO 28/05/2024 16:55:38 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:55:38 Acquired lock
+INFO 28/05/2024 16:55:38 Releasing lock
+INFO 28/05/2024 16:55:38 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:55:39 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:55:39 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:55:41 Acquired lock
+INFO 28/05/2024 16:55:41 Releasing lock
+INFO 28/05/2024 16:55:41 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:55:41 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:55:41 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:55:43 Acquired lock
+INFO 28/05/2024 16:55:43 Releasing lock
+INFO 28/05/2024 16:55:43 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:55:43 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:55:43 Releasing lock
+INFO 28/05/2024 16:55:43 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:55:45 Acquired lock
+INFO 28/05/2024 16:55:45 Releasing lock
+INFO 28/05/2024 16:55:45 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:55:45 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:55:45 Releasing lock
+INFO 28/05/2024 16:55:46 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:55:46 Acquired lock
+INFO 28/05/2024 16:55:46 Releasing lock
+INFO 28/05/2024 16:55:46 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:55:46 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:55:46 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:55:48 Acquired lock
+INFO 28/05/2024 16:55:48 Releasing lock
+INFO 28/05/2024 16:55:48 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:55:48 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:55:48 Releasing lock
+INFO 28/05/2024 16:55:48 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:55:48 Acquired lock
+INFO 28/05/2024 16:55:48 Releasing lock
+INFO 28/05/2024 16:55:48 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:55:48 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:55:49 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:55:51 Acquired lock
+INFO 28/05/2024 16:55:51 Releasing lock
+INFO 28/05/2024 16:55:51 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:55:51 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:55:51 Releasing lock
+INFO 28/05/2024 16:55:51 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:55:51 Acquired lock
+INFO 28/05/2024 16:55:51 Releasing lock
+INFO 28/05/2024 16:55:51 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:55:51 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:55:52 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:55:53 Acquired lock
+INFO 28/05/2024 16:55:53 Releasing lock
+INFO 28/05/2024 16:55:53 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:55:53 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:55:53 Releasing lock
+INFO 28/05/2024 16:55:54 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:55:54 Acquired lock
+INFO 28/05/2024 16:55:54 Releasing lock
+INFO 28/05/2024 16:55:54 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:55:54 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:55:54 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:55:58 Acquired lock
+INFO 28/05/2024 16:55:58 Releasing lock
+INFO 28/05/2024 16:55:58 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:55:58 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:55:58 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:56:01 Acquired lock
+INFO 28/05/2024 16:56:01 Releasing lock
+INFO 28/05/2024 16:56:01 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:56:01 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:56:01 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:56:04 Acquired lock
+INFO 28/05/2024 16:56:04 Releasing lock
+INFO 28/05/2024 16:56:04 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:56:04 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:56:04 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:56:05 Acquired lock
+INFO 28/05/2024 16:56:05 Releasing lock
+INFO 28/05/2024 16:56:05 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:56:05 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:56:05 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:56:05 Acquired lock
+INFO 28/05/2024 16:56:05 Releasing lock
+INFO 28/05/2024 16:56:05 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:56:05 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:56:05 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:56:06 Acquired lock
+INFO 28/05/2024 16:56:06 Releasing lock
+INFO 28/05/2024 16:56:06 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:56:06 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:56:06 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:56:08 Acquired lock
+INFO 28/05/2024 16:56:08 Releasing lock
+INFO 28/05/2024 16:56:08 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:56:08 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:56:08 Releasing lock
+INFO 28/05/2024 16:56:09 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:56:09 Acquired lock
+INFO 28/05/2024 16:56:09 Releasing lock
+INFO 28/05/2024 16:56:09 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:56:09 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:56:09 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:56:11 Acquired lock
+INFO 28/05/2024 16:56:11 Releasing lock
+INFO 28/05/2024 16:56:11 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:56:11 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:56:11 Releasing lock
+INFO 28/05/2024 16:56:11 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:56:11 Acquired lock
+INFO 28/05/2024 16:56:11 Releasing lock
+INFO 28/05/2024 16:56:11 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:56:11 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:56:12 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:56:13 Acquired lock
+INFO 28/05/2024 16:56:13 Releasing lock
+INFO 28/05/2024 16:56:13 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:56:13 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:56:13 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:56:14 Acquired lock
+INFO 28/05/2024 16:56:14 Releasing lock
+INFO 28/05/2024 16:56:14 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:56:14 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:56:14 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:56:16 Acquired lock
+INFO 28/05/2024 16:56:16 Releasing lock
+INFO 28/05/2024 16:56:16 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:56:17 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:56:17 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:56:18 Acquired lock
+INFO 28/05/2024 16:56:18 Releasing lock
+INFO 28/05/2024 16:56:18 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:56:18 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:56:18 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:56:20 Acquired lock
+INFO 28/05/2024 16:56:20 Releasing lock
+INFO 28/05/2024 16:56:20 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:56:20 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:56:20 Releasing lock
+INFO 28/05/2024 16:56:20 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:56:20 Acquired lock
+INFO 28/05/2024 16:56:20 Releasing lock
+INFO 28/05/2024 16:56:20 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:56:20 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:56:20 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:56:22 Acquired lock
+INFO 28/05/2024 16:56:22 Releasing lock
+INFO 28/05/2024 16:56:22 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:56:22 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:56:22 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:56:24 Acquired lock
+INFO 28/05/2024 16:56:24 Releasing lock
+INFO 28/05/2024 16:56:24 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:56:24 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:56:24 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:56:29 Acquired lock
+INFO 28/05/2024 16:56:29 Releasing lock
+INFO 28/05/2024 16:56:29 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:56:29 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:56:29 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:56:30 Acquired lock
+INFO 28/05/2024 16:56:30 Releasing lock
+INFO 28/05/2024 16:56:30 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:56:30 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:56:30 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:56:35 Acquired lock
+INFO 28/05/2024 16:56:35 Releasing lock
+INFO 28/05/2024 16:56:35 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:56:35 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:56:35 Releasing lock
+INFO 28/05/2024 16:56:35 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:56:36 Acquired lock
+INFO 28/05/2024 16:56:36 Releasing lock
+INFO 28/05/2024 16:56:36 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:56:36 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:56:36 Releasing lock
+INFO 28/05/2024 16:56:37 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:56:37 Acquired lock
+INFO 28/05/2024 16:56:37 Releasing lock
+INFO 28/05/2024 16:56:37 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:56:37 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:56:37 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:56:39 Acquired lock
+INFO 28/05/2024 16:56:39 Releasing lock
+INFO 28/05/2024 16:56:39 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:56:39 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:56:39 Releasing lock
+INFO 28/05/2024 16:56:39 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:56:39 Acquired lock
+INFO 28/05/2024 16:56:39 Releasing lock
+INFO 28/05/2024 16:56:39 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:56:39 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:56:39 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:56:43 Acquired lock
+INFO 28/05/2024 16:56:43 Releasing lock
+INFO 28/05/2024 16:56:43 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:56:43 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:56:43 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:56:46 Acquired lock
+INFO 28/05/2024 16:56:46 Releasing lock
+INFO 28/05/2024 16:56:46 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:56:46 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:56:46 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:56:53 Acquired lock
+INFO 28/05/2024 16:56:53 Releasing lock
+INFO 28/05/2024 16:56:53 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:56:53 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:56:53 Releasing lock
+INFO 28/05/2024 16:56:53 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:56:53 Acquired lock
+INFO 28/05/2024 16:56:53 Releasing lock
+INFO 28/05/2024 16:56:53 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:56:53 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:56:54 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:57:02 Acquired lock
+INFO 28/05/2024 16:57:02 Releasing lock
+INFO 28/05/2024 16:57:02 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:57:02 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:57:02 Releasing lock
+INFO 28/05/2024 16:57:02 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:57:02 Acquired lock
+INFO 28/05/2024 16:57:02 Releasing lock
+INFO 28/05/2024 16:57:02 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:57:02 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:57:02 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:57:03 Acquired lock
+INFO 28/05/2024 16:57:03 Releasing lock
+INFO 28/05/2024 16:57:03 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:57:03 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:57:03 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:57:05 Acquired lock
+INFO 28/05/2024 16:57:05 Releasing lock
+INFO 28/05/2024 16:57:05 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:57:05 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:57:05 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:57:12 Acquired lock
+INFO 28/05/2024 16:57:12 Releasing lock
+INFO 28/05/2024 16:57:12 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:57:12 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:57:12 Releasing lock
+INFO 28/05/2024 16:57:12 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:57:13 Acquired lock
+INFO 28/05/2024 16:57:13 Releasing lock
+INFO 28/05/2024 16:57:13 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:57:13 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:57:13 Releasing lock
+INFO 28/05/2024 16:57:13 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:57:13 Acquired lock
+INFO 28/05/2024 16:57:13 Releasing lock
+INFO 28/05/2024 16:57:13 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:57:13 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:57:13 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:57:18 Acquired lock
+INFO 28/05/2024 16:57:18 Releasing lock
+INFO 28/05/2024 16:57:18 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:57:18 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:57:18 Releasing lock
+INFO 28/05/2024 16:57:18 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:57:18 Acquired lock
+INFO 28/05/2024 16:57:18 Releasing lock
+INFO 28/05/2024 16:57:18 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:57:19 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:57:19 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:57:24 Acquired lock
+INFO 28/05/2024 16:57:24 Releasing lock
+INFO 28/05/2024 16:57:24 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:57:24 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:57:24 Releasing lock
+INFO 28/05/2024 16:57:24 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:57:24 Acquired lock
+INFO 28/05/2024 16:57:24 Releasing lock
+INFO 28/05/2024 16:57:24 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:57:24 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:57:24 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:57:27 Acquired lock
+INFO 28/05/2024 16:57:27 Releasing lock
+INFO 28/05/2024 16:57:27 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:57:27 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:57:27 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:57:28 Acquired lock
+INFO 28/05/2024 16:57:28 Releasing lock
+INFO 28/05/2024 16:57:28 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:57:29 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:57:29 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:57:31 Acquired lock
+INFO 28/05/2024 16:57:31 Releasing lock
+INFO 28/05/2024 16:57:31 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:57:32 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:57:32 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:57:38 Acquired lock
+INFO 28/05/2024 16:57:38 Releasing lock
+INFO 28/05/2024 16:57:38 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:57:38 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:57:38 Releasing lock
+INFO 28/05/2024 16:57:38 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:57:38 Acquired lock
+INFO 28/05/2024 16:57:38 Releasing lock
+INFO 28/05/2024 16:57:38 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:57:38 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:57:39 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:57:40 Acquired lock
+INFO 28/05/2024 16:57:40 Releasing lock
+INFO 28/05/2024 16:57:40 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:57:40 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:57:40 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:57:50 Acquired lock
+INFO 28/05/2024 16:57:50 Releasing lock
+INFO 28/05/2024 16:57:50 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:57:50 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:57:50 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:57:51 Acquired lock
+INFO 28/05/2024 16:57:51 Releasing lock
+INFO 28/05/2024 16:57:51 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:57:51 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:57:51 Releasing lock
+INFO 28/05/2024 16:57:51 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:57:51 Acquired lock
+INFO 28/05/2024 16:57:51 Releasing lock
+INFO 28/05/2024 16:57:51 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:57:51 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:57:52 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:57:53 Acquired lock
+INFO 28/05/2024 16:57:53 Releasing lock
+INFO 28/05/2024 16:57:53 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:57:53 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:57:53 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:57:55 Acquired lock
+INFO 28/05/2024 16:57:55 Releasing lock
+INFO 28/05/2024 16:57:55 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:57:55 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:57:55 Releasing lock
+INFO 28/05/2024 16:57:55 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:57:55 Acquired lock
+INFO 28/05/2024 16:57:55 Releasing lock
+INFO 28/05/2024 16:57:55 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:57:55 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:57:55 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:57:56 Acquired lock
+INFO 28/05/2024 16:57:56 Releasing lock
+INFO 28/05/2024 16:57:56 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:57:56 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:57:56 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:57:57 Acquired lock
+INFO 28/05/2024 16:57:57 Releasing lock
+INFO 28/05/2024 16:57:57 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:57:57 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:57:57 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:57:59 Acquired lock
+INFO 28/05/2024 16:57:59 Releasing lock
+INFO 28/05/2024 16:57:59 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:57:59 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:57:59 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:58:02 Acquired lock
+INFO 28/05/2024 16:58:02 Releasing lock
+INFO 28/05/2024 16:58:02 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:58:02 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:58:02 Releasing lock
+INFO 28/05/2024 16:58:02 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:58:02 Acquired lock
+INFO 28/05/2024 16:58:02 Releasing lock
+INFO 28/05/2024 16:58:02 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:58:02 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:58:03 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:58:06 Acquired lock
+INFO 28/05/2024 16:58:06 Releasing lock
+INFO 28/05/2024 16:58:06 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:58:06 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:58:06 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:58:07 Acquired lock
+INFO 28/05/2024 16:58:07 Releasing lock
+INFO 28/05/2024 16:58:07 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:58:07 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:58:07 Releasing lock
+INFO 28/05/2024 16:58:07 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:58:07 Acquired lock
+INFO 28/05/2024 16:58:07 Releasing lock
+INFO 28/05/2024 16:58:07 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:58:07 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:58:08 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:58:09 Acquired lock
+INFO 28/05/2024 16:58:09 Releasing lock
+INFO 28/05/2024 16:58:09 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:58:09 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:58:09 Releasing lock
+INFO 28/05/2024 16:58:09 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:58:09 Acquired lock
+INFO 28/05/2024 16:58:09 Releasing lock
+INFO 28/05/2024 16:58:09 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:58:09 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:58:09 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:58:10 Acquired lock
+INFO 28/05/2024 16:58:10 Releasing lock
+INFO 28/05/2024 16:58:10 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:58:10 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:58:10 Releasing lock
+INFO 28/05/2024 16:58:10 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:58:10 Acquired lock
+INFO 28/05/2024 16:58:10 Releasing lock
+INFO 28/05/2024 16:58:10 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:58:10 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:58:11 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:58:12 Acquired lock
+INFO 28/05/2024 16:58:12 Releasing lock
+INFO 28/05/2024 16:58:12 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:58:12 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:58:12 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:58:14 Acquired lock
+INFO 28/05/2024 16:58:14 Releasing lock
+INFO 28/05/2024 16:58:14 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:58:14 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:58:14 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:58:18 Acquired lock
+INFO 28/05/2024 16:58:18 Releasing lock
+INFO 28/05/2024 16:58:18 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:58:18 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:58:18 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:58:18 Acquired lock
+INFO 28/05/2024 16:58:18 Releasing lock
+INFO 28/05/2024 16:58:18 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:58:18 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:58:19 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:58:20 Acquired lock
+INFO 28/05/2024 16:58:20 Releasing lock
+INFO 28/05/2024 16:58:20 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:58:20 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:58:20 Releasing lock
+INFO 28/05/2024 16:58:20 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:58:20 Acquired lock
+INFO 28/05/2024 16:58:20 Releasing lock
+INFO 28/05/2024 16:58:20 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:58:20 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:58:20 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:58:23 Acquired lock
+INFO 28/05/2024 16:58:23 Releasing lock
+INFO 28/05/2024 16:58:23 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:58:23 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:58:23 Releasing lock
+INFO 28/05/2024 16:58:23 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:58:23 Acquired lock
+INFO 28/05/2024 16:58:23 Releasing lock
+INFO 28/05/2024 16:58:23 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:58:23 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:58:24 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:58:24 Acquired lock
+INFO 28/05/2024 16:58:24 Releasing lock
+INFO 28/05/2024 16:58:24 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:58:24 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:58:24 Releasing lock
+INFO 28/05/2024 16:58:24 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:58:24 Acquired lock
+INFO 28/05/2024 16:58:24 Releasing lock
+INFO 28/05/2024 16:58:24 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:58:25 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:58:25 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:58:37 Acquired lock
+INFO 28/05/2024 16:58:37 Releasing lock
+INFO 28/05/2024 16:58:37 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:58:37 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:58:37 Releasing lock
+INFO 28/05/2024 16:58:37 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:58:38 Acquired lock
+INFO 28/05/2024 16:58:38 Releasing lock
+INFO 28/05/2024 16:58:38 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:58:38 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:58:38 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:58:41 Acquired lock
+INFO 28/05/2024 16:58:41 Releasing lock
+INFO 28/05/2024 16:58:41 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:58:41 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:58:41 Releasing lock
+INFO 28/05/2024 16:58:41 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:58:41 Acquired lock
+INFO 28/05/2024 16:58:41 Releasing lock
+INFO 28/05/2024 16:58:41 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:58:41 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:58:41 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:58:44 Acquired lock
+INFO 28/05/2024 16:58:44 Releasing lock
+INFO 28/05/2024 16:58:44 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:58:44 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:58:44 Releasing lock
+INFO 28/05/2024 16:58:44 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:58:44 Acquired lock
+INFO 28/05/2024 16:58:44 Releasing lock
+INFO 28/05/2024 16:58:44 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:58:44 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:58:44 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:58:45 Acquired lock
+INFO 28/05/2024 16:58:45 Releasing lock
+INFO 28/05/2024 16:58:45 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:58:46 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:58:46 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:58:47 Acquired lock
+INFO 28/05/2024 16:58:47 Releasing lock
+INFO 28/05/2024 16:58:47 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:58:47 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:58:47 Releasing lock
+INFO 28/05/2024 16:58:48 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:58:49 Acquired lock
+INFO 28/05/2024 16:58:49 Releasing lock
+INFO 28/05/2024 16:58:49 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:58:49 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:58:49 Releasing lock
+INFO 28/05/2024 16:58:50 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:58:50 Acquired lock
+INFO 28/05/2024 16:58:50 Releasing lock
+INFO 28/05/2024 16:58:50 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:58:50 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:58:50 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:58:51 Acquired lock
+INFO 28/05/2024 16:58:51 Releasing lock
+INFO 28/05/2024 16:58:51 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:58:51 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:58:51 Releasing lock
+INFO 28/05/2024 16:58:51 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:58:51 Acquired lock
+INFO 28/05/2024 16:58:51 Releasing lock
+INFO 28/05/2024 16:58:51 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:58:52 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:58:52 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:58:54 Acquired lock
+INFO 28/05/2024 16:58:54 Releasing lock
+INFO 28/05/2024 16:58:54 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:58:54 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:58:54 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:58:55 Acquired lock
+INFO 28/05/2024 16:58:55 Releasing lock
+INFO 28/05/2024 16:58:55 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:58:55 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:58:55 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:58:59 Acquired lock
+INFO 28/05/2024 16:58:59 Releasing lock
+INFO 28/05/2024 16:58:59 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:58:59 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:58:59 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:59:00 Acquired lock
+INFO 28/05/2024 16:59:00 Releasing lock
+INFO 28/05/2024 16:59:00 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:59:00 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:59:00 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:59:03 Acquired lock
+INFO 28/05/2024 16:59:03 Releasing lock
+INFO 28/05/2024 16:59:03 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:59:03 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:59:03 Releasing lock
+INFO 28/05/2024 16:59:03 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:59:03 Acquired lock
+INFO 28/05/2024 16:59:03 Releasing lock
+INFO 28/05/2024 16:59:03 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:59:03 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:59:03 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:59:07 Acquired lock
+INFO 28/05/2024 16:59:07 Releasing lock
+INFO 28/05/2024 16:59:07 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:59:07 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:59:07 Releasing lock
+INFO 28/05/2024 16:59:07 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:59:07 Acquired lock
+INFO 28/05/2024 16:59:07 Releasing lock
+INFO 28/05/2024 16:59:07 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:59:08 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:59:08 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:59:14 Acquired lock
+INFO 28/05/2024 16:59:14 Releasing lock
+INFO 28/05/2024 16:59:14 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:59:14 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:59:15 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:59:16 Acquired lock
+INFO 28/05/2024 16:59:16 Releasing lock
+INFO 28/05/2024 16:59:16 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:59:16 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:59:16 Releasing lock
+INFO 28/05/2024 16:59:16 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:59:16 Acquired lock
+INFO 28/05/2024 16:59:16 Releasing lock
+INFO 28/05/2024 16:59:16 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:59:16 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:59:16 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:59:20 Acquired lock
+INFO 28/05/2024 16:59:20 Releasing lock
+INFO 28/05/2024 16:59:20 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:59:20 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:59:20 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:59:21 Acquired lock
+INFO 28/05/2024 16:59:21 Releasing lock
+INFO 28/05/2024 16:59:21 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:59:21 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:59:21 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:59:22 Acquired lock
+INFO 28/05/2024 16:59:22 Releasing lock
+INFO 28/05/2024 16:59:22 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:59:22 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:59:22 Releasing lock
+INFO 28/05/2024 16:59:22 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:59:22 Acquired lock
+INFO 28/05/2024 16:59:22 Releasing lock
+INFO 28/05/2024 16:59:22 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:59:22 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:59:23 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:59:25 Acquired lock
+INFO 28/05/2024 16:59:25 Releasing lock
+INFO 28/05/2024 16:59:25 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:59:25 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:59:25 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:59:30 Acquired lock
+INFO 28/05/2024 16:59:30 Releasing lock
+INFO 28/05/2024 16:59:30 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:59:30 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:59:30 Releasing lock
+INFO 28/05/2024 16:59:30 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:59:30 Acquired lock
+INFO 28/05/2024 16:59:30 Releasing lock
+INFO 28/05/2024 16:59:30 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:59:30 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:59:31 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:59:31 Acquired lock
+INFO 28/05/2024 16:59:31 Releasing lock
+INFO 28/05/2024 16:59:31 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:59:31 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:59:31 Releasing lock
+INFO 28/05/2024 16:59:31 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:59:31 Acquired lock
+INFO 28/05/2024 16:59:31 Releasing lock
+INFO 28/05/2024 16:59:31 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:59:32 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:59:32 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:59:34 Acquired lock
+INFO 28/05/2024 16:59:34 Releasing lock
+INFO 28/05/2024 16:59:34 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:59:34 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:59:34 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:59:37 Acquired lock
+INFO 28/05/2024 16:59:37 Releasing lock
+INFO 28/05/2024 16:59:37 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:59:37 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:59:37 Releasing lock
+INFO 28/05/2024 16:59:38 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:59:39 Acquired lock
+INFO 28/05/2024 16:59:39 Releasing lock
+INFO 28/05/2024 16:59:39 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:59:39 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:59:39 Releasing lock
+INFO 28/05/2024 16:59:40 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:59:40 Acquired lock
+INFO 28/05/2024 16:59:40 Releasing lock
+INFO 28/05/2024 16:59:40 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:59:40 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:59:40 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:59:40 Acquired lock
+INFO 28/05/2024 16:59:40 Releasing lock
+INFO 28/05/2024 16:59:40 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:59:40 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:59:41 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:59:41 Acquired lock
+INFO 28/05/2024 16:59:41 Releasing lock
+INFO 28/05/2024 16:59:41 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:59:41 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:59:41 Releasing lock
+INFO 28/05/2024 16:59:41 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:59:41 Acquired lock
+INFO 28/05/2024 16:59:41 Releasing lock
+INFO 28/05/2024 16:59:41 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:59:42 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:59:42 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:59:43 Acquired lock
+INFO 28/05/2024 16:59:43 Releasing lock
+INFO 28/05/2024 16:59:43 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:59:43 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:59:43 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:59:44 Acquired lock
+INFO 28/05/2024 16:59:44 Releasing lock
+INFO 28/05/2024 16:59:44 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:59:44 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:59:44 Releasing lock
+INFO 28/05/2024 16:59:44 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:59:44 Acquired lock
+INFO 28/05/2024 16:59:44 Releasing lock
+INFO 28/05/2024 16:59:44 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:59:44 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:59:44 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:59:47 Acquired lock
+INFO 28/05/2024 16:59:47 Releasing lock
+INFO 28/05/2024 16:59:47 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:59:47 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:59:47 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:59:49 Acquired lock
+INFO 28/05/2024 16:59:49 Releasing lock
+INFO 28/05/2024 16:59:49 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:59:49 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:59:49 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:59:51 Acquired lock
+INFO 28/05/2024 16:59:51 Releasing lock
+INFO 28/05/2024 16:59:51 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:59:51 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:59:51 Releasing lock
+INFO 28/05/2024 16:59:51 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:59:51 Acquired lock
+INFO 28/05/2024 16:59:51 Releasing lock
+INFO 28/05/2024 16:59:51 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:59:51 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:59:52 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:59:53 Acquired lock
+INFO 28/05/2024 16:59:53 Releasing lock
+INFO 28/05/2024 16:59:53 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:59:53 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:59:53 Releasing lock
+INFO 28/05/2024 16:59:53 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:59:53 Acquired lock
+INFO 28/05/2024 16:59:53 Releasing lock
+INFO 28/05/2024 16:59:53 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:59:53 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:59:54 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:59:57 Acquired lock
+INFO 28/05/2024 16:59:57 Releasing lock
+INFO 28/05/2024 16:59:57 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:59:57 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:59:57 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 16:59:58 Acquired lock
+INFO 28/05/2024 16:59:58 Releasing lock
+INFO 28/05/2024 16:59:58 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 16:59:59 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 16:59:59 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:03 Acquired lock
+INFO 28/05/2024 17:00:03 Releasing lock
+INFO 28/05/2024 17:00:03 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:03 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:03 Releasing lock
+INFO 28/05/2024 17:00:03 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:03 Acquired lock
+INFO 28/05/2024 17:00:03 Releasing lock
+INFO 28/05/2024 17:00:03 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:03 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:04 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:04 Acquired lock
+INFO 28/05/2024 17:00:04 Releasing lock
+INFO 28/05/2024 17:00:04 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:04 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:04 Releasing lock
+INFO 28/05/2024 17:00:04 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:04 Acquired lock
+INFO 28/05/2024 17:00:04 Releasing lock
+INFO 28/05/2024 17:00:04 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:05 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:05 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:06 Acquired lock
+INFO 28/05/2024 17:00:06 Releasing lock
+INFO 28/05/2024 17:00:06 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:06 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:06 Releasing lock
+INFO 28/05/2024 17:00:06 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:06 Acquired lock
+INFO 28/05/2024 17:00:06 Releasing lock
+INFO 28/05/2024 17:00:06 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:06 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:07 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:08 Acquired lock
+INFO 28/05/2024 17:00:08 Releasing lock
+INFO 28/05/2024 17:00:08 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:08 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:08 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:12 Acquired lock
+INFO 28/05/2024 17:00:12 Releasing lock
+INFO 28/05/2024 17:00:12 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:12 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:12 Releasing lock
+INFO 28/05/2024 17:00:12 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:12 Acquired lock
+INFO 28/05/2024 17:00:12 Releasing lock
+INFO 28/05/2024 17:00:12 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:13 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:13 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:14 Acquired lock
+INFO 28/05/2024 17:00:14 Releasing lock
+INFO 28/05/2024 17:00:14 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:14 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:14 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:15 Acquired lock
+INFO 28/05/2024 17:00:15 Releasing lock
+INFO 28/05/2024 17:00:15 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:15 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:15 Releasing lock
+INFO 28/05/2024 17:00:15 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:15 Acquired lock
+INFO 28/05/2024 17:00:15 Releasing lock
+INFO 28/05/2024 17:00:15 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:15 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:15 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:16 Acquired lock
+INFO 28/05/2024 17:00:16 Releasing lock
+INFO 28/05/2024 17:00:16 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:16 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:16 Releasing lock
+INFO 28/05/2024 17:00:17 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:17 Acquired lock
+INFO 28/05/2024 17:00:17 Releasing lock
+INFO 28/05/2024 17:00:17 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:17 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:17 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:18 Acquired lock
+INFO 28/05/2024 17:00:18 Releasing lock
+INFO 28/05/2024 17:00:18 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:18 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:18 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:20 Acquired lock
+INFO 28/05/2024 17:00:20 Releasing lock
+INFO 28/05/2024 17:00:20 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:20 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:20 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:23 Acquired lock
+INFO 28/05/2024 17:00:23 Releasing lock
+INFO 28/05/2024 17:00:23 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:23 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:23 Releasing lock
+INFO 28/05/2024 17:00:23 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:23 Acquired lock
+INFO 28/05/2024 17:00:23 Releasing lock
+INFO 28/05/2024 17:00:23 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:23 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:23 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:25 Acquired lock
+INFO 28/05/2024 17:00:25 Releasing lock
+INFO 28/05/2024 17:00:25 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:25 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:25 Releasing lock
+INFO 28/05/2024 17:00:25 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:25 Acquired lock
+INFO 28/05/2024 17:00:25 Releasing lock
+INFO 28/05/2024 17:00:25 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:26 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:26 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:26 Acquired lock
+INFO 28/05/2024 17:00:26 Releasing lock
+INFO 28/05/2024 17:00:26 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:26 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:26 Releasing lock
+INFO 28/05/2024 17:00:27 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:27 Acquired lock
+INFO 28/05/2024 17:00:27 Releasing lock
+INFO 28/05/2024 17:00:27 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:27 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:27 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:28 Acquired lock
+INFO 28/05/2024 17:00:28 Releasing lock
+INFO 28/05/2024 17:00:28 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:28 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:28 Releasing lock
+INFO 28/05/2024 17:00:28 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:28 Acquired lock
+INFO 28/05/2024 17:00:28 Releasing lock
+INFO 28/05/2024 17:00:28 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:29 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:29 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:30 Acquired lock
+INFO 28/05/2024 17:00:30 Releasing lock
+INFO 28/05/2024 17:00:30 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:30 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:30 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:31 Acquired lock
+INFO 28/05/2024 17:00:31 Releasing lock
+INFO 28/05/2024 17:00:31 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:31 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:31 Releasing lock
+INFO 28/05/2024 17:00:31 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:31 Acquired lock
+INFO 28/05/2024 17:00:31 Releasing lock
+INFO 28/05/2024 17:00:31 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:31 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:31 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:36 Acquired lock
+INFO 28/05/2024 17:00:36 Releasing lock
+INFO 28/05/2024 17:00:36 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:36 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:36 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:37 Acquired lock
+INFO 28/05/2024 17:00:37 Releasing lock
+INFO 28/05/2024 17:00:37 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:37 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:37 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:39 Acquired lock
+INFO 28/05/2024 17:00:39 Releasing lock
+INFO 28/05/2024 17:00:39 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:39 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:39 Releasing lock
+INFO 28/05/2024 17:00:39 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:39 Acquired lock
+INFO 28/05/2024 17:00:39 Releasing lock
+INFO 28/05/2024 17:00:39 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:39 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:39 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:42 Acquired lock
+INFO 28/05/2024 17:00:42 Releasing lock
+INFO 28/05/2024 17:00:42 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:42 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:42 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:48 Acquired lock
+INFO 28/05/2024 17:00:48 Releasing lock
+INFO 28/05/2024 17:00:48 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:49 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:49 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:51 Acquired lock
+INFO 28/05/2024 17:00:51 Releasing lock
+INFO 28/05/2024 17:00:51 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:51 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:51 Releasing lock
+INFO 28/05/2024 17:00:51 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:51 Acquired lock
+INFO 28/05/2024 17:00:51 Releasing lock
+INFO 28/05/2024 17:00:51 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:51 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:52 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:52 Acquired lock
+INFO 28/05/2024 17:00:52 Releasing lock
+INFO 28/05/2024 17:00:52 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:52 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:52 Releasing lock
+INFO 28/05/2024 17:00:53 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:53 Acquired lock
+INFO 28/05/2024 17:00:53 Releasing lock
+INFO 28/05/2024 17:00:53 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:53 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:53 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:54 Acquired lock
+INFO 28/05/2024 17:00:54 Releasing lock
+INFO 28/05/2024 17:00:54 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:54 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:54 Releasing lock
+INFO 28/05/2024 17:00:54 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:54 Acquired lock
+INFO 28/05/2024 17:00:54 Releasing lock
+INFO 28/05/2024 17:00:54 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:54 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:54 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:58 Acquired lock
+INFO 28/05/2024 17:00:58 Releasing lock
+INFO 28/05/2024 17:00:58 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:58 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:00:58 Releasing lock
+INFO 28/05/2024 17:00:58 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:58 Acquired lock
+INFO 28/05/2024 17:00:58 Releasing lock
+INFO 28/05/2024 17:00:58 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:00:58 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:00:58 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:01:00 Acquired lock
+INFO 28/05/2024 17:01:00 Releasing lock
+INFO 28/05/2024 17:01:00 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:01:00 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:01:00 Releasing lock
+INFO 28/05/2024 17:01:00 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:01:00 Acquired lock
+INFO 28/05/2024 17:01:00 Releasing lock
+INFO 28/05/2024 17:01:00 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:01:00 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:01:00 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:01:02 Acquired lock
+INFO 28/05/2024 17:01:02 Releasing lock
+INFO 28/05/2024 17:01:02 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:01:02 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:01:02 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:01:06 Acquired lock
+INFO 28/05/2024 17:01:06 Releasing lock
+INFO 28/05/2024 17:01:06 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:01:06 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:01:06 Releasing lock
+INFO 28/05/2024 17:01:07 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:01:07 Acquired lock
+INFO 28/05/2024 17:01:07 Releasing lock
+INFO 28/05/2024 17:01:07 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:01:07 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:01:07 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:01:11 Acquired lock
+INFO 28/05/2024 17:01:11 Releasing lock
+INFO 28/05/2024 17:01:11 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:01:11 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:01:11 Releasing lock
+INFO 28/05/2024 17:01:11 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:01:11 Acquired lock
+INFO 28/05/2024 17:01:11 Releasing lock
+INFO 28/05/2024 17:01:11 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:01:11 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:01:11 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:01:15 Acquired lock
+INFO 28/05/2024 17:01:15 Releasing lock
+INFO 28/05/2024 17:01:15 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:01:15 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:01:15 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:01:16 Acquired lock
+INFO 28/05/2024 17:01:16 Releasing lock
+INFO 28/05/2024 17:01:16 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:01:16 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:01:16 Releasing lock
+INFO 28/05/2024 17:01:17 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:01:17 Acquired lock
+INFO 28/05/2024 17:01:17 Releasing lock
+INFO 28/05/2024 17:01:17 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:01:17 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:01:17 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:01:18 Acquired lock
+INFO 28/05/2024 17:01:18 Releasing lock
+INFO 28/05/2024 17:01:18 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:01:18 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:01:18 Releasing lock
+INFO 28/05/2024 17:01:18 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:01:19 Acquired lock
+INFO 28/05/2024 17:01:19 Releasing lock
+INFO 28/05/2024 17:01:19 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:01:19 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:01:19 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:01:22 Acquired lock
+INFO 28/05/2024 17:01:22 Releasing lock
+INFO 28/05/2024 17:01:22 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:01:22 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:01:22 Releasing lock
+INFO 28/05/2024 17:01:22 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:01:22 Acquired lock
+INFO 28/05/2024 17:01:22 Releasing lock
+INFO 28/05/2024 17:01:22 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:01:22 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:01:23 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:01:27 Acquired lock
+INFO 28/05/2024 17:01:27 Releasing lock
+INFO 28/05/2024 17:01:27 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:01:27 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:01:27 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:01:28 Acquired lock
+INFO 28/05/2024 17:01:28 Releasing lock
+INFO 28/05/2024 17:01:28 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:01:28 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:01:28 Releasing lock
+INFO 28/05/2024 17:01:28 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:01:28 Acquired lock
+INFO 28/05/2024 17:01:28 Releasing lock
+INFO 28/05/2024 17:01:28 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:01:28 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:01:28 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:01:31 Acquired lock
+INFO 28/05/2024 17:01:31 Releasing lock
+INFO 28/05/2024 17:01:31 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:01:31 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:01:31 Releasing lock
+INFO 28/05/2024 17:01:31 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:01:31 Acquired lock
+INFO 28/05/2024 17:01:31 Releasing lock
+INFO 28/05/2024 17:01:31 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:01:31 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:01:31 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:01:36 Acquired lock
+INFO 28/05/2024 17:01:36 Releasing lock
+INFO 28/05/2024 17:01:36 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:01:37 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:01:37 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:01:38 Acquired lock
+INFO 28/05/2024 17:01:38 Releasing lock
+INFO 28/05/2024 17:01:38 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:01:38 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:01:38 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:01:40 Acquired lock
+INFO 28/05/2024 17:01:40 Releasing lock
+INFO 28/05/2024 17:01:40 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:01:41 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:01:41 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:01:46 Acquired lock
+INFO 28/05/2024 17:01:46 Releasing lock
+INFO 28/05/2024 17:01:46 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:01:46 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:01:46 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:01:47 Acquired lock
+INFO 28/05/2024 17:01:47 Releasing lock
+INFO 28/05/2024 17:01:47 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:01:47 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:01:47 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:01:49 Acquired lock
+INFO 28/05/2024 17:01:49 Releasing lock
+INFO 28/05/2024 17:01:49 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:01:49 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:01:49 Releasing lock
+INFO 28/05/2024 17:01:49 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:01:49 Acquired lock
+INFO 28/05/2024 17:01:49 Releasing lock
+INFO 28/05/2024 17:01:49 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:01:50 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:01:50 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:01:51 Acquired lock
+INFO 28/05/2024 17:01:51 Releasing lock
+INFO 28/05/2024 17:01:51 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:01:51 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:01:52 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:01:53 Acquired lock
+INFO 28/05/2024 17:01:53 Releasing lock
+INFO 28/05/2024 17:01:53 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:01:53 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:01:53 Releasing lock
+INFO 28/05/2024 17:01:53 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:01:54 Acquired lock
+INFO 28/05/2024 17:01:54 Releasing lock
+INFO 28/05/2024 17:01:54 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:01:54 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:01:54 Releasing lock
+INFO 28/05/2024 17:01:54 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:01:54 Acquired lock
+INFO 28/05/2024 17:01:54 Releasing lock
+INFO 28/05/2024 17:01:54 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:01:54 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:01:54 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:01:56 Acquired lock
+INFO 28/05/2024 17:01:56 Releasing lock
+INFO 28/05/2024 17:01:56 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:01:56 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:01:56 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:01:57 Acquired lock
+INFO 28/05/2024 17:01:57 Releasing lock
+INFO 28/05/2024 17:01:57 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:01:57 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:01:57 Releasing lock
+INFO 28/05/2024 17:01:57 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:01:57 Acquired lock
+INFO 28/05/2024 17:01:57 Releasing lock
+INFO 28/05/2024 17:01:57 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:01:57 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:01:57 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:01:58 Acquired lock
+INFO 28/05/2024 17:01:58 Releasing lock
+INFO 28/05/2024 17:01:58 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:01:58 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:01:58 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:01:59 Acquired lock
+INFO 28/05/2024 17:01:59 Releasing lock
+INFO 28/05/2024 17:01:59 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:02:00 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:02:00 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:02:00 Acquired lock
+INFO 28/05/2024 17:02:00 Releasing lock
+INFO 28/05/2024 17:02:00 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:02:00 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:02:00 Releasing lock
+INFO 28/05/2024 17:02:01 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:02:01 Acquired lock
+INFO 28/05/2024 17:02:01 Releasing lock
+INFO 28/05/2024 17:02:01 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:02:01 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:02:01 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:02:03 Acquired lock
+INFO 28/05/2024 17:02:03 Releasing lock
+INFO 28/05/2024 17:02:03 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:02:04 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:02:04 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:02:06 Acquired lock
+INFO 28/05/2024 17:02:06 Releasing lock
+INFO 28/05/2024 17:02:06 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:02:07 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:02:07 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:02:08 Acquired lock
+INFO 28/05/2024 17:02:08 Releasing lock
+INFO 28/05/2024 17:02:08 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:02:08 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:02:08 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:02:09 Acquired lock
+INFO 28/05/2024 17:02:09 Releasing lock
+INFO 28/05/2024 17:02:09 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:02:09 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:02:09 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:02:14 Acquired lock
+INFO 28/05/2024 17:02:14 Releasing lock
+INFO 28/05/2024 17:02:14 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:02:14 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:02:14 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:02:17 Acquired lock
+INFO 28/05/2024 17:02:17 Releasing lock
+INFO 28/05/2024 17:02:17 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:02:17 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:02:17 Releasing lock
+INFO 28/05/2024 17:02:17 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:02:17 Acquired lock
+INFO 28/05/2024 17:02:17 Releasing lock
+INFO 28/05/2024 17:02:17 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:02:17 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:02:17 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:02:18 Acquired lock
+INFO 28/05/2024 17:02:18 Releasing lock
+INFO 28/05/2024 17:02:18 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:02:18 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:02:18 Releasing lock
+INFO 28/05/2024 17:02:18 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:02:18 Acquired lock
+INFO 28/05/2024 17:02:18 Releasing lock
+INFO 28/05/2024 17:02:18 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:02:18 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:02:18 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:02:20 Acquired lock
+INFO 28/05/2024 17:02:20 Releasing lock
+INFO 28/05/2024 17:02:20 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:02:20 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:02:20 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:02:30 Acquired lock
+INFO 28/05/2024 17:02:30 Releasing lock
+INFO 28/05/2024 17:02:30 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:02:30 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:02:30 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:02:32 Acquired lock
+INFO 28/05/2024 17:02:32 Releasing lock
+INFO 28/05/2024 17:02:32 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:02:32 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:02:32 Releasing lock
+INFO 28/05/2024 17:02:33 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:02:33 Acquired lock
+INFO 28/05/2024 17:02:33 Releasing lock
+INFO 28/05/2024 17:02:33 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:02:33 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:02:33 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:02:36 Acquired lock
+INFO 28/05/2024 17:02:36 Releasing lock
+INFO 28/05/2024 17:02:36 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:02:36 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:02:36 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:02:37 Acquired lock
+INFO 28/05/2024 17:02:37 Releasing lock
+INFO 28/05/2024 17:02:37 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:02:37 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:02:38 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:02:43 Acquired lock
+INFO 28/05/2024 17:02:43 Releasing lock
+INFO 28/05/2024 17:02:43 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:02:43 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:02:43 Releasing lock
+INFO 28/05/2024 17:02:43 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:02:50 Acquired lock
+INFO 28/05/2024 17:02:50 Releasing lock
+INFO 28/05/2024 17:02:50 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:02:50 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:02:50 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:02:51 Acquired lock
+INFO 28/05/2024 17:02:51 Releasing lock
+INFO 28/05/2024 17:02:51 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:02:51 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:02:51 Releasing lock
+INFO 28/05/2024 17:02:51 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:02:51 Acquired lock
+INFO 28/05/2024 17:02:51 Releasing lock
+INFO 28/05/2024 17:02:51 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:02:51 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:02:51 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:03:00 Acquired lock
+INFO 28/05/2024 17:03:00 Releasing lock
+INFO 28/05/2024 17:03:00 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:03:00 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:03:00 Releasing lock
+INFO 28/05/2024 17:03:00 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:03:00 Acquired lock
+INFO 28/05/2024 17:03:00 Releasing lock
+INFO 28/05/2024 17:03:00 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:03:01 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:03:01 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:03:02 Acquired lock
+INFO 28/05/2024 17:03:02 Releasing lock
+INFO 28/05/2024 17:03:02 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:03:02 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:03:02 Releasing lock
+INFO 28/05/2024 17:03:02 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:03:02 Acquired lock
+INFO 28/05/2024 17:03:02 Releasing lock
+INFO 28/05/2024 17:03:02 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:03:02 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:03:03 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:03:03 Acquired lock
+INFO 28/05/2024 17:03:03 Releasing lock
+INFO 28/05/2024 17:03:03 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:03:03 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:03:03 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:03:04 Acquired lock
+INFO 28/05/2024 17:03:04 Releasing lock
+INFO 28/05/2024 17:03:04 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:03:04 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:03:04 Releasing lock
+INFO 28/05/2024 17:03:04 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:03:04 Acquired lock
+INFO 28/05/2024 17:03:04 Releasing lock
+INFO 28/05/2024 17:03:04 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:03:04 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:03:04 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:03:05 Acquired lock
+INFO 28/05/2024 17:03:05 Releasing lock
+INFO 28/05/2024 17:03:05 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:03:05 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:03:05 Releasing lock
+INFO 28/05/2024 17:03:05 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:03:05 Acquired lock
+INFO 28/05/2024 17:03:05 Releasing lock
+INFO 28/05/2024 17:03:05 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:03:05 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:03:06 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:03:06 Acquired lock
+INFO 28/05/2024 17:03:06 Releasing lock
+INFO 28/05/2024 17:03:06 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:03:06 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:03:06 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:03:18 Acquired lock
+INFO 28/05/2024 17:03:18 Releasing lock
+INFO 28/05/2024 17:03:18 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:03:18 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:03:18 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:03:24 Acquired lock
+INFO 28/05/2024 17:03:24 Releasing lock
+INFO 28/05/2024 17:03:24 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:03:24 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:03:24 Releasing lock
+INFO 28/05/2024 17:03:25 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:03:25 Acquired lock
+INFO 28/05/2024 17:03:25 Releasing lock
+INFO 28/05/2024 17:03:25 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:03:25 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:03:25 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:03:29 Acquired lock
+INFO 28/05/2024 17:03:29 Releasing lock
+INFO 28/05/2024 17:03:29 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:03:29 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:03:29 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:03:30 Acquired lock
+INFO 28/05/2024 17:03:30 Releasing lock
+INFO 28/05/2024 17:03:30 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:03:30 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:03:30 Releasing lock
+INFO 28/05/2024 17:03:30 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:03:30 Acquired lock
+INFO 28/05/2024 17:03:30 Releasing lock
+INFO 28/05/2024 17:03:30 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:03:30 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:03:30 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:03:34 Acquired lock
+INFO 28/05/2024 17:03:34 Releasing lock
+INFO 28/05/2024 17:03:34 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:03:34 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:03:34 Releasing lock
+INFO 28/05/2024 17:03:34 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:03:34 Acquired lock
+INFO 28/05/2024 17:03:34 Releasing lock
+INFO 28/05/2024 17:03:34 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:03:34 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:03:34 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:03:35 Acquired lock
+INFO 28/05/2024 17:03:35 Releasing lock
+INFO 28/05/2024 17:03:35 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:03:35 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:03:35 Releasing lock
+INFO 28/05/2024 17:03:35 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:03:35 Acquired lock
+INFO 28/05/2024 17:03:35 Releasing lock
+INFO 28/05/2024 17:03:35 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:03:35 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:03:36 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:03:36 Acquired lock
+INFO 28/05/2024 17:03:36 Releasing lock
+INFO 28/05/2024 17:03:36 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:03:36 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:03:36 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:03:39 Acquired lock
+INFO 28/05/2024 17:03:39 Releasing lock
+INFO 28/05/2024 17:03:39 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:03:39 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:03:39 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:03:43 Acquired lock
+INFO 28/05/2024 17:03:43 Releasing lock
+INFO 28/05/2024 17:03:43 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:03:43 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:03:43 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:03:43 Acquired lock
+INFO 28/05/2024 17:03:43 Releasing lock
+INFO 28/05/2024 17:03:43 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:03:44 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:03:44 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:03:45 Acquired lock
+INFO 28/05/2024 17:03:45 Releasing lock
+INFO 28/05/2024 17:03:45 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:03:45 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:03:45 Releasing lock
+INFO 28/05/2024 17:03:45 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:03:45 Acquired lock
+INFO 28/05/2024 17:03:45 Releasing lock
+INFO 28/05/2024 17:03:45 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:03:45 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:03:45 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:03:46 Acquired lock
+INFO 28/05/2024 17:03:46 Releasing lock
+INFO 28/05/2024 17:03:46 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:03:46 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:03:46 Releasing lock
+INFO 28/05/2024 17:03:46 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:03:46 Acquired lock
+INFO 28/05/2024 17:03:46 Releasing lock
+INFO 28/05/2024 17:03:46 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:03:46 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:03:47 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:03:49 Acquired lock
+INFO 28/05/2024 17:03:49 Releasing lock
+INFO 28/05/2024 17:03:49 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:03:49 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:03:49 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:03:50 Acquired lock
+INFO 28/05/2024 17:03:50 Releasing lock
+INFO 28/05/2024 17:03:50 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:03:50 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:03:50 Releasing lock
+INFO 28/05/2024 17:03:50 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:03:50 Acquired lock
+INFO 28/05/2024 17:03:50 Releasing lock
+INFO 28/05/2024 17:03:50 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:03:50 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:03:50 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:03:51 Acquired lock
+INFO 28/05/2024 17:03:51 Releasing lock
+INFO 28/05/2024 17:03:51 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:03:51 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:03:51 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:03:52 Acquired lock
+INFO 28/05/2024 17:03:52 Releasing lock
+INFO 28/05/2024 17:03:52 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:03:52 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:03:52 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:03:54 Acquired lock
+INFO 28/05/2024 17:03:54 Releasing lock
+INFO 28/05/2024 17:03:54 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:03:54 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:03:54 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:03:57 Acquired lock
+INFO 28/05/2024 17:03:57 Releasing lock
+INFO 28/05/2024 17:03:57 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:03:57 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:03:57 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:04:00 Acquired lock
+INFO 28/05/2024 17:04:00 Releasing lock
+INFO 28/05/2024 17:04:00 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:04:00 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:04:00 Releasing lock
+INFO 28/05/2024 17:04:01 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:04:01 Acquired lock
+INFO 28/05/2024 17:04:01 Releasing lock
+INFO 28/05/2024 17:04:01 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:04:01 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:04:01 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:04:02 Acquired lock
+INFO 28/05/2024 17:04:02 Releasing lock
+INFO 28/05/2024 17:04:02 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:04:02 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:04:02 Releasing lock
+INFO 28/05/2024 17:04:02 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:04:02 Acquired lock
+INFO 28/05/2024 17:04:02 Releasing lock
+INFO 28/05/2024 17:04:02 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:04:02 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:04:02 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:04:07 Acquired lock
+INFO 28/05/2024 17:04:07 Releasing lock
+INFO 28/05/2024 17:04:07 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:04:08 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:04:08 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:04:08 Acquired lock
+INFO 28/05/2024 17:04:08 Releasing lock
+INFO 28/05/2024 17:04:08 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:04:08 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:04:08 Releasing lock
+INFO 28/05/2024 17:04:09 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:04:09 Acquired lock
+INFO 28/05/2024 17:04:09 Releasing lock
+INFO 28/05/2024 17:04:09 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:04:09 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:04:09 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:04:12 Acquired lock
+INFO 28/05/2024 17:04:12 Releasing lock
+INFO 28/05/2024 17:04:12 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:04:12 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:04:12 Releasing lock
+INFO 28/05/2024 17:04:12 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:04:17 Acquired lock
+INFO 28/05/2024 17:04:17 Releasing lock
+INFO 28/05/2024 17:04:17 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:04:17 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:04:17 Releasing lock
+INFO 28/05/2024 17:04:17 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:04:17 Acquired lock
+INFO 28/05/2024 17:04:17 Releasing lock
+INFO 28/05/2024 17:04:17 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:04:17 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:04:18 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:04:20 Acquired lock
+INFO 28/05/2024 17:04:20 Releasing lock
+INFO 28/05/2024 17:04:20 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:04:20 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:04:20 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:04:23 Acquired lock
+INFO 28/05/2024 17:04:23 Releasing lock
+INFO 28/05/2024 17:04:23 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:04:23 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:04:23 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:04:26 Acquired lock
+INFO 28/05/2024 17:04:26 Releasing lock
+INFO 28/05/2024 17:04:26 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:04:26 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:04:26 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:04:28 Acquired lock
+INFO 28/05/2024 17:04:28 Releasing lock
+INFO 28/05/2024 17:04:28 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:04:28 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:04:28 Releasing lock
+INFO 28/05/2024 17:04:28 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:04:30 Acquired lock
+INFO 28/05/2024 17:04:30 Releasing lock
+INFO 28/05/2024 17:04:30 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:04:30 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:04:30 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:04:30 Acquired lock
+INFO 28/05/2024 17:04:30 Releasing lock
+INFO 28/05/2024 17:04:30 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:04:31 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:04:31 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:04:32 Acquired lock
+INFO 28/05/2024 17:04:32 Releasing lock
+INFO 28/05/2024 17:04:32 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:04:32 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:04:32 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:04:32 Acquired lock
+INFO 28/05/2024 17:04:32 Releasing lock
+INFO 28/05/2024 17:04:32 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:04:33 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:04:33 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:04:37 Acquired lock
+INFO 28/05/2024 17:04:37 Releasing lock
+INFO 28/05/2024 17:04:37 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:04:37 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:04:37 Releasing lock
+INFO 28/05/2024 17:04:37 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:04:39 Acquired lock
+INFO 28/05/2024 17:04:39 Releasing lock
+INFO 28/05/2024 17:04:39 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:04:39 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:04:39 Releasing lock
+INFO 28/05/2024 17:04:39 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:04:39 Acquired lock
+INFO 28/05/2024 17:04:39 Releasing lock
+INFO 28/05/2024 17:04:39 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:04:39 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:04:39 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:04:40 Acquired lock
+INFO 28/05/2024 17:04:40 Releasing lock
+INFO 28/05/2024 17:04:40 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:04:40 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:04:40 Releasing lock
+INFO 28/05/2024 17:04:40 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:04:40 Acquired lock
+INFO 28/05/2024 17:04:40 Releasing lock
+INFO 28/05/2024 17:04:40 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:04:40 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:04:41 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:04:44 Acquired lock
+INFO 28/05/2024 17:04:44 Releasing lock
+INFO 28/05/2024 17:04:44 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:04:44 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:04:44 Releasing lock
+INFO 28/05/2024 17:04:44 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:04:44 Acquired lock
+INFO 28/05/2024 17:04:44 Releasing lock
+INFO 28/05/2024 17:04:44 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:04:44 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:04:44 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:04:46 Acquired lock
+INFO 28/05/2024 17:04:46 Releasing lock
+INFO 28/05/2024 17:04:46 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:04:46 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:04:46 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:04:52 Acquired lock
+INFO 28/05/2024 17:04:52 Releasing lock
+INFO 28/05/2024 17:04:52 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:04:52 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:04:52 Releasing lock
+INFO 28/05/2024 17:04:53 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:04:53 Acquired lock
+INFO 28/05/2024 17:04:53 Releasing lock
+INFO 28/05/2024 17:04:53 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:04:53 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:04:53 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:05:02 Acquired lock
+INFO 28/05/2024 17:05:02 Releasing lock
+INFO 28/05/2024 17:05:02 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:05:02 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:05:02 Releasing lock
+INFO 28/05/2024 17:05:02 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:05:02 Acquired lock
+INFO 28/05/2024 17:05:02 Releasing lock
+INFO 28/05/2024 17:05:02 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:05:02 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:05:02 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:05:03 Acquired lock
+INFO 28/05/2024 17:05:03 Releasing lock
+INFO 28/05/2024 17:05:03 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:05:03 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:05:03 Releasing lock
+INFO 28/05/2024 17:05:03 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:05:03 Acquired lock
+INFO 28/05/2024 17:05:03 Releasing lock
+INFO 28/05/2024 17:05:03 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:05:03 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:05:04 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:05:06 Acquired lock
+INFO 28/05/2024 17:05:06 Releasing lock
+INFO 28/05/2024 17:05:06 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:05:06 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:05:06 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:05:09 Acquired lock
+INFO 28/05/2024 17:05:09 Releasing lock
+INFO 28/05/2024 17:05:09 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:05:09 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:05:09 Releasing lock
+INFO 28/05/2024 17:05:09 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:05:10 Acquired lock
+INFO 28/05/2024 17:05:10 Releasing lock
+INFO 28/05/2024 17:05:10 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:05:11 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:05:11 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:05:13 Acquired lock
+INFO 28/05/2024 17:05:13 Releasing lock
+INFO 28/05/2024 17:05:13 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:05:13 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:05:13 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:05:14 Acquired lock
+INFO 28/05/2024 17:05:14 Releasing lock
+INFO 28/05/2024 17:05:14 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:05:14 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:05:14 Releasing lock
+INFO 28/05/2024 17:05:14 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:05:14 Acquired lock
+INFO 28/05/2024 17:05:14 Releasing lock
+INFO 28/05/2024 17:05:14 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:05:14 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:05:14 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:05:16 Acquired lock
+INFO 28/05/2024 17:05:16 Releasing lock
+INFO 28/05/2024 17:05:16 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:05:16 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:05:16 Releasing lock
+INFO 28/05/2024 17:05:16 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:05:16 Acquired lock
+INFO 28/05/2024 17:05:16 Releasing lock
+INFO 28/05/2024 17:05:16 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:05:17 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:05:17 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:05:18 Acquired lock
+INFO 28/05/2024 17:05:18 Releasing lock
+INFO 28/05/2024 17:05:18 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:05:18 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:05:18 Releasing lock
+INFO 28/05/2024 17:05:18 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:05:18 Acquired lock
+INFO 28/05/2024 17:05:18 Releasing lock
+INFO 28/05/2024 17:05:18 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:05:18 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:05:19 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:05:20 Acquired lock
+INFO 28/05/2024 17:05:20 Releasing lock
+INFO 28/05/2024 17:05:20 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:05:20 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:05:20 Releasing lock
+INFO 28/05/2024 17:05:21 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:05:21 Acquired lock
+INFO 28/05/2024 17:05:21 Releasing lock
+INFO 28/05/2024 17:05:21 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:05:21 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:05:21 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:05:24 Acquired lock
+INFO 28/05/2024 17:05:24 Releasing lock
+INFO 28/05/2024 17:05:24 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:05:24 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:05:24 Releasing lock
+INFO 28/05/2024 17:05:24 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:05:24 Acquired lock
+INFO 28/05/2024 17:05:24 Releasing lock
+INFO 28/05/2024 17:05:24 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:05:24 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:05:24 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:05:25 Acquired lock
+INFO 28/05/2024 17:05:25 Releasing lock
+INFO 28/05/2024 17:05:25 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:05:25 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:05:25 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:05:26 Acquired lock
+INFO 28/05/2024 17:05:26 Releasing lock
+INFO 28/05/2024 17:05:26 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:05:26 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:05:26 Releasing lock
+INFO 28/05/2024 17:05:26 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:05:26 Acquired lock
+INFO 28/05/2024 17:05:26 Releasing lock
+INFO 28/05/2024 17:05:26 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:05:26 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:05:27 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:05:30 Acquired lock
+INFO 28/05/2024 17:05:30 Releasing lock
+INFO 28/05/2024 17:05:30 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:05:30 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:05:30 Releasing lock
+INFO 28/05/2024 17:05:31 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:05:31 Acquired lock
+INFO 28/05/2024 17:05:31 Releasing lock
+INFO 28/05/2024 17:05:31 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:05:31 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:05:31 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:05:35 Acquired lock
+INFO 28/05/2024 17:05:35 Releasing lock
+INFO 28/05/2024 17:05:35 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:05:35 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:05:35 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:05:37 Acquired lock
+INFO 28/05/2024 17:05:37 Releasing lock
+INFO 28/05/2024 17:05:37 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:05:37 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:05:37 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:05:38 Acquired lock
+INFO 28/05/2024 17:05:38 Releasing lock
+INFO 28/05/2024 17:05:38 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:05:38 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:05:38 Releasing lock
+INFO 28/05/2024 17:05:38 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:05:38 Acquired lock
+INFO 28/05/2024 17:05:38 Releasing lock
+INFO 28/05/2024 17:05:38 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:05:38 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:05:38 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:05:39 Acquired lock
+INFO 28/05/2024 17:05:39 Releasing lock
+INFO 28/05/2024 17:05:39 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:05:39 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:05:39 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:05:43 Acquired lock
+INFO 28/05/2024 17:05:43 Releasing lock
+INFO 28/05/2024 17:05:43 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:05:43 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:05:43 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:05:47 Acquired lock
+INFO 28/05/2024 17:05:47 Releasing lock
+INFO 28/05/2024 17:05:47 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:05:47 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:05:47 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:05:52 Acquired lock
+INFO 28/05/2024 17:05:52 Releasing lock
+INFO 28/05/2024 17:05:52 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:05:52 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:05:52 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:05:55 Acquired lock
+INFO 28/05/2024 17:05:55 Releasing lock
+INFO 28/05/2024 17:05:55 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:05:56 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:05:56 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:06:01 Acquired lock
+INFO 28/05/2024 17:06:01 Releasing lock
+INFO 28/05/2024 17:06:01 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:06:01 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:06:01 Releasing lock
+INFO 28/05/2024 17:06:01 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:06:01 Acquired lock
+INFO 28/05/2024 17:06:01 Releasing lock
+INFO 28/05/2024 17:06:01 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:06:01 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:06:01 Releasing lock
+INFO 28/05/2024 17:06:01 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:06:09 Acquired lock
+INFO 28/05/2024 17:06:09 Releasing lock
+INFO 28/05/2024 17:06:09 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:06:09 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:06:09 Releasing lock
+INFO 28/05/2024 17:06:09 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:06:09 Acquired lock
+INFO 28/05/2024 17:06:09 Releasing lock
+INFO 28/05/2024 17:06:09 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:06:10 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:06:10 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:06:17 Acquired lock
+INFO 28/05/2024 17:06:17 Releasing lock
+INFO 28/05/2024 17:06:17 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:06:17 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:06:17 Releasing lock
+INFO 28/05/2024 17:06:17 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:06:17 Acquired lock
+INFO 28/05/2024 17:06:17 Releasing lock
+INFO 28/05/2024 17:06:17 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:06:18 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:06:18 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:06:18 Acquired lock
+INFO 28/05/2024 17:06:18 Releasing lock
+INFO 28/05/2024 17:06:18 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:06:18 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:06:18 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:06:23 Acquired lock
+INFO 28/05/2024 17:06:23 Releasing lock
+INFO 28/05/2024 17:06:23 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:06:23 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:06:23 Releasing lock
+INFO 28/05/2024 17:06:23 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:06:23 Acquired lock
+INFO 28/05/2024 17:06:23 Releasing lock
+INFO 28/05/2024 17:06:23 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:06:23 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:06:23 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:06:27 Acquired lock
+INFO 28/05/2024 17:06:27 Releasing lock
+INFO 28/05/2024 17:06:27 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:06:27 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:06:27 Releasing lock
+INFO 28/05/2024 17:06:27 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:06:31 Acquired lock
+INFO 28/05/2024 17:06:31 Releasing lock
+INFO 28/05/2024 17:06:31 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:06:31 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:06:31 Releasing lock
+INFO 28/05/2024 17:06:31 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:06:31 Acquired lock
+INFO 28/05/2024 17:06:31 Releasing lock
+INFO 28/05/2024 17:06:31 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:06:31 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:06:31 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:06:33 Acquired lock
+INFO 28/05/2024 17:06:33 Releasing lock
+INFO 28/05/2024 17:06:33 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:06:33 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:06:33 Releasing lock
+INFO 28/05/2024 17:06:33 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:06:33 Acquired lock
+INFO 28/05/2024 17:06:33 Releasing lock
+INFO 28/05/2024 17:06:33 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:06:34 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:06:34 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:06:37 Acquired lock
+INFO 28/05/2024 17:06:37 Releasing lock
+INFO 28/05/2024 17:06:37 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:06:37 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:06:37 Releasing lock
+INFO 28/05/2024 17:06:37 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:06:37 Acquired lock
+INFO 28/05/2024 17:06:37 Releasing lock
+INFO 28/05/2024 17:06:37 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:06:37 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:06:38 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:06:38 Acquired lock
+INFO 28/05/2024 17:06:38 Releasing lock
+INFO 28/05/2024 17:06:38 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:06:38 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:06:38 Releasing lock
+INFO 28/05/2024 17:06:38 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:06:38 Acquired lock
+INFO 28/05/2024 17:06:38 Releasing lock
+INFO 28/05/2024 17:06:38 [8009] - Starting listener: (127.0.0.1:8009)
+INFO 28/05/2024 17:06:39 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None
+INFO 28/05/2024 17:06:39 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 17:06:40 Acquired lock
+INFO 28/05/2024 17:06:40 Releasing lock
+INFO 28/05/2024 17:06:40 [8009] - Starting listener: (127.0.0.1:8009)
+ERROR 28/05/2024 17:06:40 8009 Couldn't connect to: 127.0.0.1:8008.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/scripts/unix/elves/./../../../elves_threads.py", line 125, in send_message
+    conn_socket.connect((targetHost, targetPort))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 28/05/2024 17:06:40 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8008 - CLUSTER: chain - result: None

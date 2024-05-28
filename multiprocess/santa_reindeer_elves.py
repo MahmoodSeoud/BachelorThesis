@@ -5,27 +5,43 @@ import time
 NUM_REINDEER = 9
 NUM_ELFS = 10
 
+system_runs = 0
+milestone = 100
+endGoal = 1000
+
 # Santa is the consumer
 def santa(reindeer_conn, reindeer_cond, elf_conn, elf_cond):
     while True:
 
         if(reindeer_conn.poll()): # Checking if there is anything to read
             print(reindeer_conn.recv()) # Waiting for the last reindeer to wake Santa up
-            time.sleep(1) # Simulating their work
+ #           time.sleep(1) # Simulating their work
 
             with reindeer_cond:
                 reindeer_cond.notify_all() # Tell everybody that its time to go back to holiday
 
             print('Reindeer can get back on holiday')
+            global system_runs
+            system_runs += 1
+
+            if system_runs % milestone == 0:
+                print(f'System reached {system_runs} runs')
 
         elif (elf_conn.poll()): # Checking if there is anything to read
             print(elf_conn.recv()) # Waiting for 3 Elfs to arrive with a problem
-            time.sleep(1) # Simulating Santa helping Elfs
+#            time.sleep(1) # Simulating Santa helping Elfs
+            
 
             with elf_cond:
                 elf_cond.notify_all() # Tell everybody that its time to go back to holiday
 
             print('Elfs can get back to work')
+            global system_runs
+            system_runs += 1
+        
+            if system_runs % milestone == 0:
+                print(f'System reached {system_runs} runs')
+
 
 
 # Reindeers are producers

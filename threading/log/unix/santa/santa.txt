@@ -1,0 +1,11 @@
+INFO 28/05/2024 16:53:19 Timing Starts
+INFO 28/05/2024 16:54:27 Elves reached 100 runs
+INFO 28/05/2024 16:55:29 Elves reached 200 runs
+INFO 28/05/2024 16:56:31 Elves reached 300 runs
+INFO 28/05/2024 16:57:32 Elves reached 400 runs
+INFO 28/05/2024 16:58:34 Elves reached 500 runs
+INFO 28/05/2024 16:59:36 Elves reached 600 runs
+INFO 28/05/2024 17:00:37 Elves reached 700 runs
+INFO 28/05/2024 17:01:40 Elves reached 800 runs
+INFO 28/05/2024 17:02:41 Elves reached 900 runs
+INFO 28/05/2024 17:03:41 Elves reached 1000 runs
