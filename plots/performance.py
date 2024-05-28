@@ -61,15 +61,21 @@ timestamps_distributed = [
 runs = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
 
 # Convert the timestamps to datetime and calculate the time elapsed since the first timestamp
-timestamps_elves = [(datetime.strptime(time, "%H:%M:%S") - datetime.strptime(timestamps_elves[0], "%H:%M:%S")).seconds / 60.0 for time in timestamps_elves]
-timestamps_reindeer = [(datetime.strptime(time, "%H:%M:%S") - datetime.strptime(timestamps_reindeer[0], "%H:%M:%S")).seconds / 60.0 for time in timestamps_reindeer]
+#timestamps_elves = [(datetime.strptime(time, "%H:%M:%S") - datetime.strptime(timestamps_elves[0], "%H:%M:%S")).seconds / 60.0 for time in timestamps_elves]
+#timestamps_reindeer = [(datetime.strptime(time, "%H:%M:%S") - datetime.strptime(timestamps_reindeer[0], "%H:%M:%S")).seconds / 60.0 for time in timestamps_reindeer]
+
+timestamps_non_distributed = [(datetime.strptime(time, "%H:%M:%S") - datetime.strptime(timestamps_non_distributed[0], "%H:%M:%S")).seconds / 60.0 for time in timestamps_non_distributed]
+timestamps_distributed = [(datetime.strptime(time, "%H:%M:%S") - datetime.strptime(timestamps_distributed[0], "%H:%M:%S")).seconds / 60.0 for time in timestamps_distributed]
 
 # Create a figure and a subplot
 fig, ax1 = plt.subplots()
 
 # Plot the data points on the subplot and connect them with a line
-ax1.plot(timestamps_elves, runs, '-o', color='green')
-ax1.plot(timestamps_reindeer, runs, '-o', color='brown')
+#ax1.plot(timestamps_elves, runs, '-o', color='green')
+#ax1.plot(timestamps_reindeer, runs, '-o', color='brown')
+
+ax1.plot(timestamps_non_distributed, runs, '-o', color='red')
+ax1.plot(timestamps_distributed, runs, '-o', color='blue')
 
 # Set the title and x label
 ax1.set_title('Number of runs over time')
