@@ -71,14 +71,14 @@ def santa_threads(my_ip, my_port):
                 elve_runs += 1
 
                 # Check for milestones for elves
-                if elve_runs % milestone == 0:
-                    logger.info(f'Elves reached {elve_runs} runs')  
-                
-          #  global system_runs
-          #  system_runs +=1   
+            #Kj    if elve_runs % milestone == 0:
+            #Kj        logger.info(f'Elves reached {elve_runs} runs')  
+            #Kj    
+            global system_runs
+            system_runs +=1   
 
-          #  if system_runs % milestone == 0:
-          #      logger.info(f'System reached {system_runs} runs')
+            if system_runs % milestone == 0:
+                logger.info(f'System reached {system_runs} runs')
            
     def listener():
         with socketserver.ThreadingTCPServer((my_ip, my_port), RequestHandler) as server:

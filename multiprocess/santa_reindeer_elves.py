@@ -1,34 +1,46 @@
 import multiprocessing
 import random
+import logging
 import time
 
 NUM_REINDEER = 9
 NUM_ELFS = 10
+LOGFILE = "./log/log.txt"
 
-system_runs = 0
-milestone = 100
-endGoal = 1000
-
+logger = logging.getLogger(__name__)
+logging.basicConfig(
+    format="%(levelname)s %(asctime)s %(message)s",
+    datefmt="%d/%m/%Y %H:%M:%S",
+    encoding="utf-8",
+    level=logging.DEBUG,
+    filename=LOGFILE,
+    filemode="w",
+)
 # Santa is the consumer
 def santa(reindeer_conn, reindeer_cond, elf_conn, elf_cond):
+    logger.info('Timing starts')
+    system_runs = 0
+    milestone = 100
+    endGoal = 1000
+
+    system_runs = 0
     while True:
 
         if(reindeer_conn.poll()): # Checking if there is anything to read
-            print(reindeer_conn.recv()) # Waiting for the last reindeer to wake Santa up
+            logger.info(f"Recieved message: {reindeer_conn.recv()}") # Waiting for the last reindeer to wake Santa up
  #           time.sleep(1) # Simulating their work
 
             with reindeer_cond:
                 reindeer_cond.notify_all() # Tell everybody that its time to go back to holiday
 
-            print('Reindeer can get back on holiday')
-            global system_runs
+            logger.info('Reindeer can get back on holiday')
             system_runs += 1
 
             if system_runs % milestone == 0:
-                print(f'System reached {system_runs} runs')
+                logger.info(f'System reached {system_runs} runs')
 
         elif (elf_conn.poll()): # Checking if there is anything to read
-            print(elf_conn.recv()) # Waiting for 3 Elfs to arrive with a problem
+            logger.info(f"Recieved message: {elf_conn.recv()}") # Waiting for 3 Elfs to arrive with a problem
 #            time.sleep(1) # Simulating Santa helping Elfs
             
 
@@ -36,11 +48,10 @@ def santa(reindeer_conn, reindeer_cond, elf_conn, elf_cond):
                 elf_cond.notify_all() # Tell everybody that its time to go back to holiday
 
             print('Elfs can get back to work')
-            global system_runs
             system_runs += 1
         
             if system_runs % milestone == 0:
-                print(f'System reached {system_runs} runs')
+                logger.info(f'System reached {system_runs} runs')
 
 
 
@@ -48,7 +59,7 @@ def santa(reindeer_conn, reindeer_cond, elf_conn, elf_cond):
 def reindeer(reindeer_id, reindeer_conn, reindeer_cond, reindeer_queue, reindeer_lock):
     while True:
         sleep_time = random.randint(1,5)
-        time.sleep(sleep_time) # Simulating that they are sleeping a random amount of time
+        #time.sleep(sleep_time) # Simulating that they are sleeping a random amount of time
 
         # Beginning of critical section
         with reindeer_lock:
@@ -69,7 +80,7 @@ def reindeer(reindeer_id, reindeer_conn, reindeer_cond, reindeer_queue, reindeer
 def elf(elf_id, elf_queue, elf_lock, elf_conn, elf_cond, elf_one, elf_two, elf_three):
     while True:
         work_time = random.randint(5,10)
-        time.sleep(work_time) # Simulating that they are out 
+        #time.sleep(work_time) # Simulating that they are out 
                               #working, once done with sleep is when the encounter a problem
         
         with elf_lock:
@@ -94,6 +105,8 @@ if __name__ == "__main__":
     reindeer_queue = multiprocessing.Queue(NUM_REINDEER)
     reindeer_cond = multiprocessing.Condition()
     reindeer_lock = multiprocessing.Lock()
+
+
 
     # elf multiprocessing items
     elf_conn1, elf_conn2 = multiprocessing.Pipe()
