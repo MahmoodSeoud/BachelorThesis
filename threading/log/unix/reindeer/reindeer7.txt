@@ -1,0 +1,35 @@
+INFO 28/05/2024 10:31:37 Acquired lock
+INFO 28/05/2024 10:31:37 Releasing lock
+INFO 28/05/2024 10:31:37 [8033] - Starting listener: (127.0.0.1:8033)
+INFO 28/05/2024 10:31:38 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8032, result: None
+INFO 28/05/2024 10:31:39 Received a message from Santa: Go back on holiday, reindeer!
+INFO 28/05/2024 10:31:39 Acquired lock
+INFO 28/05/2024 10:31:39 Releasing lock
+INFO 28/05/2024 10:31:39 [8033] - Starting listener: (127.0.0.1:8033)
+INFO 28/05/2024 10:31:39 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8032, result: None
+INFO 28/05/2024 10:31:41 Received a message from Santa: Go back on holiday, reindeer!
+INFO 28/05/2024 10:31:43 Acquired lock
+INFO 28/05/2024 10:31:43 Releasing lock
+INFO 28/05/2024 10:31:43 [8033] - Starting listener: (127.0.0.1:8033)
+INFO 28/05/2024 10:31:43 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8032, result: None
+INFO 28/05/2024 10:31:43 Received a message from Santa: Go back on holiday, reindeer!
+INFO 28/05/2024 10:31:44 Acquired lock
+INFO 28/05/2024 10:31:44 Releasing lock
+INFO 28/05/2024 10:31:44 [8033] - Starting listener: (127.0.0.1:8033)
+INFO 28/05/2024 10:31:45 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8032, result: None
+INFO 28/05/2024 10:31:45 Received a message from Santa: Go back on holiday, reindeer!
+INFO 28/05/2024 10:31:46 Acquired lock
+INFO 28/05/2024 10:31:46 Releasing lock
+INFO 28/05/2024 10:31:46 [8033] - Starting listener: (127.0.0.1:8033)
+INFO 28/05/2024 10:31:46 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8032, result: None
+INFO 28/05/2024 10:31:47 Received a message from Santa: Go back on holiday, reindeer!
+INFO 28/05/2024 10:31:48 Acquired lock
+INFO 28/05/2024 10:31:48 Releasing lock
+INFO 28/05/2024 10:31:48 [8033] - Starting listener: (127.0.0.1:8033)
+INFO 28/05/2024 10:31:48 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8032, result: None
+INFO 28/05/2024 10:31:49 Received a message from Santa: Go back on holiday, reindeer!
+INFO 28/05/2024 10:31:50 Acquired lock
+INFO 28/05/2024 10:31:50 Releasing lock
+INFO 28/05/2024 10:31:50 [8033] - Starting listener: (127.0.0.1:8033)
+INFO 28/05/2024 10:31:50 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8032, result: None
+INFO 28/05/2024 10:31:52 Received a message from Santa: Go back on holiday, reindeer!

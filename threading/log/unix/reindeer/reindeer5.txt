@@ -1,0 +1,38 @@
+INFO 28/05/2024 10:31:39 Acquired lock
+INFO 28/05/2024 10:31:39 Releasing lock
+INFO 28/05/2024 10:31:39 [8029] - Starting listener: (127.0.0.1:8029)
+INFO 28/05/2024 10:31:39 Received a message from Santa: Go back on holiday, reindeer!
+INFO 28/05/2024 10:31:39 Releasing lock
+INFO 28/05/2024 10:31:39 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8028, result: None
+INFO 28/05/2024 10:31:40 Acquired lock
+INFO 28/05/2024 10:31:40 Releasing lock
+INFO 28/05/2024 10:31:40 [8029] - Starting listener: (127.0.0.1:8029)
+INFO 28/05/2024 10:31:40 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8028, result: None
+INFO 28/05/2024 10:31:41 Received a message from Santa: Go back on holiday, reindeer!
+INFO 28/05/2024 10:31:41 Acquired lock
+INFO 28/05/2024 10:31:41 Releasing lock
+INFO 28/05/2024 10:31:41 [8029] - Starting listener: (127.0.0.1:8029)
+INFO 28/05/2024 10:31:42 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8028, result: None
+INFO 28/05/2024 10:31:43 Received a message from Santa: Go back on holiday, reindeer!
+INFO 28/05/2024 10:31:45 Acquired lock
+INFO 28/05/2024 10:31:45 Releasing lock
+INFO 28/05/2024 10:31:45 [8029] - Starting listener: (127.0.0.1:8029)
+INFO 28/05/2024 10:31:45 Received a message from Santa: Go back on holiday, reindeer!
+INFO 28/05/2024 10:31:45 Releasing lock
+INFO 28/05/2024 10:31:45 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8028, result: None
+INFO 28/05/2024 10:31:45 Acquired lock
+INFO 28/05/2024 10:31:45 Releasing lock
+INFO 28/05/2024 10:31:45 [8029] - Starting listener: (127.0.0.1:8029)
+INFO 28/05/2024 10:31:45 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8028, result: None
+INFO 28/05/2024 10:31:47 Received a message from Santa: Go back on holiday, reindeer!
+INFO 28/05/2024 10:31:49 Acquired lock
+INFO 28/05/2024 10:31:49 Releasing lock
+INFO 28/05/2024 10:31:49 [8029] - Starting listener: (127.0.0.1:8029)
+INFO 28/05/2024 10:31:49 Received a message from Santa: Go back on holiday, reindeer!
+INFO 28/05/2024 10:31:49 Releasing lock
+INFO 28/05/2024 10:31:49 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8028, result: None
+INFO 28/05/2024 10:31:49 Acquired lock
+INFO 28/05/2024 10:31:49 Releasing lock
+INFO 28/05/2024 10:31:49 [8029] - Starting listener: (127.0.0.1:8029)
+INFO 28/05/2024 10:31:50 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8028, result: None
+INFO 28/05/2024 10:31:52 Received a message from Santa: Go back on holiday, reindeer!

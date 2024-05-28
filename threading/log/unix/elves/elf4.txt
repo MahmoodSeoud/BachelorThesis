@@ -1,0 +1,26 @@
+INFO 28/05/2024 10:26:07 Acquired lock
+INFO 28/05/2024 10:26:07 Releasing lock
+INFO 28/05/2024 10:26:07 [8007] - Starting listener: (127.0.0.1:8007)
+INFO 28/05/2024 10:26:07 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 10:26:07 Releasing lock
+INFO 28/05/2024 10:26:07 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8006 - CLUSTER: chain - result: None
+INFO 28/05/2024 10:26:14 Acquired lock
+INFO 28/05/2024 10:26:14 Releasing lock
+INFO 28/05/2024 10:26:14 [8007] - Starting listener: (127.0.0.1:8007)
+INFO 28/05/2024 10:26:14 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 10:26:14 Releasing lock
+INFO 28/05/2024 10:26:14 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8006 - CLUSTER: chain - result: None
+INFO 28/05/2024 10:26:14 Acquired lock
+INFO 28/05/2024 10:26:14 Releasing lock
+INFO 28/05/2024 10:26:14 [8007] - Starting listener: (127.0.0.1:8007)
+INFO 28/05/2024 10:26:15 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8006 - CLUSTER: chain - result: None
+INFO 28/05/2024 10:26:15 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 10:26:18 Acquired lock
+INFO 28/05/2024 10:26:18 Releasing lock
+INFO 28/05/2024 10:26:18 [8007] - Starting listener: (127.0.0.1:8007)
+ERROR 28/05/2024 10:26:18 8007 Couldn't connect to: 127.0.0.1:8006.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/scripts/unix/elves/./../../../elves_threads.py", line 125, in send_message
+    conn_socket.connect((targetHost, targetPort))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 28/05/2024 10:26:18 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8006 - CLUSTER: chain - result: None

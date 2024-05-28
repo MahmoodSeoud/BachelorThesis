@@ -1,0 +1,57 @@
+INFO 28/05/2024 10:26:08 Acquired lock
+INFO 28/05/2024 10:26:08 Releasing lock
+INFO 28/05/2024 10:26:08 [8017] - Starting listener: (127.0.0.1:8017)
+INFO 28/05/2024 10:26:08 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8016 - CLUSTER: chain - result: None
+INFO 28/05/2024 10:26:08 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 10:26:09 Acquired lock
+INFO 28/05/2024 10:26:09 Releasing lock
+INFO 28/05/2024 10:26:09 [8017] - Starting listener: (127.0.0.1:8017)
+INFO 28/05/2024 10:26:09 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 10:26:09 Releasing lock
+INFO 28/05/2024 10:26:09 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8016 - CLUSTER: chain - result: None
+INFO 28/05/2024 10:26:09 Acquired lock
+INFO 28/05/2024 10:26:09 Releasing lock
+INFO 28/05/2024 10:26:09 [8017] - Starting listener: (127.0.0.1:8017)
+INFO 28/05/2024 10:26:09 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8016 - CLUSTER: chain - result: None
+INFO 28/05/2024 10:26:09 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 10:26:10 Acquired lock
+INFO 28/05/2024 10:26:10 Releasing lock
+INFO 28/05/2024 10:26:10 [8017] - Starting listener: (127.0.0.1:8017)
+INFO 28/05/2024 10:26:10 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 10:26:10 Releasing lock
+INFO 28/05/2024 10:26:10 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8016 - CLUSTER: chain - result: None
+INFO 28/05/2024 10:26:10 Acquired lock
+INFO 28/05/2024 10:26:10 Releasing lock
+INFO 28/05/2024 10:26:10 [8017] - Starting listener: (127.0.0.1:8017)
+INFO 28/05/2024 10:26:10 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8016 - CLUSTER: chain - result: None
+INFO 28/05/2024 10:26:11 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 10:26:11 Acquired lock
+INFO 28/05/2024 10:26:11 Releasing lock
+INFO 28/05/2024 10:26:11 [8017] - Starting listener: (127.0.0.1:8017)
+INFO 28/05/2024 10:26:11 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8016 - CLUSTER: chain - result: None
+INFO 28/05/2024 10:26:11 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 10:26:12 Acquired lock
+INFO 28/05/2024 10:26:12 Releasing lock
+INFO 28/05/2024 10:26:12 [8017] - Starting listener: (127.0.0.1:8017)
+INFO 28/05/2024 10:26:12 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8016 - CLUSTER: chain - result: None
+INFO 28/05/2024 10:26:12 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 10:26:12 Acquired lock
+INFO 28/05/2024 10:26:12 Releasing lock
+INFO 28/05/2024 10:26:12 [8017] - Starting listener: (127.0.0.1:8017)
+INFO 28/05/2024 10:26:12 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 10:26:12 Releasing lock
+INFO 28/05/2024 10:26:13 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8016 - CLUSTER: chain - result: None
+INFO 28/05/2024 10:26:13 Acquired lock
+INFO 28/05/2024 10:26:13 Releasing lock
+INFO 28/05/2024 10:26:13 [8017] - Starting listener: (127.0.0.1:8017)
+INFO 28/05/2024 10:26:13 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8016 - CLUSTER: chain - result: None
+INFO 28/05/2024 10:26:13 [CHAIN CLUSTER] Received a message: Get back to work, elves!
+INFO 28/05/2024 10:26:17 Acquired lock
+INFO 28/05/2024 10:26:17 Releasing lock
+INFO 28/05/2024 10:26:17 [8017] - Starting listener: (127.0.0.1:8017)
+ERROR 28/05/2024 10:26:17 8017 Couldn't connect to: 127.0.0.1:8016.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/scripts/unix/elves/./../../../elves_threads.py", line 125, in send_message
+    conn_socket.connect((targetHost, targetPort))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 28/05/2024 10:26:17 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8016 - CLUSTER: chain - result: None

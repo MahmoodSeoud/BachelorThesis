@@ -1,0 +1,34 @@
+INFO 28/05/2024 10:31:37 Acquired lock
+INFO 28/05/2024 10:31:37 Releasing lock
+INFO 28/05/2024 10:31:37 [8021] - Starting listener: (127.0.0.1:8021)
+INFO 28/05/2024 10:31:37 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8020, result: None
+INFO 28/05/2024 10:31:39 Received a message from Santa: Go back on holiday, reindeer!
+INFO 28/05/2024 10:31:40 Acquired lock
+INFO 28/05/2024 10:31:40 Releasing lock
+INFO 28/05/2024 10:31:40 [8021] - Starting listener: (127.0.0.1:8021)
+INFO 28/05/2024 10:31:40 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8020, result: None
+INFO 28/05/2024 10:31:41 Received a message from Santa: Go back on holiday, reindeer!
+INFO 28/05/2024 10:31:42 Acquired lock
+INFO 28/05/2024 10:31:42 Releasing lock
+INFO 28/05/2024 10:31:42 [8021] - Starting listener: (127.0.0.1:8021)
+INFO 28/05/2024 10:31:42 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8020, result: None
+INFO 28/05/2024 10:31:43 Received a message from Santa: Go back on holiday, reindeer!
+INFO 28/05/2024 10:31:43 Acquired lock
+INFO 28/05/2024 10:31:43 Releasing lock
+INFO 28/05/2024 10:31:43 [8021] - Starting listener: (127.0.0.1:8021)
+INFO 28/05/2024 10:31:44 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8020, result: None
+INFO 28/05/2024 10:31:45 Received a message from Santa: Go back on holiday, reindeer!
+INFO 28/05/2024 10:31:46 Acquired lock
+INFO 28/05/2024 10:31:46 Releasing lock
+INFO 28/05/2024 10:31:46 [8021] - Starting listener: (127.0.0.1:8021)
+INFO 28/05/2024 10:31:46 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8020, result: None
+INFO 28/05/2024 10:31:47 Received a message from Santa: Go back on holiday, reindeer!
+INFO 28/05/2024 10:31:49 Acquired lock
+INFO 28/05/2024 10:31:49 Releasing lock
+INFO 28/05/2024 10:31:49 [8021] - Starting listener: (127.0.0.1:8021)
+INFO 28/05/2024 10:31:49 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8020, result: None
+INFO 28/05/2024 10:31:49 Received a message from Santa: Go back on holiday, reindeer!
+INFO 28/05/2024 10:31:51 Acquired lock
+INFO 28/05/2024 10:31:51 Releasing lock
+INFO 28/05/2024 10:31:51 [8021] - Starting listener: (127.0.0.1:8021)
+INFO 28/05/2024 10:31:51 Releasing lock

@@ -8,6 +8,7 @@ import logging
 LOCAL_HOST = "127.0.0.1"
 SANTA_PORT = 29800
 CHAIN_LEADER_PORT = 8888
+LOGFILE = "./log/unix/santa/santa.txt"
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(
@@ -15,9 +16,11 @@ logging.basicConfig(
     datefmt="%d/%m/%Y %H:%M:%S",
     encoding="utf-8",
     level=logging.DEBUG,
+    filename=LOGFILE,
+    filemode="w",
 )
 
-reindeer_runs = elve_runs = 0
+system_runs = reindeer_runs = elve_runs = 0
 milestone = 100
 endGoal = 1000
 
@@ -44,12 +47,12 @@ def santa_threads(my_ip, my_port):
                 reindeer_runs += 1
 
                 # Check for milestones for reindeer
-                if reindeer_runs % milestone == 0:
-                    logger.info(f'Reindeer reached {reindeer_runs} runs')
+               # if reindeer_runs % milestone == 0:
+               #     logger.info(f'Reindeer reached {reindeer_runs} runs')
 
-                # End the game if either the reindeer or the elves reach 10000 runs
-                if reindeer_runs == endGoal:
-                    logger.info('Reindeer won')
+               # # End the game if either the reindeer or the elves reach 10000 runs
+               # if reindeer_runs == endGoal:
+               #     logger.info('Reindeer won')
                     
             elif identifier == 'E': #Identifier is the Elves
                 logger.info("Santa goes to help the elves")
@@ -70,12 +73,16 @@ def santa_threads(my_ip, my_port):
 
        
                 # Check for milestones for elves
-                if elve_runs % milestone == 0:
-                    logger.info(f'Elves reached {elve_runs} runs')  
-                
-                if elve_runs == endGoal:
-                    logger.info('Elves won')
-                    
+               # if elve_runs % milestone == 0:
+               #     logger.info(f'Elves reached {elve_runs} runs')  
+               # 
+               # if elve_runs == endGoal:
+               #    logger.info('Elves won')
+            global system_runs
+            system_runs +=1   
+
+            if system_runs % milestone == 0:
+                logger.info(f'System reached {system_runs} runs')
            
     def listener():
         with socketserver.ThreadingTCPServer((my_ip, my_port), RequestHandler) as server:
