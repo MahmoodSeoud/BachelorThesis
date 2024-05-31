@@ -240,3 +240,9 @@ So far the testing of ![this](/images/elfLosingConnection.jpg) particular case w
 
 - I maybe need to drop the introduction of new nodes part. We'll see
 - i need to put a timeout on each listener just incase.
+
+
+#### Week 11: Polishing the project
+- Lookking at the comments to create this red thread
+- Create the rest of the tests
+- devlop new feature: introduce new nodes (TCP handshake)

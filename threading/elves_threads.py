@@ -235,7 +235,7 @@ if __name__ == "__main__":
     otherNodes = [f"{LOCAL_HOST}:{p}" for p in sys.argv[3:]]
 
     port = int(sys.argv[2])
-    lock_manager = ReplLockManager(autoUnlockTime=75.0)
+    lock_manager = ReplLockManager(autoUnlockTime=10.0)
     chain = ReplSet()
     elf_worker = ElfWorker(
         node, otherNodes, consumers=[lock_manager, chain], extra_port=port + 1

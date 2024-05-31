@@ -208,7 +208,7 @@ if __name__ == "__main__":
     otherNodes = [f"{LOCAL_HOST}:{p}" for p in sys.argv[3:]]
 
     port = int(sys.argv[2])
-    lock_manager = ReplLockManager(autoUnlockTime=75.0)
+    lock_manager = ReplLockManager(autoUnlockTime=10.0)
     woke = ReplSet()
     reindeer_worker = ReindeerWorker(
         node, otherNodes, consumers=[lock_manager, woke], extra_port=port + 1
