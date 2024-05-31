@@ -27,8 +27,8 @@ logging.basicConfig(
 
 
 class ReinderContacter:
-    def __init__(self, sender, reindeer_ports=None):
-        self.sender = sender
+    def __init__(self, reindeer_worker, reindeer_ports=None):
+        self.port = reindeer_worker._extra_port
         self.reindeer_ports = reindeer_ports
 
     # Class for handling the connection between the elves and Santa
@@ -38,35 +38,37 @@ class ReinderContacter:
             data = self.request.recv(1024)
             message = data.decode("utf-8")
             logger.info(f"Received a message: {message}")
+            if message == "R":
+                self.server.handle_reindeer(data)
             print(f"Received a message: {message}")
 
-    def listener(self, host, port):
-        logger.info(f"Starting listener: ({host}:{port})")
+    def listener(self, host):
+        logger.info(f"Starting listener: ({host}:{self.port})")
         with socketserver.ThreadingTCPServer(
-            (host, port), self.RequestHandler
+            (host, self.port), self.RequestHandler
         ) as server:
             try:
                 server.serve_forever()
             finally:
                 server.server_close()
 
-    def contact_santa(self, sender, targetHost, targetPort, reindeer_ports):
-        reindeer_ports_as_list = list(reindeer_ports)
-        reindeer_ports_as_list.append(sender)
+    def contact_santa(self):
+        reindeer_ports_as_list = list(self.reindeer_ports)
+        reindeer_ports_as_list.append(self.port)
 
         buffer = bytearray()
         buffer.extend("R".encode())
         for port in reindeer_ports_as_list:
             buffer.extend(struct.pack("!I", port))
 
-        send_message(sender, targetHost, targetPort, buffer)
+        send_message(self.port, LOCAL_HOST, SANTA_PORT, buffer)
 
     def start_threads(self):
         sub_threads = [
-            threading.Thread(target=self.listener, args=(LOCAL_HOST, self.sender)),
+            threading.Thread(target=self.listener, args=(LOCAL_HOST, self.port)),
             threading.Thread(
                 target=self.contact_santa,
-                args=(self.sender, LOCAL_HOST, SANTA_PORT, self.reindeer_ports),
+                args=(self.port, LOCAL_HOST, SANTA_PORT, self.reindeer_ports),
             ),
         ]
 
@@ -78,7 +80,7 @@ class ReinderContacter:
 
 
 class ReindeerWorker(SyncObj):
-    def __init__(self, node, otherNodes, consumers, extra_port):
+    def __init__(self, node, otherNodes, consumers, extra_port, isNewNode=False):
         super(ReindeerWorker, self).__init__(
             node,
             otherNodes,
@@ -91,16 +93,15 @@ class ReindeerWorker(SyncObj):
 
         self._is_awake = False
         self._extra_port = extra_port
+        self._isNewNode = isNewNode
 
 
-def runReindeerContacter(port, reindeer_ports):
-    ReinderContacter(port, reindeer_ports).contact_santa(
-        port, LOCAL_HOST, SANTA_PORT, reindeer_ports
-    )
+def runReindeerContacter(reindeer_worker, reindeer_ports):
+    ReinderContacter(reindeer_worker, reindeer_ports).contact_santa()
 
 
-def runReindeerListener(port):
-    ReinderContacter(port).listener(LOCAL_HOST, port)
+def runReindeerListener(reindeer_worker):
+    ReinderContacter(reindeer_worker).listener(LOCAL_HOST, port)
 
 
 def runReindeerMain(reindeer_worker):
@@ -133,7 +134,7 @@ def runReindeerMain(reindeer_worker):
             if last_reindeer[0] == reindeer_worker._extra_port:
                 # Contat Santa
                 ports = [item[0] for item in woke.rawData()]
-                runReindeerContacter(reindeer_worker._extra_port, ports)
+                runReindeerContacter(reindeer_worker, ports)
                 reindeer_worker._is_awake = False
                 woke.clear()
 
@@ -186,10 +187,22 @@ def run(reindeer_worker):
 if __name__ == "__main__":
     if len(sys.argv) < 4:
         print(
-            "Usage: %s logFilePath self_port partner1_port partner2_port ..."
+            "Usage: %s logFilePath [--new] self_port partner1_port partner2_port ..."
             % sys.argv[0]
         )
         sys.exit(-1)
+
+    # Introduction of new nodes
+    if sys.argv[2] == "--new":
+        node = sys.argv[3] # New node
+        otherNodes = [sys.argv[4:]] # List of other nodes
+        randomOtherNode = otherNodes.index[random.randint(0, len(otherNodes))]
+
+        buffer = bytearray()
+        buffer.extend("N".encode())
+        buffer.extend(struct.pack("!I", node))
+
+        send_message("newNode", LOCAL_HOST, randomOtherNode, buffer)
 
     node = f"{LOCAL_HOST}:{sys.argv[2]}"
     otherNodes = [f"{LOCAL_HOST}:{p}" for p in sys.argv[3:]]
@@ -201,3 +214,4 @@ if __name__ == "__main__":
         node, otherNodes, consumers=[lock_manager, woke], extra_port=port + 1
     )
     run(reindeer_worker)
+
