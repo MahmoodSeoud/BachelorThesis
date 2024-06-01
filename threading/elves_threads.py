@@ -13,6 +13,7 @@ from pysyncobj.batteries import ReplLockManager, ReplSet
 LOCAL_HOST = "127.0.0.1"
 SANTA_PORT = 29800
 LOGFILE = sys.argv[1]
+NUM_CHAIN_MEMBERS = 3
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(
@@ -153,7 +154,7 @@ def run(elf_worker):
             if lock_manager.tryAcquire("chainLock", sync=True):
                 logger.info("Acquired lock")
                 # Check if the chain is eligible for modification
-                if len(chain.rawData()) < 3:
+                if len(chain.rawData()) < NUM_CHAIN_MEMBERS:
                     # Add elf_worker to the chain if it's not full and elf_worker is not already in it
                     chain.add(
                         (elf_worker._extra_port, elf_worker.selfNode),
@@ -164,7 +165,7 @@ def run(elf_worker):
                     elf_worker._is_in_chain = True
 
                     # Plus one because the the effect might not be immediate
-                    if len(chain.rawData()) + 1 == 3:
+                    if len(chain.rawData()) + 1 == NUM_CHAIN_MEMBERS:
                         elf_worker._local_chain_members = chain.rawData()
                         chain.clear()
 
