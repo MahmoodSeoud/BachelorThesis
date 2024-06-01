@@ -26,12 +26,17 @@ logging.basicConfig(
 )
 
 class ThreadedReindeerTCPRequestHandler(socketserver.StreamRequestHandler):
+    def __init__(self, reindeer_worker, *args, **kwargs):
+        self._reindeer_worker = reindeer_worker
+        super().__init__(*args, **kwargs)
+
     def handle(self):
         self.request.settimeout(10)  # Set the timout for the connection
         data = self.request.recv(1024)
         message = data.decode("utf-8")
         logger.info(f"Received a message: {message}")
         print(f"Received a message: {message}")
+        print(f'I am: {reindeer_worker._extra_port}')
     #    if message[0] == 'N':
     #        print(f"Hello world {self.server.}") 
     #        print(f"Received a message: {message}")
@@ -69,8 +74,6 @@ class ThreadedReindeeerTCPWorker(SyncObj):
 
         send_message(LOCAL_HOST, SANTA_PORT, buffer)
 
-
-
 def onNodeAdded(result, error, node):
     if error == FAIL_REASON.SUCCESS:
         logger.info(f"ADDED - REQUEST [SUCCESS]: {node}, result: {result}")
@@ -78,7 +81,6 @@ def onNodeAdded(result, error, node):
         logger.error(
             f"ADDED - REQUEST [FAILED]: {node}, error: {error}, result: {result}"
         )
-
 
 def send_message(targetHost, targetPort, buffer):
     try:
@@ -90,12 +92,11 @@ def send_message(targetHost, targetPort, buffer):
     except ConnectionRefusedError:
         logger.exception(f"Couldn't connect to: {targetHost}:{port}.")
 
-def listener(host, port):
-    with socketserver.ThreadingTCPServer(
-        (host, port), ThreadedReindeerTCPRequestHandler
-    ) as server:
+def listener(reindeer_worker):
+    with socketserver.ThreadingTCPServer((LOCAL_HOST, reindeer_worker._extra_port), 
+        lambda *args, **kwargs: ThreadedReindeerTCPRequestHandler(reindeer_worker, *args, **kwargs)) as server:    
         try:
-            logger.info(f"Starting listener: ({host}:{port})")
+            logger.info(f"Starting listener: ({LOCAL_HOST}:{reindeer_worker._extra_port})")
             server.serve_forever()
         finally:
             server.server_close()
@@ -134,9 +135,9 @@ def main(reindeer_worker):
                 reindeer_worker._is_awake = False
                 woke.clear()
 
-                # Listen to santa
-
             reindeer_worker._is_awake = False
+
+
 if __name__ == "__main__":
     if len(sys.argv) < 4:
         print(
@@ -168,7 +169,7 @@ if __name__ == "__main__":
     )
 
     sub_threads = [
-    threading.Thread(target=listener, args=(LOCAL_HOST, port + 1,)),
+    threading.Thread(target=listener, args=(reindeer_worker)),
     threading.Thread(target=main, args=(reindeer_worker,)),
     ]
 
