@@ -26,6 +26,8 @@ To run the program, execute the following command:
 $ python3 ./multiprocess/santa_reindeer_elves.py
 ```
 
+Santa has his own log file located [here](/threading/log/)
+
 ### Distributed, Non-Dynamic
 
 #### Santa
