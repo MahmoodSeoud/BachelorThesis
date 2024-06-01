@@ -38,7 +38,11 @@ $ python3 ./threading/santa_thread.py
 
 #### Reindeer
 
-For each server, open a separate shell. Then, run the corresponding script from the [scripts](/threading/scripts) directory. Alternatively, you can manually specify ports:
+For each server, open a separate shell. Then, run the corresponding script from the [scripts](/threading/scripts) directory. Alternatively, you can manually specify ports. 
+```bash
+$ python3 logFilePath self_port partner1_port partner2_port ...
+```
+**NOTICE**: Each process utilizses the port provided and also the just after. Therefore it is important to make sure that both of these ports are not in use before providing them. For example if you want to have a cluster starting from `8000`, then you need to also make sure that port `8001` also is free.
 
 ```bash
 $ python3 logFilePath self_port partner1_port partner2_port ...
