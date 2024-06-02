@@ -25,6 +25,7 @@ logging.basicConfig(
     level=logging.DEBUG,
 )
 
+
 class ThreadedReindeerTCPRequestHandler(socketserver.StreamRequestHandler):
 
     def handle(self):
@@ -36,10 +37,11 @@ class ThreadedReindeerTCPRequestHandler(socketserver.StreamRequestHandler):
         syncObj = self.server.syncObj
         print(f"Reindeer worker extraport: {syncObj._extra_port}")
 
-
-    #    if message[0] == 'N':
-    #        print(f"Hello world {self.server.}") 
-    #        print(f"Received a message: {message}")
+        if message[0] == "N":
+            print(f"New node: {message}")
+            syncObj.AddNodeToCluster(
+                message, callback=partial(onNodeAdded, node=reindeer_worker.selfNode)
+            )
 
 
 class ThreadedReindeeerTCPWorker(SyncObj):
@@ -58,10 +60,9 @@ class ThreadedReindeeerTCPWorker(SyncObj):
         self._extra_port = extra_port
         self._isNewNode = isNewNode
 
-
     def contact_santa(self, ports):
         reindeer_ports_as_list = list(ports)
-        #reindeer_ports_as_list.append(self._extra_port)
+        # reindeer_ports_as_list.append(self._extra_port)
 
         buffer = bytearray()
         buffer.extend("R".encode())
@@ -74,6 +75,7 @@ class ThreadedReindeeerTCPWorker(SyncObj):
 
         send_message(LOCAL_HOST, SANTA_PORT, buffer)
 
+
 def onNodeAdded(result, error, node):
     if error == FAIL_REASON.SUCCESS:
         logger.info(f"ADDED - REQUEST [SUCCESS]: {node}, result: {result}")
@@ -81,6 +83,7 @@ def onNodeAdded(result, error, node):
         logger.error(
             f"ADDED - REQUEST [FAILED]: {node}, error: {error}, result: {result}"
         )
+
 
 def send_message(targetHost, targetPort, buffer):
     try:
@@ -139,16 +142,31 @@ if __name__ == "__main__":
         sys.exit(-1)
 
     # Introduction of new nodes
-   # if sys.argv[2] == "--new":
-   #     node = sys.argv[3] # New node
-   #     otherNodes = [sys.argv[4:]] # List of other nodes
-   #     randomOtherNode = otherNodes.index[random.randint(0, len(otherNodes))]
+    if sys.argv[2] == "--new":
+        node = int(sys.argv[3]) # New node
+        otherNodes = sys.argv[4:] # List of other nodes
+        randomOtherNode = int(otherNodes[random.randint(0, len(otherNodes)-1)])
 
-   #     buffer = bytearray()
-   #     buffer.extend("N".encode())
-   #     buffer.extend(struct.pack("!I", node))
+        server = socketserver.ThreadingTCPServer(
+            (LOCAL_HOST, node + 1), ThreadedReindeerTCPRequestHandler
+        )
 
-   #     send_message("newNode", LOCAL_HOST, randomOtherNode, buffer)
+        with server:
+            try:
+                logger.info(
+                    f"Starting listener: ({LOCAL_HOST}:{node +1})"
+                )
+                server.serve_forever()
+            finally:
+                server.server_close()
+
+        buffer = bytearray()
+        buffer.extend("N".encode())
+        buffer.extend(struct.pack("!I", node))
+
+        send_message(LOCAL_HOST, randomOtherNode, buffer)
+
+        
 
     node = f"{LOCAL_HOST}:{sys.argv[2]}"
     otherNodes = [f"{LOCAL_HOST}:{p}" for p in sys.argv[3:]]
@@ -163,16 +181,19 @@ if __name__ == "__main__":
     thread = threading.Thread(target=main, args=(reindeer_worker,))
     thread.start()
 
-    #handler = partial(ThreadedReindeerTCPRequestHandler, reindeer_worker)
-    server = socketserver.ThreadingTCPServer((LOCAL_HOST, reindeer_worker._extra_port), ThreadedReindeerTCPRequestHandler) 
+    # handler = partial(ThreadedReindeerTCPRequestHandler, reindeer_worker)
+    server = socketserver.ThreadingTCPServer(
+        (LOCAL_HOST, reindeer_worker._extra_port), ThreadedReindeerTCPRequestHandler
+    )
     server.syncObj = reindeer_worker
 
     with server:
         try:
-            logger.info(f"Starting listener: ({LOCAL_HOST}:{reindeer_worker._extra_port})")
+            logger.info(
+                f"Starting listener: ({LOCAL_HOST}:{reindeer_worker._extra_port})"
+            )
             server.serve_forever()
         finally:
-            server.server_close()    
-
+            server.server_close()
 
     thread.join()
