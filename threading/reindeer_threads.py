@@ -10,7 +10,7 @@ from functools import partial
 from pysyncobj import SyncObj, SyncObjConf, FAIL_REASON, replicated
 from pysyncobj.batteries import ReplLockManager, ReplSet
 
-NUM_REINDEER = 3 # 9
+NUM_REINDEER = 3  # 9
 LOCAL_HOST = "127.0.0.1"
 SANTA_PORT = 29800
 LOGFILE = sys.argv[1]
@@ -26,9 +26,6 @@ logging.basicConfig(
 )
 
 class ThreadedReindeerTCPRequestHandler(socketserver.StreamRequestHandler):
-    def __init__(self, reindeer_worker, *args, **kwargs):
-        self._reindeer_worker = reindeer_worker
-        super().__init__(*args, **kwargs)
 
     def handle(self):
         self.request.settimeout(10)  # Set the timout for the connection
@@ -36,7 +33,10 @@ class ThreadedReindeerTCPRequestHandler(socketserver.StreamRequestHandler):
         message = data.decode("utf-8")
         logger.info(f"Received a message: {message}")
         print(f"Received a message: {message}")
-        print(f'I am: {reindeer_worker._extra_port}')
+        syncObj = self.server.syncObj
+        print(f"Reindeer worker extraport: {syncObj._extra_port}")
+
+
     #    if message[0] == 'N':
     #        print(f"Hello world {self.server.}") 
     #        print(f"Received a message: {message}")
@@ -92,14 +92,6 @@ def send_message(targetHost, targetPort, buffer):
     except ConnectionRefusedError:
         logger.exception(f"Couldn't connect to: {targetHost}:{port}.")
 
-def listener(reindeer_worker):
-    with socketserver.ThreadingTCPServer((LOCAL_HOST, reindeer_worker._extra_port), 
-        lambda *args, **kwargs: ThreadedReindeerTCPRequestHandler(reindeer_worker, *args, **kwargs)) as server:    
-        try:
-            logger.info(f"Starting listener: ({LOCAL_HOST}:{reindeer_worker._extra_port})")
-            server.serve_forever()
-        finally:
-            server.server_close()
 
 def main(reindeer_worker):
     print(f"Running reindeer worker {reindeer_worker.selfNode}")
@@ -168,13 +160,19 @@ if __name__ == "__main__":
         node, otherNodes, consumers=[lock_manager, woke], extra_port=port + 1
     )
 
-    sub_threads = [
-    threading.Thread(target=listener, args=(reindeer_worker)),
-    threading.Thread(target=main, args=(reindeer_worker,)),
-    ]
+    thread = threading.Thread(target=main, args=(reindeer_worker,))
+    thread.start()
 
-    for thread in sub_threads:
-        thread.start()
-    for thread in sub_threads:
-        thread.join()
+    #handler = partial(ThreadedReindeerTCPRequestHandler, reindeer_worker)
+    server = socketserver.ThreadingTCPServer((LOCAL_HOST, reindeer_worker._extra_port), ThreadedReindeerTCPRequestHandler) 
+    server.syncObj = reindeer_worker
 
+    with server:
+        try:
+            logger.info(f"Starting listener: ({LOCAL_HOST}:{reindeer_worker._extra_port})")
+            server.serve_forever()
+        finally:
+            server.server_close()    
+
+
+    thread.join()
