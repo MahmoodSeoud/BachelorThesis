@@ -1,58 +1,724 @@
-INFO 02/06/2024 20:12:52 Timing Starts
-INFO 02/06/2024 20:12:52 Santa - Starting listener: 127.0.0.1:29800
-INFO 02/06/2024 20:13:03 Santa and the reindeer gets to work!
-INFO 02/06/2024 20:13:03 Sending message to 127.0.0.1:8005.
-INFO 02/06/2024 20:13:03 Sending message to 127.0.0.1:8003.
-INFO 02/06/2024 20:13:03 Sending message to 127.0.0.1:8001.
-INFO 02/06/2024 20:13:03 Santa and the reindeer gets to work!
-INFO 02/06/2024 20:13:03 Sending message to 127.0.0.1:8003.
-INFO 02/06/2024 20:13:03 Sending message to 127.0.0.1:8005.
-INFO 02/06/2024 20:13:03 Sending message to 127.0.0.1:8001.
-INFO 02/06/2024 20:13:04 Santa and the reindeer gets to work!
-INFO 02/06/2024 20:13:04 Sending message to 127.0.0.1:8003.
-INFO 02/06/2024 20:13:04 Sending message to 127.0.0.1:8001.
-INFO 02/06/2024 20:13:04 Sending message to 127.0.0.1:8005.
-INFO 02/06/2024 20:13:05 Santa and the reindeer gets to work!
-INFO 02/06/2024 20:13:05 Sending message to 127.0.0.1:8003.
-INFO 02/06/2024 20:13:05 Sending message to 127.0.0.1:8001.
-INFO 02/06/2024 20:13:05 Sending message to 127.0.0.1:8005.
-INFO 02/06/2024 20:13:05 Santa and the reindeer gets to work!
-INFO 02/06/2024 20:13:05 Sending message to 127.0.0.1:8003.
-INFO 02/06/2024 20:13:05 Sending message to 127.0.0.1:8001.
-INFO 02/06/2024 20:13:05 Sending message to 127.0.0.1:8005.
-INFO 02/06/2024 20:13:06 Santa and the reindeer gets to work!
-INFO 02/06/2024 20:13:06 Sending message to 127.0.0.1:8003.
-INFO 02/06/2024 20:13:06 Sending message to 127.0.0.1:8005.
-INFO 02/06/2024 20:13:06 Sending message to 127.0.0.1:8001.
-INFO 02/06/2024 20:13:06 Santa and the reindeer gets to work!
-INFO 02/06/2024 20:13:06 Sending message to 127.0.0.1:8003.
-INFO 02/06/2024 20:13:06 Sending message to 127.0.0.1:8001.
-INFO 02/06/2024 20:13:06 Sending message to 127.0.0.1:8005.
-INFO 02/06/2024 20:13:07 Santa and the reindeer gets to work!
-INFO 02/06/2024 20:13:07 Sending message to 127.0.0.1:8003.
-INFO 02/06/2024 20:13:07 Sending message to 127.0.0.1:8001.
-INFO 02/06/2024 20:13:07 Sending message to 127.0.0.1:8005.
-INFO 02/06/2024 20:13:08 Santa and the reindeer gets to work!
-INFO 02/06/2024 20:13:08 Sending message to 127.0.0.1:8003.
-INFO 02/06/2024 20:13:08 Sending message to 127.0.0.1:8005.
-INFO 02/06/2024 20:13:08 Sending message to 127.0.0.1:8001.
-INFO 02/06/2024 20:13:09 Santa and the reindeer gets to work!
-INFO 02/06/2024 20:13:09 Sending message to 127.0.0.1:8005.
-INFO 02/06/2024 20:13:09 Sending message to 127.0.0.1:8003.
-INFO 02/06/2024 20:13:09 Sending message to 127.0.0.1:8001.
-INFO 02/06/2024 20:13:09 Santa and the reindeer gets to work!
-INFO 02/06/2024 20:13:09 Sending message to 127.0.0.1:8005.
-INFO 02/06/2024 20:13:09 Sending message to 127.0.0.1:8003.
-INFO 02/06/2024 20:13:09 Sending message to 127.0.0.1:8001.
-INFO 02/06/2024 20:13:10 Santa and the reindeer gets to work!
-INFO 02/06/2024 20:13:10 Sending message to 127.0.0.1:8005.
-INFO 02/06/2024 20:13:10 Sending message to 127.0.0.1:8003.
-INFO 02/06/2024 20:13:10 Sending message to 127.0.0.1:8001.
-INFO 02/06/2024 20:13:10 Santa and the reindeer gets to work!
-INFO 02/06/2024 20:13:10 Sending message to 127.0.0.1:8003.
-INFO 02/06/2024 20:13:10 Sending message to 127.0.0.1:8005.
-INFO 02/06/2024 20:13:10 Sending message to 127.0.0.1:8001.
-INFO 02/06/2024 20:13:11 Santa and the reindeer gets to work!
-INFO 02/06/2024 20:13:11 Sending message to 127.0.0.1:8003.
-INFO 02/06/2024 20:13:11 Sending message to 127.0.0.1:8005.
-INFO 02/06/2024 20:13:11 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:16:50 Timing Starts
+INFO 02/06/2024 21:16:50 Santa - Starting listener: 127.0.0.1:29800
+INFO 02/06/2024 21:17:02 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:17:02 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:17:02 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:17:02 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:17:03 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:17:03 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:17:03 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:17:03 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:17:04 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:17:04 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:17:04 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:17:04 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:17:04 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:17:04 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:17:04 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:17:04 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:17:05 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:17:05 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:17:05 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:17:05 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:17:05 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:17:05 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:17:05 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:17:05 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:17:06 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:17:06 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:17:06 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:17:06 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:17:06 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:17:06 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:17:06 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:17:06 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:17:07 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:17:07 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:17:07 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:17:07 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:17:08 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:17:08 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:17:08 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:17:08 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:17:09 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:17:09 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:17:09 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:17:09 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:17:09 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:17:09 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:17:09 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:17:09 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:17:10 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:17:10 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:17:10 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:17:10 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:17:11 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:17:11 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:17:11 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:17:11 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:17:11 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:17:11 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:17:11 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:17:11 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:17:12 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:17:12 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:17:12 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:17:12 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:29:21 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:29:21 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:29:21 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:29:21 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:29:22 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:29:22 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:29:22 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:29:22 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:29:23 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:29:23 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:29:23 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:29:23 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:29:23 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:29:23 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:29:23 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:29:23 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:29:24 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:29:24 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:29:24 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:29:24 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:29:25 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:29:25 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:29:25 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:29:25 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:29:25 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:29:25 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:29:25 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:29:25 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:29:26 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:29:26 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:29:26 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:29:26 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:29:27 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:29:27 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:29:27 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:29:27 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:29:43 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:29:43 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:29:43 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:29:43 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:29:44 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:29:44 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:29:44 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:29:44 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:29:45 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:29:45 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:29:45 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:29:45 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:29:45 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:29:45 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:29:45 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:29:45 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:29:46 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:29:46 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:29:46 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:29:46 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:29:46 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:29:46 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:29:46 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:29:46 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:29:47 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:29:47 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:29:47 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:29:47 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:29:48 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:29:48 Sending message to 127.0.0.1:8005.
+ERROR 02/06/2024 21:29:48 Couldn't connect to 127.0.0.1:8005.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:29:49 Sending message to 127.0.0.1:8005.
+ERROR 02/06/2024 21:29:49 Couldn't connect to 127.0.0.1:8005.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:29:50 Sending message to 127.0.0.1:8005.
+ERROR 02/06/2024 21:29:50 Couldn't connect to 127.0.0.1:8005.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:29:51 Sending message to 127.0.0.1:8005.
+ERROR 02/06/2024 21:29:51 Couldn't connect to 127.0.0.1:8005.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:29:52 Sending message to 127.0.0.1:8005.
+ERROR 02/06/2024 21:29:52 Couldn't connect to 127.0.0.1:8005.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:29:53 Sending message to 127.0.0.1:8005.
+ERROR 02/06/2024 21:29:53 Couldn't connect to 127.0.0.1:8005.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:29:54 Sending message to 127.0.0.1:8005.
+ERROR 02/06/2024 21:29:54 Couldn't connect to 127.0.0.1:8005.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:29:55 Sending message to 127.0.0.1:8005.
+ERROR 02/06/2024 21:29:55 Couldn't connect to 127.0.0.1:8005.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:29:56 Sending message to 127.0.0.1:8005.
+ERROR 02/06/2024 21:29:56 Couldn't connect to 127.0.0.1:8005.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:29:57 Sending message to 127.0.0.1:8005.
+ERROR 02/06/2024 21:29:57 Couldn't connect to 127.0.0.1:8005.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:29:58 Sending message to 127.0.0.1:8005.
+ERROR 02/06/2024 21:29:58 Couldn't connect to 127.0.0.1:8005.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:29:59 Sending message to 127.0.0.1:8005.
+ERROR 02/06/2024 21:29:59 Couldn't connect to 127.0.0.1:8005.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:00 Sending message to 127.0.0.1:8005.
+ERROR 02/06/2024 21:30:00 Couldn't connect to 127.0.0.1:8005.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:01 Sending message to 127.0.0.1:8005.
+ERROR 02/06/2024 21:30:01 Couldn't connect to 127.0.0.1:8005.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:02 Sending message to 127.0.0.1:8005.
+ERROR 02/06/2024 21:30:02 Couldn't connect to 127.0.0.1:8005.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:03 Sending message to 127.0.0.1:8005.
+ERROR 02/06/2024 21:30:03 Couldn't connect to 127.0.0.1:8005.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:04 Sending message to 127.0.0.1:8005.
+ERROR 02/06/2024 21:30:04 Couldn't connect to 127.0.0.1:8005.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:05 Sending message to 127.0.0.1:8005.
+ERROR 02/06/2024 21:30:05 Couldn't connect to 127.0.0.1:8005.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:06 Sending message to 127.0.0.1:8005.
+ERROR 02/06/2024 21:30:06 Couldn't connect to 127.0.0.1:8005.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:07 Sending message to 127.0.0.1:8005.
+ERROR 02/06/2024 21:30:07 Couldn't connect to 127.0.0.1:8005.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:08 Sending message to 127.0.0.1:8005.
+ERROR 02/06/2024 21:30:08 Couldn't connect to 127.0.0.1:8005.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:09 Sending message to 127.0.0.1:8005.
+ERROR 02/06/2024 21:30:09 Couldn't connect to 127.0.0.1:8005.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:10 Sending message to 127.0.0.1:8005.
+ERROR 02/06/2024 21:30:10 Couldn't connect to 127.0.0.1:8005.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:11 Sending message to 127.0.0.1:8005.
+ERROR 02/06/2024 21:30:11 Couldn't connect to 127.0.0.1:8005.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:12 Sending message to 127.0.0.1:8005.
+ERROR 02/06/2024 21:30:12 Couldn't connect to 127.0.0.1:8005.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:13 Sending message to 127.0.0.1:8005.
+ERROR 02/06/2024 21:30:13 Couldn't connect to 127.0.0.1:8005.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:14 Sending message to 127.0.0.1:8005.
+ERROR 02/06/2024 21:30:14 Couldn't connect to 127.0.0.1:8005.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:15 Sending message to 127.0.0.1:8005.
+ERROR 02/06/2024 21:30:15 Couldn't connect to 127.0.0.1:8005.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:16 Sending message to 127.0.0.1:8005.
+ERROR 02/06/2024 21:30:16 Couldn't connect to 127.0.0.1:8005.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:17 Sending message to 127.0.0.1:8005.
+ERROR 02/06/2024 21:30:17 Couldn't connect to 127.0.0.1:8005.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:18 Sending message to 127.0.0.1:8005.
+ERROR 02/06/2024 21:30:18 Couldn't connect to 127.0.0.1:8005.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+ERROR 02/06/2024 21:30:18 Timeout after 30 seconds while trying to send message to 127.0.0.1:8005.
+INFO 02/06/2024 21:30:18 Sending message to 127.0.0.1:8003.
+ERROR 02/06/2024 21:30:18 Couldn't connect to 127.0.0.1:8003.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:19 Sending message to 127.0.0.1:8003.
+ERROR 02/06/2024 21:30:19 Couldn't connect to 127.0.0.1:8003.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:20 Sending message to 127.0.0.1:8003.
+ERROR 02/06/2024 21:30:20 Couldn't connect to 127.0.0.1:8003.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:21 Sending message to 127.0.0.1:8003.
+ERROR 02/06/2024 21:30:21 Couldn't connect to 127.0.0.1:8003.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:22 Sending message to 127.0.0.1:8003.
+ERROR 02/06/2024 21:30:22 Couldn't connect to 127.0.0.1:8003.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:23 Sending message to 127.0.0.1:8003.
+ERROR 02/06/2024 21:30:23 Couldn't connect to 127.0.0.1:8003.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:24 Sending message to 127.0.0.1:8003.
+ERROR 02/06/2024 21:30:24 Couldn't connect to 127.0.0.1:8003.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:25 Sending message to 127.0.0.1:8003.
+ERROR 02/06/2024 21:30:25 Couldn't connect to 127.0.0.1:8003.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:26 Sending message to 127.0.0.1:8003.
+ERROR 02/06/2024 21:30:26 Couldn't connect to 127.0.0.1:8003.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:27 Sending message to 127.0.0.1:8003.
+ERROR 02/06/2024 21:30:27 Couldn't connect to 127.0.0.1:8003.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:28 Sending message to 127.0.0.1:8003.
+ERROR 02/06/2024 21:30:28 Couldn't connect to 127.0.0.1:8003.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:29 Sending message to 127.0.0.1:8003.
+ERROR 02/06/2024 21:30:29 Couldn't connect to 127.0.0.1:8003.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:30 Sending message to 127.0.0.1:8003.
+ERROR 02/06/2024 21:30:30 Couldn't connect to 127.0.0.1:8003.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:31 Sending message to 127.0.0.1:8003.
+ERROR 02/06/2024 21:30:31 Couldn't connect to 127.0.0.1:8003.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:32 Sending message to 127.0.0.1:8003.
+ERROR 02/06/2024 21:30:32 Couldn't connect to 127.0.0.1:8003.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:33 Sending message to 127.0.0.1:8003.
+ERROR 02/06/2024 21:30:33 Couldn't connect to 127.0.0.1:8003.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:34 Sending message to 127.0.0.1:8003.
+ERROR 02/06/2024 21:30:34 Couldn't connect to 127.0.0.1:8003.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:35 Sending message to 127.0.0.1:8003.
+ERROR 02/06/2024 21:30:35 Couldn't connect to 127.0.0.1:8003.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:36 Sending message to 127.0.0.1:8003.
+ERROR 02/06/2024 21:30:36 Couldn't connect to 127.0.0.1:8003.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:37 Sending message to 127.0.0.1:8003.
+ERROR 02/06/2024 21:30:37 Couldn't connect to 127.0.0.1:8003.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:38 Sending message to 127.0.0.1:8003.
+ERROR 02/06/2024 21:30:38 Couldn't connect to 127.0.0.1:8003.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:39 Sending message to 127.0.0.1:8003.
+ERROR 02/06/2024 21:30:39 Couldn't connect to 127.0.0.1:8003.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:40 Sending message to 127.0.0.1:8003.
+ERROR 02/06/2024 21:30:40 Couldn't connect to 127.0.0.1:8003.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:41 Sending message to 127.0.0.1:8003.
+ERROR 02/06/2024 21:30:41 Couldn't connect to 127.0.0.1:8003.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:42 Sending message to 127.0.0.1:8003.
+ERROR 02/06/2024 21:30:42 Couldn't connect to 127.0.0.1:8003.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:43 Sending message to 127.0.0.1:8003.
+ERROR 02/06/2024 21:30:43 Couldn't connect to 127.0.0.1:8003.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:44 Sending message to 127.0.0.1:8003.
+ERROR 02/06/2024 21:30:44 Couldn't connect to 127.0.0.1:8003.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:45 Sending message to 127.0.0.1:8003.
+ERROR 02/06/2024 21:30:45 Couldn't connect to 127.0.0.1:8003.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:46 Sending message to 127.0.0.1:8003.
+ERROR 02/06/2024 21:30:46 Couldn't connect to 127.0.0.1:8003.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:47 Sending message to 127.0.0.1:8003.
+ERROR 02/06/2024 21:30:47 Couldn't connect to 127.0.0.1:8003.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:48 Sending message to 127.0.0.1:8003.
+ERROR 02/06/2024 21:30:48 Couldn't connect to 127.0.0.1:8003.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+ERROR 02/06/2024 21:30:48 Timeout after 30 seconds while trying to send message to 127.0.0.1:8003.
+INFO 02/06/2024 21:30:48 Sending message to 127.0.0.1:8001.
+ERROR 02/06/2024 21:30:48 Couldn't connect to 127.0.0.1:8001.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:49 Sending message to 127.0.0.1:8001.
+ERROR 02/06/2024 21:30:49 Couldn't connect to 127.0.0.1:8001.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:50 Sending message to 127.0.0.1:8001.
+ERROR 02/06/2024 21:30:50 Couldn't connect to 127.0.0.1:8001.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:51 Sending message to 127.0.0.1:8001.
+ERROR 02/06/2024 21:30:51 Couldn't connect to 127.0.0.1:8001.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:52 Sending message to 127.0.0.1:8001.
+ERROR 02/06/2024 21:30:52 Couldn't connect to 127.0.0.1:8001.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:53 Sending message to 127.0.0.1:8001.
+ERROR 02/06/2024 21:30:53 Couldn't connect to 127.0.0.1:8001.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:54 Sending message to 127.0.0.1:8001.
+ERROR 02/06/2024 21:30:54 Couldn't connect to 127.0.0.1:8001.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:55 Sending message to 127.0.0.1:8001.
+ERROR 02/06/2024 21:30:55 Couldn't connect to 127.0.0.1:8001.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:56 Sending message to 127.0.0.1:8001.
+ERROR 02/06/2024 21:30:56 Couldn't connect to 127.0.0.1:8001.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:57 Sending message to 127.0.0.1:8001.
+ERROR 02/06/2024 21:30:57 Couldn't connect to 127.0.0.1:8001.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:58 Sending message to 127.0.0.1:8001.
+ERROR 02/06/2024 21:30:58 Couldn't connect to 127.0.0.1:8001.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:30:59 Sending message to 127.0.0.1:8001.
+ERROR 02/06/2024 21:30:59 Couldn't connect to 127.0.0.1:8001.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:31:00 Sending message to 127.0.0.1:8001.
+ERROR 02/06/2024 21:31:00 Couldn't connect to 127.0.0.1:8001.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:31:01 Sending message to 127.0.0.1:8001.
+ERROR 02/06/2024 21:31:01 Couldn't connect to 127.0.0.1:8001.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:31:02 Sending message to 127.0.0.1:8001.
+ERROR 02/06/2024 21:31:02 Couldn't connect to 127.0.0.1:8001.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:31:03 Sending message to 127.0.0.1:8001.
+ERROR 02/06/2024 21:31:03 Couldn't connect to 127.0.0.1:8001.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:31:04 Sending message to 127.0.0.1:8001.
+ERROR 02/06/2024 21:31:04 Couldn't connect to 127.0.0.1:8001.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:31:05 Sending message to 127.0.0.1:8001.
+ERROR 02/06/2024 21:31:05 Couldn't connect to 127.0.0.1:8001.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:31:06 Sending message to 127.0.0.1:8001.
+ERROR 02/06/2024 21:31:06 Couldn't connect to 127.0.0.1:8001.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:31:07 Sending message to 127.0.0.1:8001.
+ERROR 02/06/2024 21:31:07 Couldn't connect to 127.0.0.1:8001.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:31:08 Sending message to 127.0.0.1:8001.
+ERROR 02/06/2024 21:31:08 Couldn't connect to 127.0.0.1:8001.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:31:09 Sending message to 127.0.0.1:8001.
+ERROR 02/06/2024 21:31:09 Couldn't connect to 127.0.0.1:8001.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:31:10 Sending message to 127.0.0.1:8001.
+ERROR 02/06/2024 21:31:10 Couldn't connect to 127.0.0.1:8001.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:31:11 Sending message to 127.0.0.1:8001.
+ERROR 02/06/2024 21:31:11 Couldn't connect to 127.0.0.1:8001.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:31:12 Sending message to 127.0.0.1:8001.
+ERROR 02/06/2024 21:31:12 Couldn't connect to 127.0.0.1:8001.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:31:13 Sending message to 127.0.0.1:8001.
+ERROR 02/06/2024 21:31:13 Couldn't connect to 127.0.0.1:8001.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:31:14 Sending message to 127.0.0.1:8001.
+ERROR 02/06/2024 21:31:14 Couldn't connect to 127.0.0.1:8001.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:31:15 Sending message to 127.0.0.1:8001.
+ERROR 02/06/2024 21:31:15 Couldn't connect to 127.0.0.1:8001.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:31:16 Sending message to 127.0.0.1:8001.
+ERROR 02/06/2024 21:31:16 Couldn't connect to 127.0.0.1:8001.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:31:17 Sending message to 127.0.0.1:8001.
+ERROR 02/06/2024 21:31:17 Couldn't connect to 127.0.0.1:8001.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 02/06/2024 21:31:18 Sending message to 127.0.0.1:8001.
+ERROR 02/06/2024 21:31:18 Couldn't connect to 127.0.0.1:8001.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/santa_thread.py", line 96, in send_message
+    conn_socket.connect((host, port))
+ConnectionRefusedError: [Errno 61] Connection refused
+ERROR 02/06/2024 21:31:18 Timeout after 30 seconds while trying to send message to 127.0.0.1:8001.
+INFO 02/06/2024 21:31:56 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:31:56 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:31:56 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:31:56 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:31:56 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:31:56 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:31:56 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:31:56 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:31:57 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:31:57 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:31:57 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:31:57 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:31:58 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:31:58 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:31:58 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:31:58 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:31:58 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:31:58 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:31:58 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:31:58 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:31:59 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:31:59 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:31:59 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:31:59 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:32:00 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:32:00 Sending message to 127.0.0.1:8005.
+INFO 02/06/2024 21:32:00 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:32:00 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:32:00 Santa and the reindeer gets to work!
+INFO 02/06/2024 21:32:00 Sending message to 127.0.0.1:8003.
+INFO 02/06/2024 21:32:00 Sending message to 127.0.0.1:8001.
+INFO 02/06/2024 21:32:00 Sending message to 127.0.0.1:8005.

@@ -29,20 +29,56 @@ logging.basicConfig(
 class ThreadedReindeerTCPRequestHandler(socketserver.StreamRequestHandler):
 
     def handle(self):
-        self.request.settimeout(10)  # Set the timout for the connection
+       # self.request.settimeout(10)  # Set the timout for the connection
         data = self.request.recv(1024)
         message = data.decode("utf-8")
+        syncObj = self.server.syncObj
+        client_ip, client_port = self.client_address
+
         logger.info(f"Received a message: {message}")
         print(f"Received a message: {message}")
-        syncObj = self.server.syncObj
-        print(f"Reindeer worker extraport: {syncObj._extra_port}")
 
-        if message[0] == "N":
-            print(f"New node: {message}")
+        if message == "SYN": # Request to add new node
+            buffer = bytearray()
+            buffer.extend("ACK".encode())
+            nodesInCluster = syncObj.otherNodes + [syncObj.selfNode]
+            print("nodesInCluster",nodesInCluster)
+            for node in nodesInCluster:
+                buffer.extend(struct.pack("!I", node))
+
+            #for node in nodesInCluster:
+            #    node_str = f"{node.host}:{node.port}"
+            #    buffer.extend(node_str.encode())
+            
+            send_message(client_ip, client_port, buffer)
+
+        elif message == "SYN/ACK":
+            new_node = f"{client_ip}:{client_port}"
+            print(f"New node: {new_node}")
             syncObj.AddNodeToCluster(
-                message, callback=partial(onNodeAdded, node=reindeer_worker.selfNode)
+                new_node, 
+                callback=partial(onNodeAdded, node=reindeer_worker.selfNode)
             )
+            
+            NUM_REINDEER += 1
 
+class ThreadedReindeerTCPNewNodeHandler(socketserver.StreamRequestHandler):
+
+    def handle(self):
+        data = self.request.recv(1024)
+        message = data.decode("utf-8")
+        client_ip, client_port = self.client_address
+        ack, nodes = message.split("|")
+
+        print(f"Received a message: {ack}")
+        print(f"Nodes: {nodes}")
+
+        if ack == "ACK":
+            buffer = bytearray()
+            buffer.extend("SYN/ACK".encode())
+            send_message(client_ip, client_port, buffer)
+            # Done making the connections
+            self.server.server_close()
 
 class ThreadedReindeeerTCPWorker(SyncObj):
     def __init__(self, node, otherNodes, consumers, extra_port, isNewNode=False):
@@ -51,7 +87,7 @@ class ThreadedReindeeerTCPWorker(SyncObj):
             otherNodes,
             consumers=consumers,
             conf=SyncObjConf(
-                # dynamicMembershipChange=True,
+                dynamicMembershipChange=True,
                 connectionRetryTime=10.0,
             ),
         )
@@ -148,8 +184,12 @@ if __name__ == "__main__":
         randomOtherNode = int(otherNodes[random.randint(0, len(otherNodes)-1)])
 
         server = socketserver.ThreadingTCPServer(
-            (LOCAL_HOST, node + 1), ThreadedReindeerTCPRequestHandler
+            (LOCAL_HOST, node + 1), ThreadedReindeerTCPNewNodeHandler
         )
+
+        buffer = bytearray()
+        buffer.extend("SYN".encode())
+        send_message(LOCAL_HOST, randomOtherNode + 1, buffer)
 
         with server:
             try:
@@ -160,14 +200,7 @@ if __name__ == "__main__":
             finally:
                 server.server_close()
 
-        buffer = bytearray()
-        buffer.extend("N".encode())
-        buffer.extend(struct.pack("!I", node))
-
-        send_message(LOCAL_HOST, randomOtherNode, buffer)
-
-        
-
+    
     node = f"{LOCAL_HOST}:{sys.argv[2]}"
     otherNodes = [f"{LOCAL_HOST}:{p}" for p in sys.argv[3:]]
 

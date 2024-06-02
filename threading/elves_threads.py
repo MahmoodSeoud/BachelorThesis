@@ -90,7 +90,6 @@ class ElfWorker(SyncObj):
             otherNodes,
             consumers=consumers,
             conf=SyncObjConf(
-                dynamicMembershipChange=True,
                 connectionRetryTime=10.0,
             ),
         )
