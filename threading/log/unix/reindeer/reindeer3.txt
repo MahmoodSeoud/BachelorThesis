@@ -1,18 +1,62 @@
-INFO 02/06/2024 21:31:55 Starting listener: (127.0.0.1:8005)
-INFO 02/06/2024 21:31:56 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8004, result: None
-INFO 02/06/2024 21:31:56 Received a message: Go back on holiday, reindeer!
-INFO 02/06/2024 21:31:56 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8004, result: None
-INFO 02/06/2024 21:31:56 Received a message: Go back on holiday, reindeer!
-INFO 02/06/2024 21:31:57 Received a message: Go back on holiday, reindeer!
-INFO 02/06/2024 21:31:57 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8004, result: None
-INFO 02/06/2024 21:31:58 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8004, result: None
-INFO 02/06/2024 21:31:58 Received a message: Go back on holiday, reindeer!
-INFO 02/06/2024 21:31:58 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8004, result: None
-INFO 02/06/2024 21:31:58 Received a message: Go back on holiday, reindeer!
-INFO 02/06/2024 21:31:59 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8004, result: None
-INFO 02/06/2024 21:31:59 Received a message: Go back on holiday, reindeer!
-INFO 02/06/2024 21:32:00 Received a message: Go back on holiday, reindeer!
-INFO 02/06/2024 21:32:00 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8004, result: None
-INFO 02/06/2024 21:32:00 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8004, result: None
-INFO 02/06/2024 21:32:00 Received a message: Go back on holiday, reindeer!
-INFO 02/06/2024 21:32:01 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8004, result: None
+INFO 03/06/2024 12:12:43 Starting listener: (127.0.0.1:8005)
+INFO 03/06/2024 12:12:43 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8004, result: None
+INFO 03/06/2024 12:12:44 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8004, result: None
+INFO 03/06/2024 12:12:45 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8004, result: None
+INFO 03/06/2024 12:12:45 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8004, result: None
+INFO 03/06/2024 12:12:46 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8004, result: None
+ERROR 03/06/2024 12:12:46 Couldn't connect to: 127.0.0.1:29800.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/reindeer_threads.py", line 129, in send_message
+    conn_socket.connect((targetHost, targetPort))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 03/06/2024 12:12:47 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8004, result: None
+ERROR 03/06/2024 12:12:47 Couldn't connect to: 127.0.0.1:29800.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/reindeer_threads.py", line 129, in send_message
+    conn_socket.connect((targetHost, targetPort))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 03/06/2024 12:12:47 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8004, result: None
+ERROR 03/06/2024 12:12:47 Couldn't connect to: 127.0.0.1:29800.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/reindeer_threads.py", line 129, in send_message
+    conn_socket.connect((targetHost, targetPort))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 03/06/2024 12:12:48 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8004, result: None
+INFO 03/06/2024 12:12:49 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8004, result: None
+ERROR 03/06/2024 12:12:49 Couldn't connect to: 127.0.0.1:29800.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/reindeer_threads.py", line 129, in send_message
+    conn_socket.connect((targetHost, targetPort))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 03/06/2024 12:12:49 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8004, result: None
+INFO 03/06/2024 12:12:50 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8004, result: None
+INFO 03/06/2024 12:12:51 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8004, result: None
+INFO 03/06/2024 12:12:51 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8004, result: None
+INFO 03/06/2024 12:12:52 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8004, result: None
+ERROR 03/06/2024 12:12:52 Couldn't connect to: 127.0.0.1:29800.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/reindeer_threads.py", line 129, in send_message
+    conn_socket.connect((targetHost, targetPort))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 03/06/2024 12:12:52 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8004, result: None
+ERROR 03/06/2024 12:12:52 Couldn't connect to: 127.0.0.1:29800.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/reindeer_threads.py", line 129, in send_message
+    conn_socket.connect((targetHost, targetPort))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 03/06/2024 12:12:53 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8004, result: None
+INFO 03/06/2024 12:12:54 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8004, result: None
+INFO 03/06/2024 12:12:54 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8004, result: None
+INFO 03/06/2024 12:12:55 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8004, result: None
+INFO 03/06/2024 12:12:56 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8004, result: None
+ERROR 03/06/2024 12:12:56 Couldn't connect to: 127.0.0.1:29800.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/reindeer_threads.py", line 129, in send_message
+    conn_socket.connect((targetHost, targetPort))
+ConnectionRefusedError: [Errno 61] Connection refused
+INFO 03/06/2024 12:12:56 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8004, result: None
+ERROR 03/06/2024 12:12:56 Couldn't connect to: 127.0.0.1:29800.
+Traceback (most recent call last):
+  File "/Users/mahmood/BachelorThesis/threading/reindeer_threads.py", line 129, in send_message
+    conn_socket.connect((targetHost, targetPort))
+ConnectionRefusedError: [Errno 61] Connection refused

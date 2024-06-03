@@ -75,7 +75,7 @@ prior experience with Paxos, and the Paxos video is 14%"
         REQUEST_DENIED = 6      #: Command denied
     ```
 
-- Here is an example of what we get when calling SyncObj.getState():
+- Here is an example of what we get when calling `SyncObj.getStatus()`:
     ```json
   {
    "version":"0.3.12",
