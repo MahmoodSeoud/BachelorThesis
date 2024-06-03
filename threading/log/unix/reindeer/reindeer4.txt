@@ -1,1 +1,30 @@
-INFO 03/06/2024 12:12:54 Starting listener: (127.0.0.1:8007)
+INFO 03/06/2024 14:28:58 Starting listener: (127.0.0.1:8007)
+INFO 03/06/2024 14:28:58 Starting listener: (127.0.0.1:8007)
+INFO 03/06/2024 14:28:59 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8006, result: None
+INFO 03/06/2024 14:28:59 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:29:00 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8006, result: None
+INFO 03/06/2024 14:29:00 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:29:00 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8006, result: None
+INFO 03/06/2024 14:29:00 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:29:01 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8006, result: None
+INFO 03/06/2024 14:29:01 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:29:02 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8006, result: None
+INFO 03/06/2024 14:29:02 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:29:02 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8006, result: None
+INFO 03/06/2024 14:29:02 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:29:03 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8006, result: None
+INFO 03/06/2024 14:29:03 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:29:04 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8006, result: None
+INFO 03/06/2024 14:29:04 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:29:04 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:29:04 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8006, result: None
+INFO 03/06/2024 14:29:05 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8006, result: None
+INFO 03/06/2024 14:29:05 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:29:06 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8006, result: None
+INFO 03/06/2024 14:29:06 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:29:06 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8006, result: None
+INFO 03/06/2024 14:29:06 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:29:07 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8006, result: None
+INFO 03/06/2024 14:29:07 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:29:08 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8006, result: None
+INFO 03/06/2024 14:29:08 Received a message: Go back on holiday, reindeer!

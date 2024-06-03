@@ -1,110 +1,226 @@
-INFO 03/06/2024 11:05:53 Timing Starts
-INFO 03/06/2024 11:05:53 Santa - Starting listener: 127.0.0.1:29800
-INFO 03/06/2024 11:06:01 Santa and the reindeer gets to work!
-INFO 03/06/2024 11:06:01 Sending message to 127.0.0.1:8003.
-INFO 03/06/2024 11:06:01 Sending message to 127.0.0.1:8001.
-INFO 03/06/2024 11:06:01 Sending message to 127.0.0.1:8005.
-INFO 03/06/2024 11:06:02 Santa and the reindeer gets to work!
-INFO 03/06/2024 11:06:02 Sending message to 127.0.0.1:8003.
-INFO 03/06/2024 11:06:02 Sending message to 127.0.0.1:8001.
-INFO 03/06/2024 11:06:02 Sending message to 127.0.0.1:8005.
-INFO 03/06/2024 11:06:03 Santa and the reindeer gets to work!
-INFO 03/06/2024 11:06:03 Sending message to 127.0.0.1:8001.
-INFO 03/06/2024 11:06:03 Sending message to 127.0.0.1:8003.
-INFO 03/06/2024 11:06:03 Sending message to 127.0.0.1:8005.
-INFO 03/06/2024 11:06:03 Santa and the reindeer gets to work!
-INFO 03/06/2024 11:06:03 Sending message to 127.0.0.1:8003.
-INFO 03/06/2024 11:06:03 Sending message to 127.0.0.1:8001.
-INFO 03/06/2024 11:06:03 Sending message to 127.0.0.1:8005.
-INFO 03/06/2024 11:06:04 Santa and the reindeer gets to work!
-INFO 03/06/2024 11:06:04 Sending message to 127.0.0.1:8005.
-INFO 03/06/2024 11:06:04 Sending message to 127.0.0.1:8003.
-INFO 03/06/2024 11:06:04 Sending message to 127.0.0.1:8001.
-INFO 03/06/2024 11:06:04 Santa and the reindeer gets to work!
-INFO 03/06/2024 11:06:04 Sending message to 127.0.0.1:8005.
-INFO 03/06/2024 11:06:04 Sending message to 127.0.0.1:8003.
-INFO 03/06/2024 11:06:04 Sending message to 127.0.0.1:8001.
-INFO 03/06/2024 11:06:05 Santa and the reindeer gets to work!
-INFO 03/06/2024 11:06:05 Sending message to 127.0.0.1:8005.
-INFO 03/06/2024 11:06:05 Sending message to 127.0.0.1:8003.
-INFO 03/06/2024 11:06:05 Sending message to 127.0.0.1:8001.
-INFO 03/06/2024 11:06:05 Santa and the reindeer gets to work!
-INFO 03/06/2024 11:06:05 Sending message to 127.0.0.1:8003.
-INFO 03/06/2024 11:06:05 Sending message to 127.0.0.1:8001.
-INFO 03/06/2024 11:06:05 Sending message to 127.0.0.1:8005.
-INFO 03/06/2024 11:06:06 Santa and the reindeer gets to work!
-INFO 03/06/2024 11:06:06 Sending message to 127.0.0.1:8003.
-INFO 03/06/2024 11:06:06 Sending message to 127.0.0.1:8001.
-INFO 03/06/2024 11:06:06 Sending message to 127.0.0.1:8005.
-INFO 03/06/2024 11:06:07 Santa and the reindeer gets to work!
-INFO 03/06/2024 11:06:07 Sending message to 127.0.0.1:8003.
-INFO 03/06/2024 11:06:07 Sending message to 127.0.0.1:8005.
-INFO 03/06/2024 11:06:07 Sending message to 127.0.0.1:8001.
-INFO 03/06/2024 11:06:07 Santa and the reindeer gets to work!
-INFO 03/06/2024 11:06:07 Sending message to 127.0.0.1:8005.
-INFO 03/06/2024 11:06:07 Sending message to 127.0.0.1:8001.
-INFO 03/06/2024 11:06:07 Sending message to 127.0.0.1:8003.
-INFO 03/06/2024 11:06:08 Santa and the reindeer gets to work!
-INFO 03/06/2024 11:06:08 Sending message to 127.0.0.1:8005.
-INFO 03/06/2024 11:06:08 Sending message to 127.0.0.1:8003.
-INFO 03/06/2024 11:06:08 Sending message to 127.0.0.1:8001.
-INFO 03/06/2024 11:06:09 Santa and the reindeer gets to work!
-INFO 03/06/2024 11:06:09 Sending message to 127.0.0.1:8003.
-INFO 03/06/2024 11:06:09 Sending message to 127.0.0.1:8001.
-INFO 03/06/2024 11:06:09 Sending message to 127.0.0.1:8005.
-INFO 03/06/2024 11:06:09 Santa and the reindeer gets to work!
-INFO 03/06/2024 11:06:09 Sending message to 127.0.0.1:8003.
-INFO 03/06/2024 11:06:09 Sending message to 127.0.0.1:8005.
-INFO 03/06/2024 11:06:09 Sending message to 127.0.0.1:8001.
-INFO 03/06/2024 11:06:10 Santa and the reindeer gets to work!
-INFO 03/06/2024 11:06:10 Sending message to 127.0.0.1:8005.
-INFO 03/06/2024 11:06:10 Sending message to 127.0.0.1:8001.
-INFO 03/06/2024 11:06:10 Sending message to 127.0.0.1:8003.
-INFO 03/06/2024 11:06:11 Santa and the reindeer gets to work!
-INFO 03/06/2024 11:06:11 Sending message to 127.0.0.1:8003.
-INFO 03/06/2024 11:06:11 Sending message to 127.0.0.1:8001.
-INFO 03/06/2024 11:06:11 Sending message to 127.0.0.1:8005.
-INFO 03/06/2024 11:06:11 Santa and the reindeer gets to work!
-INFO 03/06/2024 11:06:11 Sending message to 127.0.0.1:8005.
-INFO 03/06/2024 11:06:11 Sending message to 127.0.0.1:8001.
-INFO 03/06/2024 11:06:11 Sending message to 127.0.0.1:8003.
-INFO 03/06/2024 11:06:12 Santa and the reindeer gets to work!
-INFO 03/06/2024 11:06:12 Sending message to 127.0.0.1:8003.
-INFO 03/06/2024 11:06:12 Sending message to 127.0.0.1:8005.
-INFO 03/06/2024 11:06:12 Sending message to 127.0.0.1:8001.
-INFO 03/06/2024 11:06:13 Santa and the reindeer gets to work!
-INFO 03/06/2024 11:06:13 Sending message to 127.0.0.1:8005.
-INFO 03/06/2024 11:06:13 Sending message to 127.0.0.1:8001.
-INFO 03/06/2024 11:06:13 Sending message to 127.0.0.1:8003.
-INFO 03/06/2024 11:06:13 Santa and the reindeer gets to work!
-INFO 03/06/2024 11:06:13 Sending message to 127.0.0.1:8005.
-INFO 03/06/2024 11:06:13 Sending message to 127.0.0.1:8003.
-INFO 03/06/2024 11:06:13 Sending message to 127.0.0.1:8001.
-INFO 03/06/2024 11:06:14 Santa and the reindeer gets to work!
-INFO 03/06/2024 11:06:14 Sending message to 127.0.0.1:8005.
-INFO 03/06/2024 11:06:14 Sending message to 127.0.0.1:8003.
-INFO 03/06/2024 11:06:14 Sending message to 127.0.0.1:8001.
-INFO 03/06/2024 11:06:14 Santa and the reindeer gets to work!
-INFO 03/06/2024 11:06:14 Sending message to 127.0.0.1:8003.
-INFO 03/06/2024 11:06:14 Sending message to 127.0.0.1:8005.
-INFO 03/06/2024 11:06:14 Sending message to 127.0.0.1:8001.
-INFO 03/06/2024 11:06:15 Santa and the reindeer gets to work!
-INFO 03/06/2024 11:06:15 Sending message to 127.0.0.1:8005.
-INFO 03/06/2024 11:06:15 Sending message to 127.0.0.1:8003.
-INFO 03/06/2024 11:06:15 Sending message to 127.0.0.1:8001.
-INFO 03/06/2024 11:06:16 Santa and the reindeer gets to work!
-INFO 03/06/2024 11:06:16 Sending message to 127.0.0.1:8005.
-INFO 03/06/2024 11:06:16 Sending message to 127.0.0.1:8003.
-INFO 03/06/2024 11:06:16 Sending message to 127.0.0.1:8001.
-INFO 03/06/2024 11:06:16 Santa and the reindeer gets to work!
-INFO 03/06/2024 11:06:16 Sending message to 127.0.0.1:8003.
-INFO 03/06/2024 11:06:16 Sending message to 127.0.0.1:8001.
-INFO 03/06/2024 11:06:16 Sending message to 127.0.0.1:8005.
-INFO 03/06/2024 11:06:17 Santa and the reindeer gets to work!
-INFO 03/06/2024 11:06:17 Sending message to 127.0.0.1:8001.
-INFO 03/06/2024 11:06:17 Sending message to 127.0.0.1:8005.
-INFO 03/06/2024 11:06:17 Sending message to 127.0.0.1:8003.
-INFO 03/06/2024 11:06:17 Santa and the reindeer gets to work!
-INFO 03/06/2024 11:06:17 Sending message to 127.0.0.1:8005.
-INFO 03/06/2024 11:06:17 Sending message to 127.0.0.1:8001.
-INFO 03/06/2024 11:06:17 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:05 Timing Starts
+INFO 03/06/2024 14:28:05 Santa - Starting listener: 127.0.0.1:29800
+INFO 03/06/2024 14:28:14 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:14 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:14 Sending message to 127.0.0.1:8001.
+INFO 03/06/2024 14:28:14 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:14 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:14 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:14 Sending message to 127.0.0.1:8001.
+INFO 03/06/2024 14:28:14 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:15 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:15 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:15 Sending message to 127.0.0.1:8001.
+INFO 03/06/2024 14:28:15 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:16 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:16 Sending message to 127.0.0.1:8001.
+INFO 03/06/2024 14:28:16 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:16 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:16 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:16 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:16 Sending message to 127.0.0.1:8001.
+INFO 03/06/2024 14:28:16 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:17 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:17 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:17 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:17 Sending message to 127.0.0.1:8001.
+INFO 03/06/2024 14:28:18 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:18 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:18 Sending message to 127.0.0.1:8001.
+INFO 03/06/2024 14:28:18 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:18 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:18 Sending message to 127.0.0.1:8001.
+INFO 03/06/2024 14:28:18 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:18 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:19 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:19 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:19 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:19 Sending message to 127.0.0.1:8001.
+INFO 03/06/2024 14:28:20 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:20 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:20 Sending message to 127.0.0.1:8001.
+INFO 03/06/2024 14:28:20 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:21 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:21 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:21 Sending message to 127.0.0.1:8001.
+INFO 03/06/2024 14:28:21 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:21 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:21 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:21 Sending message to 127.0.0.1:8001.
+INFO 03/06/2024 14:28:21 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:22 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:22 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:22 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:22 Sending message to 127.0.0.1:8001.
+INFO 03/06/2024 14:28:22 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:22 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:22 Sending message to 127.0.0.1:8001.
+INFO 03/06/2024 14:28:22 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:23 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:23 Sending message to 127.0.0.1:8001.
+INFO 03/06/2024 14:28:23 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:23 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:24 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:24 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:24 Sending message to 127.0.0.1:8007.
+INFO 03/06/2024 14:28:24 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:25 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:25 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:25 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:25 Sending message to 127.0.0.1:8007.
+INFO 03/06/2024 14:28:26 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:26 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:26 Sending message to 127.0.0.1:8007.
+INFO 03/06/2024 14:28:26 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:27 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:27 Sending message to 127.0.0.1:8007.
+INFO 03/06/2024 14:28:27 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:27 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:27 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:27 Sending message to 127.0.0.1:8007.
+INFO 03/06/2024 14:28:27 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:27 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:28 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:28 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:28 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:28 Sending message to 127.0.0.1:8007.
+INFO 03/06/2024 14:28:29 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:29 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:29 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:29 Sending message to 127.0.0.1:8007.
+INFO 03/06/2024 14:28:29 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:29 Sending message to 127.0.0.1:8007.
+INFO 03/06/2024 14:28:29 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:29 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:30 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:30 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:30 Sending message to 127.0.0.1:8007.
+INFO 03/06/2024 14:28:30 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:30 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:30 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:30 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:30 Sending message to 127.0.0.1:8007.
+INFO 03/06/2024 14:28:31 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:31 Sending message to 127.0.0.1:8007.
+INFO 03/06/2024 14:28:31 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:31 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:49 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:49 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:49 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:49 Sending message to 127.0.0.1:8001.
+INFO 03/06/2024 14:28:49 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:49 Sending message to 127.0.0.1:8001.
+INFO 03/06/2024 14:28:49 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:49 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:50 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:50 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:50 Sending message to 127.0.0.1:8001.
+INFO 03/06/2024 14:28:50 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:51 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:51 Sending message to 127.0.0.1:8001.
+INFO 03/06/2024 14:28:51 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:51 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:51 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:51 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:51 Sending message to 127.0.0.1:8001.
+INFO 03/06/2024 14:28:51 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:52 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:52 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:52 Sending message to 127.0.0.1:8001.
+INFO 03/06/2024 14:28:52 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:52 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:52 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:52 Sending message to 127.0.0.1:8001.
+INFO 03/06/2024 14:28:52 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:53 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:53 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:53 Sending message to 127.0.0.1:8001.
+INFO 03/06/2024 14:28:53 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:53 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:53 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:53 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:53 Sending message to 127.0.0.1:8001.
+INFO 03/06/2024 14:28:54 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:54 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:54 Sending message to 127.0.0.1:8001.
+INFO 03/06/2024 14:28:54 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:55 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:55 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:55 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:55 Sending message to 127.0.0.1:8001.
+INFO 03/06/2024 14:28:56 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:56 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:56 Sending message to 127.0.0.1:8001.
+INFO 03/06/2024 14:28:56 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:56 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:56 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:56 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:56 Sending message to 127.0.0.1:8001.
+INFO 03/06/2024 14:28:57 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:57 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:57 Sending message to 127.0.0.1:8001.
+INFO 03/06/2024 14:28:57 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:58 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:58 Sending message to 127.0.0.1:8001.
+INFO 03/06/2024 14:28:58 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:58 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:58 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:58 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:58 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:58 Sending message to 127.0.0.1:8001.
+INFO 03/06/2024 14:28:59 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:28:59 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:28:59 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:28:59 Sending message to 127.0.0.1:8007.
+INFO 03/06/2024 14:29:00 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:29:00 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:29:00 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:29:00 Sending message to 127.0.0.1:8007.
+INFO 03/06/2024 14:29:00 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:29:00 Sending message to 127.0.0.1:8007.
+INFO 03/06/2024 14:29:00 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:29:00 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:29:01 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:29:01 Sending message to 127.0.0.1:8007.
+INFO 03/06/2024 14:29:01 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:29:01 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:29:02 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:29:02 Sending message to 127.0.0.1:8007.
+INFO 03/06/2024 14:29:02 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:29:02 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:29:02 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:29:02 Sending message to 127.0.0.1:8007.
+INFO 03/06/2024 14:29:02 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:29:02 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:29:03 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:29:03 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:29:03 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:29:03 Sending message to 127.0.0.1:8007.
+INFO 03/06/2024 14:29:04 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:29:04 Sending message to 127.0.0.1:8007.
+INFO 03/06/2024 14:29:04 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:29:04 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:29:04 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:29:04 Sending message to 127.0.0.1:8007.
+INFO 03/06/2024 14:29:04 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:29:04 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:29:05 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:29:05 Sending message to 127.0.0.1:8007.
+INFO 03/06/2024 14:29:05 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:29:05 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:29:06 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:29:06 Sending message to 127.0.0.1:8007.
+INFO 03/06/2024 14:29:06 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:29:06 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:29:06 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:29:06 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:29:06 Sending message to 127.0.0.1:8007.
+INFO 03/06/2024 14:29:06 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:29:07 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:29:07 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:29:07 Sending message to 127.0.0.1:8005.
+INFO 03/06/2024 14:29:07 Sending message to 127.0.0.1:8007.
+INFO 03/06/2024 14:29:08 Santa and the reindeer gets to work!
+INFO 03/06/2024 14:29:08 Sending message to 127.0.0.1:8007.
+INFO 03/06/2024 14:29:08 Sending message to 127.0.0.1:8003.
+INFO 03/06/2024 14:29:08 Sending message to 127.0.0.1:8005.

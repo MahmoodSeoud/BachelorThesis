@@ -47,11 +47,11 @@ class ThreadedSantaTCPRequestHandler(socketserver.StreamRequestHandler):
 
         payload = self.request.recv(40)  # Read the 4 bytes + 36 bytes (9 * 4 bytes) address
         amount_of_nodes = struct.unpack("!I", payload[:4])[0] # amount of nodes to contact
-        print(f"Amount of nodes: {amount_of_nodes}")
         ports = struct.unpack(f"!{amount_of_nodes}I", payload[4:4+4*amount_of_nodes])
         message = "Go back on holiday, reindeer!"
 
         buffer = bytearray()
+        buffer.extend("C".encode("utf-8")) # TODO: Maybe look at the SC
         buffer.extend(message.encode("utf-8"))
         for port in ports:
             self.send_message(LOCAL_HOST, port, buffer)

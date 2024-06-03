@@ -1,73 +1,62 @@
-INFO 03/06/2024 12:12:42 Starting listener: (127.0.0.1:8003)
-INFO 03/06/2024 12:12:43 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
-ERROR 03/06/2024 12:12:43 Couldn't connect to: 127.0.0.1:29800.
-Traceback (most recent call last):
-  File "/Users/mahmood/BachelorThesis/threading/reindeer_threads.py", line 129, in send_message
-    conn_socket.connect((targetHost, targetPort))
-ConnectionRefusedError: [Errno 61] Connection refused
-INFO 03/06/2024 12:12:44 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
-ERROR 03/06/2024 12:12:44 Couldn't connect to: 127.0.0.1:29800.
-Traceback (most recent call last):
-  File "/Users/mahmood/BachelorThesis/threading/reindeer_threads.py", line 129, in send_message
-    conn_socket.connect((targetHost, targetPort))
-ConnectionRefusedError: [Errno 61] Connection refused
-INFO 03/06/2024 12:12:45 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
-INFO 03/06/2024 12:12:45 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
-ERROR 03/06/2024 12:12:45 Couldn't connect to: 127.0.0.1:29800.
-Traceback (most recent call last):
-  File "/Users/mahmood/BachelorThesis/threading/reindeer_threads.py", line 129, in send_message
-    conn_socket.connect((targetHost, targetPort))
-ConnectionRefusedError: [Errno 61] Connection refused
-INFO 03/06/2024 12:12:46 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
-INFO 03/06/2024 12:12:47 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
-INFO 03/06/2024 12:12:47 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
-INFO 03/06/2024 12:12:48 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
-ERROR 03/06/2024 12:12:48 Couldn't connect to: 127.0.0.1:29800.
-Traceback (most recent call last):
-  File "/Users/mahmood/BachelorThesis/threading/reindeer_threads.py", line 129, in send_message
-    conn_socket.connect((targetHost, targetPort))
-ConnectionRefusedError: [Errno 61] Connection refused
-INFO 03/06/2024 12:12:49 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
-INFO 03/06/2024 12:12:49 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
-INFO 03/06/2024 12:12:50 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
-ERROR 03/06/2024 12:12:50 Couldn't connect to: 127.0.0.1:29800.
-Traceback (most recent call last):
-  File "/Users/mahmood/BachelorThesis/threading/reindeer_threads.py", line 129, in send_message
-    conn_socket.connect((targetHost, targetPort))
-ConnectionRefusedError: [Errno 61] Connection refused
-INFO 03/06/2024 12:12:51 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
-INFO 03/06/2024 12:12:51 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
-ERROR 03/06/2024 12:12:51 Couldn't connect to: 127.0.0.1:29800.
-Traceback (most recent call last):
-  File "/Users/mahmood/BachelorThesis/threading/reindeer_threads.py", line 129, in send_message
-    conn_socket.connect((targetHost, targetPort))
-ConnectionRefusedError: [Errno 61] Connection refused
-INFO 03/06/2024 12:12:52 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
-INFO 03/06/2024 12:12:52 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
-INFO 03/06/2024 12:12:53 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
-ERROR 03/06/2024 12:12:53 Couldn't connect to: 127.0.0.1:29800.
-Traceback (most recent call last):
-  File "/Users/mahmood/BachelorThesis/threading/reindeer_threads.py", line 129, in send_message
-    conn_socket.connect((targetHost, targetPort))
-ConnectionRefusedError: [Errno 61] Connection refused
-INFO 03/06/2024 12:12:54 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
-ERROR 03/06/2024 12:12:54 Couldn't connect to: 127.0.0.1:29800.
-Traceback (most recent call last):
-  File "/Users/mahmood/BachelorThesis/threading/reindeer_threads.py", line 129, in send_message
-    conn_socket.connect((targetHost, targetPort))
-ConnectionRefusedError: [Errno 61] Connection refused
-INFO 03/06/2024 12:12:54 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
-ERROR 03/06/2024 12:12:54 Couldn't connect to: 127.0.0.1:29800.
-Traceback (most recent call last):
-  File "/Users/mahmood/BachelorThesis/threading/reindeer_threads.py", line 129, in send_message
-    conn_socket.connect((targetHost, targetPort))
-ConnectionRefusedError: [Errno 61] Connection refused
-INFO 03/06/2024 12:12:55 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
-ERROR 03/06/2024 12:12:55 Couldn't connect to: 127.0.0.1:29800.
-Traceback (most recent call last):
-  File "/Users/mahmood/BachelorThesis/threading/reindeer_threads.py", line 129, in send_message
-    conn_socket.connect((targetHost, targetPort))
-ConnectionRefusedError: [Errno 61] Connection refused
-INFO 03/06/2024 12:12:56 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
-INFO 03/06/2024 12:12:56 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
-INFO 03/06/2024 12:12:57 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
+INFO 03/06/2024 14:28:47 Starting listener: (127.0.0.1:8003)
+INFO 03/06/2024 14:28:49 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:28:49 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
+INFO 03/06/2024 14:28:49 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
+INFO 03/06/2024 14:28:49 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:28:50 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
+INFO 03/06/2024 14:28:50 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:28:51 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
+INFO 03/06/2024 14:28:51 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:28:51 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:28:51 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
+INFO 03/06/2024 14:28:52 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:28:52 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
+INFO 03/06/2024 14:28:52 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
+INFO 03/06/2024 14:28:52 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:28:53 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
+INFO 03/06/2024 14:28:53 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:28:53 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
+INFO 03/06/2024 14:28:53 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:28:54 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
+INFO 03/06/2024 14:28:54 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:28:55 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
+INFO 03/06/2024 14:28:55 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:28:56 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
+INFO 03/06/2024 14:28:56 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:28:56 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
+INFO 03/06/2024 14:28:56 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:28:57 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
+INFO 03/06/2024 14:28:57 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:28:58 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:28:58 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
+INFO 03/06/2024 14:28:58 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
+INFO 03/06/2024 14:28:58 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:28:59 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
+INFO 03/06/2024 14:28:59 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:29:00 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
+INFO 03/06/2024 14:29:00 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:29:00 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
+INFO 03/06/2024 14:29:00 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:29:01 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
+INFO 03/06/2024 14:29:01 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:29:02 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
+INFO 03/06/2024 14:29:02 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:29:02 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
+INFO 03/06/2024 14:29:02 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:29:03 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
+INFO 03/06/2024 14:29:03 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:29:04 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:29:04 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
+INFO 03/06/2024 14:29:04 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
+INFO 03/06/2024 14:29:04 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:29:05 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
+INFO 03/06/2024 14:29:05 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:29:06 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
+INFO 03/06/2024 14:29:06 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:29:06 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
+INFO 03/06/2024 14:29:06 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:29:07 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
+INFO 03/06/2024 14:29:07 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:29:08 Received a message: Go back on holiday, reindeer!
+INFO 03/06/2024 14:29:08 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
+INFO 03/06/2024 14:29:08 ADDED - REQUEST [SUCCESS]: 127.0.0.1:8002, result: None
