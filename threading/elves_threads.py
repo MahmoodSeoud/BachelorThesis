@@ -172,48 +172,53 @@ def run(elf_worker):
                 logger.info("Releasing lock")
                 lock_manager.release("chainLock")
 
-                if elf_worker._is_in_chain:
+            if elf_worker._is_in_chain:
 
-                    if elf_worker._local_chain_members is not None:
-                        otherChainMemberExtraPort = [
-                            x[0] for x in elf_worker._local_chain_members
-                        ]
-                        otherChainMemberSelfNode = [
-                            x[1] for x in elf_worker._local_chain_members
-                        ]
+                if elf_worker._local_chain_members is not None:
+                    otherChainMemberExtraPort = [
+                        x[0] for x in elf_worker._local_chain_members
+                    ]
+                    otherChainMemberSelfNode = [
+                        x[1] for x in elf_worker._local_chain_members
+                    ]
 
-                        # Place this in here if you want
-                        #print("You can disconnect one of these", otherChainMemberSelfNode)
-                        #time.sleep(15)  # time to disconnect
-                        
-                        
-                        connected_members = [
-                            x
-                            for x in otherChainMemberSelfNode
-                            if elf_worker.isNodeConnected(x)
-                        ]
+                    # Place this in here if you want
+                    #print("You can disconnect one of these", otherChainMemberSelfNode)
+                    #time.sleep(15)  # time to disconnect
+                    
+                    # Disonnect test -- PLEASE REMOVE WHEN DONE --  
+                    if elf_worker._extra_port == 8001 or elf_worker._extra_port == 8003 or elf_worker._extra_port == 8005 or elf_worker._extra_port == 8007:
+                        print("Disconnecting", elf_worker._extra_port)
+                        sys.exit(1)
+                    
 
-                        if len(connected_members) == 2:
-                            runElfContacter(
-                                elf_worker._extra_port, otherChainMemberExtraPort
-                            )
-                        else:
-                            print("Please restart the chain")
-                            # Message the other guys it's time to restart
-                            for member in connected_members:
-                                send_message(
-                                    "Elf",
-                                    member.host,
-                                    member.port + 1, # TODO: Make this explixtly the extra port
-                                    bytearray("Restart!", "utf-8"),
-                                )
+                    connected_members = [
+                        x
+                        for x in otherChainMemberSelfNode
+                        if elf_worker.isNodeConnected(x)
+                    ]
 
-                        elf_worker._local_chain_members = None
-
+                    if len(connected_members) == 2:
+                        runElfContacter(
+                            elf_worker._extra_port, otherChainMemberExtraPort
+                        )
                     else:
-                        runElfListener(elf_worker._extra_port)
-                        
-                    elf_worker._is_in_chain = False
+                        print("Please restart the chain")
+                        # Message the other guys it's time to restart
+                        for member in connected_members:
+                            send_message(
+                                "Elf",
+                                member.host,
+                                member.port + 1, # TODO: Make this explixtly the extra port
+                                bytearray("Restart!", "utf-8"),
+                            )
+
+                    elf_worker._local_chain_members = None
+
+                else:
+                    runElfListener(elf_worker._extra_port)
+                    
+                elf_worker._is_in_chain = False
 
         except Exception as e:
             logger.exception(f"Could not acquire lock: {e}")

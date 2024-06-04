@@ -34,11 +34,11 @@ class ThreadedSantaTCPRequestHandler(socketserver.StreamRequestHandler):
         elif identifier == "E":  # Identifier is the Elves
             self.handle_elf_request()
 
-        global system_runs
-        system_runs += 1
+        #global system_runs
+        #system_runs += 1
 
-        if system_runs % milestone == 0:
-            logger.info(f"System reached {system_runs} runs")
+        #if system_runs % milestone == 0:
+        #    logger.info(f"System reached {system_runs} runs")
 
     def handle_reindeer_request(self):
         logger.info("Santa and the reindeer gets to work!")
@@ -83,8 +83,8 @@ class ThreadedSantaTCPRequestHandler(socketserver.StreamRequestHandler):
         elve_runs += 1
 
         # Check for milestones for elves
-        # if elve_runs % milestone == 0:
-        #   logger.info(f'Elves reached {elve_runs} runs')
+        if elve_runs % milestone == 0:
+            logger.info(f'Elves reached {elve_runs} runs')
 
     def send_message(self, host, port, buffer, timeout=30):
         start_time = time.time()
