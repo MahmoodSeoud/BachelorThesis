@@ -221,7 +221,7 @@ def run(elf_worker):
                 elf_worker._is_in_chain = False
 
         except Exception as e:
-            logger.exception(f"Could not acquire lock: {e}")
+            logger.exception(f"Error in main: {e}")
         finally:
             if lock_manager.isAcquired("chainLock"):
                 logger.info("Releasing lock")

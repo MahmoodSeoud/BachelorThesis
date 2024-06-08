@@ -51,17 +51,17 @@ class ThreadedSantaTCPRequestHandler(socketserver.StreamRequestHandler):
         message = "Go back on holiday, reindeer!"
 
         buffer = bytearray()
-        buffer.extend("C".encode("utf-8")) # TODO: Maybe look at the SC
+        buffer.extend("C".encode("utf-8")) # C for Santa CLAUSE
         buffer.extend(message.encode("utf-8"))
         for port in ports:
             self.send_message(LOCAL_HOST, port, buffer)
 
-        # global reindeer_runs
-        # reindeer_runs += 1
+        global reindeer_runs
+        reindeer_runs += 1
 
-        # Check for milestones for reindeer
-        # if reindeer_runs % milestone == 0:
-        #    logger.info(f'Reindeer reached {reindeer_runs} runs')
+        #Check for milestones for reindeer
+        if reindeer_runs % milestone == 0:
+           logger.info(f'Reindeer reached {reindeer_runs} runs')
 
     def handle_elf_request(self):
         logger.info("Santa goes to help the elves")
@@ -79,12 +79,12 @@ class ThreadedSantaTCPRequestHandler(socketserver.StreamRequestHandler):
             print(f"Port: {port}")
             self.send_message(LOCAL_HOST, port, buffer)
 
-        global elve_runs
-        elve_runs += 1
+        #global elve_runs
+        #elve_runs += 1
 
-        # Check for milestones for elves
-        if elve_runs % milestone == 0:
-            logger.info(f'Elves reached {elve_runs} runs')
+        ## Check for milestones for elves
+        #if elve_runs % milestone == 0:
+        #    logger.info(f'Elves reached {elve_runs} runs')
 
     def send_message(self, host, port, buffer, timeout=30):
         start_time = time.time()
