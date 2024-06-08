@@ -187,9 +187,9 @@ def run(elf_worker):
                     #time.sleep(15)  # time to disconnect
                     
                     # Disonnect test -- PLEASE REMOVE WHEN DONE --  
-                    if elf_worker._extra_port == 8001 or elf_worker._extra_port == 8003 or elf_worker._extra_port == 8005 or elf_worker._extra_port == 8007:
-                        print("Disconnecting", elf_worker._extra_port)
-                        sys.exit(1)
+                    #if elf_worker._extra_port == 8001 or elf_worker._extra_port == 8003 or elf_worker._extra_port == 8005 or elf_worker._extra_port == 8007:
+                    #    print("Disconnecting", elf_worker._extra_port)
+                    #    sys.exit(1)
                     
 
                     connected_members = [
