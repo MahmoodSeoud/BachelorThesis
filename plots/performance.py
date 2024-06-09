@@ -96,7 +96,7 @@ ax1.plot(timestamps_distributed, runs, '-o', color='blue')
 ax1.set_title('Number of runs over time')
 ax1.set_xlabel('Time elapsed (minutes)')
 ax1.set_ylabel('Number of runs')
-ax1.legend(['Elves', '(n/2) + 1 - Elves'])
+ax1.legend(['Non-Distributed', 'Distrubed'])
 
 # Show the plot
 plt.show()
