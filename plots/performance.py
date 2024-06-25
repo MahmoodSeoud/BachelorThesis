@@ -57,7 +57,7 @@ timestamps_non_distributed = [
 "17:53:16",
 ]
 
-timestamps_distributed = [
+timestamps_distributedThreadingTCPServer = [
 "17:30:32",
 "17:31:10",
 "17:31:40",
@@ -71,6 +71,22 @@ timestamps_distributed = [
 "17:37:06",
 ]
 
+
+timestamps_distributedTCPServer = [
+"15:58:49",
+"15:59:26",
+"15:59:56",
+"16:00:25",
+"16:00:55",
+"16:01:24",
+"16:02:59",
+"16:04:03",
+"16:05:06",
+"16:06:11",
+"16:07:17",
+
+]
+
 runs = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
 
 # Convert the timestamps to datetime and calculate the time elapsed since the first timestamp
@@ -79,7 +95,8 @@ timestamps_reindeer = [(datetime.strptime(time, "%H:%M:%S") - datetime.strptime(
 timestamps_nukedElves = [(datetime.strptime(time, "%H:%M:%S") - datetime.strptime(timestamps_nukedElves[0], "%H:%M:%S")).seconds / 60.0 for time in timestamps_nukedElves]
 
 timestamps_non_distributed = [(datetime.strptime(time, "%H:%M:%S") - datetime.strptime(timestamps_non_distributed[0], "%H:%M:%S")).seconds / 60.0 for time in timestamps_non_distributed]
-timestamps_distributed = [(datetime.strptime(time, "%H:%M:%S") - datetime.strptime(timestamps_distributed[0], "%H:%M:%S")).seconds / 60.0 for time in timestamps_distributed]
+timestamps_distributedThreadingTCPServer = [(datetime.strptime(time, "%H:%M:%S") - datetime.strptime(timestamps_distributedThreadingTCPServer[0], "%H:%M:%S")).seconds / 60.0 for time in timestamps_distributedThreadingTCPServer]
+timestamps_distributedTCPServer = [(datetime.strptime(time, "%H:%M:%S") - datetime.strptime(timestamps_distributedTCPServer[0], "%H:%M:%S")).seconds / 60.0 for time in timestamps_distributedTCPServer]
 
 
 # Create a figure and a subplot
@@ -89,14 +106,14 @@ fig, ax1 = plt.subplots()
 #ax1.plot(timestamps_elves, runs, '-o', color='orange')
 #ax1.plot(timestamps_nukedElves, runs, '-o', color='red')
 #ax1.plot(timestamps_reindeer, runs, '-o', color='brown')
-ax1.plot(timestamps_non_distributed, runs, '-o', color='red')
-ax1.plot(timestamps_distributed, runs, '-o', color='blue')
+ax1.plot(timestamps_distributedThreadingTCPServer, runs, '-o', color='orange')
+ax1.plot(timestamps_distributedTCPServer, runs, '-o', color='red')
 
 # Set the title and x label
 ax1.set_title('Number of runs over time')
 ax1.set_xlabel('Time elapsed (minutes)')
 ax1.set_ylabel('Number of runs')
-ax1.legend(['Non-Distributed', 'Distrubed'])
+ax1.legend(['ThreadedTCPServer', 'TCPServer'])
 
 # Show the plot
 plt.show()
