@@ -110,7 +110,7 @@ class ThreadedSantaTCPRequestHandler(socketserver.StreamRequestHandler):
 if __name__ == "__main__":
     logger.info("Timing Starts")
 
-    with socketserver.ThreadingTCPServer(
+    with socketserver.TCPServer(
         (LOCAL_HOST, SANTA_PORT), ThreadedSantaTCPRequestHandler
     ) as server:
         logger.info(f"Santa - Starting listener: {LOCAL_HOST}:{SANTA_PORT}")
