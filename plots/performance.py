@@ -1,5 +1,7 @@
 import matplotlib.pyplot as plt
 from datetime import datetime
+import math
+
 import numpy as np
 
 # Your data
@@ -107,26 +109,22 @@ timestamps_distributedTCPServer = [(datetime.strptime(time, "%H:%M:%S") - dateti
 
 
 # Create a figure and a subplot
-fig, ax = plt.subplots(figsize=(10, 5))
+fig, ax = plt.subplots(figsize=(20, 10))
 
 
 x1 = timestamps_elves
-x2 = timestamps_nukedElves
+x2 = timestamps_reindeer
 y = runs
 x1label = "Elves"
-x2label = "(n/2) + 1 Elves"
-
-# Plot the data points on the subplot and connect them with a line
-# ax1.plot(timestamps_elves, runs, '-o', color='orange')
-# ax1.plot(timestamps_nukedElves, runs, '-o', color='red')
-# ax1.plot(timestamps_reindeer, runs, '-o', color='brown')
-
-# Set the title and x label
+x2label = "Reindeer"
+x1Color = "royalblue"
+x2Color = "forestgreen"
+filename = "elves_vs_reindeer.png"
 
 # Define font sizes
-SIZE_DEFAULT = 14
-SIZE_LARGE = 16
-plt.rc("font", family="Arial")  # controls default font
+SIZE_DEFAULT = 28
+SIZE_LARGE = 32
+plt.rc("font", family="Calibri")  # controls default font
 plt.rc("font", weight="normal")  # controls default font
 plt.rc("font", size=SIZE_DEFAULT)  # controls default text sizes
 plt.rc("axes", titlesize=SIZE_LARGE)  # fontsize of the axes title
@@ -142,27 +140,47 @@ ax.spines["top"].set_visible(False)
 # Only show ticks on the left and bottom spines
 ax.yaxis.set_ticks_position("left")
 ax.xaxis.set_ticks_position("bottom")
-ax.spines["bottom"].set_bounds(min(x2), max(x2) + 1)
-
+ax.spines["bottom"].set_bounds(min(x2), math.ceil(max(x2)))
 
 ax.plot(x1,
         y,
-        color="darkred",
+        color=x1Color,
         linewidth=2,
         label=x1label)
 
 ax.plot(x2,
         y,
-        color="darkorange",
+        color=x2Color,
         linewidth=2,
         label=x2label)
 
+ax.text(
+    x1[-1] * 1.01,
+    y[-1],
+    x1label,
+    color=x1Color,
+    fontweight="bold",
+    fontsize=SIZE_LARGE,
+    horizontalalignment="left",
+    verticalalignment="center"
+)
+
+ax.text(
+    x2[-1],
+    y[-1] * 1.05,
+    x2label,
+    color=x2Color,
+    fontweight="bold",
+    fontsize=SIZE_LARGE,
+    horizontalalignment="left",
+    verticalalignment="center"
+)
+
 ax.set_xticks(np.arange(min(x2), max(x2) + 1))
-ax.set_xlabel('Time (minutes)', fontsize=16)  # Adjust the fontsize as needed
-ax.set_ylabel('Runs', fontsize=16)  # Adjust the fontsize as needed
+ax.tick_params(axis='both', which='major', labelsize=SIZE_DEFAULT)  
+ax.set_xlabel('Time (minutes)', fontsize=SIZE_DEFAULT)  
+ax.set_ylabel('Runs', fontsize=SIZE_DEFAULT)  
 
-ax.legend()
-
-plt.savefig("Elves_vs_nukedElves.png", dpi=300)
+plt.savefig("../images/Elves_vs_nukedElves.png", dpi=300, bbox_inches="tight")
 # Show the plot
 plt.show()
