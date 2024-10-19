@@ -1,6 +1,6 @@
 # Bachelor Thesis 2024 - DIKU
 
-Welcome to the repository for my Bachelor Thesis conducted at DIKU in 2024.
+Welcome to the repository for my Bachelor Thesis conducted at DIKU in 2024. The paper is published [here](https://easychair.org/publications/paper/Gv4N)). 
 
 ## Overview
 
