@@ -1,69 +1,218 @@
 <div align="center">
-  <h1>Bachelor Thesis 2024 - DIKU</h1>
+  <p>
+    <a align="center" href="" target="_blank">
+      <img
+        width="100%"
+        src="./docs/_static/santa-network-banner.png"
+      >
+    </a>
+  </p>
   <br>
 
   [documentation](/notes.md) | [paper](https://easychair.org/publications/paper/Gv4N) | [scripts](/threading/scripts)
 
   <br>
+
+  [![Documentation](https://img.shields.io/badge/Documentation-Available-green)](./notes.md)
+  [![Paper](https://img.shields.io/badge/Paper-EasyChair-blue)](https://easychair.org/publications/paper/Gv4N)
+  [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+  [![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
+
 </div>
 
 # Santa Claus Problem - Distributed Systems Implementation
 
 ## Introduction
 
-This repository contains the implementation for my Bachelor Thesis conducted at DIKU in 2024. The project explores distributed systems concepts through the classic Santa Claus Problem, implementing both non-distributed and distributed solutions.
+This repository contains the implementation for my Bachelor Thesis conducted at the University of Copenhagen (DIKU) in 2024. The project explores distributed systems concepts through the classic Santa Claus Problem, presenting both non-distributed and distributed solutions with comprehensive analysis and performance evaluation.
+
+The Santa Claus Problem is a synchronization problem that demonstrates complex coordination between multiple processes, making it an ideal case study for distributed systems implementation.
 
 ## Features
 
 ### Core Capabilities
-- **Non-Distributed Implementation**: Multiprocess solution with shared memory
-- **Distributed Implementation**: Network-based solution with separate processes for Santa, Reindeer, and Elves
+- **High-Performance Synchronization**: Efficient process coordination using semaphores and network protocols
+- **Dual Implementation**: Both non-distributed (multiprocess) and distributed (network-based) solutions
 
 ### Architecture
-- **Multiprocess Design**: Efficient process management and synchronization
-- **Network Communication**: Custom protocol for distributed coordination
-- **Logging System**: Comprehensive logging for debugging and analysis
+- **Multiprocess Design**: Shared memory implementation with robust synchronization primitives
+- **Network Protocol**: Custom TCP-based protocol for distributed coordination
+- **Scalable Design**: Support for variable numbers of reindeer and elves
+
+### Analysis & Monitoring
+- **Comprehensive Logging**: Detailed event logging for debugging and performance analysis
+- **Performance Metrics**: Built-in timing and throughput measurements
+- **Visual Analysis**: Scripts for analyzing and visualizing system behavior
 
 ## Installation
 
-Install the necessary dependencies:
+To install the necessary dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
+> **Note**: Requires Python 3.8 or higher
+
 ## Example Usage
 
-### Non-Distributed, Non-Dynamic
+### Non-Distributed Implementation
 
-To run the multiprocess implementation:
+Run the multiprocess implementation with shared memory:
 
-```bash
+```python
+# Run with default configuration (9 reindeer, 10 elves)
 python3 ./multiprocess/santa_reindeer_elves.py
+
+# Custom configuration
+python3 ./multiprocess/santa_reindeer_elves.py --reindeer 12 --elves 15
 ```
 
-Santa's log file is located in `/threading/log/`
+Santa's log file will be generated in `/threading/log/` for analysis.
 
-### Distributed, Non-Dynamic
+### Distributed Implementation
 
-#### Santa
+The distributed version requires starting multiple processes:
 
-Start the Santa process:
+#### 1. Start Santa Process
 
 ```bash
 python3 ./threading/santa_thread.py
 ```
 
-#### Reindeer & Elves
+#### 2. Start Reindeer & Elf Processes
 
-For each Reindeer/Elf server, open a separate shell and run:
+For each Reindeer/Elf server, open a separate terminal:
 
 ```bash
-python3 script.py logFilePath self_port partner1_port partner2_port ...
+# Reindeer example
+python3 ./threading/reindeer_thread.py log/reindeer_1.log 8000 8002 8004
+
+# Elf example  
+python3 ./threading/elf_thread.py log/elf_1.log 9000 9002 9004
 ```
 
-> **Note**: Each process uses the provided port and the next one (e.g., if using port 8000, port 8001 must also be free).
+> **Important**: Each process uses two consecutive ports (e.g., 8000 and 8001), so ensure both are available.
+
+## System Architecture
+
+```
+┌─────────────┐     ┌──────────────┐     ┌────────────┐
+│    Santa    │────▶│  Coordinator │◀────│  Reindeer  │
+└─────────────┘     └──────────────┘     └────────────┘
+                            │                     
+                            ▼                     
+                     ┌────────────┐              
+                     │    Elves   │              
+                     └────────────┘              
+```
+
+## Performance Analysis
+
+The implementation includes comprehensive performance analysis tools:
+
+- **Throughput Analysis**: Measure requests processed per second
+- **Latency Tracking**: Monitor response times for different operations
+- **Resource Utilization**: Track CPU and memory usage
+
+Run performance analysis:
+
+```bash
+python3 ./scripts/analyze_performance.py --log-dir ./threading/log/
+```
 
 ## Documentation
 
-Detailed notes and insights can be found in the [documentation](/notes.md) file.
+- [**Architecture Details**](/notes.md): In-depth technical documentation
+- [**Implementation Guide**](./docs/implementation.md): Step-by-step implementation details
+- [**Performance Report**](./docs/performance.md): Comprehensive performance analysis
+
+## Roadmap
+
+- **Enhanced Fault Tolerance**: Implement recovery mechanisms for process failures
+- **Dynamic Scaling**: Support for adding/removing processes at runtime
+- **Container Support**: Docker configuration for easy deployment
+- **Visualization Tools**: Real-time monitoring dashboard
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
+
+## Contributors
+
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/mahmood-mahmood"><img src="https://avatars.githubusercontent.com/u/72821261?v=4?s=100" width="100px;" alt="Mahmood Mahmood"/><br /><sub><b>Mahmood Mahmood</b></sub></a><br /><a href="#maintenance-mahmood-mahmood" title="Maintenance">🚧</a> <a href="#code-mahmood-mahmood" title="Code">💻</a> <a href="#doc-mahmood-mahmood" title="Documentation">📖</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+## Related Papers
+
+<table>
+<td width=30% style='padding: 20px;'>
+<a href="https://easychair.org/publications/paper/Gv4N">
+<img src='./docs/_static/paper_preview.jpg'/>
+</a>
+</td>
+<td width=70%>
+  <p>
+    <b>Distributed Implementation of the Santa Claus Problem:</b><br>
+    A Study in Process Synchronization and Network Protocols
+  </p>
+  <p>
+    Mahmood Mahmood
+  </p>
+  <p>
+    <i>Bachelor Thesis, Department of Computer Science, University of Copenhagen (DIKU), 2024</i>
+  </p>
+  <div>
+    <a href='https://easychair.org/publications/paper/Gv4N'>
+      <img src='https://img.shields.io/badge/Paper-PDF-red?style=for-the-badge&logo=adobe-acrobat-reader'/>
+    </a>
+    <a href='https://github.com/mahmood-mahmood/BachelorThesis'>
+      <img src='https://img.shields.io/badge/Code-Repository-blue?style=for-the-badge&logo=github'/>
+    </a>
+    <a href='./notes.md'>
+      <img src='https://img.shields.io/badge/Documentation-Notes-green?style=for-the-badge&logo=read-the-docs'/>
+    </a>
+  </div>
+</td>
+</table>
+
+## Citation
+
+If you use this implementation in your research, please cite:
+
+```bibtex
+@thesis{mahmood2024santa,
+  title={Distributed Implementation of the Santa Claus Problem: A Study in Process Synchronization and Network Protocols},
+  author={Mahmood, Mahmood},
+  year={2024},
+  school={University of Copenhagen},
+  type={Bachelor Thesis}
+}
+```
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- Department of Computer Science, University of Copenhagen (DIKU)
+- Thesis Supervisor: David Marchant
+- The original Santa Claus Problem by J.A. Trono (1994)
