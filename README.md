@@ -106,20 +106,6 @@ python3 ./threading/elf_thread.py log/elf_1.log 9000 9002 9004
                      └────────────┘              
 ```
 
-## Performance Analysis
-
-The implementation includes comprehensive performance analysis tools:
-
-- **Throughput Analysis**: Measure requests processed per second
-- **Latency Tracking**: Monitor response times for different operations
-- **Resource Utilization**: Track CPU and memory usage
-
-Run performance analysis:
-
-```bash
-python3 ./scripts/analyze_performance.py --log-dir ./threading/log/
-```
-
 ## Documentation
 
 - [**Architecture Details**](/notes.md): In-depth technical documentation
@@ -205,10 +191,6 @@ If you use this implementation in your research, please cite:
   type={Bachelor Thesis}
 }
 ```
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 
