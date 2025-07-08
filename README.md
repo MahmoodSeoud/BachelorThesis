@@ -1,9 +1,8 @@
-<div align="center">
-  <p>
+<div align="center"> <p>
     <a align="center" href="" target="_blank">
       <img
         width="100%"
-        src="./docs/_static/santa-network-banner.png"
+        src="./docs/_static/santa-network-banner.svg"
       >
     </a>
   </p>
@@ -150,7 +149,7 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
 <table>
   <tbody>
     <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/mahmood-mahmood"><img src="https://avatars.githubusercontent.com/u/72821261?v=4?s=100" width="100px;" alt="Mahmood Mahmood"/><br /><sub><b>Mahmood Mahmood</b></sub></a><br /><a href="#maintenance-mahmood-mahmood" title="Maintenance">🚧</a> <a href="#code-mahmood-mahmood" title="Code">💻</a> <a href="#doc-mahmood-mahmood" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/MahmoodSeoud"><img src="https://avatars.githubusercontent.com/u/100567528?s=400&u=b6a078b742f069ff36308fde4c79324a2a958780&v=4" width="100px;" alt="Mahmood Seoud"/><br /><sub><b>Mahmood Seoud</b></sub></a><br /><a href="#maintenance-mahmood-seoud" title="Maintenance">🚧</a> <a href="#code-mahmood-seoud" title="Code">💻</a> <a href="#doc-mahmood-seoud" title="Documentation">📖</a></td>
     </tr>
   </tbody>
 </table>
@@ -165,7 +164,7 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
 <table>
 <td width=30% style='padding: 20px;'>
 <a href="https://easychair.org/publications/paper/Gv4N">
-<img src='./docs/_static/paper_preview.jpg'/>
+<img src='./docs/_static/paper_preview.png'/>
 </a>
 </td>
 <td width=70%>
@@ -174,7 +173,7 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
     A Study in Process Synchronization and Network Protocols
   </p>
   <p>
-    Mahmood Mahmood
+    Mahmood Seoud
   </p>
   <p>
     <i>Bachelor Thesis, Department of Computer Science, University of Copenhagen (DIKU), 2024</i>
@@ -200,7 +199,7 @@ If you use this implementation in your research, please cite:
 ```bibtex
 @thesis{mahmood2024santa,
   title={Distributed Implementation of the Santa Claus Problem: A Study in Process Synchronization and Network Protocols},
-  author={Mahmood, Mahmood},
+  author={Mahmood, Seoud},
   year={2024},
   school={University of Copenhagen},
   type={Bachelor Thesis}
