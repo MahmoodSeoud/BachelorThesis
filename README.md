@@ -1,61 +1,69 @@
-# Bachelor Thesis 2024 - DIKU
+<div align="center">
+  <h1>Bachelor Thesis 2024 - DIKU</h1>
+  <br>
 
-Welcome to the repository for my Bachelor Thesis conducted at DIKU in 2024. The paper is published [here](https://easychair.org/publications/paper/Gv4N)). 
+  [documentation](/notes.md) | [paper](https://easychair.org/publications/paper/Gv4N) | [scripts](/threading/scripts)
 
-## Overview
+  <br>
+</div>
 
-This repository contains the code and documentation for my Bachelor Thesis project. You can find detailed notes and insights in the [documentation](/notes.md) file.
+# Santa Claus Problem - Distributed Systems Implementation
 
-## Quick Start
+## Introduction
 
-To get started, follow these steps:
+This repository contains the implementation for my Bachelor Thesis conducted at DIKU in 2024. The project explores distributed systems concepts through the classic Santa Claus Problem, implementing both non-distributed and distributed solutions.
 
-1. Install the necessary dependencies by running:
+## Features
+
+### Core Capabilities
+- **Non-Distributed Implementation**: Multiprocess solution with shared memory
+- **Distributed Implementation**: Network-based solution with separate processes for Santa, Reindeer, and Elves
+
+### Architecture
+- **Multiprocess Design**: Efficient process management and synchronization
+- **Network Communication**: Custom protocol for distributed coordination
+- **Logging System**: Comprehensive logging for debugging and analysis
+
+## Installation
+
+Install the necessary dependencies:
 
 ```bash
-$ pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
-2. Choose the appropriate section based on your setup:
+## Example Usage
 
 ### Non-Distributed, Non-Dynamic
 
-To run the program, execute the following command:
+To run the multiprocess implementation:
 
 ```bash
-$ python3 ./multiprocess/santa_reindeer_elves.py
+python3 ./multiprocess/santa_reindeer_elves.py
 ```
 
-Santa has his own log file located [here](/threading/log/)
+Santa's log file is located in `/threading/log/`
 
 ### Distributed, Non-Dynamic
 
 #### Santa
 
-Start a Santa thread by running:
+Start the Santa process:
 
 ```bash
-$ python3 ./threading/santa_thread.py
+python3 ./threading/santa_thread.py
 ```
 
-#### Reindeer
+#### Reindeer & Elves
 
-For each server, open a separate shell. Then, run the corresponding script from the [scripts](/threading/scripts) directory. Alternatively, you can manually specify ports. 
-```bash
-$ python3 logFilePath self_port partner1_port partner2_port ...
-```
-**NOTICE**: Each process utilizses the port provided and also the just after. Therefore it is important to make sure that both of these ports are not in use before providing them. For example if you want to have a cluster starting from `8000`, then you need to also make sure that port `8001` also is free.
+For each Reindeer/Elf server, open a separate shell and run:
 
 ```bash
-$ python3 logFilePath self_port partner1_port partner2_port ...
+python3 script.py logFilePath self_port partner1_port partner2_port ...
 ```
 
-#### Elves
+> **Note**: Each process uses the provided port and the next one (e.g., if using port 8000, port 8001 must also be free).
 
-Similar to Reindeer, open a separate shell for each server. Run the appropriate script from the [scripts](/threading/scripts) directory. You can also manually specify ports:
+## Documentation
 
-```bash
-$ python3 logFilePath self_port partner1_port partner2_port ...
-```
-
-Feel free to explore the codebase and documentation to gain a deeper understanding of the thesis project. If you have any questions or feedback, please don't hesitate to reach out.
+Detailed notes and insights can be found in the [documentation](/notes.md) file.
