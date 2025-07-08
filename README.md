@@ -149,7 +149,7 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
 <table>
   <tbody>
     <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/MahmoodSeoud"><img src="https://avatars.githubusercontent.com/u/100567528?s=400&u=b6a078b742f069ff36308fde4c79324a2a958780&v=4" width="100px;" alt="Mahmood Seoud"/><br /><sub><b>Mahmood Seoud</b></sub></a><br /><a href="#maintenance-mahmood-seoud" title="Maintenance">🚧</a> <a href="#code-mahmood-seoud" title="Code">💻</a> <a href="#doc-mahmood-seoud" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/MahmoodSeoud"><img src="https://avatars.githubusercontent.com/u/100567528?s=400&u=b6a078b742f069ff36308fde4c79324a2a958780&v=4" width="100px;" alt="Mahmood Seoud"/><br /><sub><b>Mahmood Seoud</b></sub></a><br />
     </tr>
   </tbody>
 </table>
