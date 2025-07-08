@@ -182,7 +182,7 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
     <a href='https://easychair.org/publications/paper/Gv4N'>
       <img src='https://img.shields.io/badge/Paper-PDF-red?style=for-the-badge&logo=adobe-acrobat-reader'/>
     </a>
-    <a href='https://github.com/mahmood-mahmood/BachelorThesis'>
+    <a href='https://github.com/MahmoodSeoud/BachelorThesis'>
       <img src='https://img.shields.io/badge/Code-Repository-blue?style=for-the-badge&logo=github'/>
     </a>
     <a href='./notes.md'>
